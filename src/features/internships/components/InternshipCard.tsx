@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
-import { Building2, MapPin, Briefcase, ArrowRight } from "lucide-react";
+import {
+  BriefcaseBusiness,
+  Building2,
+  MapPin,
+  ArrowUpRight,
+  CalendarDays,
+} from "lucide-react";
 
 import AppCard from "@/components/common/AppCard";
 
@@ -16,74 +22,123 @@ export default function InternshipCard({ internship }: Props) {
       <AppCard
         className="
         h-full
-        min-h-[220px]
-        transition-all
-        duration-200
-        hover:-translate-y-1
-        hover:shadow-md
+        group
+        overflow-hidden
         "
       >
-        <div className="flex flex-col h-full">
-          <div className="space-y-3 flex-1">
-            <h3
-              className="
-              text-lg
-              font-semibold
-              line-clamp-2
-              "
-            >
-              {internship.title}
-            </h3>
+        {/* Header */}
 
-            <div className="space-y-2 text-sm text-slate-500">
-              <div className="flex items-center gap-2">
-                <Building2 size={16} />
+        <div className="flex justify-between items-start">
+          <span
+            className="
+            inline-flex
+            items-center
+            gap-2
+            rounded-full
+            bg-blue-50
+            px-3
+            py-1
+            text-xs
+            font-medium
+            text-blue-600
+            "
+          >
+            <BriefcaseBusiness size={14} />
 
-                {internship.companyName}
-              </div>
+            {internship.type}
+          </span>
 
-              <div className="flex items-center gap-2">
-                <MapPin size={16} />
+          <ArrowUpRight
+            size={18}
+            className="
+            text-slate-400
+            transition-transform
+            group-hover:translate-x-1
+            group-hover:-translate-y-1
+            "
+          />
+        </div>
 
-                {internship.location}
-              </div>
-            </div>
+        {/* Title */}
 
-            <span
-              className="
-              inline-flex
-              items-center
-              rounded-full
-              bg-blue-50
-              text-blue-600
-              px-3
-              py-1
-              text-xs
-              font-medium
-              "
-            >
-              <Briefcase size={14} className="mr-1" />
+        <div className="mt-5">
+          <h3
+            className="
+            text-xl
+            font-semibold
+            line-clamp-2
+            "
+          >
+            {internship.title}
+          </h3>
+        </div>
 
-              {internship.type}
-            </span>
+        {/* Company */}
+
+        <div className="mt-5 space-y-3">
+          <div
+            className="
+            flex
+            items-center
+            gap-2
+            text-slate-600
+            "
+          >
+            <Building2 size={16} />
+
+            <span>{internship.companyName}</span>
           </div>
 
           <div
             className="
-            mt-4
             flex
             items-center
-            justify-between
-            border-t
-            pt-3
+            gap-2
+            text-slate-600
             "
           >
-            <span className="text-sm text-slate-500">
-              Deadline: {internship.deadline}
-            </span>
+            <MapPin size={16} />
 
-            <ArrowRight size={18} className="text-blue-600" />
+            <span>{internship.location}</span>
           </div>
+        </div>
+
+        {/* Footer */}
+
+        <div
+          className="
+          mt-6
+          flex
+          items-center
+          justify-between
+          border-t
+          border-slate-100
+          pt-4
+          "
+        >
+          <div
+            className="
+            flex
+            items-center
+            gap-2
+            text-sm
+            text-slate-500
+            "
+          >
+            <CalendarDays size={15} />
+
+            {internship.deadline}
+          </div>
+
+          <span
+            className="
+            text-sm
+            font-medium
+            text-blue-600
+            "
+          >
+            View Details
+          </span>
         </div>
       </AppCard>
     </Link>

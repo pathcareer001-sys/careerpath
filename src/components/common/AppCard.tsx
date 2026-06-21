@@ -15,14 +15,22 @@ export default function AppCard({
         `
         bg-white
         border
-        border-slate-200
-        rounded-2xl
-        shadow-sm
+        border-slate-100
+        rounded-3xl
+        shadow-lg
+        shadow-slate-200/40
+        transition-all
+        duration-300
+        hover:shadow-2xl
+        hover:shadow-slate-200/60
+        hover:-translate-y-1
         `,
         className,
       )}
     >
-      <CardContent className="p-6">{children}</CardContent>
+      <CardContent className="p-6">
+        {children}
+      </CardContent>
     </Card>
   );
 }

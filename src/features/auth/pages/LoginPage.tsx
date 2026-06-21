@@ -1,111 +1,144 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "react-router-dom";
 
-import {
-  loginSchema,
-  type LoginSchema,
-} from "../schemas/loginSchema";
+import { FcGoogle } from "react-icons/fc";
 
-import { authService } from "../services/authService";
-
-import { useNavigate } from "react-router-dom";
 import AppButton from "@/components/common/AppButton";
 import AppInput from "@/components/common/AppInput";
 
+import { useState } from "react";
+
 export default function LoginPage() {
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
-  });
-
-  const onSubmit = async (
-    values: LoginSchema
-  ) => {
-    try {
-      await authService.login(
-        values.email,
-        values.password
-      );
-
-      navigate("/dashboard");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleGoogleLogin = async () => {
-    try {
-        await authService.loginWithGoogle();
-
-        navigate("/dashboard");
-    } catch (error: any) {
-
-        if (
-        error.code ===
-        "auth/popup-closed-by-user"
-        ) {
-        return;
-        }
-
-        if (
-        error.code ===
-        "auth/cancelled-popup-request"
-        ) {
-        return;
-        }
-
-        console.error(error);
-    }
-    };
+  const [password, setPassword] = useState("");
 
   return (
-    <div className="max-w-md mx-auto mt-20">
-
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4"
+    <div
+      className="
+      w-full
+      max-w-md
+      "
+    >
+      <div
+        className="
+        rounded-[32px]
+        border
+        border-slate-200
+        bg-white
+        p-8
+        shadow-xl
+        "
       >
-        <h1 className="text-2xl font-bold">
-          Login
+        <h1
+          className="
+          text-4xl
+          font-bold
+          "
+        >
+          Sign In
         </h1>
 
-        <AppInput
-          {...register("email")}
-          placeholder="Email"
-          className="border p-2 w-full"
-        />
+        <p
+          className="
+          mt-2
+          text-slate-500
+          "
+        >
+          Enter your account credentials
+        </p>
 
-        <p>{errors.email?.message}</p>
+        <div className="mt-8 space-y-4">
+          <AppInput
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+          />
 
-        <AppInput
-          {...register("password")}
-          placeholder="Password"
-          type="password"
-          className="border p-2 w-full"
-        />
+          <AppInput
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+          />
+        </div>
 
-        <p>{errors.password?.message}</p>
+        <div
+          className="
+          mt-4
+          flex
+          justify-between
+          text-sm
+          "
+        >
+          <label className="flex gap-2">
+            <input type="checkbox" />
+            Remember me
+          </label>
+
+          <button className="text-blue-600">Forgot Password?</button>
+        </div>
 
         <AppButton
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="
+          mt-6
+          w-full
+          "
         >
-          Login
+          Sign In
         </AppButton>
 
-        <AppButton
-        type="button"
-        onClick={handleGoogleLogin}
+        <div
+          className="
+          my-6
+          flex
+          items-center
+          gap-4
+          "
         >
-        Login dengan Google
-        </AppButton>
-      </form>
+          <div className="h-px flex-1 bg-slate-200" />
 
+          <span className="text-sm text-slate-400">or continue with</span>
+
+          <div className="h-px flex-1 bg-slate-200" />
+        </div>
+
+        <button
+          className="
+  w-full
+  rounded-xl
+  border
+  border-slate-200
+  py-3
+  flex
+  items-center
+  justify-center
+  gap-3
+  "
+        >
+          <FcGoogle size={20} />
+          Continue with Google
+        </button>
+
+        <p
+          className="
+          mt-6
+          text-center
+          text-sm
+          text-slate-500
+          "
+        >
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="
+            text-blue-600
+            font-medium
+            "
+          >
+            Create Account
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

@@ -1,136 +1,197 @@
 import { Link } from "react-router-dom";
 
-import { MapPin, Star, BadgeCheck } from "lucide-react";
+import {
+  BadgeCheck,
+  MapPin,
+  Star,
+  ArrowUpRight,
+  Building2,
+} from "lucide-react";
 
 import AppCard from "@/components/common/AppCard";
 
 import type { Company } from "@/types/company";
 
-export default function CompanyCard({ company }: { company: Company }) {
+interface Props {
+  company: Company;
+}
+
+export default function CompanyCard({ company }: Props) {
   return (
     <Link to={`/companies/${company.id}`} className="block">
       <AppCard
         className="
-      h-full
-      transition-all
-      duration-200
-      hover:-translate-y-1
-      hover:shadow-md
-      min-h-[220px]
-      "
+        h-full
+        group
+        overflow-hidden
+        "
       >
-        <div className="flex items-start gap-4">
+        {/* Badge */}
+
+        <div className="flex justify-between items-start">
           <div
             className="
-            w-14
-            h-14
-            rounded-xl
-            bg-blue-100
-            flex
+            inline-flex
             items-center
-            justify-center
-            shrink-0
+            gap-1
+            rounded-full
+            bg-blue-50
+            px-3
+            py-1
+            text-xs
+            font-medium
+            text-blue-600
             "
           >
-            {company.logo ? (
-              <img
-                src={company.logo}
-                alt={company.name}
-                className="
-      w-14
-      h-14
-      rounded-xl
-      object-cover
-      "
-              />
-            ) : (
-              <span
-                className="
-      font-semibold
-      text-blue-600
-      "
-              >
-                {company.name.charAt(0)}
-              </span>
+            <Building2 size={14} />
+            Company
+          </div>
+
+          <ArrowUpRight
+            size={18}
+            className="
+            text-slate-400
+            transition-transform
+            group-hover:translate-x-1
+            group-hover:-translate-y-1
+            "
+          />
+        </div>
+
+        {/* Logo */}
+
+        <div
+          className="
+          mt-6
+          flex
+          justify-center
+          "
+        >
+          {company.logo ? (
+            <img
+              src={company.logo}
+              alt={company.name}
+              className="
+              h-20
+              w-20
+              rounded-3xl
+              object-cover
+              shadow-md
+              "
+            />
+          ) : (
+            <div
+              className="
+              h-20
+              w-20
+              rounded-3xl
+              bg-gradient-to-br
+              from-blue-500
+              to-purple-500
+              flex
+              items-center
+              justify-center
+              text-white
+              text-2xl
+              font-bold
+              "
+            >
+              {company.name.charAt(0)}
+            </div>
+          )}
+        </div>
+
+        {/* Content */}
+
+        <div className="mt-6 text-center">
+          <div
+            className="
+            flex
+            justify-center
+            items-center
+            gap-2
+            "
+          >
+            <h3
+              className="
+              text-xl
+              font-semibold
+              "
+            >
+              {company.name}
+            </h3>
+
+            {company.verified && (
+              <BadgeCheck size={18} className="text-blue-600" />
             )}
           </div>
 
-          <div className="flex-1">
-            <div className="flex items-center gap-2">
-              <h3
-                className="
-  text-lg
-  font-semibold
-  line-clamp-1
-  "
-              >
-                {company.name}
-              </h3>
+          <p
+            className="
+            mt-2
+            text-sm
+            text-slate-500
+            "
+          >
+            {company.industry || "Technology"}
+          </p>
 
-              {company.verified && (
-                <BadgeCheck size={16} className="text-blue-600" />
-              )}
-            </div>
+          <div
+            className="
+            mt-4
+            flex
+            items-center
+            justify-center
+            gap-2
+            text-sm
+            text-slate-500
+            "
+          >
+            <MapPin size={14} />
 
-            <p className="text-sm text-slate-500">{company.industry}</p>
+            {company.location}
+          </div>
+        </div>
 
-            <div
+        {/* Footer */}
+
+        <div
+          className="
+          mt-6
+          flex
+          items-center
+          justify-center
+          gap-4
+          border-t
+          border-slate-100
+          pt-5
+          "
+        >
+          <div
+            className="
+            flex
+            items-center
+            gap-1
+            "
+          >
+            <Star
+              size={15}
               className="
-              flex
-              items-center
-              gap-2
-              mt-3
-              text-sm
-              text-slate-500
+              fill-yellow-400
+              text-yellow-400
               "
-            >
-              <MapPin size={14} />
-              {company.location}
-            </div>
+            />
 
-            <div
-              className="
-              flex
-              items-center
-              gap-2
-              mt-3
-              "
-            >
-              {company.reviewCount > 0 ? (
-                <div
-                  className="
-      flex
-      items-center
-      gap-2
-      mt-3
-      "
-                >
-                  <Star
-                    size={16}
-                    className="
-        fill-yellow-400
-        text-yellow-400
-        "
-                  />
+            <span className="font-medium">{company.avgRating || 0}</span>
+          </div>
 
-                  <span className="font-medium">{company.avgRating}</span>
-
-                  <span className="text-slate-500">
-                    ({company.reviewCount})
-                  </span>
-                </div>
-              ) : (
-                <p
-                  className="
-      mt-3
-      text-sm
-      text-slate-400
-      "
-                >
-                  No reviews yet
-                </p>
-              )}
-            </div>
+          <div
+            className="
+            text-sm
+            text-slate-500
+            "
+          >
+            {company.reviewCount} Reviews
           </div>
         </div>
       </AppCard>

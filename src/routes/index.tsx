@@ -37,6 +37,7 @@ import AdminLayout from "@/layouts/AdminLayout";
 import AdminDashboardPage from "@/features/admin/pages/AdminDashboardPage";
 import CompanyProfilePage from "@/features/companies/pages/CompanyProfilePage";
 import CompanyApplicationsPage from "@/features/applications/pages/CompanyApplicationPage";
+import AuthLayout from "@/layouts/AuthLayout";
 
 export const router = createBrowserRouter([
   {
@@ -45,13 +46,18 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/login",
-    element: <LoginPage />,
-  },
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
 
-  {
-    path: "/register",
-    element: <RegisterPage />,
+      {
+        path: "/register",
+        element: <RegisterPage />,
+      },
+    ],
   },
 
   {
