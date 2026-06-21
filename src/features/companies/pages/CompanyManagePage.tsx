@@ -13,6 +13,7 @@ import SearchBar from "@/components/common/SearchBar";
 import EmptyState from "@/components/shared/EmptyState";
 
 import CompanyManageCard from "../components/CompanyManageCard";
+import { toast } from "sonner";
 
 export default function CompanyManagePage() {
   const { data: companies } = useCompanies();
@@ -27,11 +28,13 @@ export default function CompanyManagePage() {
 
   const handleCreate = async () => {
     if (!name.trim()) return;
-
+    try {
     await createCompany.mutateAsync({
       name,
 
       logo: "",
+      
+      ownerId:"",
 
       description: "",
 
@@ -47,6 +50,10 @@ export default function CompanyManagePage() {
 
       reviewCount: 0,
     });
+    toast.success("Application submitted");
+    } catch {
+      toast.error("You already applied");
+    }
 
     setName("");
   };

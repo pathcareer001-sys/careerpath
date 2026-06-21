@@ -11,10 +11,15 @@ export function useCreateReview() {
 
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: [
-          "reviews",
-          variables.companyId,
-        ],
+        queryKey: ["reviews", variables.companyId],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["companies"],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["company", variables.companyId],
       });
     },
   });

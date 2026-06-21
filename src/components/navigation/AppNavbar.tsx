@@ -28,8 +28,10 @@ export default function AppNavbar() {
         className="
         max-w-7xl
         mx-auto
-        h-20
-        px-6
+       h-16
+      px-4
+      md:h-20
+      md:px-6
         flex
         items-center
         "
@@ -37,17 +39,19 @@ export default function AppNavbar() {
         {/* Logo */}
 
         <div className="shrink-0">
-          <img src={logo} alt="CareerPath" className="h-16 w-auto" />
+          <img src={logo} alt="CareerPath" className="h-12 md:h-16 w-auto" />
         </div>
 
         {/* Menu */}
 
         <nav
           className="
-          ml-10
           flex
           items-center
-          gap-10
+          ml-4
+          gap-4
+          md:ml-10
+          md:gap-10
           "
         >
           <NavItem
@@ -113,6 +117,7 @@ function NavItem({
         transition-colors
         duration-200
         border-b-2
+        min-w-[60px]
         ${
           isActive
             ? "border-blue-500 text-blue-600 font-medium"

@@ -9,6 +9,7 @@ import EmptyState from "@/components/shared/EmptyState";
 import InternshipCard from "../components/InternshipCard";
 
 import { useInternships } from "../hooks/useInternships";
+import CardSkeleton from "@/components/shared/CardSkeleton";
 
 export default function InternshipListPage() {
   const [search, setSearch] = useState("");
@@ -20,6 +21,29 @@ export default function InternshipListPage() {
       item.title.toLowerCase().includes(search.toLowerCase()),
     ) || [];
 
+  if (isLoading) {
+    return (
+      <PageContainer>
+        <PageHeader
+          title="Internships"
+          description="Temukan peluang magang terbaik"
+        />
+
+        <div
+          className="
+        grid
+        gap-6
+        md:grid-cols-2
+        lg:grid-cols-3
+        "
+        >
+          {Array.from({ length: 6 }).map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
+        </div>
+      </PageContainer>
+    );
+  }
   return (
     <PageContainer>
       <PageHeader
@@ -28,8 +52,6 @@ export default function InternshipListPage() {
       />
 
       <SearchInput value={search} onChange={setSearch} />
-
-      {isLoading && <p>Loading...</p>}
 
       {!isLoading && internships.length === 0 && (
         <EmptyState

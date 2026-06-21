@@ -20,23 +20,26 @@ export default function CompanyNavbar() {
     >
       <div
         className="
-        max-w-7xl
-        mx-auto
-        h-20
-        px-6
-        flex
-        items-center
-        "
+  max-w-7xl
+  mx-auto
+  h-16
+  px-4
+  flex
+  items-center
+  md:h-20
+  md:px-6
+  "
       >
-        <img src={logo} alt="CareerPath" className="h-16 w-auto" />
-
+        <img src={logo} alt="CareerPath" className="h-12 w-auto md:h-16" />
         <nav
           className="
-          ml-10
-          flex
-          items-center
-          gap-10
-          "
+  ml-4
+  flex
+  items-center
+  gap-4
+  md:ml-10
+  md:gap-10
+  "
         >
           <NavItem
             to="/company"
@@ -88,6 +91,7 @@ function NavItem({
         flex
         flex-col
         items-center
+        min-w-[60px]
         gap-1
         px-2
         py-2

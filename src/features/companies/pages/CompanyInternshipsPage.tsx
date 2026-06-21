@@ -15,6 +15,7 @@ import { useDeleteInternship } from "@/features/internships/hooks/useDeleteInter
 import CompanyInternshipCard from "../components/CompanyInternshipCard";
 import CreateInternshipDialog from "../components/CreateInternshipDialog";
 import { useMyCompany } from "../hooks/useMyCompany";
+import { toast } from "sonner";
 
 export default function CompanyInternshipsPage() {
   const { user } = useAuth();
@@ -43,6 +44,8 @@ export default function CompanyInternshipsPage() {
     }
 
     await deleteInternship.mutateAsync(id);
+
+    toast.success("Internship deleted successfully");
   };
 
   if (!company) {
@@ -83,9 +86,6 @@ export default function CompanyInternshipsPage() {
               <CompanyInternshipCard
                 key={internship.id}
                 internship={internship}
-                onEdit={(internship) => {
-                  console.log(internship);
-                }}
                 onDelete={handleDelete}
               />
             ))}

@@ -20,8 +20,7 @@ export default function StudentLayout() {
         max-w-7xl
         mx-auto
         w-full
-        px-6
-        py-8
+        px-4 py-6 md:px-6 md:py-8
         "
       >
         <Outlet />

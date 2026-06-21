@@ -19,6 +19,7 @@ import { useCreateInternship } from "@/features/internships/hooks/useCreateInter
 import { useAuth } from "@/hooks/useAuth";
 
 import type { Company } from "@/types/company";
+import { toast } from "sonner";
 interface Props {
   company: Company;
 }
@@ -37,6 +38,7 @@ export default function CreateInternshipDialog({ company }: Props) {
 
       companyName: company.name,
     });
+    toast.success("Internship created successfully");
   };
 
   return (

@@ -3,6 +3,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   query,
   updateDoc,
@@ -23,6 +24,19 @@ export const companyService = {
       id: doc.id,
       ...doc.data(),
     })) as Company[];
+  },
+
+  async getCompanyById(id: string) {
+    const snapshot = await getDoc(doc(db, COLLECTIONS.COMPANIES, id));
+
+    if (!snapshot.exists()) {
+      return null;
+    }
+
+    return {
+      id: snapshot.id,
+      ...snapshot.data(),
+    } as Company;
   },
 
   async getCompanyByOwnerId(ownerId: string) {

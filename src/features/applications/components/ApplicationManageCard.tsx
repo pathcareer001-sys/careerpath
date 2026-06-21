@@ -35,7 +35,7 @@ export default function ApplicationManageCard({
 
           <div className="flex items-center gap-2">
             <User size={16} />
-            {application.userId}
+            {application.applicantName}
           </div>
         </div>
 

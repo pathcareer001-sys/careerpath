@@ -12,6 +12,7 @@ import ApplicantCard from "../components/ApplicantCard";
 
 import { useCompanyApplications } from "../hooks/useCompanyApplications";
 import { useUpdateApplicationStatus } from "../hooks/useUpdateApplicationStatus";
+import { toast } from "sonner";
 
 export default function CompanyApplicationsPage() {
   const { user } = useAuth();
@@ -29,6 +30,8 @@ export default function CompanyApplicationsPage() {
       id,
       status: "accepted",
     });
+
+    toast.success("Applicant accepted");
   };
 
   const handleReject = async (id: string) => {
@@ -36,6 +39,8 @@ export default function CompanyApplicationsPage() {
       id,
       status: "rejected",
     });
+
+    toast.success("Applicant rejected");
   };
 
   if (isLoading) {

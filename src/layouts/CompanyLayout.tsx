@@ -11,8 +11,7 @@ export default function CompanyLayout() {
         className="
         max-w-7xl
         mx-auto
-        px-6
-        py-6
+        px-4 py-4 md:px-6 md:py-6
         "
       >
         <Outlet />

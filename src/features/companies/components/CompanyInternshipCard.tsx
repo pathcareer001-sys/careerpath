@@ -1,21 +1,19 @@
-import { Briefcase, MapPin, Pencil, Trash2 } from "lucide-react";
+import { Briefcase, MapPin, Trash2 } from "lucide-react";
 
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
 
 import type { Internship } from "@/types/internship";
 
+import EditInternshipDialog from "./EditInternshipDialog";
+
 interface Props {
   internship: Internship;
-
-  onEdit: (internship: Internship) => void;
-
   onDelete: (id: string) => void;
 }
 
 export default function CompanyInternshipCard({
   internship,
-  onEdit,
   onDelete,
 }: Props) {
   return (
@@ -38,9 +36,7 @@ export default function CompanyInternshipCard({
         </div>
 
         <div className="flex gap-2">
-          <AppButton onClick={() => onEdit(internship)}>
-            <Pencil size={16} />
-          </AppButton>
+          <EditInternshipDialog internship={internship} />
 
           <AppButton onClick={() => onDelete(internship.id)}>
             <Trash2 size={16} />

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import HomePage from "@/features/dashboard/pages/HomePage";
-
+import ErrorPage from "@/pages/ErrorPage";
 import LoginPage from "@/features/auth/pages/LoginPage";
 import RegisterPage from "@/features/auth/pages/RegisterPage";
 
@@ -56,6 +56,7 @@ export const router = createBrowserRouter([
 
   {
     element: <ProtectedRoute />,
+    errorElement: <ErrorPage />,
     children: [
       {
         element: <StudentLayout />,
@@ -155,6 +156,10 @@ export const router = createBrowserRouter([
           {
             path: "applicants",
             element: <CompanyApplicationsPage />,
+          },
+          {
+            path: "*",
+            element: <ErrorPage />,
           },
         ],
       },

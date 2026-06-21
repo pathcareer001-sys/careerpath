@@ -11,6 +11,7 @@ import ApplicationManageCard from "../components/ApplicationManageCard";
 
 import { useAllApplications } from "../hooks/useAllApplications";
 import { useUpdateApplicationStatus } from "../hooks/useUpdateApplicationStatus";
+import { toast } from "sonner";
 
 export default function ManageApplicationsPage() {
   const [search, setSearch] = useState("");
@@ -32,6 +33,7 @@ export default function ManageApplicationsPage() {
       id,
       status: "accepted",
     });
+     toast.success("Applicant accepted");
   };
 
   const handleReject = async (id: string) => {
@@ -39,6 +41,7 @@ export default function ManageApplicationsPage() {
       id,
       status: "rejected",
     });
+     toast.success("Applicant rejected");
   };
 
   return (

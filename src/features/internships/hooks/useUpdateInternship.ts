@@ -1,17 +1,18 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { internshipService } from "../services/internshipService";
-import type { Internship } from "@/types/internship";
 
 export function useUpdateInternship() {
-  return useMutation({
-    mutationFn: ({
-      id,
-      data,
-    }: {
-      id: string;
+  const queryClient = useQueryClient();
 
-      data: Partial<Internship>;
-    }) => internshipService.updateInternship(id, data),
+  return useMutation({
+    mutationFn: ({ id, data }: { id: string; data: object }) =>
+      internshipService.updateInternship(id, data),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["internships"],
+      });
+    },
   });
 }

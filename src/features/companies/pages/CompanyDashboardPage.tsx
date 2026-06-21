@@ -1,5 +1,4 @@
-import { Clock3, Users } from "lucide-react";
-
+import { Clock3, Star, Users, Briefcase, CheckCircle2 } from "lucide-react";
 import PageContainer from "@/components/common/PageContainer";
 import PageHeader from "@/components/common/PageHeader";
 
@@ -18,11 +17,21 @@ import StatusBadge from "@/features/applications/components/StatusBadge";
 export default function CompanyDashboardPage() {
   const { user } = useAuth();
 
-  useCompanyInternships(user?.uid || "");
+  const { data: internships } = useCompanyInternships(user?.uid || "");
 
   const { data: company } = useMyCompany(user?.uid || "");
 
   const { data: applications } = useCompanyApplications(company?.id || "");
+
+  const totalApplicants = applications?.length || 0;
+
+  const pendingApplicants =
+    applications?.filter((item) => item.status === "pending").length || 0;
+
+  const acceptedApplicants =
+    applications?.filter((item) => item.status === "accepted").length || 0;
+
+  const internshipsCount = internships?.length || 0;
 
   return (
     <PageContainer>
@@ -35,23 +44,29 @@ export default function CompanyDashboardPage() {
         className="
         grid
         gap-6
-        md:grid-cols-3
+        md:grid-cols-2
+        xl:grid-cols-5
         "
       >
         <StatCard
-          title="Applicants"
-          value={applications?.length || 0}
-          icon={Users}
+          title="Internships"
+          value={internshipsCount}
+          icon={Briefcase}
         />
 
-        <StatCard title="Applicants" value={0} icon={Users} />
+        <StatCard title="Applicants" value={totalApplicants} icon={Users} />
+
+        <StatCard title="Pending" value={pendingApplicants} icon={Clock3} />
+
         <StatCard
-          title="Pending"
-          value={
-            applications?.filter((item) => item.status === "pending").length ||
-            0
-          }
-          icon={Clock3}
+          title="Accepted"
+          value={acceptedApplicants}
+          icon={CheckCircle2}
+        />
+        <StatCard
+          title="Rating"
+          value={company?.avgRating || 0}
+          icon={Star}
         />
       </div>
 

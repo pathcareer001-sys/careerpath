@@ -23,14 +23,16 @@ export default function UserMenu() {
         src={user?.photoURL || "https://ui-avatars.com/api/?name=User"}
         alt="Profile"
         className="
-        w-10
-        h-10
-        rounded-full
-        "
+w-8
+h-8
+rounded-full
+md:w-10
+md:h-10
+"
       />
 
-      <div>
-        <p className="text-sm font-medium">{user?.displayName || "User"}</p>
+      <div className="hidden md:block">
+        <p className="text-sm font-medium">{user?.name || "User"}</p>
 
         <p className="text-xs text-slate-500">{user?.email}</p>
       </div>

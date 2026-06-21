@@ -26,7 +26,7 @@ export default function StudentDashboardPage() {
   return (
     <PageContainer>
       <PageHeader
-        title={`Welcome back, ${user?.displayName ?? "Student"} 👋`}
+        title={`Welcome back, ${user?.name ?? "Student"} 👋`}
         description="Track your internship journey and career progress."
       />
 

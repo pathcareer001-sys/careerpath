@@ -12,6 +12,7 @@ import AppButton from "@/components/common/AppButton";
 import AppTextarea from "@/components/common/AppTextarea";
 
 import { useAuth } from "@/features/auth/hooks/useAuth";
+import { toast } from "sonner";
 
 export default function ReviewForm({ companyId }: Props) {
   const [rating, setRating] = useState(5);
@@ -23,17 +24,24 @@ export default function ReviewForm({ companyId }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) return;
+
+    if (!review.trim()) {
+      alert("Review tidak boleh kosong");
+      return;
+    }
 
     await createReview.mutateAsync({
       companyId,
       userId: user?.uid || "",
-      userName: user?.displayName || user?.email || "Anonymous",
+      userName: user?.name || user?.email || "Anonymous",
       rating,
       review,
     });
 
     setReview("");
     setRating(5);
+    toast.success("Review submitted");
   };
 
   return (
