@@ -1,5 +1,26 @@
-import StatCard from "@/components/shared/StatCard";
 import { Briefcase, Building2, Users, CheckCircle2 } from "lucide-react";
+
+function Feature({ text }: { text: string }) {
+  return (
+    <div
+      className="
+      flex
+      items-center
+      gap-3
+      "
+    >
+      <CheckCircle2
+        size={20}
+        className="
+        text-green-300
+        shrink-0
+        "
+      />
+
+      <span>{text}</span>
+    </div>
+  );
+}
 
 export default function AuthHero() {
   return (
@@ -112,15 +133,19 @@ export default function AuthHero() {
         gap-4
         "
         >
-          <StatCard icon={<Users size={20} />} value="10K+" label="Students" />
+          <HeroStatCard
+            icon={<Users size={20} />}
+            value="10K+"
+            label="Students"
+          />
 
-          <StatCard
+          <HeroStatCard
             icon={<Briefcase size={20} />}
             value="500+"
             label="Internships"
           />
 
-          <StatCard
+          <HeroStatCard
             icon={<Building2 size={20} />}
             value="200+"
             label="Companies"
@@ -182,6 +207,34 @@ export default function AuthHero() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function HeroStatCard({
+  icon,
+  value,
+  label,
+}: {
+  icon: React.ReactNode;
+  value: string;
+  label: string;
+}) {
+  return (
+    <div
+      className="
+      rounded-2xl
+      border
+      border-white/20
+      bg-white/10
+      p-4
+      "
+    >
+      {icon}
+
+      <p className="mt-3 text-xl font-bold">{value}</p>
+
+      <p className="text-sm text-blue-100">{label}</p>
     </div>
   );
 }

@@ -5,6 +5,8 @@ import { FcGoogle } from "react-icons/fc";
 import AppButton from "@/components/common/AppButton";
 import AppInput from "@/components/common/AppInput";
 
+import logo from "@/assets/images/logo.png";
+
 import { useState } from "react";
 
 export default function LoginPage() {
@@ -23,12 +25,13 @@ export default function LoginPage() {
         className="
         rounded-[32px]
         border
-        border-slate-200
         bg-white
         p-8
-        shadow-xl
-        "
+        border-slate-100
+        shadow-[0_20px_60px_rgba(15,23,42,0.08)]"
       >
+        <img src={logo} alt="CareerPath" className="h-12 mb-6" />
+
         <h1
           className="
           text-4xl
@@ -52,6 +55,12 @@ export default function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
+            className="rounded-xl
+            h-12
+            border-slate-200
+            focus:border-blue-500
+            focus:ring-4
+            focus:ring-blue-100"
           />
 
           <AppInput
@@ -59,6 +68,12 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
+            className="rounded-xl
+            h-12
+            border-slate-200
+            focus:border-blue-500
+            focus:ring-4
+            focus:ring-blue-100"
           />
         </div>
 
@@ -104,16 +119,19 @@ export default function LoginPage() {
 
         <button
           className="
-  w-full
-  rounded-xl
-  border
-  border-slate-200
-  py-3
-  flex
-  items-center
-  justify-center
-  gap-3
-  "
+          w-full
+          rounded-xl
+          border
+          border-slate-200
+          py-3
+          flex
+          items-center
+          justify-center
+          gap-3
+          hover:bg-slate-50
+          transition-all
+          duration-200
+          "
         >
           <FcGoogle size={20} />
           Continue with Google
