@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
@@ -16,11 +16,14 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
     defaultValues: { role: "student", agreed: false as unknown as true },
   });
+
+  const selectedRole = useWatch({ control, name: "role" });
 
   const handleRegister = async (data: RegisterSchema) => {
     try {
@@ -41,7 +44,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="w-full max-w-lg">
+    <div className="w-full max-w-lg animate-fade-in-up">
       <div className="bg-white border border-slate-200 rounded-xl p-6">
         <img src={logo} alt="CareerPath" className="h-8 mb-5" />
 
@@ -53,7 +56,7 @@ export default function RegisterPage() {
             <label className="block text-xs font-medium text-slate-600 mb-1">Register as</label>
             <select
               {...register("role")}
-              className="h-9 w-full rounded-lg border border-slate-200 bg-surface-alt px-3 text-sm text-slate-700 focus:border-blue-600 focus:outline-none"
+              className="h-9 w-full rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
             >
               <option value="student">Student</option>
               <option value="company">Company</option>
@@ -61,17 +64,23 @@ export default function RegisterPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <AppInput {...register("name")} placeholder="Full name" />
+            <div className="sm:col-span-2">
+              <AppInput
+                {...register("name")}
+                placeholder={selectedRole === "company" ? "Company name" : "Full name"}
+              />
               {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>}
             </div>
-            <div>
+            <div className="sm:col-span-2">
               <AppInput {...register("email")} placeholder="Email" />
               {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
             </div>
-            <div>
-              <AppInput {...register("university")} placeholder="University" />
-            </div>
+            {selectedRole === "student" && (
+              <div className="sm:col-span-2">
+                <AppInput {...register("university")} placeholder="University" />
+                {errors.university && <p className="mt-1 text-xs text-red-500">{errors.university.message}</p>}
+              </div>
+            )}
             <div>
               <AppInput type="password" {...register("password")} placeholder="Password" />
               {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
@@ -102,7 +111,7 @@ export default function RegisterPage() {
         <button
           type="button"
           onClick={handleGoogleRegister}
-          className="w-full rounded-lg border border-slate-200 py-2 flex items-center justify-center gap-2 text-sm text-slate-600 hover:bg-slate-50 transition-colors"
+          className="w-full rounded-lg border border-slate-200 py-2 flex items-center justify-center gap-2 text-sm text-slate-600 hover:bg-blue-50 hover:border-blue-200 transition-all duration-200"
         >
           <FcGoogle size="18" />
           Continue with Google
@@ -110,7 +119,7 @@ export default function RegisterPage() {
 
         <p className="mt-5 text-center text-sm text-slate-500">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-600 font-medium">Sign in</Link>
+          <Link to="/login" className="text-blue-600 font-medium hover:text-blue-700 transition-colors">Sign in</Link>
         </p>
       </div>
     </div>

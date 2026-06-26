@@ -31,11 +31,18 @@ const BookmarkPage = lazy(() => import("@/features/bookmarks/pages/BookmarkPage"
 const ProfilePage = lazy(() => import("@/features/profile/pages/ProfilePage"));
 
 const AdminDashboardPage = lazy(() => import("@/features/admin/pages/AdminDashboardPage"));
-const CompanyManagePage = lazy(() => import("@/features/companies/pages/CompanyManagePage"));
+const AdminCompaniesPage = lazy(() => import("@/features/admin/pages/AdminCompaniesPage"));
 const InternshipManagePage = lazy(() => import("@/features/internships/pages/InternshipManagePage"));
 const ManageApplicationsPage = lazy(() => import("@/features/applications/pages/ManageApplicationsPage"));
 const ReviewManagePage = lazy(() => import("@/features/reviews/pages/ReviewManagePage"));
+const CompanyReviewPage = lazy(() => import("@/features/reviews/pages/CompanyReviewPage"));
 const UserManagePage = lazy(() => import("@/features/admin/pages/UserManagePage"));
+
+const StaffLayout = lazy(() => import("@/layouts/StaffLayout"));
+const StaffDashboardPage = lazy(() => import("@/features/staff/pages/StaffDashboardPage"));
+const ReviewModerationPage = lazy(() => import("@/features/staff/pages/ReviewModerationPage"));
+const CompanyVerificationPage = lazy(() => import("@/features/staff/pages/CompanyVerificationPage"));
+const ReportManagementPage = lazy(() => import("@/features/staff/pages/ReportManagementPage"));
 
 const CompanyDashboardPage = lazy(() => import("@/features/companies/pages/CompanyDashboardPage"));
 const CompanyInternshipsPage = lazy(() => import("@/features/companies/pages/CompanyInternshipsPage"));
@@ -134,6 +141,14 @@ export const router = createBrowserRouter([
             ),
           },
           {
+            path: "/companies/:id/reviews",
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanyReviewPage />
+              </Suspense>
+            ),
+          },
+          {
             path: "/internships",
             element: (
               <Suspense fallback={<PageSkeleton />}>
@@ -196,7 +211,7 @@ export const router = createBrowserRouter([
             path: "companies",
             element: (
               <Suspense fallback={<PageSkeleton />}>
-                <CompanyManagePage />
+                <AdminCompaniesPage />
               </Suspense>
             ),
           },
@@ -229,6 +244,49 @@ export const router = createBrowserRouter([
             element: (
               <Suspense fallback={<PageSkeleton />}>
                 <UserManagePage />
+              </Suspense>
+            ),
+          },
+        ],
+      },
+
+      {
+        path: "/staff",
+        element: (
+          <RoleRoute role={ROLES.STAFF}>
+            <StaffLayout />
+          </RoleRoute>
+        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <StaffDashboardPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: "reviews",
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <ReviewModerationPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: "verification",
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanyVerificationPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: "reports",
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <ReportManagementPage />
               </Suspense>
             ),
           },

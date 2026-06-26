@@ -65,8 +65,6 @@ export const notificationService = {
       );
 
       callback(data);
-
-      callback(data);
     });
   },
 };

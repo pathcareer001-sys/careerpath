@@ -11,7 +11,6 @@ export default function ReviewCard({ review }: { review: Review }) {
   transition-all
   duration-200
   hover:-translate-y-1
-  hover:shadow-lg
   "
     >
       <div className="space-y-5">
@@ -22,21 +21,19 @@ export default function ReviewCard({ review }: { review: Review }) {
           h-12
           w-12
           rounded-full
-          bg-gradient-to-br
-          from-blue-500
-          to-indigo-600
+          bg-[#2563EB]
           text-white
           flex
           items-center
           justify-center
-          font-semibold
+          font-medium
           "
             >
               {review.userName.charAt(0)}
             </div>
 
             <div>
-              <h4 className="font-semibold">{review.userName}</h4>
+              <h4 className="font-medium">{review.userName}</h4>
 
               <p className="text-xs text-slate-500">Internship Student</p>
             </div>

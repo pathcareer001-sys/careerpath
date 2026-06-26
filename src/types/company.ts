@@ -17,6 +17,8 @@ export interface Company {
 
   verified: boolean;
 
+  verificationRequested?: boolean;
+
   avgRating: number;
 
   reviewCount: number;

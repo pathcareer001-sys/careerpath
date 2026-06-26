@@ -1,4 +1,4 @@
-import { Heart } from "lucide-react";
+import { Bookmark } from "lucide-react";
 
 import AppButton from "@/components/common/AppButton";
 
@@ -24,14 +24,14 @@ export default function BookmarkButton({ companyId }: Props) {
       });
 
       toast.success("Company bookmarked");
-    } catch (error) {
+    } catch {
       toast.error("Already bookmarked");
     }
   };
 
   return (
-    <AppButton onClick={handleBookmark}>
-      <Heart size={16} />
+    <AppButton variant="secondary" onClick={handleBookmark}>
+      <Bookmark size={16} />
       Save Company
     </AppButton>
   );

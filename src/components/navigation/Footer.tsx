@@ -16,12 +16,12 @@ const resources = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer className="border-t border-slate-200 bg-gradient-to-br from-white to-blue-50/50">
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1.25fr_0.75fr_0.75fr_1fr]">
           <div>
             <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-sm">
                 <BriefcaseBusiness size="18" />
               </div>
               <h3 className="text-sm font-medium text-slate-900">CareerPath</h3>
@@ -37,15 +37,15 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-medium text-slate-900">Contact</h4>
             <div className="mt-3 space-y-2 text-sm text-slate-500">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 hover:text-blue-600 transition-colors">
                 <Mail size="14" />
                 support@careerpath.id
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 hover:text-blue-600 transition-colors">
                 <Phone size="14" />
                 +62 812-3456-7890
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 hover:text-blue-600 transition-colors">
                 <MapPin size="14" />
                 Indonesia
               </div>
@@ -67,7 +67,7 @@ function FooterColumn({ title, items }: { title: string; items: Array<{ to: stri
       <h4 className="text-sm font-medium text-slate-900">{title}</h4>
       <div className="mt-3 flex flex-col gap-2 text-sm text-slate-500">
         {items.map((item) => (
-          <Link key={item.to} to={item.to} className="hover:text-blue-600 transition-colors">
+          <Link key={item.to} to={item.to} className="hover:text-blue-600 transition-colors duration-200">
             {item.label}
           </Link>
         ))}

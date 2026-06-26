@@ -12,4 +12,6 @@ export interface Review {
   review: string;
 
   createdAt?: string;
+
+  moderationStatus?: "pending" | "approved" | "rejected";
 }

@@ -8,13 +8,18 @@ export const registerSchema = z
     password: z.string().min(6, "Password must be at least 6 characters"),
     confirmPassword: z.string().min(6, "Please confirm your password"),
     role: z.enum(["student", "company"]),
-    agreed: z.literal(true, {
-      errorMap: () => ({ message: "You must agree to the Terms & Privacy Policy" }),
-    }),
+    agreed: z.literal(true, { message: "You must agree to the Terms & Privacy Policy" }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
     path: ["confirmPassword"],
-  });
+  })
+  .refine(
+    (data) => {
+      if (data.role === "student" && !data.university) return false;
+      return true;
+    },
+    { message: "University is required for students", path: ["university"] },
+  );
 
 export type RegisterSchema = z.infer<typeof registerSchema>;

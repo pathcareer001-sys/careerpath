@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
-
 import AppCard from "@/components/common/AppCard";
+import StatCard from "@/components/shared/StatCard";
 import EmptyState from "@/components/shared/EmptyState";
-
+import AppButton from "@/components/common/AppButton";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useApplications } from "@/features/applications/hooks/useApplications";
+import { useUpdateApplicationStatus } from "@/features/applications/hooks/useUpdateApplicationStatus";
 import StatusBadge from "@/features/applications/components/StatusBadge";
 import { useDashboardStats } from "../hooks/useDashboardStats";
 import { useInternships } from "@/features/internships/hooks/useInternships";
 import InternshipCard from "@/features/internships/components/InternshipCard";
 import { calculateProfileCompletion } from "@/utils/profileCompletion";
-import AppButton from "@/components/common/AppButton";
+import { toast } from "sonner";
+import { CalendarCheck, CheckCircle, XCircle } from "lucide-react";
 
 const checklistItems = [
   { key: "personal", label: "Personal Information" },
@@ -25,7 +27,10 @@ export default function StudentDashboardPage() {
   const { applicationCount, bookmarkCount } = useDashboardStats(user?.uid || "");
   const { data: applications } = useApplications(user?.uid || "");
   const { data: internships } = useInternships();
+  const updateStatus = useUpdateApplicationStatus();
   const completion = calculateProfileCompletion(user ?? undefined);
+
+  const interviewApps = applications?.filter((a) => a.status === "interview") || [];
   const hasPersonal = !!user?.name && !!user?.email;
   const hasEducation = !!user?.university;
   const hasSkills = !!user?.skills?.length;
@@ -40,51 +45,84 @@ export default function StudentDashboardPage() {
     social: hasSocial,
   };
 
+  const handleConfirmInterview = async (id: string) => {
+    try {
+      await updateStatus.mutateAsync({ id, status: "interview" });
+      toast.success("Interview confirmed");
+    } catch {
+      toast.error("Failed to confirm");
+    }
+  };
+
+  const handleDeclineInterview = async (id: string) => {
+    try {
+      await updateStatus.mutateAsync({ id, status: "rejected" });
+      toast.success("Interview declined");
+    } catch {
+      toast.error("Failed to decline");
+    }
+  };
+
   return (
-    <div className="space-y-6">
-      <div>
+    <div className="space-y-6 animate-fade-in">
+      <div className="animate-fade-in-up">
         <h1 className="text-2xl font-medium text-[#0F172A]">Good morning, {user?.name?.split(" ")[0] || "there"}</h1>
         <p className="mt-1 text-sm text-[#64748B]">Here's your career overview</p>
       </div>
 
-      <div className="grid gap-4 grid-cols-4">
-        <Link to="/applications">
-          <div className="bg-white border border-[#E2E8F0] rounded-xl px-6 py-5 transition-colors hover:border-[#BFDBFE]">
-            <p className="text-[28px] font-medium text-[#0F172A]">{applicationCount}</p>
-            <p className="mt-0.5 text-[13px] text-[#94A3B8]">Applications</p>
-          </div>
+      {interviewApps.length > 0 && (
+        <div className="animate-fade-in-up animate-delay-50 space-y-3">
+          {interviewApps.map((app) => (
+            <div key={app.id} className="rounded-xl border border-purple-200 bg-gradient-to-r from-purple-50 to-violet-50 p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <CalendarCheck size="20" className="text-purple-600 shrink-0" />
+                <div>
+                  <p className="text-sm font-medium text-purple-900">Interview Invitation</p>
+                  <p className="text-xs text-purple-600 mt-0.5">{app.internshipTitle} at {app.companyName}</p>
+                  {app.interviewDate && <p className="text-xs text-purple-500 mt-0.5">Scheduled: {app.interviewDate} {app.interviewLocation ? `(${app.interviewLocation})` : ""}</p>}
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <AppButton onClick={() => handleConfirmInterview(app.id)} className="!bg-emerald-600 hover:!bg-emerald-700 !text-white text-xs h-8 px-3">
+                  <CheckCircle size="13" /> Confirm
+                </AppButton>
+                <AppButton onClick={() => handleDeclineInterview(app.id)} variant="danger" className="text-xs h-8 px-3">
+                  <XCircle size="13" /> Decline
+                </AppButton>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="grid gap-4 grid-cols-4 animate-fade-in-up animate-delay-100">
+        <Link to="/applications" className="block">
+          <StatCard title="Applications" value={applicationCount} gradient="blue" />
         </Link>
-        <Link to="/bookmarks">
-          <div className="bg-white border border-[#E2E8F0] rounded-xl px-6 py-5 transition-colors hover:border-[#BFDBFE]">
-            <p className="text-[28px] font-medium text-[#0F172A]">{bookmarkCount}</p>
-            <p className="mt-0.5 text-[13px] text-[#94A3B8]">Bookmarks</p>
-          </div>
+        <Link to="/bookmarks" className="block">
+          <StatCard title="Bookmarks" value={bookmarkCount} gradient="purple" />
         </Link>
-        <Link to="/applications">
-          <div className="bg-white border border-[#E2E8F0] rounded-xl px-6 py-5 transition-colors hover:border-[#BFDBFE]">
-            <p className="text-[28px] font-medium text-[#0F172A]">{applications?.filter((a) => a.status === "interview").length || 0}</p>
-            <p className="mt-0.5 text-[13px] text-[#94A3B8]">Interviews</p>
-          </div>
+        <Link to="/applications" className="block">
+          <StatCard title="Interviews" value={interviewApps.length} gradient="emerald" />
         </Link>
-        <Link to="/profile">
-          <div className="bg-white border border-[#E2E8F0] rounded-xl px-6 py-5 transition-colors hover:border-[#BFDBFE]">
-            <p className="text-[28px] font-medium text-[#0F172A]">{completion}%</p>
-            <p className="mt-0.5 text-[13px] text-[#94A3B8]">Profile</p>
-          </div>
+        <Link to="/profile" className="block">
+          <StatCard title="Profile" value={`${completion}%`} gradient="amber" />
         </Link>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-        <div className="space-y-6">
+        <div className="space-y-6 animate-fade-in-up animate-delay-200">
           {internships?.length ? (
             <div>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-base font-medium text-[#0F172A]">Recommended internships</h2>
-                <Link to="/internships" className="text-[13px] text-[#2563EB]">View all</Link>
+                <Link to="/internships" className="text-[13px] font-medium text-[#2563EB] hover:text-[#1d4ed8] transition-colors">View all →</Link>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
-                {internships.slice(0, 2).map((internship) => (
-                  <InternshipCard key={internship.id} internship={internship} />
+                {internships.slice(0, 2).map((internship, i) => (
+                  <div key={internship.id} style={{ animationDelay: `${300 + i * 150}ms` }} className="animate-fade-in-up">
+                    <InternshipCard internship={internship} />
+                  </div>
                 ))}
               </div>
             </div>
@@ -99,9 +137,9 @@ export default function StudentDashboardPage() {
             {applications?.length === 0 ? (
               <EmptyState title="No activity yet" description="Start applying to internships." />
             ) : (
-              <div className="space-y-3">
+              <div className="space-y-1">
                 {applications?.slice(0, 5).map((item) => (
-                  <div key={item.id} className="flex items-center justify-between py-2 border-b border-[#F1F5F9] last:border-0">
+                  <div key={item.id} className="flex items-center justify-between py-3 px-3 rounded-lg transition-all duration-200 hover:bg-[#F8FAFF] -mx-3">
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-[#0F172A] truncate">{item.internshipTitle}</p>
                       <p className="text-[13px] text-[#64748B] mt-0.5">{item.companyName} &middot; {new Date(item.createdAt).toLocaleDateString()}</p>
@@ -114,30 +152,36 @@ export default function StudentDashboardPage() {
           </AppCard>
         </div>
 
-        <div className="space-y-6">
-          <div className="bg-[#2563EB] rounded-xl p-5">
-            <div className="flex items-center justify-between">
-              <p className="text-sm text-white/70">Profile Completion</p>
-              <span className="text-[32px] font-medium text-white">{completion}%</span>
+        <div className="space-y-6 animate-fade-in-up animate-delay-300">
+          <div className="rounded-xl border border-[#E2E8F0] bg-white p-5">
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-sm text-[#64748B] font-medium">Profile Completion</p>
+              <span className="text-[28px] font-medium text-[#2563EB]">{completion}%</span>
             </div>
-            <div className="mt-3 h-1.5 rounded-full bg-[rgba(255,255,255,0.3)]">
-              <div className="h-1.5 rounded-full bg-white transition-all" style={{ width: `${completion}%` }} />
+            <div className="h-2 rounded-full bg-[#F1F5F9] overflow-hidden">
+              <div className="h-full rounded-full bg-[#2563EB] transition-all duration-1000 ease-out" style={{ width: `${completion}%` }} />
             </div>
             <div className="mt-4 space-y-2">
               {checklistItems.map(({ key, label }) => {
                 const done = checklistState[key];
                 return (
                   <div key={key} className="flex items-center gap-2 text-sm">
-                    <div className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${done ? "border-white bg-white" : "border-[rgba(255,255,255,0.4)]"}`}>
-                      {done && <span className="text-[#2563EB] text-[10px]">✓</span>}
+                    <div className={`h-4 w-4 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${done ? "border-[#2563EB] bg-[#2563EB]" : "border-[#CBD5E1]"}`}>
+                      {done && (
+                        <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
                     </div>
-                    <span className={done ? "text-white" : "text-[rgba(255,255,255,0.5)]"}>{label}</span>
+                    <span className={`${done ? "text-[#0F172A]" : "text-[#94A3B8]"}`}>{label}</span>
                   </div>
                 );
               })}
             </div>
             <Link to="/profile">
-              <AppButton variant="secondary" className="mt-4 w-full !text-[#2563EB] !border-white/30 !bg-white/10 hover:!bg-white/20">Complete profile</AppButton>
+              <AppButton variant="secondary" className="mt-4 w-full">
+                Complete profile
+              </AppButton>
             </Link>
           </div>
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BarChart3, BriefcaseBusiness, Building2, Compass, FileCheck2, Search, ShieldCheck } from "lucide-react";
+import { ArrowRight, BarChart3, BriefcaseBusiness, Building2, FileCheck2, Search, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import LandingNavbar from "@/components/navigation/LandingNavbar";
@@ -43,10 +43,12 @@ export default function HomePage() {
       <LandingNavbar />
 
       <main>
-        <section className="border-b border-slate-200 bg-gradient-to-br from-blue-600 to-blue-700">
-          <div className="mx-auto grid min-h-[calc(100vh-64px)] max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-14">
-            <div className="flex flex-col justify-center">
-              <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-lg bg-white/15 px-3 py-1.5 text-sm font-medium text-blue-100">
+        <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700">
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-blue-400/20 blur-3xl" />
+          <div className="mx-auto grid min-h-[calc(100vh-64px)] max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-14 relative z-10">
+            <div className="flex flex-col justify-center animate-fade-in-up">
+              <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-lg bg-white/15 px-3 py-1.5 text-sm font-medium text-blue-100 backdrop-blur-sm border border-white/10">
                 <ShieldCheck size="15" />
                 Verified internships and reviewed companies
               </div>
@@ -92,7 +94,7 @@ export default function HomePage() {
             </div>
 
             <div className="flex items-center">
-              <div className="w-full rounded-xl border border-slate-200 bg-white shadow-[0_0_0_1px_#2563eb1a]">
+              <div className="w-full rounded-xl border border-slate-200 bg-white border-blue-100/30">
                 <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
                   <div>
                     <p className="text-sm font-medium text-slate-900">Student workspace</p>
@@ -174,8 +176,8 @@ export default function HomePage() {
         <section className="mx-auto max-w-7xl px-6 py-12">
           <div className="grid gap-4 md:grid-cols-3">
             {workflow.map((item) => (
-              <div key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:shadow-sm">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white">
+              <div key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-blue-200">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 text-white">
                   <item.icon size="22" />
                 </div>
                 <h2 className="text-base font-medium text-slate-900">{item.title}</h2>
@@ -241,7 +243,7 @@ export default function HomePage() {
                 { icon: FileCheck2, label: "Application status history" },
               ].map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-200 transition-colors">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white">
                     <Icon size="16" />
                   </div>
                   <p className="text-sm font-medium text-slate-800">{label}</p>
@@ -251,7 +253,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-blue-600 px-6 py-12 text-white">
+        <section className="bg-gradient-to-br from-blue-600 to-purple-700 px-6 py-12 text-white">
           <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h2 className="text-[22px] font-medium">Start building your application pipeline.</h2>

@@ -5,6 +5,7 @@ import {
   doc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 
@@ -73,5 +74,9 @@ export const reviewService = {
 
   async deleteReview(id: string) {
     return deleteDoc(doc(db, COLLECTIONS.REVIEWS, id));
+  },
+
+  async updateReviewModeration(id: string, moderationStatus: Review["moderationStatus"]) {
+    return updateDoc(doc(db, COLLECTIONS.REVIEWS, id), { moderationStatus });
   },
 };

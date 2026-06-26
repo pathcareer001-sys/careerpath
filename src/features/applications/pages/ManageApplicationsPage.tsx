@@ -1,68 +1,73 @@
 import { useMemo, useState } from "react";
-
 import PageContainer from "@/components/common/PageContainer";
-import PageHeader from "@/components/common/PageHeader";
-
 import SearchBar from "@/components/common/SearchBar";
-
 import EmptyState from "@/components/shared/EmptyState";
-
 import ApplicationManageCard from "../components/ApplicationManageCard";
-
 import { useAllApplications } from "../hooks/useAllApplications";
 import { useUpdateApplicationStatus } from "../hooks/useUpdateApplicationStatus";
 import { toast } from "sonner";
+import { FileText, CheckCircle2, XCircle, Clock } from "lucide-react";
 
 export default function ManageApplicationsPage() {
   const [search, setSearch] = useState("");
-
   const { data: applications } = useAllApplications();
-
   const updateStatus = useUpdateApplicationStatus();
 
   const filteredApplications = useMemo(() => {
     if (!applications) return [];
-
     return applications.filter((application) =>
       application.internshipTitle.toLowerCase().includes(search.toLowerCase()),
     );
   }, [applications, search]);
 
   const handleAccept = async (id: string) => {
-    await updateStatus.mutateAsync({
-      id,
-      status: "accepted",
-    });
-     toast.success("Applicant accepted");
+    await updateStatus.mutateAsync({ id, status: "accepted" });
+    toast.success("Applicant accepted");
   };
 
   const handleReject = async (id: string) => {
-    await updateStatus.mutateAsync({
-      id,
-      status: "rejected",
-    });
-     toast.success("Applicant rejected");
+    await updateStatus.mutateAsync({ id, status: "rejected" });
+    toast.success("Applicant rejected");
   };
+
+  const total = applications?.length || 0;
+  const accepted = applications?.filter((a) => a.status === "accepted").length || 0;
+  const rejected = applications?.filter((a) => a.status === "rejected").length || 0;
+  const pending = applications?.filter((a) => a.status === "pending" || a.status === "reviewed").length || 0;
 
   return (
     <PageContainer>
-      <PageHeader
-        title="Applications"
-        description="Manage internship applications"
-      />
+      <div className="animate-fade-in-up">
+        <h1 className="text-2xl font-medium text-[#0F172A]">Applications</h1>
+        <p className="mt-1 text-sm text-[#64748B]">Manage internship applications</p>
+      </div>
 
-      <div className="space-y-6">
-        <SearchBar
-          value={search}
-          onChange={setSearch}
-          placeholder="Search applications..."
-        />
+      <div className="mt-6 grid gap-4 md:grid-cols-4 animate-fade-in-up animate-delay-100">
+        {[
+          { label: "Total", value: total, gradient: "from-blue-50 to-white", icon: <FileText size="16" className="text-blue-600" /> },
+          { label: "Pending", value: pending, gradient: "from-amber-50 to-white", icon: <Clock size="16" className="text-amber-600" /> },
+          { label: "Accepted", value: accepted, gradient: "from-emerald-50 to-white", icon: <CheckCircle2 size="16" className="text-emerald-600" /> },
+          { label: "Rejected", value: rejected, gradient: "from-rose-50 to-white", icon: <XCircle size="16" className="text-rose-600" /> },
+        ].map((stat) => (
+          <div key={stat.label} className={`relative overflow-hidden rounded-xl border border-[#E2E8F0] bg-gradient-to-br ${stat.gradient} px-5 py-4`}>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[26px] font-medium text-[#0F172A] leading-none">{stat.value}</p>
+                <p className="mt-1 text-[13px] text-[#64748B] font-medium">{stat.label}</p>
+              </div>
+              <div className="h-9 w-9 rounded-lg bg-white shadow-sm border border-[#E2E8F0] flex items-center justify-center">
+                {stat.icon}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 space-y-6 animate-fade-in-up animate-delay-200">
+        <SearchBar value={search} onChange={setSearch} placeholder="Search applications..." />
 
         {filteredApplications.length === 0 ? (
-          <EmptyState
-            title="No Applications"
-            description="No applications found"
-          />
+          <EmptyState title="No Applications" description="No applications found" />
         ) : (
           <div className="space-y-4">
             {filteredApplications.map((application) => (

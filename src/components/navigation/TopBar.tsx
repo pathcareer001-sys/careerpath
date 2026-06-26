@@ -1,11 +1,12 @@
 import { NavLink, Link } from "react-router-dom";
-import { Bell, LayoutDashboard, Building2, Briefcase, FileText, Bookmark, LogOut } from "lucide-react";
+import { LayoutDashboard, Building2, Briefcase, FileText, Bookmark, LogOut } from "lucide-react";
 
 import logo from "@/assets/images/logo.png";
 import { useAuth } from "@/hooks/useAuth";
 import { ROLES } from "@/constants/roles";
 import { authService } from "@/features/auth/services/authService";
 import { useNavigate } from "react-router-dom";
+import NotificationDropdown from "@/features/notifications/components/NotificationDropdown";
 
 const studentNav = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -47,7 +48,7 @@ export default function TopBar() {
   };
 
   return (
-    <header className="h-15 border-b border-[#E2E8F0] bg-white flex items-center px-6 gap-6">
+    <header className="h-[60px] bg-white/80 backdrop-blur-xl border-b border-[#E2E8F0] flex items-center px-6 gap-6 sticky top-0 z-50">
       <Link to="/" className="shrink-0">
         <img src={logo} alt="CareerPath" className="h-7 w-auto" />
       </Link>
@@ -59,7 +60,7 @@ export default function TopBar() {
             to={item.to}
             end={item.to === "/dashboard" || item.to === "/admin" || item.to === "/company"}
             className={({ isActive }) =>
-              `relative inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium transition-colors ${
+              `relative inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium transition-all duration-200 ${
                 isActive
                   ? "text-[#2563EB]"
                   : "text-[#64748B] hover:text-[#2563EB]"
@@ -68,9 +69,9 @@ export default function TopBar() {
           >
             {({ isActive }) => (
               <>
-                <item.icon size="16" />
+                <item.icon size="16" className={isActive ? "text-[#2563EB]" : ""} />
                 {item.label}
-                {isActive && <span className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 h-0.5 w-5 bg-[#2563EB] rounded-full" />}
+                {isActive && <span className="absolute bottom-[-10px] left-0 right-0 h-[2px] bg-[#2563EB] rounded-full" />}
               </>
             )}
           </NavLink>
@@ -78,22 +79,20 @@ export default function TopBar() {
       </nav>
 
       <div className="flex items-center gap-3 shrink-0">
-        <button className="p-2 rounded-lg text-[#64748B] hover:bg-[#F8FAFF] hover:text-[#2563EB] transition-colors">
-          <Bell size="18" />
-        </button>
+        <NotificationDropdown />
 
-        <Link to={profilePath} className="flex items-center gap-2 p-1 rounded-lg hover:bg-[#F8FAFF] transition-colors">
+        <Link to={profilePath} className="flex items-center gap-2 p-1 rounded-lg hover:bg-[#2563EB]/10 transition-all duration-200">
           <img
             src={user?.photoURL || "https://ui-avatars.com/api/?name=User&background=EEF3FE&color=2563EB&size=32"}
             alt=""
-            className="w-7 h-7 rounded-full"
+            className="w-7 h-7 rounded-full ring-2 ring-[#2563EB]/20"
           />
           <span className="text-sm text-[#64748B] hidden md:inline">{user?.name || "User"}</span>
         </Link>
 
         <button
           onClick={handleLogout}
-          className="p-2 rounded-lg text-[#94A3B8] hover:bg-red-50 hover:text-red-500 transition-colors"
+          className="p-2 rounded-lg text-[#94A3B8] hover:bg-red-50 hover:text-red-500 transition-all duration-200"
           title="Logout"
         >
           <LogOut size="16" />

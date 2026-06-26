@@ -52,9 +52,9 @@ export default function ProfilePage() {
 
   const [portfolio, setPortfolio] = useState(user?.portfolio || "");
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!user) return;
-
     setUniversity(user.university || "");
     setMajor(user.major || "");
     setLocation(user.location || "");
@@ -65,6 +65,7 @@ export default function ProfilePage() {
     setGithub(user.github || "");
     setPortfolio(user.portfolio || "");
   }, [user]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleSave = async () => {
     if (!user) return;
@@ -161,10 +162,7 @@ export default function ProfilePage() {
           <div
             className="
           h-32
-          bg-gradient-to-r
-          from-blue-600
-          via-blue-500
-          to-indigo-600
+          bg-[#2563EB]
           "
           />
 
@@ -179,7 +177,6 @@ export default function ProfilePage() {
     border-4
     border-white
     bg-white
-    shadow-lg
     "
               >
                 {avatarPreview ? (
@@ -201,7 +198,7 @@ export default function ProfilePage() {
         items-center
         justify-center
         text-4xl
-        font-bold
+        font-medium
         text-blue-600
         "
                   >
@@ -223,7 +220,6 @@ export default function ProfilePage() {
     text-xs
     font-medium
     text-white
-    shadow-lg
     "
               >
                 Edit
@@ -236,7 +232,7 @@ export default function ProfilePage() {
               </label>
             </div>
 
-            <h2 className="mt-4 text-2xl font-bold">{user?.name}</h2>
+            <h2 className="mt-4 text-2xl font-medium">{user?.name}</h2>
 
             <p className="text-slate-500">{user?.email}</p>
 
@@ -309,7 +305,7 @@ export default function ProfilePage() {
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium">Profile Completion</span>
 
-                <span className="text-sm font-semibold text-blue-600">
+                <span className="text-sm font-medium text-blue-600">
                   {completion}%
                 </span>
               </div>
@@ -370,7 +366,7 @@ export default function ProfilePage() {
         {/* RIGHT */}
         <div className="space-y-6">
           <AppCard>
-            <h2 className="text-lg font-semibold mb-6">Personal Information</h2>
+            <h2 className="text-lg font-medium mb-6">Personal Information</h2>
 
             <div className="grid gap-4 md:grid-cols-2">
               <AppInput
@@ -407,7 +403,7 @@ export default function ProfilePage() {
           </AppCard>
 
           <AppCard>
-            <h2 className="text-lg font-semibold mb-4">About Me</h2>
+            <h2 className="text-lg font-medium mb-4">About Me</h2>
 
             <AppTextarea
               className="min-h-[180px]"
@@ -418,7 +414,7 @@ export default function ProfilePage() {
           </AppCard>
 
           <AppCard>
-            <h2 className="text-lg font-semibold">Skills</h2>
+            <h2 className="text-lg font-medium">Skills</h2>
 
             <p className="text-sm text-slate-500 mt-1">
               Showcase your strengths
@@ -479,7 +475,7 @@ export default function ProfilePage() {
             )}
           </AppCard>
           <AppCard>
-            <h2 className="text-lg font-semibold">Resume</h2>
+            <h2 className="text-lg font-medium">Resume</h2>
 
             <p className="text-sm text-slate-500 mt-1">Upload your latest CV</p>
 
@@ -551,7 +547,7 @@ export default function ProfilePage() {
             )}
           </AppCard>
           <AppCard>
-            <h2 className="text-lg font-semibold">Social Links</h2>
+            <h2 className="text-lg font-medium">Social Links</h2>
 
             <div className="mt-6 space-y-4">
               <AppInput
@@ -576,7 +572,7 @@ export default function ProfilePage() {
           <AppCard>
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="font-semibold">Ready to Save?</h3>
+                <h3 className="font-medium">Ready to Save?</h3>
 
                 <p className="text-sm text-slate-500">
                   Update your profile information.

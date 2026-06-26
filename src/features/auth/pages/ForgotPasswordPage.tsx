@@ -28,7 +28,7 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="w-full max-w-sm animate-fade-in-up">
       <div className="bg-white border border-slate-200 rounded-xl p-6">
         <img src={logo} alt="CareerPath" className="h-8 mb-5" />
 
@@ -48,7 +48,7 @@ export default function ForgotPasswordPage() {
 
         <p className="mt-5 text-center text-sm text-slate-500">
           Remember your password?{" "}
-          <Link to="/login" className="text-blue-600 font-medium">Sign in</Link>
+          <Link to="/login" className="text-blue-600 font-medium hover:text-blue-700 transition-colors">Sign in</Link>
         </p>
       </div>
     </div>

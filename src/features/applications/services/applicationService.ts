@@ -53,11 +53,10 @@ export const applicationService = {
     interviewDate?: string,
     interviewLocation?: string,
   ) {
-    return updateDoc(doc(db, COLLECTIONS.APPLICATIONS, id), {
-      status,
-      interviewDate,
-      interviewLocation,
-    });
+    const data: Record<string, string> = { status };
+    if (interviewDate !== undefined) data.interviewDate = interviewDate;
+    if (interviewLocation !== undefined) data.interviewLocation = interviewLocation;
+    return updateDoc(doc(db, COLLECTIONS.APPLICATIONS, id), data);
   },
 
   async getAllApplications() {

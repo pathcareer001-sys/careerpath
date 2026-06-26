@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 
 import PageContainer from "@/components/common/PageContainer";
-import AppCard from "@/components/common/AppCard";
 import SearchBar from "@/components/common/SearchBar";
 
 import EmptyState from "@/components/shared/EmptyState";
@@ -28,22 +27,15 @@ export default function CompanyInternshipsPage() {
   const { data: company } = useMyCompany(user?.uid || "");
 
   const filteredInternships = useMemo(() => {
-    if (!internships) {
-      return [];
-    }
-
+    if (!internships) return [];
     return internships.filter((internship) =>
       internship.title.toLowerCase().includes(search.toLowerCase()),
     );
   }, [internships, search]);
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete internship?")) {
-      return;
-    }
-
+    if (!confirm("Delete internship?")) return;
     await deleteInternship.mutateAsync(id);
-
     toast.success("Internship deleted successfully");
   };
 
@@ -58,60 +50,30 @@ export default function CompanyInternshipsPage() {
 
   return (
     <PageContainer>
-      <div
-        className="
-  flex
-  flex-col
-  gap-4
-  lg:flex-row
-  lg:items-center
-  lg:justify-between
-  "
-      >
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between animate-fade-in-up">
         <div>
-          <h1
-            className="
-      text-3xl
-      font-bold
-      "
-          >
-            My Internships
-          </h1>
-
-          <p className="text-slate-500">Manage and track internship postings</p>
+          <h1 className="text-2xl font-medium text-[#0F172A]">My Internships</h1>
+          <p className="text-sm text-[#64748B] mt-1">Manage and track internship postings</p>
         </div>
-
         <CreateInternshipDialog company={company} />
       </div>
-      <AppCard className="mt-6">
+
+      <div className="mt-6 animate-fade-in-up animate-delay-100">
         <SearchBar
           value={search}
           onChange={setSearch}
           placeholder="Search internships..."
         />
-      </AppCard>
+      </div>
 
-      <div
-        className="
-  mt-6
-  grid
-  gap-6
-  md:grid-cols-2
-  "
-      >
+      <div className="mt-6 animate-fade-in-up animate-delay-200">
         {filteredInternships.length === 0 ? (
           <EmptyState
             title="No Internships"
             description="Create your first internship and start receiving applicants."
           />
         ) : (
-          <div
-            className="
-  grid
-  gap-6
-  md:grid-cols-2
-  "
-          >
+          <div className="grid gap-6 md:grid-cols-2">
             {filteredInternships.map((internship) => (
               <CompanyInternshipCard
                 key={internship.id}

@@ -1,39 +1,61 @@
-import PageContainer from "@/components/common/PageContainer";
+import { Link } from "react-router-dom";
+import { ArrowRight, Search, BarChart3, ShieldCheck } from "lucide-react";
 
 export default function AboutPage() {
+  const features = [
+    {
+      icon: Search,
+      title: "Internship Discovery",
+      text: "Find opportunities that match your interests with smart filters and real-time updates.",
+      gradient: "from-blue-500 to-blue-600",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Company Reviews",
+      text: "Learn from real student experiences before you apply. Transparent ratings and honest feedback.",
+      gradient: "from-purple-500 to-purple-600",
+    },
+    {
+      icon: BarChart3,
+      title: "Application Tracking",
+      text: "Monitor every stage of your application from submission to offer in one clean dashboard.",
+      gradient: "from-emerald-500 to-emerald-600",
+    },
+  ];
+
   return (
-    <PageContainer>
-      <section className="py-16 text-center">
-        <h1 className="text-5xl font-bold">About CareerPath</h1>
-
-        <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
-          CareerPath helps students discover internship opportunities, read
-          company reviews, and track applications in one platform.
-        </p>
-      </section>
-
-      <section className="grid gap-6 md:grid-cols-3">
-        <div className="rounded-3xl border p-6">
-          <h3 className="font-semibold">Internship Discovery</h3>
-          <p className="mt-2 text-slate-500">
-            Find opportunities that match your interests.
+    <div className="min-h-screen bg-[#F8FAFF]">
+      <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700 text-white">
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl" />
+        <div className="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">
+          <h1 className="text-5xl font-medium">About CareerPath</h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
+            CareerPath helps students discover internship opportunities, read company reviews, and track applications in one platform.
           </p>
         </div>
+      </div>
 
-        <div className="rounded-3xl border p-6">
-          <h3 className="font-semibold">Company Reviews</h3>
-          <p className="mt-2 text-slate-500">
-            Learn from real student experiences.
-          </p>
+      <div className="mx-auto max-w-7xl px-6 -mt-8 relative z-20">
+        <div className="grid gap-6 md:grid-cols-3">
+          {features.map((feature, i) => (
+            <div key={feature.title} className="animate-fade-in-up rounded-xl bg-white border border-[#E2E8F0] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" style={{ animationDelay: `${i * 150}ms` }}>
+              <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${feature.gradient} text-white shadow-sm`}>
+                <feature.icon size="22" />
+              </div>
+              <h3 className="mt-4 text-base font-medium text-slate-900">{feature.title}</h3>
+              <p className="mt-2 text-sm text-slate-500 leading-relaxed">{feature.text}</p>
+            </div>
+          ))}
         </div>
+      </div>
 
-        <div className="rounded-3xl border p-6">
-          <h3 className="font-semibold">Application Tracking</h3>
-          <p className="mt-2 text-slate-500">
-            Monitor every stage of your application.
-          </p>
-        </div>
-      </section>
-    </PageContainer>
+      <div className="mx-auto max-w-7xl px-6 py-16 text-center">
+        <h2 className="text-[22px] font-medium text-slate-900">Ready to start your journey?</h2>
+        <p className="mt-2 text-sm text-slate-500">Join thousands of students already using CareerPath.</p>
+        <Link to="/register" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-700 hover:to-purple-700 shadow-sm">
+          Get started <ArrowRight size="16" />
+        </Link>
+      </div>
+    </div>
   );
 }

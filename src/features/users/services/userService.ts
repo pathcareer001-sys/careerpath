@@ -4,33 +4,31 @@ import {
   collection,
   getDocs,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
-
 import { db } from "@/firebase/firestore";
-
 import { COLLECTIONS } from "@/constants/collections";
-
 import type { AppUser } from "@/types/user";
 
 export const userService = {
   async getUser(uid: string) {
     const snapshot = await getDoc(doc(db, COLLECTIONS.USERS, uid));
-
-    if (!snapshot.exists()) {
-      return null;
-    }
-
-    return snapshot.data() as AppUser;
+    if (!snapshot.exists()) return null;
+    return { uid: snapshot.id, ...snapshot.data() } as AppUser;
   },
 
   async getUsers(): Promise<AppUser[]> {
     const snapshot = await getDocs(collection(db, COLLECTIONS.USERS));
-
     return snapshot.docs.map((doc) => ({
       uid: doc.id,
       ...doc.data(),
     })) as AppUser[];
   },
+
+  async updateUser(uid: string, data: Partial<AppUser>) {
+    return updateDoc(doc(db, COLLECTIONS.USERS, uid), data);
+  },
+
   async deleteUser(uid: string) {
     return deleteDoc(doc(db, COLLECTIONS.USERS, uid));
   },

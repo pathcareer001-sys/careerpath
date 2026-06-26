@@ -6,4 +6,7 @@ export const COLLECTIONS = {
   REVIEWS: "reviews",
   BOOKMARKS: "bookmarks",
   NOTIFICATIONS: "notifications",
+  INTERNSHIP_BOOKMARKS: "internship_bookmarks",
+  CONTACTS: "contacts",
+  REPORTS: "reports",
 } as const;

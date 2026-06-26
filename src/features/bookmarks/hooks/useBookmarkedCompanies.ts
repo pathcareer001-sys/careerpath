@@ -16,7 +16,7 @@ export function useBookmarkedCompanies(userId: string) {
       const bookmarks = await bookmarkService.getBookmarks(userId);
 
       const companies = await Promise.all(
-        bookmarks.map((bookmark: any) =>
+        bookmarks.map((bookmark: { companyId: string }) =>
           companyService.getCompanyById(bookmark.companyId),
         ),
       );

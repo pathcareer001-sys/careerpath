@@ -1,70 +1,29 @@
 import { useState, useMemo } from "react";
-
 import PageContainer from "@/components/common/PageContainer";
 import PageHeader from "@/components/common/PageHeader";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
-
-import { useCompanies } from "../hooks/useCompanies";
-import { useCreateCompany } from "../hooks/useCreateCompany";
-import { useDeleteCompany } from "../hooks/useDeleteCompany";
-
 import SearchBar from "@/components/common/SearchBar";
 import EmptyState from "@/components/shared/EmptyState";
-
-import CompanyManageCard from "../components/CompanyManageCard";
+import CompanyManageCard from "@/features/companies/components/CompanyManageCard";
+import EditCompanyDialog from "@/features/companies/components/EditCompanyDialog";
+import CreateCompanyDialog from "@/features/companies/components/CreateCompanyDialog";
+import { useCompanies } from "@/features/companies/hooks/useCompanies";
+import { useDeleteCompany } from "@/features/companies/hooks/useDeleteCompany";
+import { useUpdateCompany } from "@/features/companies/hooks/useUpdateCompany";
 import { toast } from "sonner";
-import { useUpdateCompany } from "../hooks/useUpdateCompany";
-import AppInput from "@/components/common/AppInput";
+import type { Company } from "@/types/company";
 
 export default function CompanyManagePage() {
   const { data: companies } = useCompanies();
-
-  const createCompany = useCreateCompany();
-
-  const [name, setName] = useState("");
-
-  const [search, setSearch] = useState("");
-
   const deleteCompany = useDeleteCompany();
-
   const updateCompany = useUpdateCompany();
-
-  const handleCreate = async () => {
-    if (!name.trim()) return;
-    try {
-      await createCompany.mutateAsync({
-        name,
-
-        logo: "",
-
-        ownerId: "",
-
-        description: "",
-
-        location: "",
-
-        industry: "",
-
-        website: "",
-
-        verified: false,
-
-        avgRating: 0,
-
-        reviewCount: 0,
-      });
-      toast.success("Company created successfully");
-    } catch {
-      toast.error("Failed to create company");
-    }
-
-    setName("");
-  };
+  const [search, setSearch] = useState("");
+  const [editingCompany, setEditingCompany] = useState<Company | null>(null);
+  const [showCreate, setShowCreate] = useState(false);
 
   const filteredCompanies = useMemo(() => {
     if (!companies) return [];
-
     return companies.filter((company) =>
       company.name.toLowerCase().includes(search.toLowerCase()),
     );
@@ -72,38 +31,34 @@ export default function CompanyManagePage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete company?")) return;
-
     await deleteCompany.mutateAsync(id);
+    toast.success("Company deleted");
   };
 
   const handleVerify = async (id: string, verified: boolean) => {
-    await updateCompany.mutateAsync({
-      id,
-      data: {
-        verified: !verified,
-      },
-    });
-
+    await updateCompany.mutateAsync({ id, data: { verified: !verified } });
     toast.success(verified ? "Company unverified" : "Company verified");
   };
 
   return (
     <PageContainer>
-      <PageHeader
-        title="Company Management"
-        description="Manage company data"
+      <PageHeader title="Company Management" description="Manage company data" />
+
+      <EditCompanyDialog
+        company={editingCompany}
+        open={!!editingCompany}
+        onClose={() => setEditingCompany(null)}
+      />
+      <CreateCompanyDialog
+        company={null}
+        open={showCreate}
+        onClose={() => setShowCreate(false)}
       />
 
-      <div className="space-y-6">
+      <div className="space-y-6 animate-fade-in-up">
         <AppCard>
           <div className="flex gap-3">
-            <AppInput
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Company Name"
-            />
-
-            <AppButton onClick={handleCreate}>Add Company</AppButton>
+            <AppButton onClick={() => setShowCreate(true)}>Create Company</AppButton>
           </div>
         </AppCard>
 
@@ -114,19 +69,14 @@ export default function CompanyManagePage() {
         />
 
         {filteredCompanies.length === 0 ? (
-          <EmptyState
-            title="No Companies"
-            description="Create your first company"
-          />
+          <EmptyState title="No Companies" description="Create your first company" />
         ) : (
           <div className="space-y-4">
             {filteredCompanies.map((company) => (
               <CompanyManageCard
                 key={company.id}
                 company={company}
-                onEdit={(company) => {
-                  console.log(company);
-                }}
+                onEdit={setEditingCompany}
                 onDelete={handleDelete}
                 onVerify={handleVerify}
               />

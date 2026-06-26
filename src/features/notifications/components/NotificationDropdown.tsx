@@ -56,7 +56,7 @@ export default function NotificationDropdown() {
         hover:bg-slate-100
         "
       >
-        <Bell size={22} />
+        <Bell size={18} />
 
         {unreadCount > 0 && (
           <span
@@ -92,7 +92,7 @@ export default function NotificationDropdown() {
           z-50
           "
         >
-          <h3 className="mb-4 font-semibold">Notifications</h3>
+          <h3 className="mb-4 font-medium">Notifications</h3>
 
           {notifications?.length === 0 ? (
             <p className="text-sm text-slate-500">No notifications yet</p>

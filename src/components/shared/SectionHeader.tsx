@@ -6,7 +6,7 @@ interface Props {
 export default function SectionHeader({ title, description }: Props) {
   return (
     <div>
-      <h2 className="text-xl font-semibold">{title}</h2>
+      <h2 className="text-xl font-medium">{title}</h2>
 
       {description && <p className="text-slate-500 mt-1">{description}</p>}
     </div>

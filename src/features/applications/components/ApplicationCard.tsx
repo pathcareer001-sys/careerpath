@@ -1,5 +1,4 @@
 import { Building2, CalendarDays, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import StatusBadge from "./StatusBadge";
 import type { Application } from "@/types/application";
 

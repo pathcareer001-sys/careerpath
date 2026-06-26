@@ -25,7 +25,7 @@ export default function ApplicantCard({
       <div className="space-y-4">
         <div className="flex justify-between">
           <div>
-            <h3 className="font-semibold">{application.applicantName}</h3>
+            <h3 className="font-medium">{application.applicantName}</h3>
 
             <p className="text-sm text-slate-500">
               {application.internshipTitle}

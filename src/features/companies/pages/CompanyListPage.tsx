@@ -5,10 +5,13 @@ import { useCompanies } from "../hooks/useCompanies";
 import LoadingState from "@/components/shared/LoadingState";
 import EmptyState from "@/components/shared/EmptyState";
 
+const PAGE_SIZE = 12;
+
 export default function CompanyListPage() {
   const [search, setSearch] = useState("");
   const { data: companies, isLoading } = useCompanies();
   const [industryFilter, setIndustryFilter] = useState("");
+  const [page, setPage] = useState(1);
 
   const filteredCompanies = useMemo(() => {
     if (!companies) return [];
@@ -24,6 +27,9 @@ export default function CompanyListPage() {
     return [...companies].sort((a, b) => b.avgRating - a.avgRating).slice(0, 4);
   }, [companies]);
 
+  const totalPages = Math.ceil(filteredCompanies.length / PAGE_SIZE);
+  const paged = filteredCompanies.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
   if (isLoading) return <LoadingState />;
 
   return (
@@ -38,16 +44,16 @@ export default function CompanyListPage() {
           <Search size="15" className="absolute left-3 top-1/2 -translate-y-1/2 text-[#CBD5E1]" />
           <input
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             placeholder="Search companies..."
             className="h-9 w-full rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#CBD5E1] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           {["Technology", "Design", "Marketing", "Finance", "Business"].map((category) => (
             <button
               key={category}
-              onClick={() => setIndustryFilter(industryFilter === category ? "" : category)}
+              onClick={() => { setIndustryFilter(industryFilter === category ? "" : category); setPage(1); }}
               className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                 industryFilter === category
                   ? "bg-[#2563EB] text-white"
@@ -78,11 +84,30 @@ export default function CompanyListPage() {
       {filteredCompanies.length === 0 ? (
         <EmptyState title="No companies found" description="Try another keyword or filter." />
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredCompanies.map((company) => (
-            <CompanyCard key={company.id} company={company} />
-          ))}
-        </div>
+        <>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {paged.map((company) => (
+              <CompanyCard key={company.id} company={company} />
+            ))}
+          </div>
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-1.5 mt-6">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                <button
+                  key={p}
+                  onClick={() => setPage(p)}
+                  className={`h-7 w-7 rounded-full text-[12px] font-medium transition-all duration-200 flex items-center justify-center ${
+                    p === page
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm"
+                      : "text-[#64748B] hover:bg-blue-50 hover:text-blue-600"
+                  }`}
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   );

@@ -18,5 +18,14 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
     },
+    rules: {
+      "@typescript-eslint/no-empty-object-type": "off",
+    },
+  },
+  {
+    files: ['src/components/ui/**', 'src/providers/**', 'src/routes/**'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
   },
 ])

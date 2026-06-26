@@ -11,7 +11,7 @@ const navItems = [
 
 export default function LandingNavbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-[inset_0_-1px_0_0_#2563eb]">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="CareerPath" className="h-8 w-auto" />
@@ -23,7 +23,7 @@ export default function LandingNavbar() {
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `inline-flex h-9 items-center gap-2 rounded-lg px-3 text-sm font-medium transition-colors ${
+                `inline-flex h-9 items-center gap-2 rounded-lg px-3 text-sm font-medium transition-all duration-200 ${
                   isActive
                     ? "bg-blue-50 text-blue-600"
                     : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
@@ -39,7 +39,7 @@ export default function LandingNavbar() {
         <div className="hidden items-center gap-2 sm:flex">
           <Link
             to="/login"
-            className="inline-flex h-9 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
+            className="inline-flex h-9 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200"
           >
             <LogIn size="15" />
             Login
@@ -47,7 +47,7 @@ export default function LandingNavbar() {
 
           <Link
             to="/register"
-            className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 text-sm font-medium text-white transition-all duration-200 hover:from-blue-700 hover:to-purple-700 shadow-sm"
           >
             Get started
             <ArrowRight size="15" />
