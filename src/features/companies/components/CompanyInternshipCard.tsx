@@ -1,4 +1,6 @@
-import { Briefcase, MapPin, Trash2 } from "lucide-react";
+import { Briefcase, MapPin, Trash2, Users, Calendar } from "lucide-react";
+
+import { Link } from "react-router-dom";
 
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
@@ -7,38 +9,62 @@ import type { Internship } from "@/types/internship";
 
 import EditInternshipDialog from "./EditInternshipDialog";
 
+import { useInternshipApplications } from "@/features/applications/hooks/useInternshipApplications";
+
 interface Props {
   internship: Internship;
   onDelete: (id: string) => void;
 }
 
-export default function CompanyInternshipCard({
-  internship,
-  onDelete,
-}: Props) {
+export default function CompanyInternshipCard({ internship, onDelete }: Props) {
+  const { data: applications } = useInternshipApplications(internship.id);
+
   return (
     <AppCard>
-      <div className="flex justify-between">
-        <div className="space-y-2">
+      <div className="space-y-5">
+        <div>
           <div className="flex items-center gap-2">
-            <Briefcase size={18} />
+            <Briefcase size={18} className="text-blue-600" />
 
-            <h3 className="font-semibold">{internship.title}</h3>
+            <h3 className="text-lg font-semibold">{internship.title}</h3>
           </div>
 
-          <div className="flex items-center gap-2 text-sm text-slate-500">
-            <MapPin size={14} />
+          <p className="mt-1 text-sm text-slate-500">
+            {internship.companyName}
+          </p>
+        </div>
 
+        <div className="flex flex-wrap gap-4 text-sm text-slate-500">
+          <div className="flex items-center gap-2">
+            <MapPin size={14} />
             {internship.location}
           </div>
 
-          <p className="text-sm text-slate-500">{internship.type}</p>
+          <div className="flex items-center gap-2">
+            <Briefcase size={14} />
+            {internship.type}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Users size={14} />
+            {applications?.length || 0}
+            Applicants
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Calendar size={14} />
+            {internship.deadline}
+          </div>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          <Link to={`/company/applicants/${internship.id}`}>
+            <AppButton type="button">Applicants</AppButton>
+          </Link>
+
           <EditInternshipDialog internship={internship} />
 
-          <AppButton onClick={() => onDelete(internship.id)}>
+          <AppButton type="button" onClick={() => onDelete(internship.id)}>
             <Trash2 size={16} />
           </AppButton>
         </div>

@@ -1,12 +1,26 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-import { LayoutDashboard, Briefcase, Users, User } from "lucide-react";
+import { LayoutDashboard, Briefcase, User, LogOut } from "lucide-react";
 
 import UserMenu from "./UserMenu";
 
 import logo from "@/assets/images/logo.png";
+import { authService } from "@/features/auth/services/authService";
+import AppButton from "../common/AppButton";
 
 export default function CompanyNavbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await authService.logout();
+
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <header
       className="
@@ -54,19 +68,33 @@ export default function CompanyNavbar() {
           />
 
           <NavItem
-            to="/company/applicants"
-            icon={<Users size={18} />}
-            label="Applicants"
-          />
-
-          <NavItem
             to="/company/profile"
             icon={<User size={18} />}
             label="Profile"
           />
         </nav>
 
-        <div className="ml-auto">
+        <div
+          className="
+  ml-auto
+  flex
+  items-center
+  gap-3
+  "
+        >
+          <AppButton
+            variant="secondary"
+            onClick={handleLogout}
+            className="
+  border-red-200
+  text-red-600
+  hover:bg-red-50
+  "
+          >
+            <LogOut size={16} />
+            Logout
+          </AppButton>
+
           <UserMenu />
         </div>
       </div>
@@ -86,6 +114,7 @@ function NavItem({
   return (
     <NavLink
       to={to}
+      end={to === "/company"}
       className={({ isActive }) =>
         `
         flex

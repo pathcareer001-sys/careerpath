@@ -1,4 +1,12 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
 import { db } from "@/firebase/firestore";
 
@@ -27,17 +35,43 @@ export const reviewService = {
   },
 
   async createReview(data: Omit<Review, "id">) {
+    const existingReviewQuery = query(
+      collection(db, COLLECTIONS.REVIEWS),
+      where("companyId", "==", data.companyId),
+      where("userId", "==", data.userId),
+    );
+
+    const existingReview = await getDocs(existingReviewQuery);
+
+    if (!existingReview.empty) {
+      throw new Error("You already reviewed this company");
+    }
     await addDoc(collection(db, COLLECTIONS.REVIEWS), data);
 
     const reviews = await reviewService.getCompanyReviews(data.companyId);
 
     const totalRating = reviews.reduce((sum, item) => sum + item.rating, 0);
 
-    const avgRating = reviews.length > 0 ? totalRating / reviews.length : 0;
-
+    const avgRating =
+      reviews.length > 0
+        ? Number((totalRating / reviews.length).toFixed(1))
+        : 0;
     await companyService.updateCompany(data.companyId, {
       avgRating,
       reviewCount: reviews.length,
     });
+  },
+
+  async getAllReviews() {
+    const snapshot = await getDocs(collection(db, COLLECTIONS.REVIEWS));
+
+    return snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Review[];
+  },
+
+  async deleteReview(id: string) {
+    return deleteDoc(doc(db, COLLECTIONS.REVIEWS, id));
   },
 };

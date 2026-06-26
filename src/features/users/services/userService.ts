@@ -1,4 +1,10 @@
-import { doc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  deleteDoc,
+} from "firebase/firestore";
 
 import { db } from "@/firebase/firestore";
 
@@ -15,5 +21,17 @@ export const userService = {
     }
 
     return snapshot.data() as AppUser;
+  },
+
+  async getUsers(): Promise<AppUser[]> {
+    const snapshot = await getDocs(collection(db, COLLECTIONS.USERS));
+
+    return snapshot.docs.map((doc) => ({
+      uid: doc.id,
+      ...doc.data(),
+    })) as AppUser[];
+  },
+  async deleteUser(uid: string) {
+    return deleteDoc(doc(db, COLLECTIONS.USERS, uid));
   },
 };

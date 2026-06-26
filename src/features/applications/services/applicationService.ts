@@ -47,9 +47,16 @@ export const applicationService = {
     return addDoc(collection(db, COLLECTIONS.APPLICATIONS), data);
   },
 
-  async updateApplicationStatus(id: string, status: string) {
+  async updateApplicationStatus(
+    id: string,
+    status: string,
+    interviewDate?: string,
+    interviewLocation?: string,
+  ) {
     return updateDoc(doc(db, COLLECTIONS.APPLICATIONS, id), {
       status,
+      interviewDate,
+      interviewLocation,
     });
   },
 
@@ -67,6 +74,34 @@ export const applicationService = {
       collection(db, COLLECTIONS.APPLICATIONS),
 
       where("companyId", "==", companyId),
+    );
+
+    const snapshot = await getDocs(q);
+
+    return snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Application[];
+  },
+
+  async hasApplied(internshipId: string, applicantId: string) {
+    const q = query(
+      collection(db, COLLECTIONS.APPLICATIONS),
+
+      where("internshipId", "==", internshipId),
+
+      where("applicantId", "==", applicantId),
+    );
+
+    const snapshot = await getDocs(q);
+
+    return !snapshot.empty;
+  },
+
+  async getInternshipApplications(internshipId: string) {
+    const q = query(
+      collection(db, COLLECTIONS.APPLICATIONS),
+      where("internshipId", "==", internshipId),
     );
 
     const snapshot = await getDocs(q);

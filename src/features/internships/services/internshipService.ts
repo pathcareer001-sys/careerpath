@@ -64,4 +64,18 @@ export const internshipService = {
       ...doc.data(),
     })) as Internship[];
   },
+
+  async getInternshipsByCompanyId(companyId: string): Promise<Internship[]> {
+    const q = query(
+      collection(db, COLLECTIONS.INTERNSHIPS),
+      where("companyId", "==", companyId),
+    );
+
+    const snapshot = await getDocs(q);
+
+    return snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Internship[];
+  },
 };

@@ -2,35 +2,22 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import { cn } from "@/lib/utils";
 
-export default function AppCard({
-  children,
-  className,
-}: {
+import type { HTMLAttributes } from "react";
+
+interface Props extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  className?: string;
-}) {
+}
+
+export default function AppCard({ children, className, ...props }: Props) {
   return (
     <Card
       className={cn(
-        `
-        bg-white
-        border
-        border-slate-100
-        rounded-3xl
-        shadow-lg
-        shadow-slate-200/40
-        transition-all
-        duration-300
-        hover:shadow-2xl
-        hover:shadow-slate-200/60
-        hover:-translate-y-1
-        `,
+        "bg-white border border-blue-100 rounded-lg shadow-sm shadow-blue-100/60 transition-all duration-300 hover:shadow-md hover:shadow-blue-100/80",
         className,
       )}
+      {...props}
     >
-      <CardContent className="p-6">
-        {children}
-      </CardContent>
+      <CardContent className="p-6">{children}</CardContent>
     </Card>
   );
 }

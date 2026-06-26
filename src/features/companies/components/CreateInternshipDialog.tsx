@@ -1,12 +1,6 @@
 import { Plus } from "lucide-react";
 
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 
 import AppButton from "@/components/common/AppButton";
 
@@ -52,11 +46,14 @@ export default function CreateInternshipDialog({ company }: Props) {
         }
       />
 
-      <DialogContent className="sm:max-w-2xl">
-        <DialogHeader>
-          <DialogTitle>Create Internship</DialogTitle>
-        </DialogHeader>
-
+      <DialogContent
+        className="
+  sm:max-w-4xl
+  max-h-[90vh]
+  overflow-y-auto
+  p-2
+  "
+      >
         <InternshipForm
           loading={createInternship.isPending}
           onSubmit={handleSubmit}

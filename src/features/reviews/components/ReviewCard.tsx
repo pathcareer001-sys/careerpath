@@ -8,51 +8,63 @@ export default function ReviewCard({ review }: { review: Review }) {
   return (
     <AppCard
       className="
-      transition-all
-      duration-200
-      hover:shadow-md
-      "
+  transition-all
+  duration-200
+  hover:-translate-y-1
+  hover:shadow-lg
+  "
     >
-      <div className="space-y-4">
-        <div className="flex items-start gap-3">
-          <div
-            className="
-            w-10
-            h-10
-            rounded-full
-            bg-blue-100
-            flex
-            items-center
-            justify-center
-            shrink-0
-            "
-          >
-            <span
+      <div className="space-y-5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div
               className="
-              text-sm
-              font-semibold
-              text-blue-600
-              "
+          h-12
+          w-12
+          rounded-full
+          bg-gradient-to-br
+          from-blue-500
+          to-indigo-600
+          text-white
+          flex
+          items-center
+          justify-center
+          font-semibold
+          "
             >
               {review.userName.charAt(0)}
-            </span>
+            </div>
+
+            <div>
+              <h4 className="font-semibold">{review.userName}</h4>
+
+              <p className="text-xs text-slate-500">Internship Student</p>
+            </div>
           </div>
 
-          <div>
-            <h4 className="font-semibold">{review.userName}</h4>
-
+          <div
+            className="
+        rounded-xl
+        bg-yellow-50
+        px-3
+        py-2
+        "
+          >
             <RatingStars rating={review.rating} />
           </div>
         </div>
 
-        <p
+        <blockquote
           className="
-          text-slate-600
-          leading-7
-          "
+      text-slate-600
+      leading-7
+      border-l-4
+      border-blue-500
+      pl-4
+      "
         >
-          {review.review}
-        </p>
+          "{review.review}"
+        </blockquote>
       </div>
     </AppCard>
   );

@@ -10,6 +10,10 @@ export function useCreateApplication() {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
+        queryKey: ["hasApplied"],
+      });
+
+      queryClient.invalidateQueries({
         queryKey: ["applications"],
       });
     },

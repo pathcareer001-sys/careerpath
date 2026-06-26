@@ -7,12 +7,12 @@ export default function PageHeader({
 }) {
   return (
     <div>
-      <h1 className="text-3xl font-bold tracking-tight">
+      <h1 className="text-3xl font-bold tracking-tight text-slate-950">
         {title}
       </h1>
 
       {description && (
-        <p className="text-slate-500 mt-1">
+        <p className="text-slate-600 mt-1">
           {description}
         </p>
       )}

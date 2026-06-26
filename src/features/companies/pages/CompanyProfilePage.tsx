@@ -53,9 +53,9 @@ export default function CompanyProfilePage() {
 
     if (!file) return;
 
-    const result = await uploadImage(file);
+    const imageUrl = await uploadImage(file);
 
-    setLogo(result.secure_url);
+    setLogo(imageUrl);
   };
 
   const handleCreate = async () => {
@@ -97,9 +97,7 @@ export default function CompanyProfilePage() {
         website,
       },
     });
-    toast.success(
-  "Company profile created successfully",
-);
+    toast.success("Company profile updated successfully");
   };
 
   return (
@@ -113,8 +111,66 @@ export default function CompanyProfilePage() {
         }
       />
 
+      <AppCard
+        className="
+  overflow-hidden
+  border-0
+  bg-gradient-to-r
+  from-blue-600
+  via-blue-500
+  to-indigo-600
+  text-white
+  "
+      >
+        <div className="flex items-center gap-6">
+          <div
+            className="
+      h-24
+      w-24
+      overflow-hidden
+      rounded-3xl
+      bg-white
+      "
+          >
+            {logo ? (
+              <img
+                src={logo}
+                alt={name}
+                className="
+          h-full
+          w-full
+          object-cover
+          "
+              />
+            ) : (
+              <div
+                className="
+          flex
+          h-full
+          items-center
+          justify-center
+          text-3xl
+          font-bold
+          text-blue-600
+          "
+              >
+                {name?.charAt(0) || "C"}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <h1 className="text-3xl font-bold">{name || "Company Name"}</h1>
+
+            <p className="mt-2 text-blue-100">{industry || "Industry"}</p>
+
+            <p className="text-blue-100">{location || "Location"}</p>
+          </div>
+        </div>
+      </AppCard>
+
       <AppCard>
-        <div className="space-y-4">
+        <div className="grid gap-4 md:grid-cols-2">
           <AppInput
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -138,32 +194,103 @@ export default function CompanyProfilePage() {
             onChange={(e) => setWebsite(e.target.value)}
             placeholder="Website"
           />
+        </div>
+        <label
+          className="
+            flex
+            h-44
+            cursor-pointer
+            items-center
+            justify-center
+            rounded-2xl
+            border-2
+            border-dashed
+            border-slate-300
+            text-slate-500
+            hover:border-blue-500
+            transition-colors
+            mt-4
+            "
+        >
+          <input
+            hidden
+            type="file"
+            accept="image/*"
+            onChange={handleLogoUpload}
+          />
 
-          <input type="file" accept="image/*" onChange={handleLogoUpload} />
-          {logo && (
+          {logo ? (
             <img
               src={logo}
               alt="Company Logo"
               className="
-      h-24
-      w-24
-      rounded-xl
-      object-cover
-      border
-    "
+                h-full
+                w-full
+                rounded-2xl
+                object-cover
+                "
             />
+          ) : (
+            <span>Upload Company Logo</span>
           )}
-
+        </label>
+        <div className="mt-6">
           <AppTextarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Description"
+            placeholder="Tell students about your company, culture, mission, and opportunities..."
+            className="min-h-[200px]"
           />
+        </div>
 
-          <AppButton onClick={company ? handleUpdate : handleCreate}>
-            {company ? "Update Company" : "Save Company"}
+        <div className="mt-6">
+          <AppButton
+            className="h-12 w-full"
+            onClick={company ? handleUpdate : handleCreate}
+          >
+            {company ? "Update Company Profile" : "Create Company Profile"}
           </AppButton>
         </div>
+      </AppCard>
+      <AppCard>
+        <div className="flex gap-4">
+          <div className="h-16 w-16 overflow-hidden rounded-2xl bg-slate-100">
+            {logo ? (
+              <img
+                src={logo}
+                alt={name}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center font-bold">
+                {name?.charAt(0) || "C"}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <h3 className="text-xl font-bold">{name || "Company Name"}</h3>
+
+            <p className="text-slate-500">{industry || "Industry"}</p>
+
+            <p className="text-slate-500">{location || "Location"}</p>
+          </div>
+        </div>
+
+        <p className="mt-4 text-slate-600">
+          {description || "Company description"}
+        </p>
+
+        {website && (
+          <a
+            href={website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block text-blue-600"
+          >
+            Visit Website →
+          </a>
+        )}
       </AppCard>
     </PageContainer>
   );

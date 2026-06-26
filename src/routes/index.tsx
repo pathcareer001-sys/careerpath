@@ -1,48 +1,55 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import HomePage from "@/features/dashboard/pages/HomePage";
-import ErrorPage from "@/pages/ErrorPage";
-import LoginPage from "@/features/auth/pages/LoginPage";
-import RegisterPage from "@/features/auth/pages/RegisterPage";
-
-import StudentDashboardPage from "@/features/dashboard/pages/StudentDashboardPage";
-
-import CompanyLayout from "@/layouts/CompanyLayout";
-
-import CompanyDashboardPage from "@/features/companies/pages/CompanyDashboardPage";
-
-import RoleRoute from "./RoleRoute";
-
-import { ROLES } from "@/constants/roles";
-import CompanyInternshipsPage from "@/features/companies/pages/CompanyInternshipsPage";
-import CompanyListPage from "@/features/companies/pages/CompanyListPage";
-import CompanyDetailPage from "@/features/companies/pages/CompanyDetailPage";
-import CompanyManagePage from "@/features/companies/pages/CompanyManagePage";
-
-import InternshipListPage from "@/features/internships/pages/InternshipListPage";
-import InternshipDetailPage from "@/features/internships/pages/InternshipDetailPage";
-import InternshipManagePage from "@/features/internships/pages/InternshipManagePage";
-
-import MyApplicationsPage from "@/features/applications/pages/MyApplicationsPage";
-import ManageApplicationsPage from "@/features/applications/pages/ManageApplicationsPage";
-
-import BookmarkPage from "@/features/bookmarks/pages/BookmarkPage";
-
-import ProfilePage from "@/features/users/pages/ProfilePage";
-
 import ProtectedRoute from "./ProtectedRoute";
+import RoleRoute from "./RoleRoute";
+import { ROLES } from "@/constants/roles";
 
+import AuthLayout from "@/layouts/AuthLayout";
 import StudentLayout from "@/layouts/StudentLayout";
 import AdminLayout from "@/layouts/AdminLayout";
-import AdminDashboardPage from "@/features/admin/pages/AdminDashboardPage";
-import CompanyProfilePage from "@/features/companies/pages/CompanyProfilePage";
-import CompanyApplicationsPage from "@/features/applications/pages/CompanyApplicationPage";
-import AuthLayout from "@/layouts/AuthLayout";
+import CompanyLayout from "@/layouts/CompanyLayout";
+import ErrorPage from "@/pages/ErrorPage";
+
+import AuthFormSkeleton from "@/components/common/AuthFormSkeleton";
+import PageSkeleton from "@/components/common/PageSkeleton";
+
+const HomePage = lazy(() => import("@/features/dashboard/pages/HomePage"));
+const LoginPage = lazy(() => import("@/features/auth/pages/LoginPage"));
+const RegisterPage = lazy(() => import("@/features/auth/pages/RegisterPage"));
+const ForgotPasswordPage = lazy(() => import("@/features/auth/pages/ForgotPasswordPage"));
+const AboutPage = lazy(() => import("@/pages/AboutPage"));
+const ContactPage = lazy(() => import("@/pages/ContactPage"));
+
+const StudentDashboardPage = lazy(() => import("@/features/dashboard/pages/StudentDashboardPage"));
+const CompanyListPage = lazy(() => import("@/features/companies/pages/CompanyListPage"));
+const CompanyDetailPage = lazy(() => import("@/features/companies/pages/CompanyDetailPage"));
+const InternshipListPage = lazy(() => import("@/features/internships/pages/InternshipListPage"));
+const InternshipDetailPage = lazy(() => import("@/features/internships/pages/InternshipDetailPage"));
+const MyApplicationsPage = lazy(() => import("@/features/applications/pages/MyApplicationsPage"));
+const BookmarkPage = lazy(() => import("@/features/bookmarks/pages/BookmarkPage"));
+const ProfilePage = lazy(() => import("@/features/profile/pages/ProfilePage"));
+
+const AdminDashboardPage = lazy(() => import("@/features/admin/pages/AdminDashboardPage"));
+const CompanyManagePage = lazy(() => import("@/features/companies/pages/CompanyManagePage"));
+const InternshipManagePage = lazy(() => import("@/features/internships/pages/InternshipManagePage"));
+const ManageApplicationsPage = lazy(() => import("@/features/applications/pages/ManageApplicationsPage"));
+const ReviewManagePage = lazy(() => import("@/features/reviews/pages/ReviewManagePage"));
+const UserManagePage = lazy(() => import("@/features/admin/pages/UserManagePage"));
+
+const CompanyDashboardPage = lazy(() => import("@/features/companies/pages/CompanyDashboardPage"));
+const CompanyInternshipsPage = lazy(() => import("@/features/companies/pages/CompanyInternshipsPage"));
+const CompanyProfilePage = lazy(() => import("@/features/companies/pages/CompanyProfilePage"));
+const CompanyApplicantsPage = lazy(() => import("@/features/applications/pages/CompanyApplicantsPage"));
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: (
+      <Suspense fallback={<PageSkeleton />}>
+        <HomePage />
+      </Suspense>
+    ),
   },
 
   {
@@ -50,12 +57,43 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/login",
-        element: <LoginPage />,
+        element: (
+          <Suspense fallback={<AuthFormSkeleton />}>
+            <LoginPage />
+          </Suspense>
+        ),
       },
-
       {
         path: "/register",
-        element: <RegisterPage />,
+        element: (
+          <Suspense fallback={<AuthFormSkeleton />}>
+            <RegisterPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/forgot-password",
+        element: (
+          <Suspense fallback={<AuthFormSkeleton />}>
+            <ForgotPasswordPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/about",
+        element: (
+          <Suspense fallback={<AuthFormSkeleton />}>
+            <AboutPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+          <Suspense fallback={<AuthFormSkeleton />}>
+            <ContactPage />
+          </Suspense>
+        ),
       },
     ],
   },
@@ -65,103 +103,177 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        element: <StudentLayout />,
+        element: (
+          <RoleRoute role={ROLES.STUDENT}>
+            <StudentLayout />
+          </RoleRoute>
+        ),
         children: [
           {
             path: "/dashboard",
-            element: <StudentDashboardPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <StudentDashboardPage />
+              </Suspense>
+            ),
           },
-
           {
             path: "/companies",
-            element: <CompanyListPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanyListPage />
+              </Suspense>
+            ),
           },
-
           {
             path: "/companies/:id",
-            element: <CompanyDetailPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanyDetailPage />
+              </Suspense>
+            ),
           },
-
           {
             path: "/internships",
-            element: <InternshipListPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <InternshipListPage />
+              </Suspense>
+            ),
           },
-
           {
             path: "/internships/:id",
-            element: <InternshipDetailPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <InternshipDetailPage />
+              </Suspense>
+            ),
           },
-
           {
             path: "/applications",
-            element: <MyApplicationsPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <MyApplicationsPage />
+              </Suspense>
+            ),
           },
-
           {
             path: "/bookmarks",
-            element: <BookmarkPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <BookmarkPage />
+              </Suspense>
+            ),
           },
-
           {
             path: "/profile",
-            element: <ProfilePage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <ProfilePage />
+              </Suspense>
+            ),
           },
         ],
       },
 
       {
         path: "/admin",
-        element: <AdminLayout />,
+        element: (
+          <RoleRoute role={ROLES.ADMIN}>
+            <AdminLayout />
+          </RoleRoute>
+        ),
         children: [
           {
             index: true,
-            element: <AdminDashboardPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <AdminDashboardPage />
+              </Suspense>
+            ),
           },
-
           {
             path: "companies",
-            element: <CompanyManagePage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanyManagePage />
+              </Suspense>
+            ),
           },
-
           {
             path: "internships",
-            element: <InternshipManagePage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <InternshipManagePage />
+              </Suspense>
+            ),
           },
-
           {
             path: "applications",
-            element: <ManageApplicationsPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <ManageApplicationsPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: "reviews",
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <ReviewManagePage />
+              </Suspense>
+            ),
+          },
+          {
+            path: "users",
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <UserManagePage />
+              </Suspense>
+            ),
           },
         ],
       },
 
       {
         path: "/company",
-
         element: (
           <RoleRoute role={ROLES.COMPANY}>
             <CompanyLayout />
           </RoleRoute>
         ),
-
         children: [
           {
             index: true,
-            element: <CompanyDashboardPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanyDashboardPage />
+              </Suspense>
+            ),
           },
           {
             path: "internships",
-            element: <CompanyInternshipsPage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanyInternshipsPage />
+              </Suspense>
+            ),
           },
-
           {
             path: "profile",
-            element: <CompanyProfilePage />,
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanyProfilePage />
+              </Suspense>
+            ),
           },
-
           {
-            path: "applicants",
-            element: <CompanyApplicationsPage />,
+            path: "applicants/:internshipId",
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanyApplicantsPage />
+              </Suspense>
+            ),
           },
           {
             path: "*",

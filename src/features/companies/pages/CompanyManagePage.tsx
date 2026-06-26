@@ -14,6 +14,8 @@ import EmptyState from "@/components/shared/EmptyState";
 
 import CompanyManageCard from "../components/CompanyManageCard";
 import { toast } from "sonner";
+import { useUpdateCompany } from "../hooks/useUpdateCompany";
+import AppInput from "@/components/common/AppInput";
 
 export default function CompanyManagePage() {
   const { data: companies } = useCompanies();
@@ -26,33 +28,35 @@ export default function CompanyManagePage() {
 
   const deleteCompany = useDeleteCompany();
 
+  const updateCompany = useUpdateCompany();
+
   const handleCreate = async () => {
     if (!name.trim()) return;
     try {
-    await createCompany.mutateAsync({
-      name,
+      await createCompany.mutateAsync({
+        name,
 
-      logo: "",
-      
-      ownerId:"",
+        logo: "",
 
-      description: "",
+        ownerId: "",
 
-      location: "",
+        description: "",
 
-      industry: "",
+        location: "",
 
-      website: "",
+        industry: "",
 
-      verified: false,
+        website: "",
 
-      avgRating: 0,
+        verified: false,
 
-      reviewCount: 0,
-    });
-    toast.success("Application submitted");
+        avgRating: 0,
+
+        reviewCount: 0,
+      });
+      toast.success("Company created successfully");
     } catch {
-      toast.error("You already applied");
+      toast.error("Failed to create company");
     }
 
     setName("");
@@ -72,6 +76,17 @@ export default function CompanyManagePage() {
     await deleteCompany.mutateAsync(id);
   };
 
+  const handleVerify = async (id: string, verified: boolean) => {
+    await updateCompany.mutateAsync({
+      id,
+      data: {
+        verified: !verified,
+      },
+    });
+
+    toast.success(verified ? "Company unverified" : "Company verified");
+  };
+
   return (
     <PageContainer>
       <PageHeader
@@ -82,18 +97,10 @@ export default function CompanyManagePage() {
       <div className="space-y-6">
         <AppCard>
           <div className="flex gap-3">
-            <input
+            <AppInput
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Company Name"
-              className="
-      flex-1
-      border
-      border-slate-200
-      rounded-xl
-      px-4
-      py-2
-      "
             />
 
             <AppButton onClick={handleCreate}>Add Company</AppButton>
@@ -121,6 +128,7 @@ export default function CompanyManagePage() {
                   console.log(company);
                 }}
                 onDelete={handleDelete}
+                onVerify={handleVerify}
               />
             ))}
           </div>

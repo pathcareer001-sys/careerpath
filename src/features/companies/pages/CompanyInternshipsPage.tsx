@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 
 import PageContainer from "@/components/common/PageContainer";
-import PageHeader from "@/components/common/PageHeader";
 import AppCard from "@/components/common/AppCard";
 import SearchBar from "@/components/common/SearchBar";
 
@@ -59,29 +58,60 @@ export default function CompanyInternshipsPage() {
 
   return (
     <PageContainer>
-      <PageHeader
-        title="My Internships"
-        description="Manage internship postings"
-      />
+      <div
+        className="
+  flex
+  flex-col
+  gap-4
+  lg:flex-row
+  lg:items-center
+  lg:justify-between
+  "
+      >
+        <div>
+          <h1
+            className="
+      text-3xl
+      font-bold
+      "
+          >
+            My Internships
+          </h1>
 
-      <div className="space-y-6">
-        <AppCard>
-          <CreateInternshipDialog company={company} />
-        </AppCard>
+          <p className="text-slate-500">Manage and track internship postings</p>
+        </div>
 
+        <CreateInternshipDialog company={company} />
+      </div>
+      <AppCard className="mt-6">
         <SearchBar
           value={search}
           onChange={setSearch}
           placeholder="Search internships..."
         />
+      </AppCard>
 
+      <div
+        className="
+  mt-6
+  grid
+  gap-6
+  md:grid-cols-2
+  "
+      >
         {filteredInternships.length === 0 ? (
           <EmptyState
             title="No Internships"
-            description="Create your first internship"
+            description="Create your first internship and start receiving applicants."
           />
         ) : (
-          <div className="space-y-4">
+          <div
+            className="
+  grid
+  gap-6
+  md:grid-cols-2
+  "
+          >
             {filteredInternships.map((internship) => (
               <CompanyInternshipCard
                 key={internship.id}

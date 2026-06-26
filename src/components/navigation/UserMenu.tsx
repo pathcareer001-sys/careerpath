@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 
 import { useAuth } from "@/hooks/useAuth";
+import { ROLES } from "@/constants/roles";
 
 export default function UserMenu() {
   const { user } = useAuth();
 
+  const profilePath =
+    user?.role === ROLES.COMPANY ? "/company/profile" : "/profile";
+
   return (
     <Link
-      to="/profile"
+      to={profilePath}
       className="
       flex
       items-center
@@ -23,12 +27,12 @@ export default function UserMenu() {
         src={user?.photoURL || "https://ui-avatars.com/api/?name=User"}
         alt="Profile"
         className="
-w-8
-h-8
-rounded-full
-md:w-10
-md:h-10
-"
+        w-8
+        h-8
+        rounded-full
+        md:w-10
+        md:h-10
+        "
       />
 
       <div className="hidden md:block">

@@ -1,10 +1,4 @@
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 
 import { Pencil } from "lucide-react";
 
@@ -41,11 +35,14 @@ export default function EditInternshipDialog({ internship }: Props) {
           </AppButton>
         }
       />
-      <DialogContent className="sm:max-w-2xl">
-        <DialogHeader>
-          <DialogTitle>Edit Internship</DialogTitle>
-        </DialogHeader>
-
+      <DialogContent
+        className="
+  sm:max-w-4xl
+  max-h-[90vh]
+  overflow-y-auto
+  p-2
+  "
+      >
         <InternshipForm
           defaultValues={internship}
           loading={updateInternship.isPending}

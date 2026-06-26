@@ -27,7 +27,7 @@ export default function ReviewForm({ companyId }: Props) {
     if (!user) return;
 
     if (!review.trim()) {
-      alert("Review tidak boleh kosong");
+      toast.error("Review cannot be empty");
       return;
     }
 
@@ -45,13 +45,28 @@ export default function ReviewForm({ companyId }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <RatingInput value={rating} onChange={setRating} />
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <h3
+        className="
+  text-sm
+  font-medium
+  text-slate-700
+  "
+      >
+        Overall Rating
+      </h3>
+
+      <div className="rounded-2xl bg-slate-50 p-4">
+        <p className="text-sm font-medium mb-3">How was your experience?</p>
+
+        <RatingInput value={rating} onChange={setRating} />
+      </div>
 
       <AppTextarea
         value={review}
         onChange={(e) => setReview(e.target.value)}
-        placeholder="Write your review..."
+        placeholder="Share your internship experience, work environment, mentorship, and company culture..."
+        className="min-h-[140px}"
       />
 
       <AppButton type="submit">Submit Review</AppButton>

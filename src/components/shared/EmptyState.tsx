@@ -22,13 +22,13 @@ export default function EmptyState({ title, description }: Props) {
         h-16
         w-16
         rounded-full
-        bg-slate-100
+        bg-blue-50
         flex
         items-center
         justify-center
         "
       >
-        <Inbox size={28} className="text-slate-400" />
+        <Inbox size={28} className="text-blue-400" />
       </div>
 
       <h3

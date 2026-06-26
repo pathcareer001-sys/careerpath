@@ -11,11 +11,13 @@ import type { AppUser } from "@/types/user";
 interface AuthContextType {
   user: AppUser | null;
   loading: boolean;
+  refreshUser: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
+  refreshUser: async () => {},
 });
 
 export default function AuthProvider({
@@ -45,12 +47,22 @@ export default function AuthProvider({
 
     return unsubscribe;
   }, []);
+  const refreshUser = async () => {
+    const firebaseUser = auth.currentUser;
+
+    if (!firebaseUser) return;
+
+    const appUser = await userService.getUser(firebaseUser.uid);
+
+    setUser(appUser);
+  };
 
   return (
     <AuthContext.Provider
       value={{
         user,
         loading,
+        refreshUser,
       }}
     >
       {children}

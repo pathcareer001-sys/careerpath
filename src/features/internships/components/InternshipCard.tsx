@@ -17,6 +17,15 @@ interface Props {
 }
 
 export default function InternshipCard({ internship }: Props) {
+  const typeStyles = {
+    Remote: "bg-blue-50 text-blue-600",
+    Hybrid: "bg-amber-50 text-amber-600",
+    Onsite: "bg-emerald-50 text-emerald-600",
+  };
+
+  const badgeColor =
+    typeStyles[internship.type as keyof typeof typeStyles] ||
+    "bg-blue-50 text-blue-600";
   return (
     <Link to={`/internships/${internship.id}`} className="block">
       <AppCard
@@ -24,24 +33,26 @@ export default function InternshipCard({ internship }: Props) {
         h-full
         group
         overflow-hidden
+        hover:border-blue-200
+        hover:shadow-xl
         "
       >
         {/* Header */}
 
         <div className="flex justify-between items-start">
           <span
-            className="
-            inline-flex
-            items-center
-            gap-2
-            rounded-full
-            bg-blue-50
-            px-3
-            py-1
-            text-xs
-            font-medium
-            text-blue-600
-            "
+            className={`
+inline-flex
+items-center
+gap-2
+rounded-full
+px-3
+py-1
+text-xs
+font-medium
+
+${badgeColor}
+`}
           >
             <BriefcaseBusiness size={14} />
 
@@ -64,6 +75,7 @@ export default function InternshipCard({ internship }: Props) {
         <div className="mt-5">
           <h3
             className="
+            min-h-[56px]
             text-xl
             font-semibold
             line-clamp-2
@@ -71,6 +83,17 @@ export default function InternshipCard({ internship }: Props) {
           >
             {internship.title}
           </h3>
+
+          <p
+            className="
+  mt-3
+  text-sm
+  text-slate-500
+  line-clamp-2
+  "
+          >
+            {internship.description || "No description available."}
+          </p>
         </div>
 
         {/* Company */}
@@ -86,7 +109,7 @@ export default function InternshipCard({ internship }: Props) {
           >
             <Building2 size={16} />
 
-            <span>{internship.companyName}</span>
+            <span className="font-medium">{internship.companyName}</span>
           </div>
 
           <div
@@ -112,7 +135,7 @@ export default function InternshipCard({ internship }: Props) {
           items-center
           justify-between
           border-t
-          border-slate-100
+          border-blue-100
           pt-4
           "
         >
@@ -126,19 +149,29 @@ export default function InternshipCard({ internship }: Props) {
             "
           >
             <CalendarDays size={15} />
-
-            {internship.deadline}
+            <span>
+              Deadline:{" "}
+              {internship.deadline
+                ? new Date(internship.deadline).toLocaleDateString()
+                : "-"}
+            </span>
           </div>
 
-          <span
+          <div
             className="
-            text-sm
-            font-medium
-            text-blue-600
-            "
+  flex
+  items-center
+  gap-1
+  text-sm
+  font-medium
+  text-blue-600
+    transition-all
+  group-hover:translate-x-1
+  "
           >
-            View Details
-          </span>
+            Apply Now
+            <ArrowUpRight size={14} />
+          </div>
         </div>
       </AppCard>
     </Link>

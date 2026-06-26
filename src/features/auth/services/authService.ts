@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
@@ -63,5 +64,9 @@ export const authService = {
 
   logout() {
     return signOut(auth);
+  },
+
+  resetPassword(email: string) {
+    return sendPasswordResetEmail(auth, email);
   },
 };

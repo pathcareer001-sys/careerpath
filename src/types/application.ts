@@ -15,7 +15,9 @@ export interface Application {
 
   applicantEmail: string;
 
-  status: "pending" | "reviewed" | "accepted" | "rejected";
+  status: "pending" | "reviewed" | "interview" | "accepted" | "rejected";
+  interviewDate?: string;
 
-  createdAt?: string;
+  interviewLocation?: string;
+  createdAt: string;
 }

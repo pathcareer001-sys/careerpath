@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 
 import type { Role } from "@/constants/roles";
+import LoadingState from "@/components/shared/LoadingState";
 
 interface Props {
   role: Role;
@@ -13,7 +14,7 @@ export default function RoleRoute({ role, children }: Props) {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return null;
+    return <LoadingState />;
   }
 
   if (!user) {
