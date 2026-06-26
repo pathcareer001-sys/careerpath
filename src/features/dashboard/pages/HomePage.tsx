@@ -155,15 +155,18 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="border-b border-slate-200 bg-white px-6 py-4">
+        <section className="border-b border-slate-200 bg-white px-6 py-5">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <p className="text-sm text-slate-500">Students explore opportunities from trusted company profiles</p>
+            <p className="text-sm text-slate-500">Trusted by students exploring <span className="font-medium text-slate-700">{companyCount}+</span> companies</p>
             <div className="flex flex-wrap gap-2">
-              {partnerNames.map((name) => (
-                <span key={name} className="rounded-lg border border-slate-200 bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-600">
-                  {name}
-                </span>
-              ))}
+              {partnerNames.map((name, i) => {
+                const tagColors = ["bg-blue-50 text-blue-600", "bg-amber-50 text-amber-600", "bg-purple-50 text-purple-600", "bg-emerald-50 text-emerald-600", "bg-rose-50 text-rose-600"];
+                return (
+                  <span key={name} className={`rounded-lg ${tagColors[i]} px-3 py-1.5 text-xs font-medium`}>
+                    {name}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -171,9 +174,9 @@ export default function HomePage() {
         <section className="mx-auto max-w-7xl px-6 py-12">
           <div className="grid gap-4 md:grid-cols-3">
             {workflow.map((item) => (
-              <div key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 hover:border-blue-200 transition-colors">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white">
-                  <item.icon size="20" />
+              <div key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:shadow-sm">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white">
+                  <item.icon size="22" />
                 </div>
                 <h2 className="text-base font-medium text-slate-900">{item.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-slate-500">{item.text}</p>
