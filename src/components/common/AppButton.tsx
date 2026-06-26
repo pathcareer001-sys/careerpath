@@ -15,7 +15,7 @@ export default function AppButton({
     primary:
       "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800",
     secondary:
-      "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 active:bg-slate-100",
+      "bg-white text-blue-600 border border-slate-200 hover:bg-blue-50 hover:border-blue-200 active:bg-blue-100",
     danger:
       "bg-red-500 text-white hover:bg-red-600 active:bg-red-700",
   };

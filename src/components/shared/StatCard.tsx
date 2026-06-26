@@ -14,7 +14,9 @@ export default function StatCard({ title, value, icon: Icon }: Props) {
           <p className="text-sm text-slate-500">{title}</p>
           <p className="mt-1 text-[22px] font-medium text-slate-900">{value}</p>
         </div>
-        <Icon size="20" className="text-slate-400" />
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+          <Icon size="18" />
+        </div>
       </div>
     </div>
   );

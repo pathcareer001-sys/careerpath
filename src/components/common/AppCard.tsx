@@ -4,13 +4,15 @@ import type { HTMLAttributes } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
+  highlight?: boolean;
 }
 
-export default function AppCard({ children, className, ...props }: Props) {
+export default function AppCard({ children, className, highlight, ...props }: Props) {
   return (
     <div
       className={cn(
         "bg-white border border-slate-200 rounded-xl",
+        highlight && "border-l-blue-600 border-l-2",
         className,
       )}
       {...props}

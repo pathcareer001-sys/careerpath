@@ -39,9 +39,9 @@ export default function StudentDashboardPage() {
           { to: "/profile", icon: TrendingUp, label: "Edit Profile", desc: "Improve profile visibility" },
         ].map(({ to, icon: Icon, label, desc }) => (
           <Link key={to} to={to}>
-            <AppCard className="hover:border-blue-200 transition-colors">
+            <AppCard className="hover:border-blue-300 hover:shadow-[0_0_0_1px_#2563eb1a] transition-all">
               <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-alt text-blue-600">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white">
                   <Icon size="18" />
                 </div>
                 <div>
@@ -55,22 +55,37 @@ export default function StudentDashboardPage() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-3">
-        <AppCard>
-          <div className="space-y-1">
-            <p className="text-xs text-slate-500">Applications</p>
-            <p className="text-[22px] font-medium text-slate-900">{applicationCount}</p>
+        <AppCard highlight>
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+              <Briefcase size="18" />
+            </div>
+            <div className="space-y-0.5">
+              <p className="text-xs text-slate-500">Applications</p>
+              <p className="text-[22px] font-medium text-slate-900">{applicationCount}</p>
+            </div>
           </div>
         </AppCard>
-        <AppCard>
-          <div className="space-y-1">
-            <p className="text-xs text-slate-500">Bookmarks</p>
-            <p className="text-[22px] font-medium text-slate-900">{bookmarkCount}</p>
+        <AppCard highlight>
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+              <Bookmark size="18" />
+            </div>
+            <div className="space-y-0.5">
+              <p className="text-xs text-slate-500">Bookmarks</p>
+              <p className="text-[22px] font-medium text-slate-900">{bookmarkCount}</p>
+            </div>
           </div>
         </AppCard>
-        <AppCard>
-          <div className="space-y-1">
-            <p className="text-xs text-slate-500">Profile Completion</p>
-            <p className="text-[22px] font-medium text-slate-900">{completion}%</p>
+        <AppCard highlight>
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+              <TrendingUp size="18" />
+            </div>
+            <div className="space-y-0.5 flex-1">
+              <p className="text-xs text-slate-500">Profile Completion</p>
+              <p className="text-[22px] font-medium text-slate-900">{completion}%</p>
+            </div>
           </div>
           <div className="mt-3 h-1.5 rounded-full bg-slate-100">
             <div className="h-1.5 rounded-full bg-blue-600 transition-all" style={{ width: `${completion}%` }} />

@@ -55,18 +55,20 @@ export default function CompanyDetailPage() {
           </div>
         </div>
 
-        <div className="flex items-center gap-6 shrink-0 border border-slate-200 rounded-xl p-4">
+        <div className="flex items-center gap-6 shrink-0 border border-slate-200 rounded-xl p-4 bg-blue-50/30">
           <div className="text-center">
             <p className="text-[22px] font-medium text-slate-900">{company.avgRating || 0}</p>
-            <div className="flex items-center gap-0.5 mt-1">
-              <Star size="14" className="fill-amber-400 text-amber-400" />
+            <div className="flex items-center gap-0.5 mt-1 justify-center">
+              <Star size="14" className="fill-amber-500 text-amber-500" />
             </div>
             <p className="text-xs text-slate-500 mt-0.5">Rating</p>
           </div>
+          <div className="w-px h-10 bg-slate-200" />
           <div className="text-center">
             <p className="text-[22px] font-medium text-slate-900">{company.reviewCount || 0}</p>
             <p className="text-xs text-slate-500 mt-1">Reviews</p>
           </div>
+          <div className="w-px h-10 bg-slate-200" />
           <div className="text-center">
             <p className="text-[22px] font-medium text-slate-900">{internships?.length || 0}</p>
             <p className="text-xs text-slate-500 mt-1">Open roles</p>

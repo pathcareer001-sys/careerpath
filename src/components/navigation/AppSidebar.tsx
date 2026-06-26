@@ -67,8 +67,10 @@ export default function AppSidebar() {
 
   return (
     <aside className="w-[220px] min-h-screen bg-white border-r border-slate-200 flex flex-col shrink-0">
-      <div className="px-4 py-4 border-b border-slate-100">
-        <img src={logo} alt="CareerPath" className="h-8" />
+      <div className="px-4 py-4 border-b border-slate-200 bg-blue-600">
+        <div className="flex items-center gap-2">
+          <img src={logo} alt="CareerPath" className="h-7 brightness-0 invert" />
+        </div>
       </div>
 
       <nav className="flex-1 px-3 py-4 space-y-6 overflow-y-auto">
@@ -87,7 +89,7 @@ export default function AppSidebar() {
                     `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
                       isActive
                         ? "bg-sidebar-active text-blue-600 font-medium"
-                        : "text-slate-600 hover:bg-surface-alt hover:text-slate-700"
+                        : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
                     }`
                   }
                 >
@@ -100,7 +102,7 @@ export default function AppSidebar() {
         ))}
       </nav>
 
-      <div className="px-3 py-3 border-t border-slate-100">
+      <div className="px-3 py-3 border-t border-slate-200">
         <button
           onClick={handleLogout}
           className="flex w-full items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-500 hover:bg-red-50 hover:text-red-500 transition-colors"

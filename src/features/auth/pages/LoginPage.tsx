@@ -52,7 +52,7 @@ export default function LoginPage() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-slate-200 rounded-xl p-6">
+      <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-[0_0_0_1px_#2563eb1a]">
         <img src={logo} alt="CareerPath" className="h-8 mb-5" />
 
         <h1 className="text-[22px] font-medium text-slate-900">Sign in</h1>
@@ -73,7 +73,7 @@ export default function LoginPage() {
               <input type="checkbox" className="accent-blue-600" />
               Remember me
             </label>
-            <Link to="/forgot-password" className="text-blue-600 text-sm">Forgot password?</Link>
+            <Link to="/forgot-password" className="text-blue-600 text-sm font-medium hover:text-blue-700">Forgot password?</Link>
           </div>
 
           <AppButton type="submit" disabled={isSubmitting} className="w-full">
@@ -90,7 +90,7 @@ export default function LoginPage() {
         <button
           type="button"
           onClick={handleGoogleLogin}
-          className="w-full rounded-lg border border-slate-200 py-2 flex items-center justify-center gap-2 text-sm text-slate-600 hover:bg-slate-50 transition-colors"
+          className="w-full rounded-lg border border-slate-200 py-2 flex items-center justify-center gap-2 text-sm text-slate-600 hover:bg-blue-50 hover:border-blue-200 transition-colors"
         >
           <FcGoogle size="18" />
           Continue with Google
@@ -98,7 +98,7 @@ export default function LoginPage() {
 
         <p className="mt-5 text-center text-sm text-slate-500">
           Don't have an account?{" "}
-          <Link to="/register" className="text-blue-600 font-medium">Create one</Link>
+          <Link to="/register" className="text-blue-600 font-medium hover:text-blue-700">Create one</Link>
         </p>
       </div>
     </div>

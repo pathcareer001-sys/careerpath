@@ -11,7 +11,7 @@ const navItems = [
 
 export default function LandingNavbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-[inset_0_-1px_0_0_#2563eb]">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="CareerPath" className="h-8 w-auto" />
@@ -26,7 +26,7 @@ export default function LandingNavbar() {
                 `inline-flex h-9 items-center gap-2 rounded-lg px-3 text-sm font-medium transition-colors ${
                   isActive
                     ? "bg-blue-50 text-blue-600"
-                    : "text-slate-600 hover:text-slate-900"
+                    : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
                 }`
               }
             >
@@ -39,7 +39,7 @@ export default function LandingNavbar() {
         <div className="hidden items-center gap-2 sm:flex">
           <Link
             to="/login"
-            className="inline-flex h-9 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+            className="inline-flex h-9 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
           >
             <LogIn size="15" />
             Login
