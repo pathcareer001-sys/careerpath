@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-
 import type { InputHTMLAttributes } from "react";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {}
@@ -8,7 +7,7 @@ export default function AppInput({ className, ...props }: Props) {
   return (
     <input
       className={cn(
-        "h-9 w-full rounded-lg border border-slate-200 bg-surface-alt px-3 text-sm text-slate-700 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none transition-colors",
+        "h-9 w-full rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] px-3 text-sm text-[#0F172A] placeholder:text-[#CBD5E1] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors",
         className,
       )}
       {...props}

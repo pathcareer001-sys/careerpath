@@ -3,24 +3,6 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --color-surface-alt: #f8faff;
-  --color-sidebar-active: #eef3fe;
-  --color-input-bg: #f8faff;
-  --color-card-highlight: #eff6ff;
-  --color-blue-50: #eff6ff;
-  --color-blue-100: #dbeafe;
-  --color-blue-200: #bfdbfe;
-  --color-blue-600: #2563eb;
-  --color-blue-700: #1d4ed8;
-  --color-amber-50: #fffbeb;
-  --color-amber-500: #f59e0b;
-  --color-emerald-50: #ecfdf5;
-  --color-emerald-500: #10b981;
-  --color-purple-50: #faf5ff;
-  --color-purple-500: #a855f7;
-  --color-red-50: #fef2f2;
-  --color-red-500: #ef4444;
-  --color-green-50: #f0fdf4;
-  --color-green-500: #22c55e;
 }
 
 @layer base {
@@ -28,15 +10,10 @@
     font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
     font-size: 14px;
     line-height: 1.6;
+    background-color: #f8faff;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  label,
-  strong,
-  .heading {
+  h1, h2, h3, h4, label, strong, .heading {
     font-weight: 500;
   }
 }

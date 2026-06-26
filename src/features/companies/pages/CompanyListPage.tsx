@@ -1,12 +1,9 @@
 import { useMemo, useState } from "react";
-import PageContainer from "@/components/common/PageContainer";
-import PageHeader from "@/components/common/PageHeader";
+import { Search } from "lucide-react";
 import CompanyCard from "../components/CompanyCard";
 import { useCompanies } from "../hooks/useCompanies";
 import LoadingState from "@/components/shared/LoadingState";
 import EmptyState from "@/components/shared/EmptyState";
-import AppCard from "@/components/common/AppCard";
-import AppInput from "@/components/common/AppInput";
 
 export default function CompanyListPage() {
   const [search, setSearch] = useState("");
@@ -22,15 +19,29 @@ export default function CompanyListPage() {
     });
   }, [companies, search, industryFilter]);
 
+  const topCompanies = useMemo(() => {
+    if (!companies) return [];
+    return [...companies].sort((a, b) => b.avgRating - a.avgRating).slice(0, 4);
+  }, [companies]);
+
   if (isLoading) return <LoadingState />;
 
   return (
-    <PageContainer>
-      <PageHeader title="Companies" description="Discover verified companies and internship providers." />
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-medium text-[#0F172A]">Companies</h1>
+        <p className="mt-1 text-sm text-[#64748B]">Discover verified companies and internship providers</p>
+      </div>
 
       <div className="flex items-center gap-3">
-        <div className="flex-1 max-w-xs">
-          <AppInput value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search companies..." />
+        <div className="relative flex-1 max-w-xs">
+          <Search size="15" className="absolute left-3 top-1/2 -translate-y-1/2 text-[#CBD5E1]" />
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search companies..."
+            className="h-9 w-full rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#CBD5E1] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
+          />
         </div>
         <div className="flex gap-2">
           {["Technology", "Design", "Marketing", "Finance", "Business"].map((category) => (
@@ -39,8 +50,8 @@ export default function CompanyListPage() {
               onClick={() => setIndustryFilter(industryFilter === category ? "" : category)}
               className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                 industryFilter === category
-                  ? "bg-blue-600 text-white"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  ? "bg-[#2563EB] text-white"
+                  : "bg-white border border-[#E2E8F0] text-[#64748B] hover:border-[#BFDBFE]"
               }`}
             >
               {category}
@@ -49,14 +60,20 @@ export default function CompanyListPage() {
         </div>
       </div>
 
-      <AppCard>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-slate-900">Company Directory</p>
-            <p className="text-xs text-slate-500 mt-0.5">{filteredCompanies.length} companies</p>
+      {topCompanies.length > 0 && (
+        <div>
+          <h2 className="text-base font-medium text-[#0F172A] mb-4">Top Companies</h2>
+          <div className="grid gap-4 grid-cols-4">
+            {topCompanies.map((company) => (
+              <CompanyCard key={company.id} company={company} />
+            ))}
           </div>
         </div>
-      </AppCard>
+      )}
+
+      <div className="flex items-center justify-between">
+        <p className="text-sm font-medium text-[#0F172A]">All Companies <span className="text-[#94A3B8] font-normal">({filteredCompanies.length})</span></p>
+      </div>
 
       {filteredCompanies.length === 0 ? (
         <EmptyState title="No companies found" description="Try another keyword or filter." />
@@ -67,6 +84,6 @@ export default function CompanyListPage() {
           ))}
         </div>
       )}
-    </PageContainer>
+    </div>
   );
 }

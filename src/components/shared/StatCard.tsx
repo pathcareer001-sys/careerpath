@@ -1,23 +1,13 @@
-import type { LucideIcon } from "lucide-react";
-
 interface Props {
   title: string;
   value: string | number;
-  icon: LucideIcon;
 }
 
-export default function StatCard({ title, value, icon: Icon }: Props) {
+export default function StatCard({ title, value }: Props) {
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm text-slate-500">{title}</p>
-          <p className="mt-1 text-[22px] font-medium text-slate-900">{value}</p>
-        </div>
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-          <Icon size="18" />
-        </div>
-      </div>
+    <div className="bg-white border border-[#E2E8F0] rounded-xl px-6 py-5">
+      <p className="text-[28px] font-medium text-[#0F172A]">{value}</p>
+      <p className="mt-0.5 text-[13px] text-[#94A3B8]">{title}</p>
     </div>
   );
 }
