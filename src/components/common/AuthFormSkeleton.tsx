@@ -1,29 +1,22 @@
-import { Skeleton } from "@/components/ui/skeleton";
-
 export default function AuthFormSkeleton() {
   return (
-    <div className="w-full max-w-md">
-      <div className="rounded-lg border border-blue-100 bg-white p-8 shadow-sm shadow-blue-100/60">
-        <Skeleton className="h-12 w-32 mb-6" />
-        <Skeleton className="h-9 w-40 mb-2" />
-        <Skeleton className="h-5 w-56 mb-8" />
-
-        <div className="space-y-4">
-          <Skeleton className="h-12 w-full rounded-xl" />
-          <Skeleton className="h-12 w-full rounded-xl" />
+    <div className="w-full max-w-sm">
+      <div className="border border-slate-200 rounded-xl bg-white p-6">
+        <div className="h-8 w-24 bg-slate-200 rounded animate-pulse mb-5" />
+        <div className="h-6 w-32 bg-slate-200 rounded animate-pulse mb-1" />
+        <div className="h-4 w-48 bg-slate-200 rounded animate-pulse mb-6" />
+        <div className="space-y-3">
+          <div className="h-9 w-full bg-slate-200 rounded-lg animate-pulse" />
+          <div className="h-9 w-full bg-slate-200 rounded-lg animate-pulse" />
         </div>
-
-        <Skeleton className="h-4 w-32 mt-4" />
-        <Skeleton className="h-12 w-full rounded-xl mt-6" />
-
-        <div className="my-6 flex items-center gap-4">
-          <Skeleton className="h-px flex-1" />
-          <Skeleton className="h-4 w-28" />
-          <Skeleton className="h-px flex-1" />
+        <div className="h-9 w-full bg-slate-200 rounded-lg animate-pulse mt-4" />
+        <div className="flex items-center gap-3 my-5">
+          <div className="h-px flex-1 bg-slate-200" />
+          <div className="h-3 w-6 bg-slate-200 rounded animate-pulse" />
+          <div className="h-px flex-1 bg-slate-200" />
         </div>
-
-        <Skeleton className="h-12 w-full rounded-xl" />
-        <Skeleton className="h-5 w-56 mx-auto mt-6" />
+        <div className="h-9 w-full bg-slate-200 rounded-lg animate-pulse" />
+        <div className="h-4 w-40 bg-slate-200 rounded animate-pulse mx-auto mt-5" />
       </div>
     </div>
   );

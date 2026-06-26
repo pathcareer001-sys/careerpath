@@ -25,27 +25,14 @@ export default function LoginPage() {
   const handleLogin = async (data: LoginSchema) => {
     try {
       const credential = await authService.login(data.email, data.password);
-
       const appUser = await userService.getUser(credential.user.uid);
 
-      if (appUser?.role === "student") {
-        navigate("/dashboard");
-        return;
-      }
-
-      if (appUser?.role === "company") {
-        navigate("/company");
-        return;
-      }
-
-      if (appUser?.role === "admin") {
-        navigate("/admin");
-        return;
-      }
+      if (appUser?.role === "student") { navigate("/dashboard"); return; }
+      if (appUser?.role === "company") { navigate("/company"); return; }
+      if (appUser?.role === "admin") { navigate("/admin"); return; }
 
       toast.error("Role not found");
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error("Invalid email or password");
     }
   };
@@ -53,105 +40,65 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     try {
       const credential = await authService.loginWithGoogle();
-
       const appUser = await userService.getUser(credential.user.uid);
 
-      if (appUser?.role === "student") {
-        navigate("/dashboard");
-        return;
-      }
-
-      if (appUser?.role === "company") {
-        navigate("/company");
-        return;
-      }
-
-      if (appUser?.role === "admin") {
-        navigate("/admin");
-        return;
-      }
-    } catch (error) {
-      console.error(error);
+      if (appUser?.role === "student") { navigate("/dashboard"); return; }
+      if (appUser?.role === "company") { navigate("/company"); return; }
+      if (appUser?.role === "admin") { navigate("/admin"); return; }
+    } catch {
       toast.error("Google login failed");
     }
   };
 
   return (
-    <div className="w-full max-w-md">
-      <div className="rounded-lg border border-blue-100 bg-white p-8 shadow-sm shadow-blue-100/60">
-        <img src={logo} alt="CareerPath" className="h-12 mb-6" />
+    <div className="w-full max-w-sm">
+      <div className="bg-white border border-slate-200 rounded-xl p-6">
+        <img src={logo} alt="CareerPath" className="h-8 mb-5" />
 
-        <h1 className="text-4xl font-bold">Sign In</h1>
+        <h1 className="text-[22px] font-medium text-slate-900">Sign in</h1>
+        <p className="mt-1 text-sm text-slate-500">Enter your account credentials</p>
 
-        <p className="mt-2 text-slate-500">
-          Enter your account credentials
-        </p>
-
-        <form onSubmit={handleSubmit(handleLogin)} className="mt-8 space-y-4">
+        <form onSubmit={handleSubmit(handleLogin)} className="mt-6 space-y-4">
           <div>
-            <AppInput
-              {...register("email")}
-              placeholder="Enter your email"
-              className="rounded-xl h-12 border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-            />
-            {errors.email && (
-              <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-            )}
+            <AppInput {...register("email")} placeholder="Email" />
+            {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
+          </div>
+          <div>
+            <AppInput type="password" {...register("password")} placeholder="Password" />
+            {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
           </div>
 
-          <div>
-            <AppInput
-              type="password"
-              {...register("password")}
-              placeholder="Enter your password"
-              className="rounded-xl h-12 border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-            />
-            {errors.password && (
-              <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>
-            )}
-          </div>
-
-          <div className="flex justify-between text-sm">
-            <label className="flex items-center gap-2">
-              <input type="checkbox" />
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex items-center gap-2 text-slate-600">
+              <input type="checkbox" className="accent-blue-600" />
               Remember me
             </label>
-
-            <Link to="/forgot-password" className="text-blue-600">
-              Forgot Password?
-            </Link>
+            <Link to="/forgot-password" className="text-blue-600 text-sm">Forgot password?</Link>
           </div>
 
-          <AppButton
-            type="submit"
-            disabled={isSubmitting}
-            className="mt-6 w-full"
-          >
-            {isSubmitting ? "Loading..." : "Sign In"}
+          <AppButton type="submit" disabled={isSubmitting} className="w-full">
+            {isSubmitting ? "Signing in..." : "Sign in"}
           </AppButton>
         </form>
 
-        <div className="my-6 flex items-center gap-4">
+        <div className="my-5 flex items-center gap-3">
           <div className="h-px flex-1 bg-slate-200" />
-          <span className="text-sm text-slate-400">or continue with</span>
+          <span className="text-xs text-slate-400">or</span>
           <div className="h-px flex-1 bg-slate-200" />
         </div>
 
         <button
           type="button"
           onClick={handleGoogleLogin}
-          disabled={isSubmitting}
-          className="w-full rounded-xl border border-slate-200 py-3 flex items-center justify-center gap-3 hover:bg-slate-50 transition-all duration-200"
+          className="w-full rounded-lg border border-slate-200 py-2 flex items-center justify-center gap-2 text-sm text-slate-600 hover:bg-slate-50 transition-colors"
         >
-          <FcGoogle size={20} />
+          <FcGoogle size="18" />
           Continue with Google
         </button>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-5 text-center text-sm text-slate-500">
           Don't have an account?{" "}
-          <Link to="/register" className="text-blue-600 font-medium">
-            Create Account
-          </Link>
+          <Link to="/register" className="text-blue-600 font-medium">Create one</Link>
         </p>
       </div>
     </div>

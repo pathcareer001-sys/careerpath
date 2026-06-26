@@ -1,28 +1,23 @@
-import { Briefcase, Bookmark, TrendingUp, ArrowRight, ShieldCheck } from "lucide-react";
+import { Briefcase, Bookmark, TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import PageContainer from "@/components/common/PageContainer";
+import PageHeader from "@/components/common/PageHeader";
 import AppCard from "@/components/common/AppCard";
-
 import EmptyState from "@/components/shared/EmptyState";
 
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useApplications } from "@/features/applications/hooks/useApplications";
 import StatusBadge from "@/features/applications/components/StatusBadge";
-
 import { useDashboardStats } from "../hooks/useDashboardStats";
-import { Link } from "react-router-dom";
-
 import { useInternships } from "@/features/internships/hooks/useInternships";
 import InternshipCard from "@/features/internships/components/InternshipCard";
 import { calculateProfileCompletion } from "@/utils/profileCompletion";
+import AppButton from "@/components/common/AppButton";
 
 export default function StudentDashboardPage() {
   const { user } = useAuth();
-
-  const { applicationCount, bookmarkCount } = useDashboardStats(
-    user?.uid || "",
-  );
-
+  const { applicationCount, bookmarkCount } = useDashboardStats(user?.uid || "");
   const { data: applications } = useApplications(user?.uid || "");
   const { data: internships } = useInternships();
   const completion = calculateProfileCompletion(user ?? undefined);
@@ -34,155 +29,65 @@ export default function StudentDashboardPage() {
 
   return (
     <PageContainer>
-      <AppCard className="border-blue-200 bg-gradient-to-br from-blue-600 via-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-600/20">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-1.5 text-sm font-semibold text-white backdrop-blur">
-              <ShieldCheck size={15} />
-              Welcome Back
-            </div>
+      <PageHeader title="Dashboard" description="Welcome back, {user?.name}" />
 
-            <h1 className="text-4xl font-bold">{user?.name}</h1>
-
-            <p className="mt-2 text-blue-100">
-              Track your internship journey and discover new opportunities.
-            </p>
-          </div>
-
-          <div className="flex gap-3">
-            <Link
-              to="/internships"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-blue-700 shadow-sm transition hover:bg-blue-50"
-            >
-              Browse Internships
-              <ArrowRight size={16} />
-            </Link>
-
-            <Link
-              to="/applications"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-5 text-sm font-semibold text-white transition hover:bg-white/20"
-            >
-              My Applications
-            </Link>
-          </div>
-        </div>
-      </AppCard>
-
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <Link to="/internships">
-          <AppCard className="transition hover:border-blue-200 hover:shadow-md hover:shadow-blue-100/60">
-            <div className="flex flex-col gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
-                <Briefcase size={20} />
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { to: "/internships", icon: Briefcase, label: "Browse Internships", desc: "Discover new opportunities" },
+          { to: "/applications", icon: TrendingUp, label: "My Applications", desc: "Track application progress" },
+          { to: "/bookmarks", icon: Bookmark, label: "Saved Internships", desc: "View bookmarked positions" },
+          { to: "/profile", icon: TrendingUp, label: "Edit Profile", desc: "Improve profile visibility" },
+        ].map(({ to, icon: Icon, label, desc }) => (
+          <Link key={to} to={to}>
+            <AppCard className="hover:border-blue-200 transition-colors">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-alt text-blue-600">
+                  <Icon size="18" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-slate-900">{label}</p>
+                  <p className="text-xs text-slate-500">{desc}</p>
+                </div>
               </div>
-
-              <h3 className="font-semibold text-slate-950">Browse Internships</h3>
-
-              <p className="text-sm text-slate-500">
-                Discover new opportunities
-              </p>
-            </div>
-          </AppCard>
-        </Link>
-
-        <Link to="/applications">
-          <AppCard className="transition hover:border-blue-200 hover:shadow-md hover:shadow-blue-100/60">
-            <div className="flex flex-col gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
-                <TrendingUp size={20} />
-              </div>
-
-              <h3 className="font-semibold text-slate-950">My Applications</h3>
-
-              <p className="text-sm text-slate-500">
-                Track application progress
-              </p>
-            </div>
-          </AppCard>
-        </Link>
-
-        <Link to="/bookmarks">
-          <AppCard className="transition hover:border-blue-200 hover:shadow-md hover:shadow-blue-100/60">
-            <div className="flex flex-col gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
-                <Bookmark size={20} />
-              </div>
-
-              <h3 className="font-semibold text-slate-950">Saved Internships</h3>
-
-              <p className="text-sm text-slate-500">
-                View bookmarked positions
-              </p>
-            </div>
-          </AppCard>
-        </Link>
-
-        <Link to="/profile">
-          <AppCard className="transition hover:border-blue-200 hover:shadow-md hover:shadow-blue-100/60">
-            <div className="flex flex-col gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
-                <TrendingUp size={20} />
-              </div>
-
-              <h3 className="font-semibold text-slate-950">Edit Profile</h3>
-
-              <p className="text-sm text-slate-500">
-                Improve profile visibility
-              </p>
-            </div>
-          </AppCard>
-        </Link>
-      </div>
-
-      <div className="grid gap-4 border-y border-blue-100 bg-white/60 py-6 md:grid-cols-3">
-        <div className="pr-4">
-          <p className="text-sm text-slate-500">Applications</p>
-          <p className="mt-1 text-3xl font-semibold text-blue-700">{applicationCount}</p>
-          <p className="mt-1 text-sm text-slate-400">Total Applied</p>
-        </div>
-
-        <div className="border-x border-blue-100 px-4">
-          <p className="text-sm text-slate-500">Bookmarks</p>
-          <p className="mt-1 text-3xl font-semibold text-blue-700">{bookmarkCount}</p>
-          <p className="mt-1 text-sm text-slate-400">Saved Jobs</p>
-        </div>
-
-        <div className="pl-4">
-          <p className="text-sm text-slate-500">Profile Completion</p>
-          <p className="mt-1 text-3xl font-semibold text-blue-700">{completion}%</p>
-          <p className="mt-1 text-sm text-slate-400">
-            {completion === 100 ? "Profile Complete" : "Keep improving"}
-          </p>
-        </div>
-      </div>
-
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-semibold text-slate-950">
-              Recommended For You
-            </h2>
-
-            <p className="mt-1 text-sm text-slate-500">
-              Based on your profile and interests
-            </p>
-          </div>
-
-          <Link
-            to="/internships"
-            className="text-sm font-medium text-blue-600 hover:text-blue-700"
-          >
-            View All
+            </AppCard>
           </Link>
+        ))}
+      </div>
+
+      <div className="grid gap-6 sm:grid-cols-3">
+        <AppCard>
+          <div className="space-y-1">
+            <p className="text-xs text-slate-500">Applications</p>
+            <p className="text-[22px] font-medium text-slate-900">{applicationCount}</p>
+          </div>
+        </AppCard>
+        <AppCard>
+          <div className="space-y-1">
+            <p className="text-xs text-slate-500">Bookmarks</p>
+            <p className="text-[22px] font-medium text-slate-900">{bookmarkCount}</p>
+          </div>
+        </AppCard>
+        <AppCard>
+          <div className="space-y-1">
+            <p className="text-xs text-slate-500">Profile Completion</p>
+            <p className="text-[22px] font-medium text-slate-900">{completion}%</p>
+          </div>
+          <div className="mt-3 h-1.5 rounded-full bg-slate-100">
+            <div className="h-1.5 rounded-full bg-blue-600 transition-all" style={{ width: `${completion}%` }} />
+          </div>
+        </AppCard>
+      </div>
+
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-base font-medium text-slate-900">Recommended For You</h2>
+          <Link to="/internships" className="text-sm text-blue-600">View all</Link>
         </div>
 
         {internships?.length === 0 ? (
-          <EmptyState
-            title="No Internships"
-            description="No recommendations available yet"
-          />
+          <EmptyState title="No internships yet" description="Check back later for recommendations." />
         ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {internships?.slice(0, 3).map((internship) => (
               <InternshipCard key={internship.id} internship={internship} />
             ))}
@@ -192,34 +97,20 @@ export default function StudentDashboardPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <AppCard>
-          <h2 className="mb-5 text-lg font-semibold text-slate-950">Recent Activity</h2>
-
+          <h2 className="text-base font-medium text-slate-900 mb-4">Recent Activity</h2>
           {applications?.length === 0 ? (
-            <EmptyState
-              title="No Activity"
-              description="Start applying to internships"
-            />
+            <EmptyState title="No activity yet" description="Start applying to internships." />
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {applications?.slice(0, 4).map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between rounded-lg border border-blue-100 bg-blue-50/40 p-3"
-                >
+                <div key={item.id} className="flex items-center justify-between py-2 border-b border-slate-100 last:border-0">
                   <div>
-                    <p className="font-medium text-slate-900">{item.internshipTitle}</p>
-
-                    <p className="text-sm text-slate-500">
-                      {item.companyName}
-                    </p>
-
+                    <p className="text-sm font-medium text-slate-900">{item.internshipTitle}</p>
+                    <p className="text-xs text-slate-500">{item.companyName}</p>
                     {"createdAt" in item && (
-                      <p className="text-xs text-slate-400">
-                        {new Date(item.createdAt).toLocaleDateString()}
-                      </p>
+                      <p className="text-xs text-slate-400">{new Date(item.createdAt).toLocaleDateString()}</p>
                     )}
                   </div>
-
                   <StatusBadge status={item.status} />
                 </div>
               ))}
@@ -227,36 +118,18 @@ export default function StudentDashboardPage() {
           )}
         </AppCard>
 
-        <AppCard className="border-blue-200 bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-lg shadow-blue-600/20">
-          <h2 className="text-xl font-semibold">Complete Your Profile</h2>
-
-          <p className="mt-2 text-blue-100">
-            Complete your profile to get better internship recommendations.
-          </p>
-
-          <div className="mt-6">
-            <div className="mb-2 flex justify-between text-sm">
+        <AppCard>
+          <h2 className="text-base font-medium text-slate-900 mb-4">Profile Checklist</h2>
+          <div className="mb-4">
+            <div className="flex justify-between text-xs text-slate-500 mb-1">
               <span>Progress</span>
               <span>{completion}%</span>
             </div>
-
-            <div className="h-2.5 rounded-full bg-white/20">
-              <div
-                className="h-2.5 rounded-full bg-white transition-all duration-500"
-                style={{ width: `${completion}%` }}
-              />
+            <div className="h-1.5 rounded-full bg-slate-100">
+              <div className="h-1.5 rounded-full bg-blue-600 transition-all" style={{ width: `${completion}%` }} />
             </div>
           </div>
-
-          <Link
-            to="/profile"
-            className="mt-6 inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-white px-4 text-sm font-semibold text-blue-700 transition hover:bg-blue-50"
-          >
-            Edit Profile
-            <ArrowRight size={15} />
-          </Link>
-
-          <div className="mt-6 space-y-2.5 border-t border-white/20 pt-6">
+          <div className="space-y-2 text-sm">
             {[
               [hasPersonal, "Personal Information"],
               [hasEducation, "Education"],
@@ -264,11 +137,17 @@ export default function StudentDashboardPage() {
               [hasResume, "Resume"],
               [hasSocial, "Social Links"],
             ].map(([done, label]) => (
-              <p key={label as string} className="text-sm text-blue-100">
-                {done ? "✓" : "○"} {label as string}
-              </p>
+              <div key={label as string} className="flex items-center gap-2 text-slate-600">
+                <div className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${done ? "border-green-500 bg-green-500" : "border-slate-300"}`}>
+                  {done && <span className="text-white text-[10px]">✓</span>}
+                </div>
+                {label as string}
+              </div>
             ))}
           </div>
+          <Link to="/profile">
+            <AppButton variant="secondary" className="mt-4 w-full">Complete profile</AppButton>
+          </Link>
         </AppCard>
       </div>
     </PageContainer>

@@ -22,49 +22,33 @@ export default function ForgotPasswordPage() {
     try {
       await authService.resetPassword(data.email);
       toast.success("Password reset email sent. Please check your inbox.");
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error("Failed to send reset email");
     }
   };
 
   return (
-    <div className="w-full max-w-md">
-      <div className="rounded-lg border border-blue-100 bg-white p-8 shadow-sm shadow-blue-100/60">
-        <img src={logo} alt="CareerPath" className="h-12 mb-6" />
+    <div className="w-full max-w-sm">
+      <div className="bg-white border border-slate-200 rounded-xl p-6">
+        <img src={logo} alt="CareerPath" className="h-8 mb-5" />
 
-        <h1 className="text-4xl font-bold">Reset Password</h1>
+        <h1 className="text-[22px] font-medium text-slate-900">Reset password</h1>
+        <p className="mt-1 text-sm text-slate-500">Enter your email and we'll send you a reset link.</p>
 
-        <p className="mt-2 text-slate-500">
-          Enter your email address and we'll send you a password reset link.
-        </p>
-
-        <form onSubmit={handleSubmit(handleReset)} className="mt-8">
+        <form onSubmit={handleSubmit(handleReset)} className="mt-6 space-y-4">
           <div>
-            <AppInput
-              {...register("email")}
-              placeholder="Enter your email"
-              className="h-12 rounded-xl border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-            />
-            {errors.email && (
-              <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-            )}
+            <AppInput {...register("email")} placeholder="Email" />
+            {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
           </div>
 
-          <AppButton
-            type="submit"
-            disabled={isSubmitting}
-            className="mt-6 w-full"
-          >
-            {isSubmitting ? "Sending..." : "Send Reset Link"}
+          <AppButton type="submit" disabled={isSubmitting} className="w-full">
+            {isSubmitting ? "Sending..." : "Send reset link"}
           </AppButton>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-5 text-center text-sm text-slate-500">
           Remember your password?{" "}
-          <Link to="/login" className="text-blue-600 font-medium">
-            Sign In
-          </Link>
+          <Link to="/login" className="text-blue-600 font-medium">Sign in</Link>
         </p>
       </div>
     </div>

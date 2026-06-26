@@ -1,39 +1,27 @@
 import { Link, useParams } from "react-router-dom";
-
-import { Building2 } from "lucide-react";
+import { Building2, MapPin, Briefcase, Calendar } from "lucide-react";
 import { toast } from "sonner";
 
 import PageContainer from "@/components/common/PageContainer";
 import AppCard from "@/components/common/AppCard";
+import AppButton from "@/components/common/AppButton";
 
 import { useInternship } from "../hooks/useInternship";
-import InternshipHero from "../components/InternshipHero";
-
 import { useCreateApplication } from "@/features/applications/hooks/useCreateApplication";
 import { useAuth } from "@/features/auth/hooks/useAuth";
-
 import LoadingState from "@/components/shared/LoadingState";
 import EmptyState from "@/components/shared/EmptyState";
-
 import { useHasApplied } from "@/features/applications/hooks/useHasApplied";
 
 export default function InternshipDetailPage() {
   const { id } = useParams();
-
   const { data: internship, isLoading } = useInternship(id || "");
-
   const { user } = useAuth();
-
   const createApplication = useCreateApplication();
-
-  const { data: hasApplied } = useHasApplied(
-    internship?.id || "",
-    user?.uid || "",
-  );
+  const { data: hasApplied } = useHasApplied(internship?.id || "", user?.uid || "");
 
   const handleApply = async () => {
     if (!internship || !user) return;
-
     try {
       await createApplication.mutateAsync({
         internshipId: internship.id,
@@ -46,92 +34,70 @@ export default function InternshipDetailPage() {
         status: "pending",
         createdAt: new Date().toISOString(),
       });
-
       toast.success("Application submitted");
     } catch {
       toast.error("You already applied");
     }
   };
 
-  if (isLoading) {
-    return <LoadingState />;
-  }
-
-  if (!internship) {
-    return (
-      <EmptyState
-        title="Internship Not Found"
-        description="The internship may have been removed."
-      />
-    );
-  }
+  if (isLoading) return <LoadingState />;
+  if (!internship) return <EmptyState title="Internship not found" description="The internship may have been removed." />;
 
   return (
     <PageContainer>
-      <InternshipHero
-        internship={internship}
-        onApply={handleApply}
-        isApplying={createApplication.isPending}
-        userRole={user?.role}
-        hasApplied={hasApplied}
-      />
+      <div className="flex items-start gap-6">
+        <div className="flex-1">
+          <div className="flex items-center gap-4">
+            <div className="h-12 w-12 rounded-lg bg-blue-600 flex items-center justify-center text-white shrink-0">
+              <Building2 size="24" />
+            </div>
+            <div>
+              <span className="rounded-full bg-surface-alt px-2.5 py-0.5 text-[11px] font-medium text-blue-600">
+                Internship
+              </span>
+              <h1 className="text-[22px] font-medium text-slate-900 mt-1">{internship.title}</h1>
+              <p className="text-sm text-slate-500">{internship.companyName}</p>
+            </div>
+          </div>
+        </div>
 
-      <div
-        className="
-        grid
-        gap-6
-        lg:grid-cols-[2fr_1fr]
-        "
-      >
-        {/* LEFT */}
+        <div className="shrink-0 w-64">
+          {user?.role === "student" && (
+            <AppButton
+              className="w-full"
+              onClick={handleApply}
+              disabled={hasApplied || createApplication.isPending}
+            >
+              {hasApplied ? "Applied" : createApplication.isPending ? "Applying..." : "Apply"}
+            </AppButton>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-3 mt-4">
+        <div className="flex items-center gap-1.5 rounded-lg bg-surface-alt px-3 py-1.5 text-xs text-slate-600">
+          <MapPin size="14" /> {internship.location}
+        </div>
+        <div className="flex items-center gap-1.5 rounded-lg bg-surface-alt px-3 py-1.5 text-xs text-slate-600">
+          <Briefcase size="14" /> {internship.type}
+        </div>
+        <div className="flex items-center gap-1.5 rounded-lg bg-surface-alt px-3 py-1.5 text-xs text-slate-600">
+          <Calendar size="14" /> {internship.deadline || "No deadline"}
+        </div>
+      </div>
+
+      <div className="grid gap-6 mt-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-6">
           <AppCard>
-            <h2
-              className="
-              text-2xl
-              font-bold
-              mb-4
-              "
-            >
-              About Internship
-            </h2>
-
-            <p
-              className="
-            whitespace-pre-line
-            text-slate-600
-            leading-8
-            "
-            >
-              {internship.description}
-            </p>
+            <h2 className="text-base font-medium text-slate-900 mb-3">About this internship</h2>
+            <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">{internship.description}</p>
           </AppCard>
 
           <AppCard>
-            <h2
-              className="
-              text-2xl
-              font-bold
-              mb-6
-              "
-            >
-              Requirements
-            </h2>
-
-            <div className="flex flex-wrap gap-3">
+            <h2 className="text-base font-medium text-slate-900 mb-4">Requirements</h2>
+            <div className="flex flex-wrap gap-2">
               {(internship.requirements || []).map((item) => (
-                <span
-                  key={item}
-                  className="
-      rounded-full
-      bg-blue-50
-      px-4
-      py-2
-      text-sm
-      font-medium
-      text-blue-600
-      "
-                >
+                <span key={item} className="rounded-full bg-surface-alt px-3 py-1 text-xs font-medium text-blue-600">
                   {item}
                 </span>
               ))}
@@ -139,156 +105,53 @@ export default function InternshipDetailPage() {
           </AppCard>
         </div>
 
-        {/* RIGHT */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <AppCard>
-            <div
-              className="
-    grid
-    grid-cols-2
-    gap-3
-    "
-            >
-              <StatBox label="Type" value={internship.type} />
-
-              <StatBox label="Location" value={internship.location} />
-
-              <StatBox label="Company" value={internship.companyName} />
-
-              <StatBox label="Status" value="Open" />
+            <h3 className="text-sm font-medium text-slate-900 mb-3">Details</h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-slate-500">Type</span>
+                <span className="text-slate-700 font-medium">{internship.type}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Location</span>
+                <span className="text-slate-700 font-medium">{internship.location}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Company</span>
+                <span className="text-slate-700 font-medium">{internship.companyName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Status</span>
+                <span className="text-green-600 font-medium">Open</span>
+              </div>
             </div>
           </AppCard>
+
           <AppCard>
-            <h3 className="font-semibold mb-4">Company</h3>
-
+            <h3 className="text-sm font-medium text-slate-900 mb-3">Company</h3>
             <div className="flex items-center gap-3">
-              <div
-                className="
-      h-12
-      w-12
-      rounded-xl
-      bg-blue-50
-      flex
-      items-center
-      justify-center
-      "
-              >
-                <Building2 size={22} className="text-blue-600" />
+              <div className="h-10 w-10 rounded-lg bg-surface-alt flex items-center justify-center">
+                <Building2 size="20" className="text-blue-600" />
               </div>
-
               <div>
-                <p className="font-semibold">{internship.companyName}</p>
-
-                <p className="text-sm text-slate-500">Internship Provider</p>
+                <p className="text-sm font-medium text-slate-900">{internship.companyName}</p>
+                <p className="text-xs text-slate-500">Internship provider</p>
               </div>
             </div>
-
-            <Link
-              to={`/companies/${internship.companyId}`}
-              className="
-    mt-4
-    block
-    rounded-xl
-    bg-blue-600
-    py-3
-    text-center
-    text-sm
-    font-medium
-    text-white
-    "
-            >
-              View Company
+            <Link to={`/companies/${internship.companyId}`}>
+              <AppButton variant="secondary" className="w-full mt-4">View company</AppButton>
             </Link>
           </AppCard>
 
           <AppCard>
-            <h3 className="font-semibold mb-4">Internship Information</h3>
-
-            <div className="space-y-4">
-              <InfoRow label="Company" value={internship.companyName} />
-
-              <InfoRow label="Location" value={internship.location} />
-
-              <InfoRow label="Type" value={internship.type} />
-
-              <InfoRow label="Deadline" value={internship.deadline} />
-            </div>
-          </AppCard>
-
-          <AppCard>
-            <h3 className="font-semibold mb-3">Career Tip 🚀</h3>
-
-            <p
-              className="
-              text-sm
-              text-slate-500
-              leading-6
-              "
-            >
-              Make sure your profile is complete before applying. Companies are
-              more likely to review candidates with detailed information and
-              experience.
+            <h3 className="text-sm font-medium text-slate-900 mb-2">Tip</h3>
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Make sure your profile is complete before applying. Companies are more likely to review candidates with detailed information.
             </p>
           </AppCard>
         </div>
       </div>
-
-      {user?.role === "student" && (
-        <div
-          className="
-    fixed
-    bottom-0
-    left-0
-    right-0
-    z-50
-    border-t
-    bg-white
-    p-4
-    lg:hidden
-    "
-        >
-          <button
-            onClick={handleApply}
-            disabled={hasApplied || createApplication.isPending}
-            className="
-      w-full
-      rounded-xl
-      bg-blue-600
-      py-3
-      font-medium
-      text-white
-      "
-          >
-            {hasApplied ? "Already Applied" : "Apply Internship"}
-          </button>
-        </div>
-      )}
     </PageContainer>
-  );
-}
-
-function InfoRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex justify-between gap-4">
-      <span className="text-slate-500">{label}</span>
-
-      <span className="font-medium text-right">{value}</span>
-    </div>
-  );
-}
-
-function StatBox({ label, value }: { label: string; value: string }) {
-  return (
-    <div
-      className="
-      rounded-xl
-      bg-slate-50
-      p-4
-      "
-    >
-      <p className="text-xs text-slate-500">{label}</p>
-
-      <p className="mt-1 font-semibold">{value}</p>
-    </div>
   );
 }

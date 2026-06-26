@@ -19,25 +19,14 @@ export default function RegisterPage() {
     formState: { errors, isSubmitting },
   } = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
-    defaultValues: {
-      role: "student",
-      agreed: false as unknown as true,
-    },
+    defaultValues: { role: "student", agreed: false as unknown as true },
   });
 
   const handleRegister = async (data: RegisterSchema) => {
     try {
       await authService.register(data.name, data.email, data.password, data.role);
-
-      if (data.role === "student") {
-        navigate("/dashboard");
-      }
-
-      if (data.role === "company") {
-        navigate("/company");
-      }
-    } catch (error) {
-      console.error(error);
+      navigate(data.role === "company" ? "/company" : "/dashboard");
+    } catch {
       toast.error("Registration failed");
     }
   };
@@ -46,141 +35,82 @@ export default function RegisterPage() {
     try {
       await authService.loginWithGoogle();
       navigate("/dashboard");
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error("Google registration failed");
     }
   };
 
   return (
-    <div className="w-full max-w-xl">
-      <div className="rounded-lg border border-blue-100 bg-white p-8 shadow-sm shadow-blue-100/60">
-        <img src={logo} alt="CareerPath" className="h-12 mb-6" />
+    <div className="w-full max-w-lg">
+      <div className="bg-white border border-slate-200 rounded-xl p-6">
+        <img src={logo} alt="CareerPath" className="h-8 mb-5" />
 
-        <h1 className="text-4xl font-bold">Create Account</h1>
+        <h1 className="text-[22px] font-medium text-slate-900">Create account</h1>
+        <p className="mt-1 text-sm text-slate-500">Join thousands of students finding opportunities.</p>
 
-        <p className="mt-2 text-slate-500">
-          Join thousands of students finding internship opportunities.
-        </p>
-
-        <form onSubmit={handleSubmit(handleRegister)}>
-          <div className="mb-4">
-            <label className="mb-2 block text-sm font-medium text-slate-700">Register As</label>
+        <form onSubmit={handleSubmit(handleRegister)} className="mt-6 space-y-4">
+          <div>
+            <label className="block text-xs font-medium text-slate-600 mb-1">Register as</label>
             <select
               {...register("role")}
-              className="h-12 w-full rounded-xl border border-slate-200 px-3 text-slate-700 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+              className="h-9 w-full rounded-lg border border-slate-200 bg-surface-alt px-3 text-sm text-slate-700 focus:border-blue-600 focus:outline-none"
             >
               <option value="student">Student</option>
               <option value="company">Company</option>
             </select>
-            {errors.role && (
-              <p className="mt-1 text-sm text-red-500">{errors.role.message}</p>
-            )}
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <AppInput
-                {...register("name")}
-                placeholder="Full Name"
-                className="rounded-xl h-12 border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-              />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
-              )}
+              <AppInput {...register("name")} placeholder="Full name" />
+              {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>}
             </div>
-
             <div>
-              <AppInput
-                {...register("email")}
-                placeholder="Email Address"
-                className="rounded-xl h-12 border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-              />
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-              )}
+              <AppInput {...register("email")} placeholder="Email" />
+              {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
             </div>
-
             <div>
-              <AppInput
-                {...register("university")}
-                placeholder="University"
-                className="rounded-xl h-12 border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-              />
-              {errors.university && (
-                <p className="mt-1 text-sm text-red-500">{errors.university.message}</p>
-              )}
+              <AppInput {...register("university")} placeholder="University" />
             </div>
-
             <div>
-              <AppInput
-                type="password"
-                {...register("password")}
-                placeholder="Password"
-                className="rounded-xl h-12 border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-              />
-              {errors.password && (
-                <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>
-              )}
+              <AppInput type="password" {...register("password")} placeholder="Password" />
+              {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
             </div>
-
             <div>
-              <AppInput
-                type="password"
-                {...register("confirmPassword")}
-                placeholder="Confirm Password"
-                className="rounded-xl h-12 border-slate-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
-              />
-              {errors.confirmPassword && (
-                <p className="mt-1 text-sm text-red-500">{errors.confirmPassword.message}</p>
-              )}
+              <AppInput type="password" {...register("confirmPassword")} placeholder="Confirm password" />
+              {errors.confirmPassword && <p className="mt-1 text-xs text-red-500">{errors.confirmPassword.message}</p>}
             </div>
           </div>
 
-          <div className="mt-5">
-            <label className="flex items-center gap-2 text-sm text-slate-600">
-              <input
-                type="checkbox"
-                {...register("agreed")}
-                className="accent-blue-600"
-              />
-              I agree to the Terms & Privacy Policy
-            </label>
-            {errors.agreed && (
-              <p className="mt-1 text-sm text-red-500">{errors.agreed.message}</p>
-            )}
-          </div>
+          <label className="flex items-center gap-2 text-sm text-slate-600">
+            <input type="checkbox" {...register("agreed")} className="accent-blue-600" />
+            I agree to the Terms & Privacy Policy
+          </label>
+          {errors.agreed && <p className="text-xs text-red-500">{errors.agreed.message}</p>}
 
-          <AppButton
-            type="submit"
-            disabled={isSubmitting}
-            className="mt-6 w-full"
-          >
-            {isSubmitting ? "Creating..." : "Create Account"}
+          <AppButton type="submit" disabled={isSubmitting} className="w-full">
+            {isSubmitting ? "Creating..." : "Create account"}
           </AppButton>
         </form>
 
-        <div className="my-6 flex items-center gap-4">
+        <div className="my-5 flex items-center gap-3">
           <div className="h-px flex-1 bg-slate-200" />
-          <span className="text-sm text-slate-400">or continue with</span>
+          <span className="text-xs text-slate-400">or</span>
           <div className="h-px flex-1 bg-slate-200" />
         </div>
 
         <button
           type="button"
           onClick={handleGoogleRegister}
-          disabled={isSubmitting}
-          className="w-full rounded-xl border border-slate-200 py-3 flex items-center justify-center gap-3 hover:bg-slate-50 transition-all duration-200"
+          className="w-full rounded-lg border border-slate-200 py-2 flex items-center justify-center gap-2 text-sm text-slate-600 hover:bg-slate-50 transition-colors"
         >
-          <FcGoogle size={20} />
+          <FcGoogle size="18" />
           Continue with Google
         </button>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-5 text-center text-sm text-slate-500">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-600 font-medium">
-            Sign In
-          </Link>
+          <Link to="/login" className="text-blue-600 font-medium">Sign in</Link>
         </p>
       </div>
     </div>

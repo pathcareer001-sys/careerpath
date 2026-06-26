@@ -1,21 +1,20 @@
 import { Outlet } from "react-router-dom";
 
-import CompanyNavbar from "@/components/navigation/CompanyNavbar";
+import AppSidebar from "@/components/navigation/AppSidebar";
+import TopBar from "@/components/navigation/TopBar";
 
 export default function CompanyLayout() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <CompanyNavbar />
+    <div className="min-h-screen bg-slate-100 flex">
+      <AppSidebar />
 
-      <main
-        className="
-        max-w-7xl
-        mx-auto
-        px-4 py-4 md:px-6 md:py-6
-        "
-      >
-        <Outlet />
-      </main>
+      <div className="flex-1 flex flex-col min-w-0">
+        <TopBar />
+
+        <main className="flex-1 p-6 overflow-auto">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

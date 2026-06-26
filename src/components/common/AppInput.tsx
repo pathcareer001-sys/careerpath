@@ -1,19 +1,17 @@
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-export default function AppInput(props: React.ComponentProps<typeof Input>) {
+import type { InputHTMLAttributes } from "react";
+
+interface Props extends InputHTMLAttributes<HTMLInputElement> {}
+
+export default function AppInput({ className, ...props }: Props) {
   return (
-    <Input
-      {...props}
+    <input
       className={cn(
-        `
-        h-11
-        rounded-xl
-        border-slate-300
-        focus-visible:ring-blue-500
-        `,
-        props.className,
+        "h-9 w-full rounded-lg border border-slate-200 bg-surface-alt px-3 text-sm text-slate-700 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none transition-colors",
+        className,
       )}
+      {...props}
     />
   );
 }

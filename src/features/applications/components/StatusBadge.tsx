@@ -1,23 +1,19 @@
-import { Badge } from "@/components/ui/badge";
-
 interface Props {
   status: string;
 }
 
+const variants: Record<string, string> = {
+  pending: "bg-amber-50 text-amber-700",
+  reviewed: "bg-blue-50 text-blue-700",
+  interview: "bg-purple-50 text-purple-700",
+  accepted: "bg-green-50 text-green-700",
+  rejected: "bg-red-50 text-red-700",
+};
+
 export default function StatusBadge({ status }: Props) {
-  const variants = {
-    pending: "bg-yellow-100 text-yellow-700",
-
-    reviewed: "bg-blue-100 text-blue-700",
-    interview: "bg-purple-100 text-purple-700",
-    accepted: "bg-green-100 text-green-700",
-
-    rejected: "bg-red-100 text-red-700",
-  };
-
   return (
-    <Badge className={variants[status as keyof typeof variants]}>
+    <span className={`inline-flex rounded-full px-2.5 py-0.5 text-[11px] font-medium ${variants[status] || "bg-slate-100 text-slate-600"}`}>
       {status}
-    </Badge>
+    </span>
   );
 }

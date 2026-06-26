@@ -1,192 +1,92 @@
-import { useParams } from "react-router-dom";
-
+import { useParams, Link } from "react-router-dom";
+import { Star, MessageSquare, BriefcaseBusiness, BadgeCheck, Globe, MapPin, Building2 } from "lucide-react";
 import PageContainer from "@/components/common/PageContainer";
 import AppCard from "@/components/common/AppCard";
-
+import AppButton from "@/components/common/AppButton";
 import { useCompany } from "../hooks/useCompany";
 import { useReviews } from "@/features/reviews/hooks/useReviews";
-
 import ReviewCard from "@/features/reviews/components/ReviewCard";
-import CompanyHero from "../components/CompanyHero";
-
 import ReviewForm from "@/features/reviews/components/ReviewForm";
 import LoadingState from "@/components/shared/LoadingState";
 import EmptyState from "@/components/shared/EmptyState";
-
 import { useCompanyInternshipsByCompanyId } from "@/features/internships/hooks/useCompanyInternshipsByCompanyId";
-
 import InternshipCard from "@/features/internships/components/InternshipCard";
-import {
-  BadgeCheck,
-  BriefcaseBusiness,
-  MessageSquare,
-  Star,
-} from "lucide-react";
+import BookmarkButton from "@/features/bookmarks/components/BookmarkButton";
 
 export default function CompanyDetailPage() {
   const { id } = useParams();
-
   const { data: company, isLoading } = useCompany(id || "");
-
   const reviews = useReviews(id || "");
-  const { data: internships } = useCompanyInternshipsByCompanyId(
-    company?.id || "",
-  );
+  const { data: internships } = useCompanyInternshipsByCompanyId(company?.id || "");
 
-  if (isLoading) {
-    return <LoadingState />;
-  }
+  if (isLoading) return <LoadingState />;
 
   if (!company) {
-    return (
-      <EmptyState
-        title="Company Not Found"
-        description="The company may have been removed."
-      />
-    );
+    return <EmptyState title="Company not found" description="The company may have been removed." />;
   }
 
   return (
     <PageContainer>
-      <CompanyHero company={company} />
-      <AppCard className="mt-6">
-        <div
-          className="
-    grid
-    gap-4
-    sm:grid-cols-2
-    lg:grid-cols-4
-    "
-        >
-          <div
-            className="
-      rounded-2xl
-      bg-blue-50
-      p-5
-      "
-          >
-            <div className="flex items-center gap-2 text-blue-600">
-              <Star
-                size={18}
-                className="
-          fill-yellow-400
-          text-yellow-400
-          "
-              />
-
-              <span className="text-sm font-medium">Company Rating</span>
+      <div className="flex items-start gap-6">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-4 mb-1">
+            <div className="h-12 w-12 rounded-lg bg-blue-600 flex items-center justify-center text-white text-lg font-medium shrink-0">
+              {company.name.charAt(0)}
             </div>
-
-            <p className="mt-3 text-3xl font-bold">{company.avgRating || 0}</p>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-[22px] font-medium text-slate-900">{company.name}</h1>
+                {company.verified && <BadgeCheck size="20" className="text-blue-600" />}
+              </div>
+              <div className="flex items-center gap-3 text-sm text-slate-500 mt-0.5">
+                <span className="flex items-center gap-1"><MapPin size="14" />{company.location}</span>
+                <span className="flex items-center gap-1"><Building2 size="14" />{company.industry}</span>
+                {company.website && (
+                  <a href={company.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-blue-600 hover:underline">
+                    <Globe size="14" />Website
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
 
-          <div
-            className="
-      rounded-2xl
-      bg-amber-50
-      p-5
-      "
-          >
-            <div className="flex items-center gap-2 text-amber-600">
-              <MessageSquare size={18} />
-
-              <span className="text-sm font-medium">Reviews</span>
-            </div>
-
-            <p className="mt-3 text-3xl font-bold">
-              {company.reviewCount || 0}
-            </p>
-          </div>
-
-          <div
-            className="
-      rounded-2xl
-      bg-emerald-50
-      p-5
-      "
-          >
-            <div className="flex items-center gap-2 text-emerald-600">
-              <BriefcaseBusiness size={18} />
-
-              <span className="text-sm font-medium">Open Positions</span>
-            </div>
-
-            <p className="mt-3 text-3xl font-bold">
-              {internships?.length || 0}
-            </p>
-          </div>
-
-          <div
-            className="
-      rounded-2xl
-      bg-violet-50
-      p-5
-      "
-          >
-            <div className="flex items-center gap-2 text-violet-600">
-              <BadgeCheck size={18} />
-
-              <span className="text-sm font-medium">Verification</span>
-            </div>
-
-            <p className="mt-3 text-lg font-bold">
-              {company.verified ? "Verified" : "Pending"}
-            </p>
+          <div className="flex items-center gap-3 mt-4">
+            <BookmarkButton companyId={company.id} />
           </div>
         </div>
-      </AppCard>
-      <div
-        className="
-  grid
-  mt-6
-  gap-6
-  lg:grid-cols-[2fr_1fr]
-  "
-      >
+
+        <div className="flex items-center gap-6 shrink-0 border border-slate-200 rounded-xl p-4">
+          <div className="text-center">
+            <p className="text-[22px] font-medium text-slate-900">{company.avgRating || 0}</p>
+            <div className="flex items-center gap-0.5 mt-1">
+              <Star size="14" className="fill-amber-400 text-amber-400" />
+            </div>
+            <p className="text-xs text-slate-500 mt-0.5">Rating</p>
+          </div>
+          <div className="text-center">
+            <p className="text-[22px] font-medium text-slate-900">{company.reviewCount || 0}</p>
+            <p className="text-xs text-slate-500 mt-1">Reviews</p>
+          </div>
+          <div className="text-center">
+            <p className="text-[22px] font-medium text-slate-900">{internships?.length || 0}</p>
+            <p className="text-xs text-slate-500 mt-1">Open roles</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-6 mt-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-6">
           <AppCard>
-            <h2
-              className="
-              text-2xl
-              font-bold
-              mb-4
-              "
-            >
-              About Company
-            </h2>
-
-            <p
-              className="
-              text-slate-600
-              leading-7
-              "
-            >
-              {company.description}
-            </p>
+            <h2 className="text-base font-medium text-slate-900 mb-3">About</h2>
+            <p className="text-sm text-slate-600 leading-relaxed">{company.description}</p>
           </AppCard>
 
           <AppCard>
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold">Open Internships</h2>
-
-              <p className="text-slate-500">
-                Available internship opportunities
-              </p>
-            </div>
-
+            <h2 className="text-base font-medium text-slate-900 mb-4">Open Internships</h2>
             {internships?.length === 0 ? (
-              <EmptyState
-                title="No Open Internships"
-                description="This company has no active internships."
-              />
+              <EmptyState title="No open internships" description="This company has no active positions." />
             ) : (
-              <div
-                className="
-                grid
-                gap-4
-                md:grid-cols-2
-                "
-              >
+              <div className="grid gap-4 sm:grid-cols-2">
                 {internships?.slice(0, 4).map((internship) => (
                   <InternshipCard key={internship.id} internship={internship} />
                 ))}
@@ -195,204 +95,28 @@ export default function CompanyDetailPage() {
           </AppCard>
 
           <AppCard>
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-2xl font-bold">Student Reviews</h2>
-
-                <p className="text-slate-500">Real experiences from interns</p>
-              </div>
-
-              <div
-                className="
-  flex
-  items-center
-  gap-2
-  rounded-xl
-  bg-blue-50
-  px-4
-  py-2
-  "
-              >
-                <Star
-                  size={16}
-                  className="
-    fill-yellow-400
-    text-yellow-400
-    "
-                />
-
-                <span className="font-medium">{company.avgRating || 0}</span>
-
-                <span className="text-blue-600">
-                  ({reviews.data?.length || 0})
-                </span>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-base font-medium text-slate-900">Reviews ({reviews.data?.length || 0})</h2>
+              <div className="flex items-center gap-1 text-sm text-slate-500">
+                <Star size="14" className="fill-amber-400 text-amber-400" />
+                {company.avgRating || 0}
               </div>
             </div>
-
             {reviews.data?.length === 0 ? (
-              <EmptyState
-                title="No Reviews Yet"
-                description="Be the first to review this company"
-              />
+              <EmptyState title="No reviews yet" description="Be the first to review this company." />
             ) : (
-              <div className="space-y-4">
-                {reviews.data?.map((review) => (
-                  <ReviewCard key={review.id} review={review} />
-                ))}
+              <div className="space-y-3">
+                {reviews.data?.map((review) => <ReviewCard key={review.id} review={review} />)}
               </div>
             )}
           </AppCard>
-
-          <AppCard
-            className="
-  overflow-hidden
-  border-0
-  bg-gradient-to-br
-  from-slate-50
-  to-white
-  "
-          >
-            <div className="mb-6">
-              <span
-                className="
-      inline-flex
-      rounded-full
-      bg-yellow-100
-      px-3
-      py-1
-      text-xs
-      font-medium
-      text-yellow-700
-      "
-              >
-                Share Experience
-              </span>
-
-              <h2
-                className="
-      mt-3
-      text-2xl
-      font-bold
-      "
-              >
-                Write a Review
-              </h2>
-
-              <p className="mt-2 text-slate-500">
-                Help other students understand the company culture, mentorship
-                quality, and internship experience.
-              </p>
-            </div>
-
-            <ReviewForm companyId={company.id} />
-          </AppCard>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           <AppCard>
-            <h3 className="font-semibold mb-4">Company Information</h3>
-            <div className="space-y-4 text-sm">
-              <div>
-                <p className="text-slate-500">Industry</p>
-
-                <p className="font-medium">{company.industry}</p>
-              </div>
-              <div>
-                <p className="text-slate-500">Location</p>
-
-                <p className="font-medium">{company.location}</p>
-              </div>
-              <div>
-                <p className="text-slate-500">Website</p>
-
-                {company.website ? (
-                  <a
-                    href={company.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-      font-medium
-      text-blue-600
-      "
-                  >
-                    Visit Website
-                  </a>
-                ) : (
-                  <p className="font-medium">-</p>
-                )}
-              </div>
-            </div>
-          </AppCard>
-
-          <AppCard>
-            <div>
-              <h3 className="font-semibold mb-4">Company Stats</h3>
-
-              <div className="grid grid-cols-1 gap-3">
-                <div
-                  className="
-                rounded-xl
-                bg-blue-50
-                p-4
-                text-center
-                "
-                >
-                  <p className="text-xs text-slate-500">Rating</p>
-
-                  <div
-                    className="
-  mt-2
-  flex
-  items-center
-  justify-center
-  gap-2
-  "
-                  >
-                    <Star
-                      size={16}
-                      className="
-    fill-yellow-400
-    text-yellow-400
-    "
-                    />
-
-                    <span className="text-xl font-bold text-blue-600">
-                      {company.avgRating || 0}
-                    </span>
-                  </div>
-                </div>
-
-                <div
-                  className="
-      rounded-xl
-      bg-amber-50
-      p-4
-      text-center
-      "
-                >
-                  <p className="text-xs text-slate-500">Reviews</p>
-
-                  <p className="mt-1 text-xl font-bold text-amber-600">
-                    {company.reviewCount || 0}
-                  </p>
-                </div>
-
-                <div
-                  className="
-      rounded-xl
-      bg-green-50
-      p-4
-      text-center
-      "
-                >
-                  <p className="text-xs text-slate-500">Verified</p>
-
-                  <p className="mt-1 text-xl font-bold text-green-600">
-                    {company.verified ? "Yes" : "No"}
-                  </p>
-                </div>
-              </div>
-            </div>
+            <h3 className="text-sm font-medium text-slate-900 mb-3">Write a Review</h3>
+            <p className="text-xs text-slate-500 mb-4">Share your experience to help other students.</p>
+            <ReviewForm companyId={company.id} />
           </AppCard>
         </div>
       </div>
