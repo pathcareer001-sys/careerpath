@@ -35,7 +35,7 @@ export default function ContactPage() {
       <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700 text-white">
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">
-          <h1 className="text-5xl font-medium">Contact Us</h1>
+          <h1 className="text-3xl sm:text-5xl font-medium">Contact Us</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
             Have questions? We'd love to hear from you.
           </p>

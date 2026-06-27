@@ -63,7 +63,7 @@ export default function InternshipCard({ internship }: { internship: Internship 
           </div>
         </div>
 
-        <div className="flex items-center gap-2 mt-3">
+        <div className="flex items-center gap-2 mt-3 flex-wrap">
           <span className={`rounded-full px-2.5 py-[3px] text-[12px] font-medium leading-none ${tagClass}`}>
             {internship.type}
           </span>

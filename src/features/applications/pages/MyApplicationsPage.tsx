@@ -38,7 +38,7 @@ export default function MyApplicationsPage() {
         <p className="mt-1 text-sm text-[#64748B]">Track every step of your internship journey</p>
       </div>
 
-      <div className="grid gap-4 grid-cols-4 animate-fade-in-up animate-delay-100">
+      <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 animate-fade-in-up animate-delay-100">
         <div className="relative overflow-hidden rounded-xl border border-[#E2E8F0] bg-gradient-to-br from-blue-50 to-white px-6 py-5">
           <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-blue-500/5" />
           <p className="text-[28px] font-medium text-[#0F172A] leading-none">{data?.length || 0}</p>
@@ -67,7 +67,7 @@ export default function MyApplicationsPage() {
         <div className="animate-fade-in-up animate-delay-200">
           <div className="divide-y divide-[#F1F5F9] bg-white rounded-xl border border-[#E2E8F0] overflow-hidden">
             {paged.map((application) => (
-              <div key={application.id} className="flex items-center gap-4 px-5 py-[14px] transition-all duration-200 hover:bg-[#F8FAFF] hover:pl-6">
+              <div key={application.id} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 px-5 py-[14px] transition-all duration-200 hover:bg-[#F8FAFF] hover:pl-6">
                 <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
                   {application.companyName.charAt(0)}
                 </div>

@@ -32,7 +32,7 @@ export default function BookmarkPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-end justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-0 sm:justify-between">
         <div>
           <h1 className="text-2xl font-medium text-[#0F172A]">Bookmarks</h1>
           <p className="mt-1 text-sm text-[#64748B]">
@@ -49,7 +49,7 @@ export default function BookmarkPage() {
               setSearch(e.target.value);
             }}
             placeholder="Search bookmarks..."
-            className="h-9 w-56 rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#CBD5E1] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
+            className="h-9 w-full sm:w-56 rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#CBD5E1] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
           />
         </div>
       </div>

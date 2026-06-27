@@ -39,7 +39,7 @@ export default function CompanyListPage() {
         <p className="mt-1 text-sm text-[#64748B]">Discover verified companies and internship providers</p>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 flex-wrap">
         <div className="relative flex-1 max-w-xs">
           <Search size="15" className="absolute left-3 top-1/2 -translate-y-1/2 text-[#CBD5E1]" />
           <input
@@ -69,7 +69,7 @@ export default function CompanyListPage() {
       {topCompanies.length > 0 && (
         <div>
           <h2 className="text-base font-medium text-[#0F172A] mb-4">Top Companies</h2>
-          <div className="grid gap-4 grid-cols-4">
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {topCompanies.map((company) => (
               <CompanyCard key={company.id} company={company} />
             ))}

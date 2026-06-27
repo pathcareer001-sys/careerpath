@@ -77,7 +77,7 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              <div className="mt-8 flex gap-8 border-t border-white/20 pt-6">
+              <div className="mt-8 flex gap-8 border-t border-white/20 pt-6 flex-wrap">
                 <div>
                   <p className="text-[22px] font-medium text-white">{companyCount}+</p>
                   <p className="text-sm text-blue-200">Companies</p>

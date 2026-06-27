@@ -15,6 +15,7 @@ import { useUpdateProfile } from "../hooks/useUpdateProfile";
 import { calculateProfileCompletion } from "../components/ProfileCompletionCard";
 
 import { uploadImage, uploadPdf } from "@/services/cloudinaryService";
+import { MapPin } from "lucide-react";
 
 export default function ProfilePage() {
   const { user, refreshUser } = useAuth();
@@ -257,7 +258,8 @@ export default function ProfilePage() {
             </div>
 
             <div className="mt-2 text-sm text-slate-500">
-              📍 {location || "Add Location"}
+              <MapPin size={18} />
+              {location || "Add Location"}
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">

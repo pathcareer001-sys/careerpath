@@ -73,7 +73,7 @@ export default function StudentDashboardPage() {
       {interviewApps.length > 0 && (
         <div className="animate-fade-in-up animate-delay-50 space-y-3">
           {interviewApps.map((app) => (
-            <div key={app.id} className="rounded-xl border border-purple-200 bg-gradient-to-r from-purple-50 to-violet-50 p-4 flex items-center justify-between">
+            <div key={app.id} className="rounded-xl border border-purple-200 bg-gradient-to-r from-purple-50 to-violet-50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="flex items-center gap-3">
                 <CalendarCheck size="20" className="text-purple-600 shrink-0" />
                 <div>
@@ -95,7 +95,7 @@ export default function StudentDashboardPage() {
         </div>
       )}
 
-      <div className="grid gap-4 grid-cols-4 animate-fade-in-up animate-delay-100">
+      <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 animate-fade-in-up animate-delay-100">
         <Link to="/applications" className="block">
           <StatCard title="Applications" value={applicationCount} gradient="blue" />
         </Link>

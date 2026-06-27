@@ -86,7 +86,7 @@ export default function NotificationDropdown() {
           absolute
           right-0
           mt-2
-          w-96
+          w-[calc(100vw-16px)] sm:w-96
           max-h-[500px]
           overflow-y-auto
           z-50
