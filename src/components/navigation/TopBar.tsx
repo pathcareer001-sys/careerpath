@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
-import { LayoutDashboard, Building2, Briefcase, FileText, Bookmark, LogOut } from "lucide-react";
+import { LayoutDashboard, Building2, Briefcase, FileText, Bookmark, LogOut, Menu } from "lucide-react";
 
 import logo from "@/assets/images/logo.png";
 import { useAuth } from "@/hooks/useAuth";
@@ -7,6 +7,7 @@ import { ROLES } from "@/constants/roles";
 import { authService } from "@/features/auth/services/authService";
 import { useNavigate } from "react-router-dom";
 import NotificationDropdown from "@/features/notifications/components/NotificationDropdown";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const studentNav = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -48,12 +49,12 @@ export default function TopBar() {
   };
 
   return (
-    <header className="h-[60px] bg-white/80 backdrop-blur-xl border-b border-[#E2E8F0] flex items-center px-6 gap-6 sticky top-0 z-50">
+    <header className="h-[60px] bg-white/80 backdrop-blur-xl border-b border-[#E2E8F0] flex items-center px-4 gap-3 sticky top-0 z-50">
       <Link to="/" className="shrink-0">
         <img src={logo} alt="CareerPath" className="h-7 w-auto" />
       </Link>
 
-      <nav className="flex items-center gap-1 flex-1 justify-center">
+      <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
         {navLinks.map((item) => (
           <NavLink
             key={item.to}
@@ -81,7 +82,7 @@ export default function TopBar() {
       <div className="flex items-center gap-3 shrink-0">
         <NotificationDropdown />
 
-        <Link to={profilePath} className="flex items-center gap-2 p-1 rounded-lg hover:bg-[#2563EB]/10 transition-all duration-200">
+        <Link to={profilePath} className="hidden sm:flex items-center gap-2 p-1 rounded-lg hover:bg-[#2563EB]/10 transition-all duration-200">
           <img
             src={user?.photoURL || "https://ui-avatars.com/api/?name=User&background=EEF3FE&color=2563EB&size=32"}
             alt=""
@@ -92,11 +93,63 @@ export default function TopBar() {
 
         <button
           onClick={handleLogout}
-          className="p-2 rounded-lg text-[#94A3B8] hover:bg-red-50 hover:text-red-500 transition-all duration-200"
+          className="hidden sm:inline-flex p-2 rounded-lg text-[#94A3B8] hover:bg-red-50 hover:text-red-500 transition-all duration-200"
           title="Logout"
         >
           <LogOut size="16" />
         </button>
+
+        <Sheet>
+          <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-[#64748B] hover:bg-blue-50">
+            <Menu size="20" />
+          </SheetTrigger>
+          <SheetContent side="left" className="w-64 p-0">
+            <div className="flex flex-col h-full">
+              <div className="flex items-center justify-between px-4 h-14 border-b border-[#E2E8F0]">
+                <img src={logo} alt="CareerPath" className="h-6 w-auto" />
+              </div>
+              <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                {navLinks.map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    end={item.to === "/dashboard" || item.to === "/admin" || item.to === "/company"}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                        isActive
+                          ? "bg-blue-50 text-[#2563EB] font-medium"
+                          : "text-[#64748B] hover:bg-blue-50 hover:text-[#2563EB]"
+                      }`
+                    }
+                  >
+                    <item.icon size="18" />
+                    {item.label}
+                  </NavLink>
+                ))}
+              </nav>
+              <div className="px-3 py-3 border-t border-[#E2E8F0] space-y-2">
+                <Link
+                  to={profilePath}
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#64748B] hover:bg-blue-50 hover:text-[#2563EB] transition-colors"
+                >
+                  <img
+                    src={user?.photoURL || "https://ui-avatars.com/api/?name=User&background=EEF3FE&color=2563EB&size=32"}
+                    alt=""
+                    className="w-7 h-7 rounded-full"
+                  />
+                  {user?.name || "User"}
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
+                >
+                  <LogOut size="18" />
+                  Logout
+                </button>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );

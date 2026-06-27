@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ArrowRight, House, Info, LogIn, Mail, Menu } from "lucide-react";
 
 import logo from "@/assets/images/logo.png";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
   { to: "/", label: "Home", icon: House },
@@ -54,13 +55,52 @@ export default function LandingNavbar() {
           </Link>
         </div>
 
-        <Link
-          to="/login"
-          aria-label="Open login"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 sm:hidden"
-        >
-          <Menu size="18" />
-        </Link>
+        <Sheet>
+          <SheetTrigger className="inline-flex md:hidden h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600">
+            <Menu size="18" />
+          </SheetTrigger>
+          <SheetContent side="right" className="w-64 p-0">
+            <div className="flex flex-col h-full">
+              <div className="flex items-center justify-between px-4 h-14 border-b border-slate-200">
+                <img src={logo} alt="CareerPath" className="h-6 w-auto" />
+              </div>
+              <nav className="flex-1 px-3 py-4 space-y-1">
+                {navItems.map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                        isActive
+                          ? "bg-blue-50 text-blue-600 font-medium"
+                          : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
+                      }`
+                    }
+                  >
+                    <item.icon size="18" />
+                    {item.label}
+                  </NavLink>
+                ))}
+                <div className="pt-3 border-t border-slate-200 space-y-2">
+                  <Link
+                    to="/login"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                  >
+                    <LogIn size="18" />
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                  >
+                    Get started
+                    <ArrowRight size="15" />
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );

@@ -5,7 +5,7 @@ export default function AdminLayout() {
   return (
     <div className="min-h-screen bg-[#F8FAFF] flex">
       <AdminSidebar />
-      <main className="flex-1 p-6 overflow-auto">
+      <main className="flex-1 p-6 overflow-auto pl-14 md:pl-6">
         <div className="max-w-7xl mx-auto">
           <Outlet />
         </div>
