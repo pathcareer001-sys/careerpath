@@ -49,8 +49,14 @@ export default function InternshipCard({ internship }: { internship: Internship 
           )}
         </button>
         <div className="flex items-start gap-3">
-          <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium shrink-0">
-            {internship.companyName.charAt(0)}
+          <div className="h-9 w-9 rounded-lg shrink-0 overflow-hidden">
+            {internship.companyLogo ? (
+              <img src={internship.companyLogo} alt={internship.companyName} className="h-full w-full object-cover" />
+            ) : (
+              <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-sm font-medium">
+                {internship.companyName.charAt(0)}
+              </div>
+            )}
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">

@@ -16,20 +16,14 @@ export default function ReviewCard({ review }: { review: Review }) {
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div
-              className="
-          h-12
-          w-12
-          rounded-full
-          bg-primary
-          text-white
-          flex
-          items-center
-          justify-center
-          font-medium
-          "
-            >
-              {review.userName.charAt(0)}
+            <div className="h-12 w-12 rounded-full shrink-0 overflow-hidden">
+              {review.userPhotoURL ? (
+                <img src={review.userPhotoURL} alt={review.userName} className="h-full w-full object-cover" />
+              ) : (
+                <div className="h-full w-full bg-primary flex items-center justify-center text-white font-medium">
+                  {review.userName.charAt(0)}
+                </div>
+              )}
             </div>
 
             <div>

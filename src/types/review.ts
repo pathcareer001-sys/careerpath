@@ -6,6 +6,7 @@ export interface Review {
   userId: string;
 
   userName: string;
+  userPhotoURL?: string;
 
   rating: number;
 

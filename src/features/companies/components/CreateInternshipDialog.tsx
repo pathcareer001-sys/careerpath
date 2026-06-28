@@ -31,6 +31,7 @@ export default function CreateInternshipDialog({ company }: Props) {
       companyId: company.id,
 
       companyName: company.name,
+      companyLogo: company.logo,
     });
     toast.success("Internship created successfully");
   };

@@ -5,6 +5,7 @@ export interface Internship {
   title: string;
   companyId: string;
   companyName: string;
+  companyLogo?: string;
   ownerId: string;
   location: string;
   type: string;

@@ -35,6 +35,7 @@ export default function ReviewForm({ companyId }: Props) {
       companyId,
       userId: user?.uid || "",
       userName: user?.name || user?.email || "Anonymous",
+      userPhotoURL: user?.photoURL || "",
       rating,
       review,
     });

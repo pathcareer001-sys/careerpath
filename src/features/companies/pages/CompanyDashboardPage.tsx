@@ -122,8 +122,14 @@ export default function CompanyDashboardPage() {
               {dashboard.applications?.slice(0, 5).map((application) => (
                 <div key={application.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-background transition-colors -mx-3">
                   <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-xs font-medium shrink-0">
-                      {application.applicantName?.charAt(0)}
+                    <div className="h-8 w-8 rounded-full shrink-0 overflow-hidden">
+                      {application.applicantPhotoURL ? (
+                        <img src={application.applicantPhotoURL} alt={application.applicantName} className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xs font-medium">
+                          {application.applicantName?.charAt(0)}
+                        </div>
+                      )}
                     </div>
                     <div>
                       <p className="text-sm font-medium">{application.applicantName}</p>
@@ -211,8 +217,14 @@ export default function CompanyDashboardPage() {
               {dashboard.reviews?.slice(0, 3).map((review) => (
                 <div key={review.id} className="p-4 rounded-xl border border-border hover:border-border transition-colors">
                   <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-xs font-medium">
-                      {review.userName?.charAt(0)}
+                    <div className="h-8 w-8 rounded-full shrink-0 overflow-hidden">
+                      {review.userPhotoURL ? (
+                        <img src={review.userPhotoURL} alt={review.userName} className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xs font-medium">
+                          {review.userName?.charAt(0)}
+                        </div>
+                      )}
                     </div>
                     <div>
                       <p className="text-sm font-medium">{review.userName}</p>

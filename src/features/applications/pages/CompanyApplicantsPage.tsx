@@ -131,8 +131,14 @@ export default function CompanyApplicantsPage() {
               <AppCard key={application.id}>
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center font-medium shrink-0 shadow-sm">
-                      {application.applicantName?.charAt(0)}
+                    <div className="h-12 w-12 rounded-full shrink-0 overflow-hidden shadow-sm">
+                      {application.applicantPhotoURL ? (
+                        <img src={application.applicantPhotoURL} alt={application.applicantName} className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-medium">
+                          {application.applicantName?.charAt(0)}
+                        </div>
+                      )}
                     </div>
                     <div>
                       <h3 className="font-medium text-heading">{application.applicantName}</h3>

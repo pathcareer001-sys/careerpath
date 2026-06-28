@@ -39,8 +39,14 @@ export default function UserManagePage() {
             <AppCard key={user.uid}>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium shrink-0">
-                    {user.name?.charAt(0) || "?"}
+                  <div className="h-10 w-10 rounded-full shrink-0 overflow-hidden">
+                    {user.photoURL ? (
+                      <img src={user.photoURL} alt={user.name} className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-sm font-medium">
+                        {user.name?.charAt(0) || "?"}
+                      </div>
+                    )}
                   </div>
                   <div>
                     <h3 className="font-medium text-heading">{user.name}</h3>

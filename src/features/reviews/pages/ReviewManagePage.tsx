@@ -43,8 +43,14 @@ export default function ReviewManagePage() {
               <AppCard key={review.id}>
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
                   <div className="flex items-start gap-3">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-warning to-accent text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
-                      {review.userName?.charAt(0) || "?"}
+                    <div className="h-10 w-10 rounded-full shrink-0 overflow-hidden shadow-sm">
+                      {review.userPhotoURL ? (
+                        <img src={review.userPhotoURL} alt={review.userName} className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="h-full w-full bg-gradient-to-br from-warning to-accent flex items-center justify-center text-white text-sm font-medium">
+                          {review.userName?.charAt(0) || "?"}
+                        </div>
+                      )}
                     </div>
                     <div>
                       <h3 className="font-medium text-heading">{review.userName}</h3>

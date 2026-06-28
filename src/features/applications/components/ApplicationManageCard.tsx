@@ -20,8 +20,14 @@ export default function ApplicationManageCard({
     <AppCard>
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div className="flex items-start gap-3">
-          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
-            {application.applicantName?.charAt(0) || "?"}
+          <div className="h-10 w-10 rounded-full shrink-0 overflow-hidden shadow-sm">
+            {application.applicantPhotoURL ? (
+              <img src={application.applicantPhotoURL} alt={application.applicantName} className="h-full w-full object-cover" />
+            ) : (
+              <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-sm font-medium">
+                {application.applicantName?.charAt(0) || "?"}
+              </div>
+            )}
           </div>
           <div className="space-y-1">
             <h3 className="font-medium text-heading">{application.internshipTitle}</h3>

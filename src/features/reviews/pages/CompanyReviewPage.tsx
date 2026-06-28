@@ -28,8 +28,14 @@ export default function CompanyReviewPage() {
 
       <div className="animate-fade-in-up">
         <div className="flex items-center gap-3 mb-1">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium">
-            {company.name.charAt(0)}
+          <div className="h-10 w-10 rounded-xl shrink-0 overflow-hidden">
+            {company.logo ? (
+              <img src={company.logo} alt={company.name} className="h-full w-full object-cover" />
+            ) : (
+              <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-sm font-medium">
+                {company.name.charAt(0)}
+              </div>
+            )}
           </div>
           <div>
             <h1 className="text-2xl font-medium text-heading">Reviews & Ratings</h1>
