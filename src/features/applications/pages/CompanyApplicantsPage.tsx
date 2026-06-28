@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PageContainer from "@/components/common/PageContainer";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
@@ -8,7 +8,6 @@ import { useUpdateApplicationStatus } from "@/features/applications/hooks/useUpd
 import { toast } from "sonner";
 import StatusBadge from "@/features/applications/components/StatusBadge";
 import { useState } from "react";
-import ApplicantProfileModal from "@/features/companies/components/ApplicantProfileModal";
 import { notificationService } from "@/features/notifications/services/notificationService";
 import type { Application } from "@/types/application";
 import { Eye, Users, Clock, CheckCircle2, XCircle, SearchCheck } from "lucide-react";
@@ -17,7 +16,6 @@ export default function CompanyApplicantsPage() {
   const { internshipId } = useParams();
   const { data: applications } = useInternshipApplications(internshipId || "");
   const updateStatus = useUpdateApplicationStatus();
-  const [selectedApplicant, setSelectedApplicant] = useState<string | null>(null);
   const [interviewApplication, setInterviewApplication] = useState<Application | null>(null);
   const [interviewDate, setInterviewDate] = useState("");
   const [interviewLocation, setInterviewLocation] = useState("");
@@ -81,10 +79,6 @@ export default function CompanyApplicantsPage() {
             </div>
           </AppCard>
         </div>
-      )}
-
-      {selectedApplicant && (
-        <ApplicantProfileModal uid={selectedApplicant} onClose={() => setSelectedApplicant(null)} />
       )}
 
       <PageContainer>
@@ -155,9 +149,11 @@ export default function CompanyApplicantsPage() {
                   </div>
 
                   <div className="flex gap-2 flex-wrap shrink-0">
-                    <AppButton type="button" onClick={() => setSelectedApplicant(application.applicantId)}>
-                      <Eye size="14" /> Profile
-                    </AppButton>
+                    <Link to={`/students/${application.applicantId}`}>
+                      <AppButton type="button">
+                        <Eye size="14" /> Profile
+                      </AppButton>
+                    </Link>
                     {application.status !== "accepted" && application.status !== "rejected" && application.status !== "withdrawn" && (
                       <>
                         {application.status === "pending" && (

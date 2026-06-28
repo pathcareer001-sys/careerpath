@@ -81,7 +81,7 @@ export default function MyApplicationsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-heading truncate">{application.internshipTitle}</p>
-                  <p className="text-[13px] text-secondary-text mt-0.5">{application.companyName}</p>
+                  <Link to={`/companies/${application.companyId}`} className="text-[13px] text-secondary-text hover:text-primary transition-colors">{application.companyName}</Link>
                   {application.interviewDate && (
                     <p className="text-[12px] text-info mt-0.5">Interview: {application.interviewDate}</p>
                   )}

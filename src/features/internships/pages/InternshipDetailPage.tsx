@@ -196,7 +196,7 @@ export default function InternshipDetailPage() {
               )}
               <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
                 <span className="text-secondary-text">Company</span>
-                <span className="text-body font-semibold text-right break-words">{internship.companyName}</span>
+                <Link to={`/companies/${internship.companyId}`} className="text-body font-semibold text-right break-words hover:text-primary transition-colors">{internship.companyName}</Link>
               </div>
               <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5">
                 <span className="text-secondary-text">Status</span>

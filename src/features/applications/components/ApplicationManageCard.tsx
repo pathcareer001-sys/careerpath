@@ -1,4 +1,5 @@
-import { Building2, User, CheckCircle, XCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Building2, User, CheckCircle, XCircle, Eye } from "lucide-react";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
 import StatusBadge from "./StatusBadge";
@@ -35,6 +36,11 @@ export default function ApplicationManageCard({
         </div>
 
         <div className="flex gap-2 shrink-0">
+          <Link to={`/students/${application.applicantId}`}>
+            <AppButton variant="outline">
+              <Eye size="16" />
+            </AppButton>
+          </Link>
           <AppButton onClick={() => onAccept(application.id)}>
             <CheckCircle size="16" />
           </AppButton>

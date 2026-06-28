@@ -48,6 +48,7 @@ const CompanyDashboardPage = lazy(() => import("@/features/companies/pages/Compa
 const CompanyInternshipsPage = lazy(() => import("@/features/companies/pages/CompanyInternshipsPage"));
 const CompanyProfilePage = lazy(() => import("@/features/companies/pages/CompanyProfilePage"));
 const CompanyApplicantsPage = lazy(() => import("@/features/applications/pages/CompanyApplicantsPage"));
+const StudentProfilePage = lazy(() => import("@/features/users/pages/StudentProfilePage"));
 
 export const router = createBrowserRouter([
   {
@@ -109,6 +110,14 @@ export const router = createBrowserRouter([
     element: <ProtectedRoute />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/students/:id",
+        element: (
+          <Suspense fallback={<PageSkeleton />}>
+            <StudentProfilePage />
+          </Suspense>
+        ),
+      },
       {
         element: (
           <RoleRoute role={ROLES.STUDENT}>
