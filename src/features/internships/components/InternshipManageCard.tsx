@@ -18,7 +18,7 @@ export default function InternshipManageCard({
     <AppCard>
       <div className="flex justify-between items-start">
         <div className="flex items-start gap-3">
-          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center shrink-0 shadow-sm">
             <Briefcase size="18" />
           </div>
           <div className="space-y-1">

@@ -34,29 +34,29 @@ export default function MyApplicationsPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="animate-fade-in-up">
-        <h1 className="text-2xl font-medium text-[#0F172A]">Applications</h1>
+        <h1 className="text-2xl font-medium text-heading">Applications</h1>
         <p className="mt-1 text-sm text-secondary-text">Track every step of your internship journey</p>
       </div>
 
       <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 animate-fade-in-up animate-delay-100">
-        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-blue-50 to-white px-6 py-5">
-          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-accent0/5" />
-          <p className="text-[28px] font-medium text-[#0F172A] leading-none">{data?.length || 0}</p>
+        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-accent to-white px-6 py-5">
+          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-accent/5" />
+          <p className="text-[28px] font-medium text-heading leading-none">{data?.length || 0}</p>
           <p className="mt-1.5 text-[13px] text-secondary-text font-medium">Total</p>
         </div>
-        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-emerald-50 to-white px-6 py-5">
-          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-emerald-500/5" />
-          <p className="text-[28px] font-medium text-[#0F172A] leading-none">{data?.filter((i) => i.status === "accepted").length || 0}</p>
+        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-success/10 to-white px-6 py-5">
+          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-success/5" />
+          <p className="text-[28px] font-medium text-heading leading-none">{data?.filter((i) => i.status === "accepted").length || 0}</p>
           <p className="mt-1.5 text-[13px] text-secondary-text font-medium">Accepted</p>
         </div>
-        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-amber-50 to-white px-6 py-5">
-          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-amber-500/5" />
-          <p className="text-[28px] font-medium text-[#0F172A] leading-none">{data?.filter((i) => i.status === "pending" || i.status === "reviewed" || i.status === "interview").length || 0}</p>
+        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-warning/10 to-white px-6 py-5">
+          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-warning/5" />
+          <p className="text-[28px] font-medium text-heading leading-none">{data?.filter((i) => i.status === "pending" || i.status === "reviewed" || i.status === "interview").length || 0}</p>
           <p className="mt-1.5 text-[13px] text-secondary-text font-medium">In Progress</p>
         </div>
-        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-rose-50 to-white px-6 py-5">
-          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-rose-500/5" />
-          <p className="text-[28px] font-medium text-[#0F172A] leading-none">{data?.filter((i) => i.status === "rejected" || i.status === "withdrawn").length || 0}</p>
+        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-error/10 to-white px-6 py-5">
+          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-error/5" />
+          <p className="text-[28px] font-medium text-heading leading-none">{data?.filter((i) => i.status === "rejected" || i.status === "withdrawn").length || 0}</p>
           <p className="mt-1.5 text-[13px] text-secondary-text font-medium">Closed</p>
         </div>
       </div>
@@ -67,15 +67,15 @@ export default function MyApplicationsPage() {
         <div className="animate-fade-in-up animate-delay-200">
           <div className="divide-y divide-divider bg-surface rounded-xl border border-border overflow-hidden">
             {paged.map((application) => (
-              <div key={application.id} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 px-5 py-[14px] transition-all duration-200 hover:bg-[#F8FAFF] hover:pl-6">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
+              <div key={application.id} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 px-5 py-[14px] transition-all duration-200 hover:bg-background hover:pl-6">
+                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
                   {application.companyName.charAt(0)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-[#0F172A] truncate">{application.internshipTitle}</p>
+                  <p className="text-sm font-medium text-heading truncate">{application.internshipTitle}</p>
                   <p className="text-[13px] text-secondary-text mt-0.5">{application.companyName}</p>
                   {application.interviewDate && (
-                    <p className="text-[12px] text-purple-600 mt-0.5">Interview: {application.interviewDate}</p>
+                    <p className="text-[12px] text-info mt-0.5">Interview: {application.interviewDate}</p>
                   )}
                 </div>
                 <StatusBadge status={application.status} />
@@ -86,7 +86,7 @@ export default function MyApplicationsPage() {
                       <XCircle size="14" />
                     </button>
                   )}
-                  <Link to={`/internships/${application.internshipId}`} className="text-[13px] font-medium text-primary hover:underline shrink-0 text-right w-20 transition-all duration-200 hover:text-[#1d4ed8]">
+                  <Link to={`/internships/${application.internshipId}`} className="text-[13px] font-medium text-primary hover:underline shrink-0 text-right w-20 transition-all duration-200 hover:text-primary-hover">
                     Details
                   </Link>
                 </div>

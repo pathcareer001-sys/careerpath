@@ -24,7 +24,7 @@ export default function RatingInput({ value, onChange }: Props) {
               size={32}
               className={
                 star <= value
-                  ? "fill-yellow-400 text-yellow-400"
+                  ? "fill-warning text-warning"
                   : "text-muted"
               }
             />
@@ -36,12 +36,12 @@ export default function RatingInput({ value, onChange }: Props) {
         className="
         inline-flex
         rounded-full
-        bg-yellow-50
+        bg-warning/10
         px-3
         py-1
         text-sm
         font-medium
-        text-yellow-700
+        text-warning
         "
       >
         {value}/5 Rating

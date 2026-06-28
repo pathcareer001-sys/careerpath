@@ -42,7 +42,7 @@ export default function ReviewCard({ review }: { review: Review }) {
           <div
             className="
         rounded-xl
-        bg-yellow-50
+        bg-warning/10
         px-3
         py-2
         "
@@ -56,7 +56,7 @@ export default function ReviewCard({ review }: { review: Review }) {
       text-body
       leading-7
       border-l-4
-      border-blue-500
+      border-primary
       pl-4
       "
         >

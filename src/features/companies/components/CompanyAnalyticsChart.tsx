@@ -15,9 +15,9 @@ interface Props {
 }
 
 const COLORS = {
-  pending: { fill: "#F59E0B", bg: "#FEF3C7" },
-  accepted: { fill: "#059669", bg: "#D1FAE5" },
-  rejected: { fill: "#E11D48", bg: "#FFE4E6" },
+  pending: { fill: "#F2B84B", bg: "#FEF7E0" },
+  accepted: { fill: "#5CBF8F", bg: "#E8F8F0" },
+  rejected: { fill: "#E57373", bg: "#FDE8E8" },
 };
 
 export default function CompanyAnalyticsChart({
@@ -48,13 +48,13 @@ export default function CompanyAnalyticsChart({
             allowDecimals={false}
           />
           <Tooltip
-            cursor={{ fill: "#F1F5F9" }}
+            cursor={{ fill: "var(--color-section)" }}
             contentStyle={{
               borderRadius: 10,
-              border: "1px solid #E2E8F0",
+              border: "1px solid var(--color-border)",
               boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
               fontSize: 13,
-              color: "#0F172A",
+              color: "var(--color-heading)",
             }}
           />
           <Bar dataKey="value" radius={[6, 6, 0, 0]} maxBarSize={64}>

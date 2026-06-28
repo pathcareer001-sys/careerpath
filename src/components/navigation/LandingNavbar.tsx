@@ -48,7 +48,7 @@ export default function LandingNavbar() {
 
           <Link
             to="/register"
-            className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-4 text-sm font-medium text-white transition-all duration-200 hover:from-blue-700 hover:to-purple-700 shadow-sm"
+            className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-4 text-sm font-medium text-white transition-all duration-200 hover:from-primary-hover hover:to-primary-hover shadow-sm"
           >
             Get started
             <ArrowRight size="15" />

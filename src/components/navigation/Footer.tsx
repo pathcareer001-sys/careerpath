@@ -16,7 +16,7 @@ const resources = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-gradient-to-br from-white to-blue-50/50">
+    <footer className="border-t border-border bg-gradient-to-br from-white to-accent">
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1.25fr_0.75fr_0.75fr_1fr]">
           <div>

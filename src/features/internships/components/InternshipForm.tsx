@@ -143,14 +143,14 @@ export default function InternshipForm({
             <button
               type="button"
               onClick={() => setStatus("draft")}
-              className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "draft" ? "bg-amber-100 text-amber-700 font-medium" : "bg-section text-secondary-text hover:bg-slate-200"}`}
+              className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "draft" ? "bg-warning/10 text-warning font-medium" : "bg-section text-secondary-text hover:bg-section"}`}
             >
               Draft
             </button>
             <button
               type="button"
               onClick={() => setStatus("published")}
-              className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "published" ? "bg-emerald-100 text-emerald-700 font-medium" : "bg-section text-secondary-text hover:bg-slate-200"}`}
+              className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "published" ? "bg-success/10 text-success font-medium" : "bg-section text-secondary-text hover:bg-section"}`}
             >
               Published
             </button>

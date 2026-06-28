@@ -34,7 +34,7 @@ export default function BookmarkPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-0 sm:justify-between">
         <div>
-          <h1 className="text-2xl font-medium text-[#0F172A]">Bookmarks</h1>
+          <h1 className="text-2xl font-medium text-heading">Bookmarks</h1>
           <p className="mt-1 text-sm text-secondary-text">
             {totalBookmarks > 0
               ? `${totalBookmarks} saved ${totalBookmarks === 1 ? "item" : "items"}`
@@ -42,40 +42,40 @@ export default function BookmarkPage() {
           </p>
         </div>
         <div className="relative">
-          <Search size="15" className="absolute left-3 top-1/2 -translate-y-1/2 text-[#CBD5E1]" />
+          <Search size="15" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
           <input
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
             }}
             placeholder="Search bookmarks..."
-            className="h-9 w-full sm:w-56 rounded-lg border border-border bg-[#F8FAFF] pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#CBD5E1] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
+            className="h-9 w-full sm:w-56 rounded-lg border border-border bg-background pl-9 pr-3 text-sm text-heading placeholder:text-muted focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
           />
         </div>
       </div>
 
       <Tabs value={tab} onValueChange={setTab}>
-        <TabsList className="bg-[#F1F5F9] p-0.5 rounded-lg">
+        <TabsList className="bg-section p-0.5 rounded-lg">
           <TabsTrigger
             value="companies"
-            className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+            className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
           >
             <Building2 size="15" />
             Companies
             {companies && companies.length > 0 && (
-              <span className="ml-0.5 rounded-full bg-[#E2E8F0] px-1.5 py-0.5 text-[11px] font-medium text-secondary-text">
+              <span className="ml-0.5 rounded-full bg-border px-1.5 py-0.5 text-[11px] font-medium text-secondary-text">
                 {companies.length}
               </span>
             )}
           </TabsTrigger>
           <TabsTrigger
             value="internships"
-            className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+            className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
           >
             <Briefcase size="15" />
             Internships
             {internships && internships.length > 0 && (
-              <span className="ml-0.5 rounded-full bg-[#E2E8F0] px-1.5 py-0.5 text-[11px] font-medium text-secondary-text">
+              <span className="ml-0.5 rounded-full bg-border px-1.5 py-0.5 text-[11px] font-medium text-secondary-text">
                 {internships.length}
               </span>
             )}

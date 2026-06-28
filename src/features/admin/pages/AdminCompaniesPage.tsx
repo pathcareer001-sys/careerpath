@@ -79,7 +79,7 @@ export default function AdminCompaniesPage() {
             onClick={() => { setTab("all"); setSearch(""); }}
             className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
               tab === "all"
-                ? "text-primary border-b-2 border-blue-600 bg-accent/50"
+                ? "text-primary border-b-2 border-primary bg-accent/50"
                 : "text-secondary-text hover:text-body"
             }`}
           >
@@ -89,14 +89,14 @@ export default function AdminCompaniesPage() {
             onClick={() => { setTab("pending"); setSearch(""); }}
             className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors flex items-center gap-2 ${
               tab === "pending"
-                ? "text-primary border-b-2 border-blue-600 bg-accent/50"
+                ? "text-primary border-b-2 border-primary bg-accent/50"
                 : "text-secondary-text hover:text-body"
             }`}
           >
             <ShieldCheck size="15" />
             Pending Verification
             {pendingCount > 0 && (
-              <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-amber-100 text-amber-700 text-[11px] font-bold">
+              <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-warning/10 text-warning text-[11px] font-bold">
                 {pendingCount}
               </span>
             )}

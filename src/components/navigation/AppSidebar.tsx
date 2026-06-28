@@ -67,7 +67,7 @@ export default function AppSidebar() {
 
   return (
     <aside className="w-[220px] min-h-screen bg-surface border-r border-border flex flex-col shrink-0">
-      <div className="px-4 py-4 border-b border-border bg-blue-600">
+      <div className="px-4 py-4 border-b border-border bg-primary">
         <div className="flex items-center gap-2">
           <img src={logo} alt="CareerPath" className="h-7 brightness-0 invert" />
         </div>
@@ -88,7 +88,7 @@ export default function AppSidebar() {
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
                       isActive
-                        ? "bg-sidebar-active text-primary font-medium"
+                        ? "bg-accent text-primary font-medium"
                         : "text-body hover:bg-accent hover:text-primary"
                     }`
                   }

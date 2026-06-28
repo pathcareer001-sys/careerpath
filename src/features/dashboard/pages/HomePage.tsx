@@ -43,12 +43,12 @@ export default function HomePage() {
       <LandingNavbar />
 
       <main>
-        <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700">
-          <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-blue-400/20 blur-3xl" />
+        <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-primary to-secondary">
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/30 blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-primary/30 blur-3xl" />
           <div className="mx-auto grid min-h-[calc(100vh-64px)] max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-14 relative z-10">
             <div className="flex flex-col justify-center animate-fade-in-up">
-              <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-lg bg-white/15 px-3 py-1.5 text-sm font-medium text-blue-100 backdrop-blur-sm border border-white/10">
+              <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-lg bg-white/15 px-3 py-1.5 text-sm font-medium text-white/70 backdrop-blur-sm border border-white/10">
                 <ShieldCheck size="15" />
                 Verified internships and reviewed companies
               </div>
@@ -57,7 +57,7 @@ export default function HomePage() {
                 CareerPath for modern internship discovery
               </h1>
 
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-blue-100">
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
                 Discover internships, compare company experiences, and manage every application from one focused workspace built for students.
               </p>
 
@@ -80,15 +80,15 @@ export default function HomePage() {
               <div className="mt-8 flex gap-8 border-t border-white/20 pt-6 flex-wrap">
                 <div>
                   <p className="text-[22px] font-medium text-white">{companyCount}+</p>
-                  <p className="text-sm text-blue-200">Companies</p>
+                  <p className="text-sm text-white/60">Companies</p>
                 </div>
                 <div>
                   <p className="text-[22px] font-medium text-white">{internshipCount}+</p>
-                  <p className="text-sm text-blue-200">Open roles</p>
+                  <p className="text-sm text-white/60">Open roles</p>
                 </div>
                 <div>
                   <p className="text-[22px] font-medium text-white">4.8</p>
-                  <p className="text-sm text-blue-200">Avg rating</p>
+                  <p className="text-sm text-white/60">Avg rating</p>
                 </div>
               </div>
             </div>
@@ -100,8 +100,8 @@ export default function HomePage() {
                     <p className="text-sm font-medium text-heading">Student workspace</p>
                     <p className="text-xs text-secondary-text mt-0.5">Live opportunities snapshot</p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-success/10 px-2.5 py-1 text-xs font-medium text-success ring-1 ring-green-200">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-600" />
+                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-success/10 px-2.5 py-1 text-xs font-medium text-success ring-1 ring-success/30">
+                    <span className="h-1.5 w-1.5 rounded-full bg-success" />
                     Active
                   </span>
                 </div>
@@ -119,7 +119,7 @@ export default function HomePage() {
                             <p className="text-sm font-medium text-heading">{role}</p>
                             <p className="mt-0.5 text-xs text-secondary-text">{type} role</p>
                           </div>
-                          <span className="rounded-md bg-blue-600 px-2 py-0.5 text-[11px] font-medium text-white">
+                          <span className="rounded-md bg-primary px-2 py-0.5 text-[11px] font-medium text-white">
                             New
                           </span>
                         </div>
@@ -145,7 +145,7 @@ export default function HomePage() {
                             <span className="font-medium text-body">{width}</span>
                           </div>
                           <div className="h-1.5 rounded-full bg-section">
-                            <div className="h-1.5 rounded-full bg-blue-600" style={{ width }} />
+                            <div className="h-1.5 rounded-full bg-primary" style={{ width }} />
                           </div>
                         </div>
                       ))}
@@ -162,7 +162,7 @@ export default function HomePage() {
             <p className="text-sm text-secondary-text">Trusted by students exploring <span className="font-medium text-body">{companyCount}+</span> companies</p>
             <div className="flex flex-wrap gap-2">
               {partnerNames.map((name, i) => {
-                const tagColors = ["bg-accent text-primary", "bg-amber-50 text-amber-600", "bg-purple-50 text-purple-600", "bg-emerald-50 text-emerald-600", "bg-rose-50 text-rose-600"];
+                const tagColors = ["bg-accent text-primary", "bg-warning/5 text-warning", "bg-info/10 text-info", "bg-success/5 text-success", "bg-error/5 text-error"];
                 return (
                   <span key={name} className={`rounded-lg ${tagColors[i]} px-3 py-1.5 text-xs font-medium`}>
                     {name}
@@ -246,18 +246,18 @@ export default function HomePage() {
                     <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-white">
                     <Icon size="16" />
                   </div>
-                  <p className="text-sm font-medium text-slate-800">{label}</p>
+                  <p className="text-sm font-medium text-heading">{label}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-gradient-to-br from-blue-600 to-purple-700 px-6 py-12 text-white">
+        <section className="bg-gradient-to-br from-primary to-secondary px-6 py-12 text-white">
           <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h2 className="text-[22px] font-medium">Start building your application pipeline.</h2>
-              <p className="mt-2 text-sm text-blue-100 max-w-2xl">
+              <p className="mt-2 text-sm text-white/70 max-w-2xl">
                 Create a student account, save interesting companies, and keep every internship opportunity organized.
               </p>
             </div>
@@ -279,7 +279,7 @@ export default function HomePage() {
 
 function EmptyPreview({ icon: Icon, title, text }: { icon: LucideIcon; title: string; text: string }) {
   return (
-    <div className="rounded-xl border border-dashed border-slate-300 bg-surface p-8 text-center">
+    <div className="rounded-xl border border-dashed border-border bg-surface p-8 text-center">
       <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-primary">
         <Icon size="18" />
       </div>

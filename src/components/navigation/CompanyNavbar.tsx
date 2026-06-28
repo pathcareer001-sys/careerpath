@@ -178,7 +178,7 @@ function NavItem({
         transition-colors
         ${
           isActive
-            ? "border-blue-600 text-primary font-medium"
+            ? "border-primary text-primary font-medium"
             : "border-transparent text-secondary-text hover:text-heading"
         }
         `

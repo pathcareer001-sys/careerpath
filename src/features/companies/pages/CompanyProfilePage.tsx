@@ -70,9 +70,9 @@ export default function CompanyProfilePage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700 p-6 text-white">
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-purple-500/20 blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-blue-400/20 blur-3xl" />
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-6 text-white">
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-secondary/30 blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-primary/30 blur-3xl" />
           <div className="relative z-10 flex items-center gap-6">
             <div className="h-20 w-20 overflow-hidden rounded-2xl bg-white/20 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0">
               {logo ? (
@@ -83,8 +83,8 @@ export default function CompanyProfilePage() {
             </div>
             <div>
               <h1 className="text-2xl font-medium">{name || "Company Name"}</h1>
-              <p className="mt-1 text-blue-100">{industry || "Industry"}</p>
-              <p className="text-blue-100 text-sm flex items-center gap-1 mt-1">
+              <p className="mt-1 text-white/70">{industry || "Industry"}</p>
+              <p className="text-white/70 text-sm flex items-center gap-1 mt-1">
                 <MapPin size="14" /> {location || "Location"}
               </p>
             </div>
@@ -94,10 +94,10 @@ export default function CompanyProfilePage() {
 
       <div className="mt-6 space-y-6 animate-fade-in-up animate-delay-100">
         {company && (
-          <AppCard className={`border ${company.verified ? "border-emerald-200 bg-emerald-50/30" : company.verificationRequested ? "border-amber-200 bg-amber-50/30" : "border-border"}`}>
+          <AppCard className={`border ${company.verified ? "border-success/30 bg-success/5" : company.verificationRequested ? "border-warning/30 bg-warning/5" : "border-border"}`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`h-8 w-8 rounded-full ${company.verified ? "bg-emerald-100 text-emerald-600" : company.verificationRequested ? "bg-amber-100 text-amber-600" : "bg-section text-secondary-text"} flex items-center justify-center`}>
+                <div className={`h-8 w-8 rounded-full ${company.verified ? "bg-success/10 text-success" : company.verificationRequested ? "bg-warning/10 text-warning" : "bg-section text-secondary-text"} flex items-center justify-center`}>
                   {company.verified ? "✓" : company.verificationRequested ? "⏳" : "○"}
                 </div>
                 <div>
@@ -126,7 +126,7 @@ export default function CompanyProfilePage() {
                 </AppButton>
               )}
               {company.verificationRequested && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700">
+                <span className="inline-flex items-center gap-1 rounded-full bg-warning/10 px-3 py-1 text-xs font-medium text-warning">
                   Pending Review
                 </span>
               )}
@@ -143,7 +143,7 @@ export default function CompanyProfilePage() {
             <AppInput value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="Website" />
           </div>
 
-          <label className="flex h-40 cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-slate-300 text-secondary-text hover:border-blue-500 transition-colors mt-4">
+          <label className="flex h-40 cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-border text-secondary-text hover:border-primary transition-colors mt-4">
             <input hidden type="file" accept="image/*" onChange={handleLogoUpload} />
             {logo ? (
               <img src={logo} alt="Company Logo" className="h-full w-full rounded-xl object-cover" />
@@ -171,7 +171,7 @@ export default function CompanyProfilePage() {
         <AppCard>
           <h2 className="text-base font-medium mb-4">Preview</h2>
           <div className="flex items-center gap-4">
-            <div className="h-14 w-14 overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shrink-0">
+            <div className="h-14 w-14 overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white shrink-0">
               {logo ? (
                 <img src={logo} alt={name} className="h-full w-full object-cover" />
               ) : (

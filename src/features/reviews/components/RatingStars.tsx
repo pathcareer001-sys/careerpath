@@ -16,8 +16,8 @@ export default function RatingStars({
             size={16}
             className={
               star <= rating
-                ? "fill-yellow-400 text-yellow-400"
-                : "text-gray-300"
+                ? "fill-warning text-warning"
+                : "text-muted"
             }
           />
         )

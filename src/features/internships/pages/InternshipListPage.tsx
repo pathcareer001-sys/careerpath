@@ -74,7 +74,7 @@ export default function InternshipListPage() {
           <select
             value={sort}
             onChange={(e) => { setSort(e.target.value as SortKey); setPage(1); }}
-            className="h-9 rounded-lg border border-border bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
+            className="h-9 rounded-lg border border-border bg-background px-3 text-sm text-heading focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
           >
             <option value="newest">Newest</option>
             <option value="deadline">Deadline</option>
@@ -83,7 +83,7 @@ export default function InternshipListPage() {
           <select
             value={location}
             onChange={(e) => { setLocation(e.target.value); setPage(1); }}
-            className="h-9 rounded-lg border border-border bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
+            className="h-9 rounded-lg border border-border bg-background px-3 text-sm text-heading focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
           >
             <option value="">All locations</option>
             {locations.map((loc) => (
@@ -93,7 +93,7 @@ export default function InternshipListPage() {
           <select
             value={type}
             onChange={(e) => { setType(e.target.value); setPage(1); }}
-            className="h-9 rounded-lg border border-border bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
+            className="h-9 rounded-lg border border-border bg-background px-3 text-sm text-heading focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
           >
             <option value="">All types</option>
             <option value="Remote">Remote</option>

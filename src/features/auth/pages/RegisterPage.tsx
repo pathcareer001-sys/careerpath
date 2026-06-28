@@ -56,7 +56,7 @@ export default function RegisterPage() {
             <label className="block text-xs font-medium text-body mb-1">Register as</label>
             <select
               {...register("role")}
-              className="h-9 w-full rounded-lg border border-border bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
+              className="h-9 w-full rounded-lg border border-border bg-background px-3 text-sm text-heading focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
             >
               <option value="student">Student</option>
               <option value="company">Company</option>
@@ -103,9 +103,9 @@ export default function RegisterPage() {
         </form>
 
         <div className="my-5 flex items-center gap-3">
-          <div className="h-px flex-1 bg-slate-200" />
+          <div className="h-px flex-1 bg-section" />
           <span className="text-xs text-muted">or</span>
-          <div className="h-px flex-1 bg-slate-200" />
+          <div className="h-px flex-1 bg-section" />
         </div>
 
         <button

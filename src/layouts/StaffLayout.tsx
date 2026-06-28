@@ -59,7 +59,7 @@ export default function StaffLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFF] flex">
+    <div className="min-h-screen bg-background flex">
       <aside className="hidden md:flex w-64 bg-surface border-r border-border flex-col shrink-0">
         {sidebarContent(handleLogout)}
       </aside>
@@ -76,7 +76,7 @@ export default function StaffLayout() {
       <div className="flex-1 flex flex-col">
         <header className="h-14 bg-surface/80 backdrop-blur-xl border-b border-border flex items-center justify-end px-6 gap-3 pl-14 md:pl-6">
           <NotificationDropdown />
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-50 px-3 py-1 text-xs font-medium text-purple-600 border border-purple-200">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-info/10 px-3 py-1 text-xs font-medium text-info border border-info/30">
             <Shield size="12" />
             Staff
           </span>

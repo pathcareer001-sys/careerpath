@@ -26,7 +26,7 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
       <AppCard onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()} className="w-full max-w-3xl max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-4">
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-xl font-medium shadow-sm">
+            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-xl font-medium shadow-sm">
               {user.name?.charAt(0)}
             </div>
             <div>

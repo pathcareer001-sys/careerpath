@@ -18,14 +18,14 @@ export default function CompanyInternshipCard({ internship, onDelete }: Props) {
     <AppCard>
       <div className="space-y-5">
         <div className="flex items-start gap-3">
-          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center shrink-0 shadow-sm">
             <Briefcase size="18" />
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
               <h3 className="text-base font-medium text-heading">{internship.title}</h3>
               {internship.status === "draft" && (
-                <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-medium text-amber-700">Draft</span>
+                <span className="rounded bg-warning/10 px-1.5 py-0.5 text-[10px] font-medium text-warning">Draft</span>
               )}
             </div>
             <p className="text-sm text-secondary-text mt-0.5">{internship.companyName}</p>

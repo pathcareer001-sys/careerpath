@@ -39,7 +39,7 @@ export default function UserManagePage() {
             <AppCard key={user.uid}>
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-sm font-medium shrink-0">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium shrink-0">
                     {user.name?.charAt(0) || "?"}
                   </div>
                   <div>

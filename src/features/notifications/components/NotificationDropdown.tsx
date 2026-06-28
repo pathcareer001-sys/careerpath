@@ -121,7 +121,7 @@ export default function NotificationDropdown() {
       h-2
       w-2
       rounded-full
-      bg-blue-600
+      bg-primary
       "
                       />
                     )}

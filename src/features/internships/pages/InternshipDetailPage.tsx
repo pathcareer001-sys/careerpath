@@ -17,10 +17,10 @@ import { useCreateInternshipBookmark } from "@/features/bookmarks/hooks/useCreat
 import { useDeleteInternshipBookmark } from "@/features/bookmarks/hooks/useDeleteInternshipBookmark";
 
 const typeColors: Record<string, string> = {
-  Remote: "bg-gradient-to-r from-emerald-50 to-green-50 text-emerald-700 border border-emerald-200",
-  Hybrid: "bg-gradient-to-r from-blue-50 to-indigo-50 text-primary border border-primary/30",
-  "Full-time": "bg-gradient-to-r from-purple-50 to-violet-50 text-purple-700 border border-purple-200",
-  Onsite: "bg-gradient-to-r from-amber-50 to-orange-50 text-amber-700 border border-amber-200",
+  Remote: "bg-gradient-to-r from-success/10 to-accent text-success border border-success/30",
+  Hybrid: "bg-gradient-to-r from-accent to-section text-primary border border-primary/30",
+  "Full-time": "bg-gradient-to-r from-info/10 to-accent text-info border border-info/30",
+  Onsite: "bg-gradient-to-r from-warning/10 to-accent text-warning border border-warning/30",
 };
 
 export default function InternshipDetailPage() {
@@ -84,9 +84,9 @@ export default function InternshipDetailPage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700 p-6 text-white">
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-purple-500/20 blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-blue-400/20 blur-3xl" />
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-6 text-white">
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-secondary/30 blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-primary/30 blur-3xl" />
           <div className="relative z-10 flex items-start gap-5">
             <div className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white shrink-0 border border-white/10">
               <Building2 size="32" />
@@ -97,25 +97,25 @@ export default function InternshipDetailPage() {
                   Internship Opportunity
                 </span>
                 {internship.status === "draft" && (
-                  <span className="inline-flex rounded-full bg-amber-400/20 px-3 py-1 text-xs font-medium backdrop-blur-sm border border-amber-400/20 text-amber-200">
+                  <span className="inline-flex rounded-full bg-warning/20 px-3 py-1 text-xs font-medium backdrop-blur-sm border border-warning/30 text-white/80">
                     Draft
                   </span>
                 )}
               </div>
               <h1 className="text-[24px] font-medium leading-tight">{internship.title}</h1>
-              <p className="text-blue-100 mt-1">{internship.companyName}</p>
+              <p className="text-white/70 mt-1">{internship.companyName}</p>
               <div className="flex flex-wrap gap-2 mt-4">
                 <span className={`rounded-full px-3 py-1 text-[12px] font-medium ${typeColors[internship.type] || "bg-white/10 text-white"}`}>
                   {internship.type}
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-[12px] text-blue-100 border border-white/10">
+                <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-[12px] text-white/70 border border-white/10">
                   <MapPin size="12" /> {internship.location}
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-[12px] text-blue-100 border border-white/10">
+                <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-[12px] text-white/70 border border-white/10">
                   <Calendar size="12" /> {internship.deadline || "No deadline"}
                 </span>
                 {internship.salary && (
-                  <span className="inline-flex rounded-full bg-emerald-400/20 px-3 py-1 text-[12px] font-medium text-emerald-200 border border-emerald-400/20">
+                  <span className="inline-flex rounded-full bg-success/20 px-3 py-1 text-[12px] font-medium text-white/80 border border-success/30">
                     {internship.salary}
                   </span>
                 )}
@@ -158,7 +158,7 @@ export default function InternshipDetailPage() {
             <h2 className="text-base font-medium text-heading mb-4">Requirements</h2>
             <div className="flex flex-wrap gap-2">
               {(internship.requirements || []).map((item) => (
-                <span key={item} className="rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 px-3 py-1.5 text-xs font-medium text-primary border border-primary/30">
+                <span key={item} className="rounded-full bg-gradient-to-r from-accent to-section px-3 py-1.5 text-xs font-medium text-primary border border-primary/30">
                   {item}
                 </span>
               ))}
@@ -181,7 +181,7 @@ export default function InternshipDetailPage() {
               {internship.salary && (
                 <div className="flex justify-between py-2 border-b border-divider">
                   <span className="text-secondary-text">Salary</span>
-                  <span className="text-emerald-600 font-medium">{internship.salary}</span>
+                  <span className="text-success font-medium">{internship.salary}</span>
                 </div>
               )}
               <div className="flex justify-between py-2 border-b border-divider">
@@ -190,8 +190,8 @@ export default function InternshipDetailPage() {
               </div>
               <div className="flex justify-between py-2">
                 <span className="text-secondary-text">Status</span>
-                <span className={`inline-flex items-center gap-1 font-medium ${internship.status === "draft" ? "text-amber-600" : "text-emerald-600"}`}>
-                  <span className={`h-1.5 w-1.5 rounded-full ${internship.status === "draft" ? "bg-amber-500" : "bg-emerald-500"}`} />
+                <span className={`inline-flex items-center gap-1 font-medium ${internship.status === "draft" ? "text-warning" : "text-success"}`}>
+                  <span className={`h-1.5 w-1.5 rounded-full ${internship.status === "draft" ? "bg-warning" : "bg-success"}`} />
                   {internship.status === "draft" ? "Draft" : "Open"}
                 </span>
               </div>
@@ -201,7 +201,7 @@ export default function InternshipDetailPage() {
           <AppCard>
             <h3 className="text-sm font-medium text-heading mb-3">Company</h3>
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-sm">
+              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white shadow-sm">
                 <Building2 size="20" />
               </div>
               <div>
@@ -216,7 +216,7 @@ export default function InternshipDetailPage() {
             </Link>
           </AppCard>
 
-          <div className="rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-border p-4">
+          <div className="rounded-xl bg-gradient-to-br from-accent to-section border border-border p-4">
             <div className="flex items-start gap-3">
               <div className="h-8 w-8 rounded-full bg-section flex items-center justify-center text-primary shrink-0">
                 <Clock size="15" />

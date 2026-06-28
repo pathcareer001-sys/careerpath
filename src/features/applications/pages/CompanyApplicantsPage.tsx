@@ -89,23 +89,23 @@ export default function CompanyApplicantsPage() {
 
       <PageContainer>
         <div className="animate-fade-in-up">
-          <h1 className="text-2xl font-medium text-[#0F172A]">Applicants</h1>
+          <h1 className="text-2xl font-medium text-heading">Applicants</h1>
           <p className="mt-1 text-sm text-secondary-text">Manage internship applicants</p>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-5 animate-fade-in-up animate-delay-100">
           {[
-            { label: "Total", value: stats.total, gradient: "from-blue-50 to-white", icon: <Users size="16" className="text-primary" /> },
-            { label: "Pending", value: stats.pending, gradient: "from-amber-50 to-white", icon: <Clock size="16" className="text-amber-600" /> },
-            { label: "Reviewed", value: stats.reviewed, gradient: "from-blue-50 to-white", icon: <SearchCheck size="16" className="text-primary" /> },
-            { label: "Accepted", value: stats.accepted, gradient: "from-emerald-50 to-white", icon: <CheckCircle2 size="16" className="text-emerald-600" /> },
-            { label: "Rejected", value: stats.rejected, gradient: "from-rose-50 to-white", icon: <XCircle size="16" className="text-rose-600" /> },
+            { label: "Total", value: stats.total, gradient: "from-accent to-white", icon: <Users size="16" className="text-primary" /> },
+            { label: "Pending", value: stats.pending, gradient: "from-warning/10 to-white", icon: <Clock size="16" className="text-warning" /> },
+            { label: "Reviewed", value: stats.reviewed, gradient: "from-accent to-white", icon: <SearchCheck size="16" className="text-primary" /> },
+            { label: "Accepted", value: stats.accepted, gradient: "from-success/10 to-white", icon: <CheckCircle2 size="16" className="text-success" /> },
+            { label: "Rejected", value: stats.rejected, gradient: "from-error/10 to-white", icon: <XCircle size="16" className="text-error" /> },
           ].map((stat, i) => (
             <div key={stat.label} className={`relative overflow-hidden rounded-xl border border-border bg-gradient-to-br ${stat.gradient} px-5 py-4`}>
-              <div className="absolute top-0 right-0 w-16 h-16 rounded-bl-full opacity-10" style={{ background: i === 0 ? "#5FAED8" : i === 1 ? "#D97706" : i === 2 ? "#5FAED8" : i === 3 ? "#059669" : "#E11D48" }} />
+              <div className="absolute top-0 right-0 w-16 h-16 rounded-bl-full opacity-10" style={{ background: i === 0 ? "var(--color-primary)" : i === 1 ? "var(--color-warning)" : i === 2 ? "var(--color-primary)" : i === 3 ? "var(--color-success)" : "var(--color-error)" }} />
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-[26px] font-medium text-[#0F172A] leading-none">{stat.value}</p>
+                  <p className="text-[26px] font-medium text-heading leading-none">{stat.value}</p>
                   <p className="mt-1 text-[13px] text-secondary-text font-medium">{stat.label}</p>
                 </div>
                 <div className="h-9 w-9 rounded-lg bg-surface shadow-sm border border-border flex items-center justify-center">
@@ -117,12 +117,12 @@ export default function CompanyApplicantsPage() {
         </div>
 
         <div className="mt-6 animate-fade-in-up animate-delay-200">
-          <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700 p-5 text-white">
-            <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-purple-500/20 blur-3xl" />
-            <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-blue-400/20 blur-xl" />
+          <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-5 text-white">
+            <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-secondary/30 blur-3xl" />
+            <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-primary/30 blur-xl" />
             <div className="relative z-10">
               <h2 className="text-xl font-medium">Applicant Management</h2>
-              <p className="text-blue-100 mt-1">Review and manage internship applications.</p>
+              <p className="text-white/70 mt-1">Review and manage internship applications.</p>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@ export default function CompanyApplicantsPage() {
               <AppCard key={application.id}>
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center font-medium shrink-0 shadow-sm">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center font-medium shrink-0 shadow-sm">
                       {application.applicantName?.charAt(0)}
                     </div>
                     <div>
@@ -148,7 +148,7 @@ export default function CompanyApplicantsPage() {
                       <div className="mt-2 flex items-center gap-2">
                         <StatusBadge status={application.status} />
                         {application.interviewDate && (
-                          <span className="text-xs text-purple-600">Interview: {application.interviewDate} {application.interviewLocation ? `(${application.interviewLocation})` : ""}</span>
+                          <span className="text-xs text-info">Interview: {application.interviewDate} {application.interviewLocation ? `(${application.interviewLocation})` : ""}</span>
                         )}
                       </div>
                     </div>

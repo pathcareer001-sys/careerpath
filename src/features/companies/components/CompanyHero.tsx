@@ -24,9 +24,9 @@ export default function CompanyHero({ company }: { company: Company }) {
               {company.verified && <BadgeCheck size={20} className="text-white" />}
             </div>
 
-            {company.industry && <p className="text-blue-100">{company.industry}</p>}
+            {company.industry && <p className="text-white/70">{company.industry}</p>}
 
-            <div className="flex gap-4 mt-2 text-sm text-blue-100">
+            <div className="flex gap-4 mt-2 text-sm text-white/70">
               <div className="flex gap-1 items-center">
                 <MapPin size={16} />
                 {company.location}
@@ -46,9 +46,9 @@ export default function CompanyHero({ company }: { company: Company }) {
 
         <div className="flex flex-col items-start md:items-end gap-3">
           <div className="flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-3">
-            <Star size={18} className="fill-yellow-400 text-yellow-400" />
+            <Star size={18} className="fill-warning text-warning" />
             <span className="text-lg font-medium">{company.avgRating}</span>
-            <span className="text-blue-100">({company.reviewCount} reviews)</span>
+            <span className="text-white/70">({company.reviewCount} reviews)</span>
           </div>
 
           <BookmarkButton companyId={company.id} />

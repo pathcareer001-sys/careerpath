@@ -59,14 +59,14 @@ export default function ReportManagementPage() {
       <PageHeader title="Report Management" description="Manage user reports and flagged content" />
 
       <div className="mt-6 space-y-6 animate-fade-in-up">
-        <AppCard className="border-amber-200 bg-amber-50/30">
+        <AppCard className="border-warning/30 bg-warning/5">
           <div className="flex items-start gap-3">
-            <div className="h-8 w-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 shrink-0">
+            <div className="h-8 w-8 rounded-full bg-warning/10 flex items-center justify-center text-warning shrink-0">
               <AlertTriangle size="16" />
             </div>
             <div>
-              <h3 className="text-sm font-medium text-amber-800">About Reports</h3>
-              <p className="text-sm text-amber-700 mt-1">
+              <h3 className="text-sm font-medium text-heading">About Reports</h3>
+              <p className="text-sm text-body mt-1">
                 Review and take action on user-reported content including reviews, companies, and internship listings.
               </p>
             </div>
@@ -76,39 +76,39 @@ export default function ReportManagementPage() {
         <SearchBar value={search} onChange={setSearch} placeholder="Search reports by reason, reporter, or description..." />
 
         <Tabs value={tab} onValueChange={setTab}>
-          <TabsList className="bg-[#F1F5F9] p-0.5 rounded-lg">
+          <TabsList className="bg-section p-0.5 rounded-lg">
             <TabsTrigger
               value="pending"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <Clock size="15" />
               Pending
               {pendingCount > 0 && (
-                <span className="ml-0.5 rounded-full bg-amber-100 px-1.5 py-0.5 text-[11px] font-medium text-amber-700">
+                <span className="ml-0.5 rounded-full bg-warning/10 px-1.5 py-0.5 text-[11px] font-medium text-warning">
                   {pendingCount}
                 </span>
               )}
             </TabsTrigger>
             <TabsTrigger
               value="resolved"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <Check size="15" />
               Resolved
               {resolvedCount > 0 && (
-                <span className="ml-0.5 rounded-full bg-emerald-100 px-1.5 py-0.5 text-[11px] font-medium text-emerald-700">
+                <span className="ml-0.5 rounded-full bg-success/10 px-1.5 py-0.5 text-[11px] font-medium text-success">
                   {resolvedCount}
                 </span>
               )}
             </TabsTrigger>
             <TabsTrigger
               value="dismissed"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <X size="15" />
               Dismissed
               {dismissedCount > 0 && (
-                <span className="ml-0.5 rounded-full bg-red-100 px-1.5 py-0.5 text-[11px] font-medium text-red-700">
+                <span className="ml-0.5 rounded-full bg-error/10 px-1.5 py-0.5 text-[11px] font-medium text-error">
                   {dismissedCount}
                 </span>
               )}
@@ -135,10 +135,10 @@ export default function ReportManagementPage() {
                             <div className="flex items-start gap-3">
                               <div className={`h-10 w-10 rounded-lg flex items-center justify-center text-white shrink-0 ${
                                 report.type === "review"
-                                  ? "bg-gradient-to-br from-purple-500 to-pink-500"
+                                  ? "bg-gradient-to-br from-primary to-secondary"
                                   : report.type === "company"
-                                    ? "bg-gradient-to-br from-blue-500 to-cyan-500"
-                                    : "bg-gradient-to-br from-emerald-500 to-teal-500"
+                                    ? "bg-gradient-to-br from-secondary to-accent"
+                                    : "bg-gradient-to-br from-success to-info"
                               }`}>
                                 <TypeIcon size="18" />
                               </div>
@@ -160,13 +160,13 @@ export default function ReportManagementPage() {
                             </div>
                             {t === "pending" && (
                               <div className="flex gap-2 shrink-0">
-                                <AppButton
-                                  className="bg-emerald-500 text-white hover:bg-emerald-600"
-                                  onClick={() => handleResolve(report.id)}
-                                  disabled={updateStatus.isPending}
-                                >
-                                  <Check size="14" /> Resolve
-                                </AppButton>
+                              <AppButton
+                                variant="primary"
+                                onClick={() => handleResolve(report.id)}
+                                disabled={updateStatus.isPending}
+                              >
+                                <Check size="14" /> Resolve
+                              </AppButton>
                                 <AppButton
                                   variant="secondary"
                                   className="text-error border-error/30 hover:bg-error/10"

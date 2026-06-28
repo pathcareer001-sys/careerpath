@@ -39,41 +39,41 @@ export default function CompanyDashboardPage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700 p-6 text-white">
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-purple-500/20 blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-blue-400/20 blur-3xl" />
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-6 text-white">
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-secondary/30 blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-primary/30 blur-3xl" />
           <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:justify-between">
             <div>
-              <p className="text-blue-100 text-sm">Welcome Back</p>
+              <p className="text-white/70 text-sm">Welcome Back</p>
               <h1 className="mt-2 text-3xl font-medium">{company?.name || "Your Company"}</h1>
-              <p className="mt-1 text-blue-100">{company?.industry || "Company Profile"}</p>
+              <p className="mt-1 text-white/70">{company?.industry || "Company Profile"}</p>
               {company?.verified && (
-                <span className="inline-flex mt-3 rounded-full bg-emerald-500/20 px-3 py-1 text-xs text-emerald-200 border border-emerald-500/20">
+                <span className="inline-flex mt-3 rounded-full bg-success/20 px-3 py-1 text-xs text-white/80 border border-success/30">
                   ✓ Verified Company
                 </span>
               )}
               {company?.location && (
-                <div className="mt-2 flex items-center gap-2 text-blue-100 text-sm">
+                <div className="mt-2 flex items-center gap-2 text-white/70 text-sm">
                   <MapPin size="14" />
                   <span>{company.location}</span>
                 </div>
               )}
               {company?.website && (
-                <a href={company.website} target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center gap-2 text-blue-100 hover:text-white text-sm transition-colors">
+                <a href={company.website} target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors">
                   <Globe size="14" />
                   <span className="truncate">{company.website}</span>
                 </a>
               )}
               <div className="mt-4 flex items-center gap-2">
-                <Star size="16" className="fill-yellow-400 text-yellow-400" />
+                <Star size="16" className="fill-warning text-warning" />
                 <span className="text-lg font-medium">{company?.avgRating || 0}</span>
-                <span className="text-blue-100 text-sm">({company?.reviewCount || 0} reviews)</span>
+                <span className="text-white/70 text-sm">({company?.reviewCount || 0} reviews)</span>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-blue-100 text-sm">Total Applicants</p>
+              <p className="text-white/70 text-sm">Total Applicants</p>
               <h2 className="text-5xl font-medium">{dashboard.totalApplicants || 0}</h2>
-              <p className="mt-1 text-blue-100 text-sm">Acceptance Rate: {acceptanceRate}%</p>
+              <p className="mt-1 text-white/70 text-sm">Acceptance Rate: {acceptanceRate}%</p>
             </div>
           </div>
         </div>
@@ -120,9 +120,9 @@ export default function CompanyDashboardPage() {
           ) : (
             <div className="space-y-3">
               {dashboard.applications?.slice(0, 5).map((application) => (
-                <div key={application.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-[#F8FAFF] transition-colors -mx-3">
+                <div key={application.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-background transition-colors -mx-3">
                   <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-xs font-medium shrink-0">
+                    <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-xs font-medium shrink-0">
                       {application.applicantName?.charAt(0)}
                     </div>
                     <div>
@@ -145,12 +145,12 @@ export default function CompanyDashboardPage() {
           ) : (
             <div className="space-y-3">
               {dashboard.internships?.slice(0, 5).map((internship) => (
-                <div key={internship.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-[#F8FAFF] transition-colors -mx-3">
+                <div key={internship.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-background transition-colors -mx-3">
                   <div>
                     <p className="text-sm font-medium">{internship.title}</p>
                     <p className="text-xs text-secondary-text">{internship.location}</p>
                   </div>
-                  <span className="rounded-full bg-gradient-to-r from-emerald-50 to-green-50 px-3 py-1 text-xs font-medium text-emerald-700 border border-emerald-200">
+                  <span className="rounded-full bg-gradient-to-r from-success/10 to-accent px-3 py-1 text-xs font-medium text-success border border-success/30">
                     Active
                   </span>
                 </div>
@@ -181,7 +181,7 @@ export default function CompanyDashboardPage() {
               {dashboard.internshipPerformance?.slice(0, 5).map((internship, index) => (
                 <div key={internship.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
                   <div className="flex items-center gap-3">
-                    <span className="h-7 w-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-xs font-medium shrink-0">
+                    <span className="h-7 w-7 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-xs font-medium shrink-0">
                       {index + 1}
                     </span>
                     <div>
@@ -211,14 +211,14 @@ export default function CompanyDashboardPage() {
               {dashboard.reviews?.slice(0, 3).map((review) => (
                 <div key={review.id} className="p-4 rounded-xl border border-border hover:border-border transition-colors">
                   <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center text-xs font-medium">
+                    <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-xs font-medium">
                       {review.userName?.charAt(0)}
                     </div>
                     <div>
                       <p className="text-sm font-medium">{review.userName}</p>
                       <div className="flex items-center gap-1">
                         {[1, 2, 3, 4, 5].map((star) => (
-                          <Star key={star} size="10" className={star <= review.rating ? "fill-[#F59E0B] text-[#F59E0B]" : "text-[#CBD5E1]"} />
+                          <Star key={star} size="10" className={star <= review.rating ? "fill-warning text-warning" : "text-muted"} />
                         ))}
                       </div>
                     </div>

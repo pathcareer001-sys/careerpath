@@ -7,9 +7,9 @@ export default function ErrorPage() {
   console.error(error);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFF] flex items-center justify-center">
+    <div className="min-h-screen bg-background flex items-center justify-center">
       <div className="text-center animate-fade-in-up max-w-md mx-auto px-6">
-        <div className="inline-flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-white text-3xl font-medium shadow-sm mb-6">
+        <div className="inline-flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-br from-primary to-secondary text-white text-3xl font-medium shadow-sm mb-6">
           404
         </div>
         <h1 className="text-3xl font-medium text-heading">Page Not Found</h1>

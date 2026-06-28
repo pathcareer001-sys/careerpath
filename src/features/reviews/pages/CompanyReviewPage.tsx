@@ -28,22 +28,22 @@ export default function CompanyReviewPage() {
 
       <div className="animate-fade-in-up">
         <div className="flex items-center gap-3 mb-1">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-sm font-medium">
+          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium">
             {company.name.charAt(0)}
           </div>
           <div>
-            <h1 className="text-2xl font-medium text-[#0F172A]">Reviews & Ratings</h1>
+            <h1 className="text-2xl font-medium text-heading">Reviews & Ratings</h1>
             <p className="text-sm text-secondary-text">{company.name}</p>
           </div>
         </div>
       </div>
 
-      <div className="mt-6 flex items-center gap-6 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200 animate-fade-in-up animate-delay-100">
+      <div className="mt-6 flex items-center gap-6 p-4 rounded-xl bg-gradient-to-br from-warning/10 to-accent border border-warning/30 animate-fade-in-up animate-delay-100">
         <div className="text-center">
           <p className="text-4xl font-medium text-heading">{company.avgRating || 0}</p>
           <div className="flex items-center gap-0.5 mt-1 justify-center">
             {[1, 2, 3, 4, 5].map((star) => (
-              <Star key={star} size="16" className={star <= Math.round(company.avgRating || 0) ? "fill-amber-400 text-amber-400" : "text-muted"} />
+              <Star key={star} size="16" className={star <= Math.round(company.avgRating || 0) ? "fill-warning text-warning" : "text-muted"} />
             ))}
           </div>
           <p className="text-xs text-secondary-text mt-1">{company.reviewCount || 0} reviews</p>

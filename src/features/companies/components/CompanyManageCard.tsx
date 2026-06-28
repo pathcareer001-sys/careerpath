@@ -20,15 +20,15 @@ export default function CompanyManageCard({
     <AppCard>
       <div className="flex items-start justify-between">
         <div className="flex items-start gap-3">
-          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center shrink-0 shadow-sm">
             <Building2 size="18" />
           </div>
           <div className="space-y-1">
             <h3 className="font-medium text-heading">{company.name}</h3>
             <p className="text-sm text-secondary-text">{company.industry || "No industry"}</p>
             <div className="flex items-center gap-2">
-              <BadgeCheck size="16" className={company.verified ? "text-emerald-600" : "text-muted"} />
-              <span className={company.verified ? "text-sm text-emerald-600 font-medium" : "text-sm text-muted"}>
+              <BadgeCheck size="16" className={company.verified ? "text-success" : "text-muted"} />
+              <span className={company.verified ? "text-sm text-success font-medium" : "text-sm text-muted"}>
                 {company.verified ? "Verified" : "Unverified"}
               </span>
             </div>
@@ -47,7 +47,7 @@ export default function CompanyManageCard({
           </AppButton>
           <AppButton
             onClick={() => onVerify(company.id, company.verified)}
-            className={company.verified ? "!bg-amber-500 hover:!bg-amber-600" : "!bg-emerald-600 hover:!bg-emerald-700"}
+            className={company.verified ? "!bg-warning/50 hover:!bg-warning/70" : "!bg-success hover:!bg-success/80"}
           >
             {company.verified ? "Unverify" : "Verify"}
           </AppButton>

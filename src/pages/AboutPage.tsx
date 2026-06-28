@@ -7,29 +7,29 @@ export default function AboutPage() {
       icon: Search,
       title: "Internship Discovery",
       text: "Find opportunities that match your interests with smart filters and real-time updates.",
-      gradient: "from-blue-500 to-blue-600",
+      gradient: "from-primary to-secondary",
     },
     {
       icon: ShieldCheck,
       title: "Company Reviews",
       text: "Learn from real student experiences before you apply. Transparent ratings and honest feedback.",
-      gradient: "from-purple-500 to-purple-600",
+      gradient: "from-secondary to-accent",
     },
     {
       icon: BarChart3,
       title: "Application Tracking",
       text: "Monitor every stage of your application from submission to offer in one clean dashboard.",
-      gradient: "from-emerald-500 to-emerald-600",
+      gradient: "from-success to-info",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFF]">
-      <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700 text-white">
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl" />
+    <div className="min-h-screen bg-background">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary to-secondary text-white">
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/30 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">
           <h1 className="text-3xl sm:text-5xl font-medium">About CareerPath</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             CareerPath helps students discover internship opportunities, read company reviews, and track applications in one platform.
           </p>
         </div>
@@ -52,7 +52,7 @@ export default function AboutPage() {
       <div className="mx-auto max-w-7xl px-6 py-16 text-center">
         <h2 className="text-[22px] font-medium text-heading">Ready to start your journey?</h2>
         <p className="mt-2 text-sm text-secondary-text">Join thousands of students already using CareerPath.</p>
-        <Link to="/register" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-700 hover:to-purple-700 shadow-sm">
+        <Link to="/register" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-primary-hover hover:to-primary-hover shadow-sm">
           Get started <ArrowRight size="16" />
         </Link>
       </div>

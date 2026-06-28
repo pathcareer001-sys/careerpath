@@ -31,12 +31,12 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFF]">
-      <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700 text-white">
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl" />
+    <div className="min-h-screen bg-background">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary to-secondary text-white">
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/30 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">
           <h1 className="text-3xl sm:text-5xl font-medium">Contact Us</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Have questions? We'd love to hear from you.
           </p>
         </div>
@@ -47,7 +47,7 @@ export default function ContactPage() {
           <div className="space-y-4">
             <div className="rounded-xl bg-surface border border-border p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white">
+                <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white">
                   <Mail size="18" />
                 </div>
                 <div>
@@ -58,7 +58,7 @@ export default function ContactPage() {
             </div>
             <div className="rounded-xl bg-surface border border-border p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white">
+                <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-success to-info flex items-center justify-center text-white">
                   <Phone size="18" />
                 </div>
                 <div>
@@ -69,7 +69,7 @@ export default function ContactPage() {
             </div>
             <div className="rounded-xl bg-surface border border-border p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white">
+                <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-warning to-accent flex items-center justify-center text-white">
                   <MapPin size="18" />
                 </div>
                 <div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 <textarea
                   rows={5}
                   placeholder="Your message..."
-                  className="h-36 w-full rounded-lg border border-border bg-[#F8FAFF] px-3 py-2.5 text-sm text-[#0F172A] placeholder:text-[#CBD5E1] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors resize-none"
+                  className="h-36 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-heading placeholder:text-muted focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors resize-none"
                   {...register("message")}
                 />
                 {errors.message && <p className="mt-1 text-xs text-error">{errors.message.message}</p>}

@@ -66,39 +66,39 @@ export default function ReviewModerationPage() {
         <SearchBar value={search} onChange={setSearch} placeholder="Search reviews by user or content..." />
 
         <Tabs value={tab} onValueChange={setTab}>
-          <TabsList className="bg-[#F1F5F9] p-0.5 rounded-lg">
+          <TabsList className="bg-section p-0.5 rounded-lg">
             <TabsTrigger
               value="pending"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <Clock size="15" />
               Pending
               {pendingCount > 0 && (
-                <span className="ml-0.5 rounded-full bg-amber-100 px-1.5 py-0.5 text-[11px] font-medium text-amber-700">
+                <span className="ml-0.5 rounded-full bg-warning/10 px-1.5 py-0.5 text-[11px] font-medium text-warning">
                   {pendingCount}
                 </span>
               )}
             </TabsTrigger>
             <TabsTrigger
               value="approved"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <Check size="15" />
               Approved
               {approvedCount > 0 && (
-                <span className="ml-0.5 rounded-full bg-emerald-100 px-1.5 py-0.5 text-[11px] font-medium text-emerald-700">
+                <span className="ml-0.5 rounded-full bg-success/10 px-1.5 py-0.5 text-[11px] font-medium text-success">
                   {approvedCount}
                 </span>
               )}
             </TabsTrigger>
             <TabsTrigger
               value="rejected"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <X size="15" />
               Rejected
               {rejectedCount > 0 && (
-                <span className="ml-0.5 rounded-full bg-red-100 px-1.5 py-0.5 text-[11px] font-medium text-red-700">
+                <span className="ml-0.5 rounded-full bg-error/10 px-1.5 py-0.5 text-[11px] font-medium text-error">
                   {rejectedCount}
                 </span>
               )}
@@ -115,14 +115,14 @@ export default function ReviewModerationPage() {
                     <AppCard key={review.id}>
                       <div className="flex justify-between gap-4">
                         <div className="flex items-start gap-3">
-                          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
+                          <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
                             {review.userName?.charAt(0) || "?"}
                           </div>
                           <div>
                             <h3 className="font-medium text-heading">{review.userName || "Anonymous"}</h3>
                             <div className="flex items-center gap-1 mt-0.5">
                               {[1, 2, 3, 4, 5].map((star) => (
-                                <Star key={star} size="12" className={star <= review.rating ? "fill-[#F59E0B] text-[#F59E0B]" : "text-[#CBD5E1]"} />
+                                <Star key={star} size="12" className={star <= review.rating ? "fill-warning text-warning" : "text-muted"} />
                               ))}
                               <span className="text-xs text-muted ml-1">({review.rating}/5)</span>
                             </div>
@@ -133,7 +133,7 @@ export default function ReviewModerationPage() {
                           {tab === "pending" && (
                             <>
                               <AppButton
-                                className="bg-emerald-500 text-white hover:bg-emerald-600 border-emerald-500"
+                                variant="primary"
                                 onClick={() => handleApprove(review.id)}
                                 disabled={updateModeration.isPending}
                               >

@@ -17,7 +17,7 @@ export default function AuthHero() {
         Discover internships, explore companies, and track applications.
       </h1>
 
-      <p className="mt-3 text-sm text-blue-100 max-w-sm leading-relaxed relative">
+      <p className="mt-3 text-sm text-white/70 max-w-sm leading-relaxed relative">
         The modern platform for students to find, compare, and apply to
         internship opportunities — all in one workspace.
       </p>
@@ -28,7 +28,7 @@ export default function AuthHero() {
           "Track every application stage in one place",
           "Compare internships side by side",
         ].map((text) => (
-          <div key={text} className="flex items-center gap-3 text-sm text-blue-50">
+          <div key={text} className="flex items-center gap-3 text-sm text-white/80">
             <div className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20">
               <span className="text-white text-[10px]">✓</span>
             </div>
@@ -40,15 +40,15 @@ export default function AuthHero() {
       <div className="mt-10 flex gap-8 border-t border-white/20 pt-6 relative">
         <div>
           <p className="text-[22px] font-medium text-white">10K+</p>
-          <p className="text-sm text-blue-200">Students</p>
+          <p className="text-sm text-white/60">Students</p>
         </div>
         <div>
           <p className="text-[22px] font-medium text-white">500+</p>
-          <p className="text-sm text-blue-200">Internships</p>
+          <p className="text-sm text-white/60">Internships</p>
         </div>
         <div>
           <p className="text-[22px] font-medium text-white">200+</p>
-          <p className="text-sm text-blue-200">Companies</p>
+          <p className="text-sm text-white/60">Companies</p>
         </div>
       </div>
     </div>

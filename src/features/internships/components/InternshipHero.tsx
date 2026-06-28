@@ -37,7 +37,7 @@ export default function InternshipHero({
               {internship.title}
             </h1>
 
-            <div className="mt-3 flex items-center gap-2 text-blue-100">
+            <div className="mt-3 flex items-center gap-2 text-white/70">
               <Building2 size={18} />
               {internship.companyName}
             </div>

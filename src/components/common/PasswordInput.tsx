@@ -11,7 +11,7 @@ export default function PasswordInput({ className, ...props }: InputHTMLAttribut
       <input
         type={visible ? "text" : "password"}
         className={cn(
-          "h-9 w-full rounded-lg border border-border bg-card px-3 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--accent)] transition-colors",
+          "h-9 w-full rounded-lg border border-border bg-surface px-3 pr-10 text-sm text-body placeholder:text-secondary-text focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors",
           className,
         )}
         {...props}
@@ -20,7 +20,7 @@ export default function PasswordInput({ className, ...props }: InputHTMLAttribut
         type="button"
         tabIndex={-1}
         onClick={() => setVisible((v) => !v)}
-        className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors p-0.5"
+        className="absolute right-2 top-1/2 -translate-y-1/2 text-secondary-text hover:text-body transition-colors p-0.5"
       >
         {visible ? <EyeOff size={16} /> : <Eye size={16} />}
       </button>

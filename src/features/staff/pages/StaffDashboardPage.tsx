@@ -15,7 +15,7 @@ export default function StaffDashboardPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="animate-fade-in-up">
-        <h1 className="text-2xl font-medium text-[#0F172A]">Staff Dashboard</h1>
+        <h1 className="text-2xl font-medium text-heading">Staff Dashboard</h1>
         <p className="mt-1 text-sm text-secondary-text">Moderate reviews, verify companies, manage reports</p>
       </div>
 
@@ -36,14 +36,14 @@ export default function StaffDashboardPage() {
         </Link>
         <Link to="/staff/verification">
           <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
-            <ShieldCheck size="20" className="text-emerald-600 mb-2" />
+            <ShieldCheck size="20" className="text-success mb-2" />
             <h3 className="font-medium">Company Verification</h3>
             <p className="text-sm text-secondary-text mt-1">{pendingVerification} companies pending verification</p>
           </AppCard>
         </Link>
         <Link to="/staff/reports">
           <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
-            <Flag size="20" className="text-rose-600 mb-2" />
+            <Flag size="20" className="text-error mb-2" />
             <h3 className="font-medium">Reports</h3>
             <p className="text-sm text-secondary-text mt-1">Manage user reports</p>
           </AppCard>

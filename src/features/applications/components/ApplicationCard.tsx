@@ -7,10 +7,10 @@ interface Props {
 }
 
 const stageMeta: Record<string, { label: string; color: string }> = {
-  pending: { label: "Applied", color: "bg-amber-500" },
-  reviewed: { label: "Under Review", color: "bg-accent0" },
-  interview: { label: "Interview", color: "bg-purple-500" },
-  accepted: { label: "Accepted", color: "bg-emerald-500" },
+  pending: { label: "Applied", color: "bg-warning/50" },
+  reviewed: { label: "Under Review", color: "bg-accent" },
+  interview: { label: "Interview", color: "bg-info/100" },
+  accepted: { label: "Accepted", color: "bg-success/50" },
   rejected: { label: "Rejected", color: "bg-error/100" },
 };
 
@@ -31,8 +31,8 @@ export default function ApplicationCard({ application }: Props) {
             const isLast = i === timelineStages.length - 1;
             return (
               <div key={s} className="flex flex-col items-center">
-                <div className={`h-3 w-3 rounded-full border-2 ${isPast ? `${meta.color} border-white` : "border-slate-300 bg-surface"}`} />
-                {!isLast && <div className={`w-0.5 h-6 ${isPast && timelineStages[i + 1] !== "rejected" ? "bg-blue-300" : "bg-slate-200"}`} />}
+                <div className={`h-3 w-3 rounded-full border-2 ${isPast ? `${meta.color} border-white` : "border-border bg-surface"}`} />
+                {!isLast && <div className={`w-0.5 h-6 ${isPast && timelineStages[i + 1] !== "rejected" ? "bg-primary/30" : "bg-section"}`} />}
               </div>
             );
           })}
@@ -63,7 +63,7 @@ export default function ApplicationCard({ application }: Props) {
           </div>
 
           {application.interviewDate && (
-            <div className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-purple-50 px-2.5 py-1 text-xs font-medium text-purple-600">
+            <div className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-info/10 px-2.5 py-1 text-xs font-medium text-info">
               <CalendarDays size="12" />
               Interview: {new Date(application.interviewDate).toLocaleDateString()}
             </div>

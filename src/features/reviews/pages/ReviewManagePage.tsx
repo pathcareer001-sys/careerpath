@@ -28,7 +28,7 @@ export default function ReviewManagePage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <h1 className="text-2xl font-medium text-[#0F172A]">Review Management</h1>
+        <h1 className="text-2xl font-medium text-heading">Review Management</h1>
         <p className="mt-1 text-sm text-secondary-text">Manage company reviews</p>
       </div>
 
@@ -43,14 +43,14 @@ export default function ReviewManagePage() {
               <AppCard key={review.id}>
                 <div className="flex justify-between gap-4">
                   <div className="flex items-start gap-3">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
+                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-warning to-accent text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
                       {review.userName?.charAt(0) || "?"}
                     </div>
                     <div>
                       <h3 className="font-medium text-heading">{review.userName}</h3>
                       <div className="flex items-center gap-1 mt-0.5">
                         {[1, 2, 3, 4, 5].map((star) => (
-                          <Star key={star} size="12" className={star <= review.rating ? "fill-[#F59E0B] text-[#F59E0B]" : "text-[#CBD5E1]"} />
+                          <Star key={star} size="12" className={star <= review.rating ? "fill-warning text-warning" : "text-muted"} />
                         ))}
                       </div>
                       <p className="mt-2 text-sm text-body">{review.review}</p>

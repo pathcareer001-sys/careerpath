@@ -59,7 +59,7 @@ export default function CompanyVerificationPage() {
             onClick={() => { setTab("pending"); setSearch(""); }}
             className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors flex items-center gap-2 ${
               tab === "pending"
-                ? "text-primary border-b-2 border-blue-600 bg-accent/50"
+                ? "text-primary border-b-2 border-primary bg-accent/50"
                 : "text-secondary-text hover:text-body"
             }`}
           >
@@ -70,7 +70,7 @@ export default function CompanyVerificationPage() {
             onClick={() => { setTab("verified"); setSearch(""); }}
             className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors flex items-center gap-2 ${
               tab === "verified"
-                ? "text-primary border-b-2 border-blue-600 bg-accent/50"
+                ? "text-primary border-b-2 border-primary bg-accent/50"
                 : "text-secondary-text hover:text-body"
             }`}
           >
@@ -92,7 +92,7 @@ export default function CompanyVerificationPage() {
               <AppCard key={company.id}>
                 <div className="flex items-start justify-between">
                   <div className="flex items-start gap-3">
-                    <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-lg font-medium shrink-0 shadow-sm">
+                    <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-lg font-medium shrink-0 shadow-sm">
                       {company.logo ? (
                         <img src={company.logo} alt="" className="h-full w-full object-cover rounded-xl" />
                       ) : (
@@ -124,10 +124,10 @@ export default function CompanyVerificationPage() {
                       <div className="flex items-center gap-2 mt-2">
                         <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
                           company.verified
-                            ? "bg-emerald-50 text-emerald-700"
+                            ? "bg-success/5 text-success"
                             : company.verificationRequested
                               ? "bg-accent text-primary"
-                              : "bg-amber-50 text-amber-700"
+                              : "bg-warning/5 text-warning"
                         }`}>
                           {company.verified ? "Verified" : company.verificationRequested ? "Requested" : "Unverified"}
                         </span>
@@ -140,7 +140,7 @@ export default function CompanyVerificationPage() {
                   <AppButton
                     onClick={() => handleVerify(company.id, company.verified)}
                     disabled={updateCompany.isPending}
-                    className={company.verified ? "!bg-amber-500 hover:!bg-amber-600" : "!bg-emerald-600 hover:!bg-emerald-700"}
+                    className={company.verified ? "!bg-warning/50 hover:!bg-warning/70" : "!bg-success hover:!bg-success/80"}
                   >
                     <ShieldCheck size="14" />
                     {company.verified ? "Unverify" : "Verify"}

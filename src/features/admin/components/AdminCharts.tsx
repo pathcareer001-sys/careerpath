@@ -11,7 +11,7 @@ import {
   Legend,
 } from "recharts";
 
-const PIE_COLORS = ["#5FAED8", "#059669", "#F59E0B", "#E11D48", "#8B5CF6"];
+const PIE_COLORS = ["#5FAED8", "#5CBF8F", "#F2B84B", "#E57373", "#7BC7F2"];
 
 export function AdminBarChart({ data }: { data: { name: string; value: number }[] }) {
   return (
@@ -31,13 +31,13 @@ export function AdminBarChart({ data }: { data: { name: string; value: number }[
             allowDecimals={false}
           />
           <Tooltip
-            cursor={{ fill: "#F1F5F9" }}
+            cursor={{ fill: "var(--color-section)" }}
             contentStyle={{
               borderRadius: 10,
-              border: "1px solid #E2E8F0",
+              border: "1px solid var(--color-border)",
               boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
               fontSize: 13,
-              color: "#0F172A",
+              color: "var(--color-heading)",
             }}
           />
           <Bar dataKey="value" radius={[6, 6, 0, 0]} maxBarSize={72}>
@@ -72,7 +72,7 @@ export function AdminPieChart({ data }: { data: { name: string; value: number }[
           <Tooltip
             contentStyle={{
               borderRadius: 10,
-              border: "1px solid #E2E8F0",
+              border: "1px solid var(--color-border)",
               fontSize: 13,
             }}
           />

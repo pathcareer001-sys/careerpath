@@ -37,7 +37,7 @@ export default function AdminDashboardPage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <h1 className="text-2xl font-medium text-[#0F172A]">Admin Dashboard</h1>
+        <h1 className="text-2xl font-medium text-heading">Admin Dashboard</h1>
         <p className="mt-1 text-sm text-secondary-text">Manage CareerPath platform</p>
       </div>
 
@@ -62,14 +62,14 @@ export default function AdminDashboardPage() {
             </Link>
             <Link to="/admin/users">
               <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
-                <ShieldCheck size="20" className="text-purple-600 mb-2" />
+                <ShieldCheck size="20" className="text-info mb-2" />
                 <p className="font-medium">Manage Users</p>
                 <p className="text-xs text-secondary-text mt-1">Edit roles and manage user accounts</p>
               </AppCard>
             </Link>
             <Link to="/admin/reviews">
               <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
-                <ShieldCheck size="20" className="text-emerald-600 mb-2" />
+                <ShieldCheck size="20" className="text-success mb-2" />
                 <p className="font-medium">Manage Reviews</p>
                 <p className="text-xs text-secondary-text mt-1">Moderate company reviews</p>
               </AppCard>
@@ -80,14 +80,14 @@ export default function AdminDashboardPage() {
 
       {pendingCompanies.length > 0 && (
         <div className="mt-6 animate-fade-in-up animate-delay-200">
-          <AppCard className="border-amber-200">
+          <AppCard className="border-warning/30">
             <h3 className="mb-4 text-base font-medium flex items-center gap-2">
-              <ShieldX size="16" className="text-amber-500" />
+              <ShieldX size="16" className="text-warning" />
               Pending Verification ({pendingCompanies.length})
             </h3>
             <div className="space-y-3">
               {pendingCompanies.slice(0, 10).map((company) => (
-                <div key={company.id} className="flex items-center justify-between p-3 rounded-lg bg-amber-50/50 hover:bg-amber-50 transition-colors">
+                <div key={company.id} className="flex items-center justify-between p-3 rounded-lg bg-warning/5 hover:bg-warning/5 transition-colors">
                   <div>
                     <p className="font-medium text-sm text-heading">{company.name}</p>
                     <p className="text-xs text-secondary-text">{company.industry || "No industry"}</p>
@@ -118,7 +118,7 @@ export default function AdminDashboardPage() {
 
         <AppCard>
           <div className="flex items-center gap-2 mb-4">
-            <PieChart size="18" className="text-purple-600" />
+            <PieChart size="18" className="text-info" />
             <h3 className="text-base font-medium">Company Verification Status</h3>
           </div>
           {data?.totalCompanies === 0 ? (
@@ -135,21 +135,21 @@ export default function AdminDashboardPage() {
         <AppCard>
           <h3 className="mb-4 text-base font-medium">Platform Overview</h3>
           <div className="grid gap-4 md:grid-cols-4">
-            <div className="p-4 rounded-lg bg-gradient-to-br from-blue-50 to-white border border-border">
+            <div className="p-4 rounded-lg bg-gradient-to-br from-accent to-white border border-border">
               <p className="text-secondary-text text-sm">Users</p>
-              <p className="text-2xl font-medium text-[#0F172A] mt-1">{data?.totalUsers || 0}</p>
+              <p className="text-2xl font-medium text-heading mt-1">{data?.totalUsers || 0}</p>
             </div>
-            <div className="p-4 rounded-lg bg-gradient-to-br from-purple-50 to-white border border-border">
+            <div className="p-4 rounded-lg bg-gradient-to-br from-info/10 to-white border border-border">
               <p className="text-secondary-text text-sm">Companies</p>
-              <p className="text-2xl font-medium text-[#0F172A] mt-1">{data?.totalCompanies || 0}</p>
+              <p className="text-2xl font-medium text-heading mt-1">{data?.totalCompanies || 0}</p>
             </div>
-            <div className="p-4 rounded-lg bg-gradient-to-br from-emerald-50 to-white border border-border">
+            <div className="p-4 rounded-lg bg-gradient-to-br from-success/5 to-white border border-border">
               <p className="text-secondary-text text-sm">Internships</p>
-              <p className="text-2xl font-medium text-[#0F172A] mt-1">{data?.totalInternships || 0}</p>
+              <p className="text-2xl font-medium text-heading mt-1">{data?.totalInternships || 0}</p>
             </div>
-            <div className="p-4 rounded-lg bg-gradient-to-br from-amber-50 to-white border border-border">
+            <div className="p-4 rounded-lg bg-gradient-to-br from-warning/5 to-white border border-border">
               <p className="text-secondary-text text-sm">Applications</p>
-              <p className="text-2xl font-medium text-[#0F172A] mt-1">{data?.totalApplications || 0}</p>
+              <p className="text-2xl font-medium text-heading mt-1">{data?.totalApplications || 0}</p>
             </div>
           </div>
         </AppCard>

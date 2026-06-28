@@ -201,7 +201,7 @@ export default function ProfilePage() {
                   </div>
                 )}
               </div>
-              <label className="absolute -bottom-1 -right-1 cursor-pointer rounded-full bg-blue-600 p-2 text-xs font-medium text-white shadow-md hover:bg-blue-700 transition-all">
+              <label className="absolute -bottom-1 -right-1 cursor-pointer rounded-full bg-primary p-2 text-xs font-medium text-white shadow-md hover:bg-primary-hover transition-all">
                 <Camera size={14} />
                 <input
                   type="file"
@@ -238,7 +238,7 @@ export default function ProfilePage() {
               <span className="rounded-full bg-success/10 px-3 py-1 text-xs text-success">
                 {completion}% Complete
               </span>
-              <span className="rounded-full bg-purple-50 px-3 py-1 text-xs text-purple-600">
+              <span className="rounded-full bg-info/10 px-3 py-1 text-xs text-info">
                 {user?.resumeUrl ? "Resume ✓" : "No Resume"}
               </span>
             </div>
@@ -250,7 +250,7 @@ export default function ProfilePage() {
               </div>
               <div className="h-2 rounded-full bg-section">
                 <div
-                  className="h-2 rounded-full bg-blue-600 transition-all duration-500"
+                  className="h-2 rounded-full bg-primary transition-all duration-500"
                   style={{ width: `${completion}%` }}
                 />
               </div>
@@ -441,7 +441,7 @@ export default function ProfilePage() {
           <AppCard>
             <h2 className="text-lg font-medium">Resume</h2>
             <p className="text-sm text-secondary-text mt-1">Upload your latest CV</p>
-            <label className="mt-4 flex h-32 cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-primary/30 hover:border-blue-500">
+            <label className="mt-4 flex h-32 cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-primary/30 hover:border-primary">
               <input
                 type="file"
                 accept=".pdf"
