@@ -9,8 +9,23 @@ import { useInternshipBookmarks } from "@/features/bookmarks/hooks/useInternship
 const tagStyles: Record<string, string> = {
   Remote: "bg-gradient-to-r from-success/10 to-accent text-success border border-success/30",
   Hybrid: "bg-gradient-to-r from-accent to-section text-primary border border-primary/30",
-  "Full-time": "bg-gradient-to-r from-info/10 to-accent text-info border border-info/30",
   Onsite: "bg-gradient-to-r from-warning/10 to-accent text-warning border border-warning/30",
+};
+
+const badgeStyles: Record<string, string> = {
+  Internship: "bg-info/10 text-info border border-info/20",
+  "Full Time": "bg-info/10 text-info border border-info/20",
+  "Part Time": "bg-info/10 text-info border border-info/20",
+  Contract: "bg-info/10 text-info border border-info/20",
+  "SMA/SMK": "bg-purple-500/10 text-purple-600 border border-purple-500/20",
+  "Diploma (D3)": "bg-purple-500/10 text-purple-600 border border-purple-500/20",
+  "Bachelor's Degree (S1)": "bg-purple-500/10 text-purple-600 border border-purple-500/20",
+  "Master's Degree (S2)": "bg-purple-500/10 text-purple-600 border border-purple-500/20",
+  "Fresh Graduate": "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20",
+  "Less than 1 Year": "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20",
+  "1-3 Years": "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20",
+  "3-5 Years": "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20",
+  "5+ Years": "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20",
 };
 
 export default function InternshipCard({ internship }: { internship: Internship }) {
@@ -80,6 +95,24 @@ export default function InternshipCard({ internship }: { internship: Internship 
           {internship.salary && (
             <span className="rounded-full bg-gradient-to-r from-success/10 to-accent px-2.5 py-[3px] text-[12px] font-medium text-success border border-success/30 leading-none">
               {internship.salary}
+            </span>
+          )}
+        </div>
+
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {internship.employmentType && (
+            <span className={`rounded px-1.5 py-[2px] text-[10px] font-medium leading-none ${badgeStyles[internship.employmentType] || "bg-section text-secondary-text border border-border/60"}`}>
+              {internship.employmentType}
+            </span>
+          )}
+          {internship.minEducation && (
+            <span className={`rounded px-1.5 py-[2px] text-[10px] font-medium leading-none ${badgeStyles[internship.minEducation] || "bg-section text-secondary-text border border-border/60"}`}>
+              {internship.minEducation === "Bachelor's Degree (S1)" ? "S1" : internship.minEducation === "Master's Degree (S2)" ? "S2" : internship.minEducation === "Diploma (D3)" ? "D3" : internship.minEducation}
+            </span>
+          )}
+          {internship.experienceLevel && (
+            <span className={`rounded px-1.5 py-[2px] text-[10px] font-medium leading-none ${badgeStyles[internship.experienceLevel] || "bg-section text-secondary-text border border-border/60"}`}>
+              {internship.experienceLevel}
             </span>
           )}
         </div>

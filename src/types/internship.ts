@@ -15,4 +15,24 @@ export interface Internship {
   salary?: string;
   status?: "draft" | "published";
   createdAt?: Timestamp;
+
+  // General Information
+  category?: string;
+  employmentType?: string;
+  workMode?: string;
+
+  // Requirements
+  minEducation?: string;
+  experienceLevel?: string;
+  requiredSkills?: string[];
+  preferredSkills?: string[];
+  languageRequirement?: string;
+
+  // Job Details
+  salaryMin?: string;
+  salaryMax?: string;
+  numberOfOpenings?: number;
+  workingHours?: string;
+  responsibilities?: string;
+  benefits?: string;
 }

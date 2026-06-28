@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { FirebaseError } from "firebase/app";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import PageContainer from "@/components/common/PageContainer";
 import PageHeader from "@/components/common/PageHeader";
@@ -35,9 +36,20 @@ export default function InternshipManagePage() {
 
   const handleEdit = async (data: InternshipFormData) => {
     if (!editingInternship) return;
-    await updateInternship.mutateAsync({ id: editingInternship.id, data });
-    toast.success("Internship updated");
-    setEditingInternship(null);
+    try {
+      await updateInternship.mutateAsync({ id: editingInternship.id, data });
+      toast.success("Internship updated");
+      setEditingInternship(null);
+    } catch (error: unknown) {
+      console.error(error);
+      const message =
+        error instanceof FirebaseError
+          ? `[${error.code}] ${error.message}`
+          : error instanceof Error
+            ? error.message
+            : "Unknown error";
+      toast.error(message);
+    }
   };
 
   return (

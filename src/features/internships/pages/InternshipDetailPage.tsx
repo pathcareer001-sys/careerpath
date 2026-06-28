@@ -122,6 +122,22 @@ export default function InternshipDetailPage() {
                   </span>
                 )}
               </div>
+              <div className="flex flex-wrap gap-1.5 mt-3">
+                {internship.employmentType && (
+                  <span className="rounded bg-info/10 px-2 py-[2px] text-[11px] font-medium text-info border border-info/20 leading-none">{internship.employmentType}</span>
+                )}
+                {internship.minEducation && (
+                  <span className="rounded bg-purple-500/10 px-2 py-[2px] text-[11px] font-medium text-purple-600 border border-purple-500/20 leading-none">
+                    {internship.minEducation === "Bachelor's Degree (S1)" ? "S1" : internship.minEducation === "Master's Degree (S2)" ? "S2" : internship.minEducation === "Diploma (D3)" ? "D3" : internship.minEducation}
+                  </span>
+                )}
+                {internship.experienceLevel && (
+                  <span className="rounded bg-emerald-500/10 px-2 py-[2px] text-[11px] font-medium text-emerald-600 border border-emerald-500/20 leading-none">{internship.experienceLevel}</span>
+                )}
+                {internship.numberOfOpenings && (
+                  <span className="flex items-center gap-1 rounded bg-primary/10 px-2 py-[2px] text-[11px] font-medium text-primary border border-primary/20 leading-none">{internship.numberOfOpenings} position{internship.numberOfOpenings > 1 ? "s" : ""}</span>
+                )}
+              </div>
             </div>
             <div className="shrink-0 flex flex-col gap-2.5 w-full md:w-auto">
               {user?.role === "student" && (
@@ -165,16 +181,69 @@ export default function InternshipDetailPage() {
             <p className="text-sm text-body leading-relaxed whitespace-pre-line">{internship.description}</p>
           </AppCard>
 
+          {internship.responsibilities && (
+            <AppCard>
+              <h2 className="text-[15px] font-semibold text-heading mb-3">Responsibilities</h2>
+              <p className="text-sm text-body leading-relaxed whitespace-pre-line">{internship.responsibilities}</p>
+            </AppCard>
+          )}
+
           <AppCard>
             <h2 className="text-[15px] font-semibold text-heading mb-4">Requirements</h2>
-            <div className="flex flex-wrap gap-2">
-              {(internship.requirements || []).map((item) => (
-                <span key={item} className="rounded-full bg-primary/[0.06] px-3.5 py-1.5 text-xs font-medium text-primary border border-primary/15">
-                  {item}
-                </span>
-              ))}
-            </div>
+            {(internship.requirements?.length > 0 || internship.requiredSkills?.length > 0) && (
+              <>
+                {internship.requirements?.length > 0 && (
+                  <>
+                    <h3 className="text-xs font-medium text-secondary-text uppercase tracking-wider mb-2">Requirements</h3>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {(internship.requirements || []).map((item) => (
+                        <span key={item} className="rounded-full bg-primary/[0.06] px-3.5 py-1.5 text-xs font-medium text-primary border border-primary/15">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                )}
+                {internship.requiredSkills?.length > 0 && (
+                  <>
+                    <h3 className="text-xs font-medium text-secondary-text uppercase tracking-wider mb-2">Required Skills</h3>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {(internship.requiredSkills || []).map((item) => (
+                        <span key={item} className="rounded-full bg-info/10 px-3.5 py-1.5 text-xs font-medium text-info border border-info/15">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </>
+            )}
+            {internship.preferredSkills?.length > 0 && (
+              <>
+                <h3 className="text-xs font-medium text-secondary-text uppercase tracking-wider mb-2">Preferred Skills</h3>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {(internship.preferredSkills || []).map((item) => (
+                    <span key={item} className="rounded-full bg-accent px-3.5 py-1.5 text-xs font-medium text-primary border border-primary/15">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </>
+            )}
+            {internship.languageRequirement && (
+              <p className="text-sm text-body"><span className="text-secondary-text">Language: </span>{internship.languageRequirement}</p>
+            )}
+            {!internship.requirements?.length && !internship.requiredSkills?.length && !internship.preferredSkills?.length && !internship.languageRequirement && (
+              <p className="text-sm text-secondary-text">No specific requirements listed.</p>
+            )}
           </AppCard>
+
+          {internship.benefits && (
+            <AppCard>
+              <h2 className="text-[15px] font-semibold text-heading mb-3">Benefits & Perks</h2>
+              <p className="text-sm text-body leading-relaxed whitespace-pre-line">{internship.benefits}</p>
+            </AppCard>
+          )}
         </div>
 
         <div className="space-y-4 animate-fade-in-up animate-delay-200">
@@ -182,9 +251,21 @@ export default function InternshipDetailPage() {
             <h3 className="text-[13.5px] font-semibold text-heading mb-3">Details</h3>
             <div className="space-y-3 text-sm">
               <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text">Type</span>
+                <span className="text-secondary-text">Work Mode</span>
                 <span className="text-body font-semibold text-right">{internship.type}</span>
               </div>
+              {internship.employmentType && (
+                <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
+                  <span className="text-secondary-text">Employment Type</span>
+                  <span className="text-body font-semibold text-right">{internship.employmentType}</span>
+                </div>
+              )}
+              {internship.category && (
+                <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
+                  <span className="text-secondary-text">Category</span>
+                  <span className="text-body font-semibold text-right">{internship.category}</span>
+                </div>
+              )}
               <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
                 <span className="text-secondary-text">Location</span>
                 <span className="text-body font-semibold text-right">{internship.location}</span>
@@ -193,6 +274,36 @@ export default function InternshipDetailPage() {
                 <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
                   <span className="text-secondary-text">Salary</span>
                   <span className="text-success font-semibold text-right">{internship.salary}</span>
+                </div>
+              )}
+              {!internship.salary && (internship.salaryMin || internship.salaryMax) && (
+                <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
+                  <span className="text-secondary-text">Salary Range</span>
+                  <span className="text-success font-semibold text-right">{internship.salaryMin || "—"} – {internship.salaryMax || "—"}</span>
+                </div>
+              )}
+              {internship.numberOfOpenings && (
+                <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
+                  <span className="text-secondary-text">Openings</span>
+                  <span className="text-body font-semibold text-right">{internship.numberOfOpenings}</span>
+                </div>
+              )}
+              {internship.workingHours && (
+                <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
+                  <span className="text-secondary-text">Working Hours</span>
+                  <span className="text-body font-semibold text-right">{internship.workingHours}</span>
+                </div>
+              )}
+              {internship.minEducation && (
+                <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
+                  <span className="text-secondary-text">Min. Education</span>
+                  <span className="text-body font-semibold text-right">{internship.minEducation}</span>
+                </div>
+              )}
+              {internship.experienceLevel && (
+                <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
+                  <span className="text-secondary-text">Experience</span>
+                  <span className="text-body font-semibold text-right">{internship.experienceLevel}</span>
                 </div>
               )}
               <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">

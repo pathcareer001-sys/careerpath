@@ -16,6 +16,16 @@ import { COLLECTIONS } from "@/constants/collections";
 
 import type { Internship } from "@/types/internship";
 
+function cleanPayload<T extends Record<string, unknown>>(data: T): T {
+  const cleaned = {} as T;
+  for (const key of Object.keys(data)) {
+    if (data[key] !== undefined) {
+      cleaned[key as keyof T] = data[key];
+    }
+  }
+  return cleaned;
+}
+
 export const internshipService = {
   async getInternships() {
     const snapshot = await getDocs(collection(db, COLLECTIONS.INTERNSHIPS));
@@ -40,11 +50,11 @@ export const internshipService = {
   },
 
   async createInternship(data: Omit<Internship, "id">) {
-    return addDoc(collection(db, COLLECTIONS.INTERNSHIPS), data);
+    return addDoc(collection(db, COLLECTIONS.INTERNSHIPS), cleanPayload(data as Record<string, unknown>));
   },
 
   async updateInternship(id: string, data: Partial<Internship>) {
-    return updateDoc(doc(db, COLLECTIONS.INTERNSHIPS, id), data);
+    return updateDoc(doc(db, COLLECTIONS.INTERNSHIPS, id), cleanPayload(data as Record<string, unknown>));
   },
 
   async deleteInternship(id: string) {

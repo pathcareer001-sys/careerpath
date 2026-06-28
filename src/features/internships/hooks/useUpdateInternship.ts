@@ -13,6 +13,10 @@ export function useUpdateInternship() {
       queryClient.invalidateQueries({
         queryKey: ["internships"],
       });
+
+      queryClient.invalidateQueries({
+        queryKey: ["company-internships"],
+      });
     },
   });
 }

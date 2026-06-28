@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { FirebaseError } from "firebase/app";
 import { Plus } from "lucide-react";
 
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
@@ -18,26 +20,36 @@ interface Props {
   company: Company;
 }
 export default function CreateInternshipDialog({ company }: Props) {
+  const [open, setOpen] = useState(false);
   const { user } = useAuth();
 
   const createInternship = useCreateInternship();
 
   const handleSubmit = async (data: InternshipFormData) => {
-    await createInternship.mutateAsync({
-      ...data,
-
-      ownerId: user?.uid || "",
-
-      companyId: company.id,
-
-      companyName: company.name,
-      companyLogo: company.logo,
-    });
-    toast.success("Internship created successfully");
+    try {
+      await createInternship.mutateAsync({
+        ...data,
+        ownerId: user?.uid || "",
+        companyId: company.id,
+        companyName: company.name,
+        companyLogo: company.logo,
+      });
+      toast.success("Internship created successfully");
+      setOpen(false);
+    } catch (error: unknown) {
+      console.error(error);
+      const message =
+        error instanceof FirebaseError
+          ? `[${error.code}] ${error.message}`
+          : error instanceof Error
+            ? error.message
+            : "Unknown error";
+      toast.error(message);
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
         render={
           <AppButton>
