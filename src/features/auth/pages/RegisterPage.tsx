@@ -46,7 +46,7 @@ export default function RegisterPage() {
   return (
     <div className="w-full max-w-lg animate-spring-up">
       <div className="bg-surface border border-border-light rounded-xl p-6 shadow-card">
-        <img src={logo} alt="CareerPath" className="h-10 mb-6" />
+        <img src={logo} alt="CareerPath" className="h-12 mb-6" />
 
         <h1 className="text-[22px] font-semibold tracking-tight text-heading">Create account</h1>
         <p className="mt-1 text-sm text-secondary-text leading-relaxed">Join thousands of students finding opportunities.</p>

@@ -22,12 +22,12 @@ export function AdminBarChart({ data }: { data: { name: string; value: number }[
             dataKey="name"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#7B94AA", fontSize: 12 }}
+            tick={{ fill: "var(--color-secondary-text)", fontSize: 12 }}
           />
           <YAxis
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#A5B8C7", fontSize: 12 }}
+            tick={{ fill: "var(--color-muted)", fontSize: 12 }}
             allowDecimals={false}
           />
           <Tooltip
@@ -38,6 +38,7 @@ export function AdminBarChart({ data }: { data: { name: string; value: number }[
               boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
               fontSize: 13,
               color: "var(--color-heading)",
+              background: "var(--color-popover)",
             }}
           />
           <Bar dataKey="value" radius={[6, 6, 0, 0]} maxBarSize={72}>
@@ -74,12 +75,14 @@ export function AdminPieChart({ data }: { data: { name: string; value: number }[
               borderRadius: 10,
               border: "1px solid var(--color-border)",
               fontSize: 13,
+              color: "var(--color-heading)",
+              background: "var(--color-popover)",
             }}
           />
           <Legend
             verticalAlign="bottom"
             iconType="circle"
-            formatter={(value) => <span className="text-sm text-body">{value}</span>}
+            formatter={(value) => <span className="text-sm" style={{ color: "var(--color-body)" }}>{value}</span>}
           />
         </PieChart>
       </ResponsiveContainer>

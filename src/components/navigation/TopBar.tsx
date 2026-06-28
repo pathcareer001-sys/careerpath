@@ -7,6 +7,7 @@ import { ROLES } from "@/constants/roles";
 import { authService } from "@/features/auth/services/authService";
 import { useNavigate } from "react-router-dom";
 import NotificationDropdown from "@/features/notifications/components/NotificationDropdown";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const studentNav = [
@@ -51,7 +52,7 @@ export default function TopBar() {
   return (
     <header className="h-[60px] bg-surface/80 backdrop-blur-xl border-b border-border flex items-center px-4 md:px-6 gap-3 sticky top-0 z-50">
       <Link to="/" className="shrink-0">
-        <img src={logo} alt="CareerPath" className="h-9 w-auto" />
+        <img src={logo} alt="CareerPath" className="h-9 w-auto md:h-12" />
       </Link>
 
       <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
@@ -80,6 +81,7 @@ export default function TopBar() {
       </nav>
 
       <div className="flex items-center gap-2 shrink-0">
+        <ThemeToggle />
         <NotificationDropdown />
 
         <Link to={profilePath} className="hidden sm:flex items-center gap-2 p-1 rounded-lg hover:bg-primary-subtle transition-all duration-200">
@@ -106,7 +108,7 @@ export default function TopBar() {
           <SheetContent side="left" className="w-64 p-0">
             <div className="flex flex-col h-full">
               <div className="flex items-center justify-between px-4 h-14 border-b border-border">
-                <img src={logo} alt="CareerPath" className="h-8 w-auto" />
+                <img src={logo} alt="CareerPath" className="h-9 w-auto" />
               </div>
               <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
                 {navLinks.map((item) => (

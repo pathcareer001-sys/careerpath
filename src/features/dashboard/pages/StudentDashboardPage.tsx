@@ -11,6 +11,7 @@ import { useDashboardStats } from "../hooks/useDashboardStats";
 import { useInternships } from "@/features/internships/hooks/useInternships";
 import InternshipCard from "@/features/internships/components/InternshipCard";
 import { calculateProfileCompletion } from "@/utils/profileCompletion";
+import { useGreeting } from "@/hooks/useGreeting";
 import { toast } from "sonner";
 import { CalendarCheck, CheckCircle, XCircle } from "lucide-react";
 
@@ -24,6 +25,7 @@ const checklistItems = [
 
 export default function StudentDashboardPage() {
   const { user } = useAuth();
+  const { greeting } = useGreeting();
   const { applicationCount, bookmarkCount } = useDashboardStats(user?.uid || "");
   const { data: applications } = useApplications(user?.uid || "");
   const { data: internships } = useInternships();
@@ -66,8 +68,8 @@ export default function StudentDashboardPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="animate-fade-in-up">
-        <h1 className="text-2xl font-medium text-heading">Good morning, {user?.name?.split(" ")[0] || "there"}</h1>
-        <p className="mt-1 text-sm text-secondary-text">Here's your career overview</p>
+        <h1 className="text-2xl font-medium text-heading">{greeting.text}, {user?.name?.split(" ")[0] || "there"}</h1>
+        <p className="mt-1 text-sm text-secondary-text">{greeting.subtitle}</p>
       </div>
 
       {interviewApps.length > 0 && (

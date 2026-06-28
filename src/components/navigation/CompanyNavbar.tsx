@@ -7,6 +7,7 @@ import UserMenu from "./UserMenu";
 import logo from "@/assets/images/logo.png";
 import { authService } from "@/features/auth/services/authService";
 import AppButton from "../common/AppButton";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
@@ -30,7 +31,7 @@ export default function CompanyNavbar() {
   return (
     <header className="sticky top-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-border">
       <div className="mx-auto flex h-16 max-w-7xl items-center px-4 md:h-20 md:px-8">
-        <img src={logo} alt="CareerPath" className="h-14 w-auto md:h-16" />
+        <img src={logo} alt="CareerPath" className="h-9 w-auto md:h-12" />
         <nav className="ml-4 hidden md:flex items-center gap-1 md:ml-10">
           {navLinks.map((item) => (
             <NavItem
@@ -43,6 +44,7 @@ export default function CompanyNavbar() {
         </nav>
 
         <div className="ml-auto flex items-center gap-3">
+          <ThemeToggle />
           <AppButton
             variant="secondary"
             onClick={handleLogout}
@@ -61,7 +63,7 @@ export default function CompanyNavbar() {
             <SheetContent side="left" className="w-64 p-0">
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between px-4 h-14 border-b border-border">
-                  <img src={logo} alt="CareerPath" className="h-8 w-auto" />
+                  <img src={logo} alt="CareerPath" className="h-9 w-auto" />
                 </div>
                 <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
                   {navLinks.map((item) => (

@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ArrowRight, House, Info, LogIn, Mail, Menu } from "lucide-react";
 
 import logo from "@/assets/images/logo.png";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
@@ -15,7 +16,7 @@ export default function LandingNavbar() {
     <header className="sticky top-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-border">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-8">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="CareerPath" className="h-10 w-auto" />
+          <img src={logo} alt="CareerPath" className="h-9 w-auto md:h-12" />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -38,6 +39,7 @@ export default function LandingNavbar() {
         </nav>
 
         <div className="hidden items-center gap-2 sm:flex">
+          <ThemeToggle />
           <Link
             to="/login"
             className="inline-flex h-9 items-center justify-center rounded-lg border border-border bg-surface px-4 text-sm font-medium text-body transition-all duration-200 hover:border-primary/30 hover:bg-primary-subtle hover:text-primary"
@@ -62,7 +64,7 @@ export default function LandingNavbar() {
           <SheetContent side="right" className="w-64 p-0">
             <div className="flex flex-col h-full">
               <div className="flex items-center justify-between px-4 h-14 border-b border-border">
-                <img src={logo} alt="CareerPath" className="h-8 w-auto" />
+                <img src={logo} alt="CareerPath" className="h-9 w-auto" />
               </div>
               <nav className="flex-1 px-3 py-4 space-y-1">
                 {navItems.map((item) => (

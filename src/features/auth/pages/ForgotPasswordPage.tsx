@@ -30,7 +30,7 @@ export default function ForgotPasswordPage() {
   return (
     <div className="w-full max-w-sm animate-fade-in-up">
       <div className="bg-surface border border-border rounded-xl p-6">
-        <img src={logo} alt="CareerPath" className="h-10 mb-6" />
+        <img src={logo} alt="CareerPath" className="h-12 mb-6" />
 
         <h1 className="text-[22px] font-medium text-heading">Reset password</h1>
         <p className="mt-1 text-sm text-secondary-text">Enter your email and we'll send you a reset link.</p>

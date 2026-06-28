@@ -48,7 +48,7 @@ export default function FinishSignInPage() {
     return (
       <div className="flex min-h-screen items-center justify-center px-4">
         <div className="w-full max-w-sm text-center">
-          <img src={logo} alt="CareerPath" className="h-10 mx-auto mb-6" />
+          <img src={logo} alt="CareerPath" className="h-12 mx-auto mb-6" />
           <p className="text-sm text-error mb-4">{error}</p>
           <button
             onClick={() => navigate("/login")}

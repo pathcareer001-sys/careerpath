@@ -12,6 +12,7 @@ import {
 
 import logo from "@/assets/images/logo.png";
 import { authService } from "@/features/auth/services/authService";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
@@ -53,7 +54,7 @@ export default function AdminSidebar() {
   const sidebarContent = (
     <div className="flex flex-col h-full">
       <div className="p-5 border-b border-border">
-        <img src={logo} alt="CareerPath" className="h-14" />
+        <img src={logo} alt="CareerPath" className="h-12" />
       </div>
       <div className="flex flex-col flex-1 py-3">
         <nav className="px-3 space-y-0.5 flex-1">
@@ -61,7 +62,11 @@ export default function AdminSidebar() {
             <NavLinkItem key={to} to={to} Icon={Icon} label={label} end={end} />
           ))}
         </nav>
-        <div className="px-3 pt-3 border-t border-border mt-3">
+        <div className="px-3 pt-3 border-t border-border mt-3 space-y-1">
+          <div className="flex items-center justify-between px-3 py-2">
+            <span className="text-xs text-muted">Theme</span>
+            <ThemeToggle />
+          </div>
           <button
             onClick={handleLogout}
             className="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-error hover:bg-error/10 transition-colors"

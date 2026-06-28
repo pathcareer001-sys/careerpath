@@ -180,27 +180,27 @@ export default function InternshipDetailPage() {
           <AppCard>
             <h3 className="text-[13.5px] font-semibold text-heading mb-3">Details</h3>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between py-2.5 border-b border-border/50">
+              <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
                 <span className="text-secondary-text">Type</span>
-                <span className="text-body font-semibold">{internship.type}</span>
+                <span className="text-body font-semibold text-right">{internship.type}</span>
               </div>
-              <div className="flex justify-between py-2.5 border-b border-border/50">
+              <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
                 <span className="text-secondary-text">Location</span>
-                <span className="text-body font-semibold">{internship.location}</span>
+                <span className="text-body font-semibold text-right">{internship.location}</span>
               </div>
               {internship.salary && (
-                <div className="flex justify-between py-2.5 border-b border-border/50">
+                <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
                   <span className="text-secondary-text">Salary</span>
-                  <span className="text-success font-semibold">{internship.salary}</span>
+                  <span className="text-success font-semibold text-right">{internship.salary}</span>
                 </div>
               )}
-              <div className="flex justify-between py-2.5 border-b border-border/50">
+              <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
                 <span className="text-secondary-text">Company</span>
-                <span className="text-body font-semibold">{internship.companyName}</span>
+                <span className="text-body font-semibold text-right break-words">{internship.companyName}</span>
               </div>
-              <div className="flex justify-between py-2.5">
+              <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5">
                 <span className="text-secondary-text">Status</span>
-                <span className={`inline-flex items-center gap-1.5 font-semibold ${internship.status === "draft" ? "text-warning" : "text-success"}`}>
+                <span className={`inline-flex items-center justify-end gap-1.5 font-semibold ${internship.status === "draft" ? "text-warning" : "text-success"}`}>
                   <span className={`h-2 w-2 rounded-full ${internship.status === "draft" ? "bg-warning" : "bg-success"}`} />
                   {internship.status === "draft" ? "Draft" : "Open"}
                 </span>

@@ -77,6 +77,10 @@
 }
 
 @layer base {
+  *, *::before, *::after {
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.2s ease;
+  }
+
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -170,4 +174,65 @@
 @keyframes spring-up {
   0% { opacity: 0; transform: translateY(24px) scale(0.96); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.dark {
+  --color-primary: #4682B4;
+  --color-primary-hover: #5A97C7;
+  --color-primary-active: #36648B;
+  --color-primary-subtle: #1E2D42;
+
+  --color-secondary: #1E293B;
+  --color-accent: #1E293B;
+  --color-section: #111827;
+
+  --color-background: #0F172A;
+  --color-surface: #1E293B;
+  --color-surface-alt: #111827;
+
+  --color-border: #334155;
+  --color-border-light: #334155;
+  --color-divider: #334155;
+
+  --color-heading: #F8FAFC;
+  --color-body: #CBD5E1;
+  --color-secondary-text: #94A3B8;
+  --color-muted: #64748B;
+
+  --color-success: #5CBF8F;
+  --color-warning: #F2B84B;
+  --color-error: #E57373;
+  --color-info: #4682B4;
+
+  --color-foreground: #CBD5E1;
+  --color-card: #1E293B;
+  --color-card-foreground: #F8FAFC;
+  --color-popover: #1E293B;
+  --color-popover-foreground: #CBD5E1;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary-foreground: #F8FAFC;
+  --color-muted-foreground: #94A3B8;
+  --color-accent-foreground: #F8FAFC;
+  --color-destructive: #E57373;
+  --color-destructive-foreground: #FFFFFF;
+  --color-input: #334155;
+  --color-ring: #4682B4;
+  --color-sidebar: #111827;
+  --color-sidebar-foreground: #CBD5E1;
+  --color-sidebar-border: #334155;
+  --color-sidebar-accent: #1E293B;
+  --color-sidebar-accent-foreground: #F8FAFC;
+  --color-sidebar-ring: #4682B4;
+
+  --shadow-xs: 0 0 0 1px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.25);
+  --shadow-xl: 0 16px 40px rgba(0,0,0,0.4), 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.15);
+  --shadow-card-hover: 0 6px 16px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.25);
+  --shadow-button: 0 2px 8px rgba(70,130,180,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-button-hover: 0 6px 20px rgba(70,130,180,0.4), 0 2px 6px rgba(0,0,0,0.25);
+  --shadow-dropdown: 0 8px 24px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+  --shadow-dialog: 0 24px 48px rgba(0,0,0,0.5), 0 8px 16px rgba(0,0,0,0.3);
 }

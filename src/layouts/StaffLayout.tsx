@@ -3,6 +3,7 @@ import { Shield, Building2, Star, Flag, LogOut, LayoutDashboard, Menu } from "lu
 import logo from "@/assets/images/logo.png";
 import { authService } from "@/features/auth/services/authService";
 import NotificationDropdown from "@/features/notifications/components/NotificationDropdown";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const staffNav = [
@@ -16,7 +17,7 @@ const sidebarContent = (handleLogout: () => void) => (
   <div className="flex flex-col h-full">
     <div className="px-5 py-5 border-b border-border">
       <div className="flex items-center gap-2">
-        <img src={logo} alt="CareerPath" className="h-10" />
+        <img src={logo} alt="CareerPath" className="h-12" />
       </div>
     </div>
     <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
@@ -75,6 +76,7 @@ export default function StaffLayout() {
 
       <div className="flex-1 flex flex-col">
         <header className="h-14 bg-surface/80 backdrop-blur-xl border-b border-border flex items-center justify-end px-6 gap-3 pl-14 md:pl-6">
+          <ThemeToggle />
           <NotificationDropdown />
           <span className="inline-flex items-center gap-1.5 rounded-full bg-info/10 px-3 py-1 text-xs font-medium text-info border border-info/30">
             <Shield size="12" />

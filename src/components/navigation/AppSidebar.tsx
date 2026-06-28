@@ -69,7 +69,7 @@ export default function AppSidebar() {
     <aside className="w-[240px] min-h-screen bg-surface border-r border-border flex flex-col shrink-0">
       <div className="px-5 py-5 border-b border-border">
         <div className="flex items-center gap-2">
-          <img src={logo} alt="CareerPath" className="h-10" />
+          <img src={logo} alt="CareerPath" className="h-12" />
         </div>
       </div>
 
