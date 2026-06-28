@@ -72,7 +72,7 @@ export default function LoginPage() {
 
           <div className="flex items-center justify-between text-sm">
             <label className="flex items-center gap-2 text-body">
-              <input type="checkbox" className="accent-blue-600" />
+              <input type="checkbox" className="accent-[#5FAED8]" />
               Remember me
             </label>
             <Link to="/forgot-password" className="text-primary text-sm font-medium hover:text-primary transition-colors">Forgot password?</Link>

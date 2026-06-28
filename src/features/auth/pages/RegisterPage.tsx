@@ -92,7 +92,7 @@ export default function RegisterPage() {
           </div>
 
           <label className="flex items-center gap-2 text-sm text-body">
-            <input type="checkbox" {...register("agreed")} className="accent-blue-600" />
+            <input type="checkbox" {...register("agreed")} className="accent-[#5FAED8]" />
             I agree to the Terms & Privacy Policy
           </label>
           {errors.agreed && <p className="text-xs text-error">{errors.agreed.message}</p>}
