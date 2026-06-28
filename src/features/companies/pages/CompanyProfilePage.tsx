@@ -70,7 +70,7 @@ export default function CompanyProfilePage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent to-section p-6 text-heading">
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/[0.04] to-section p-6 text-heading">
           <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/60 blur-3xl" />
           <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
           <div className="relative z-10 flex flex-col md:flex-row items-center md:items-center gap-6">

@@ -27,7 +27,7 @@ export default function AppButton({
     danger:
       "bg-error text-white shadow-sm hover:shadow-md hover:bg-error/90 hover:-translate-y-0.5 active:bg-error/80 active:translate-y-0 active:scale-[0.97]",
     outline:
-      "bg-transparent text-secondary-text border border-border/60 hover:border-border hover:text-body hover:bg-surface active:bg-surface-alt",
+      "bg-transparent text-secondary-text border border-border/60 hover:border-primary/30 hover:text-primary hover:bg-primary-subtle active:bg-primary-subtle/80",
   };
 
   return (

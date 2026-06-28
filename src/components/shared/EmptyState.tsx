@@ -8,7 +8,7 @@ interface Props {
 export default function EmptyState({ title, description }: Props) {
   return (
     <div className="py-16 flex flex-col items-center text-center">
-      <div className="h-12 w-12 rounded-xl bg-accent flex items-center justify-center">
+      <div className="h-12 w-12 rounded-xl bg-primary-subtle flex items-center justify-center">
         <Inbox size="22" className="text-primary" />
       </div>
       <h3 className="mt-4 text-sm font-medium text-body">{title}</h3>

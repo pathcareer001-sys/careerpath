@@ -85,7 +85,7 @@ export default function InternshipDetailPage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent/80 to-section border border-border shadow-sm p-5">
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/[0.03] to-section border border-border shadow-sm p-5">
           <div className="absolute inset-0 bg-dot-pattern opacity-[0.4]" />
           <div className="absolute top-0 right-0 w-56 h-56 rounded-full bg-white/50 blur-3xl" />
           <div className="absolute -bottom-8 -left-8 w-40 h-40 rounded-full bg-primary/[0.03] blur-3xl" />
