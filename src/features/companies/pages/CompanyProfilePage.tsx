@@ -73,7 +73,7 @@ export default function CompanyProfilePage() {
         <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent to-section p-6 text-heading">
           <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/60 blur-3xl" />
           <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
-          <div className="relative z-10 flex items-center gap-6">
+          <div className="relative z-10 flex flex-col md:flex-row items-center md:items-center gap-6">
             <div className="h-20 w-20 overflow-hidden rounded-2xl bg-surface border border-border flex items-center justify-center shrink-0">
               {logo ? (
                 <img src={logo} alt={name} className="h-full w-full object-cover" />
@@ -95,7 +95,7 @@ export default function CompanyProfilePage() {
       <div className="mt-6 space-y-6 animate-fade-in-up animate-delay-100">
         {company && (
           <AppCard className={`border ${company.verified ? "border-success/30 bg-success/5" : company.verificationRequested ? "border-warning/30 bg-warning/5" : "border-border"}`}>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className={`h-8 w-8 rounded-full ${company.verified ? "bg-success/10 text-success" : company.verificationRequested ? "bg-warning/10 text-warning" : "bg-section text-secondary-text"} flex items-center justify-center`}>
                   {company.verified ? "✓" : company.verificationRequested ? "⏳" : "○"}

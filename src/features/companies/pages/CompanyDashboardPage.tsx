@@ -70,9 +70,9 @@ export default function CompanyDashboardPage() {
                 <span className="text-secondary-text text-sm">({company?.reviewCount || 0} reviews)</span>
               </div>
             </div>
-            <div className="text-right">
+            <div className="text-left lg:text-right">
               <p className="text-body text-sm">Total Applicants</p>
-              <h2 className="text-5xl font-medium">{dashboard.totalApplicants || 0}</h2>
+              <h2 className="text-4xl lg:text-5xl font-medium">{dashboard.totalApplicants || 0}</h2>
               <p className="mt-1 text-body text-sm">Acceptance Rate: {acceptanceRate}%</p>
             </div>
           </div>
@@ -103,7 +103,7 @@ export default function CompanyDashboardPage() {
         </Link>
       </div>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-5 animate-fade-in-up animate-delay-200">
+      <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-5 animate-fade-in-up animate-delay-200">
         <StatCard title="Internships" value={dashboard.totalInternships || 0} gradient="blue" />
         <StatCard title="Applicants" value={dashboard.totalApplicants || 0} gradient="purple" />
         <StatCard title="Pending" value={dashboard.pendingApplicants || 0} gradient="amber" />

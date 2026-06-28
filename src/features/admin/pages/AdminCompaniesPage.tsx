@@ -74,7 +74,7 @@ export default function AdminCompaniesPage() {
           </div>
         </AppCard>
 
-        <div className="flex items-center gap-2 border-b border-border pb-2">
+        <div className="flex items-center gap-2 border-b border-border pb-2 overflow-x-auto">
           <button
             onClick={() => { setTab("all"); setSearch(""); }}
             className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${

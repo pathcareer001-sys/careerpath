@@ -134,7 +134,7 @@ export default function AdminDashboardPage() {
       <div className="mt-6 animate-fade-in-up animate-delay-300">
         <AppCard>
           <h3 className="mb-4 text-base font-medium">Platform Overview</h3>
-          <div className="grid gap-4 md:grid-cols-4">
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-4">
             <div className="p-4 rounded-lg bg-gradient-to-br from-accent to-white border border-border">
               <p className="text-secondary-text text-sm">Users</p>
               <p className="text-2xl font-medium text-heading mt-1">{data?.totalUsers || 0}</p>

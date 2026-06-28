@@ -93,7 +93,7 @@ export default function CompanyApplicantsPage() {
           <p className="mt-1 text-sm text-secondary-text">Manage internship applicants</p>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-5 animate-fade-in-up animate-delay-100">
+        <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 animate-fade-in-up animate-delay-100">
           {[
             { label: "Total", value: stats.total, gradient: "from-accent to-white", icon: <Users size="16" className="text-primary" /> },
             { label: "Pending", value: stats.pending, gradient: "from-warning/10 to-white", icon: <Clock size="16" className="text-warning" /> },

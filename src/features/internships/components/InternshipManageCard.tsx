@@ -16,7 +16,7 @@ export default function InternshipManageCard({
 }: Props) {
   return (
     <AppCard>
-      <div className="flex justify-between items-start">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
         <div className="flex items-start gap-3">
           <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center shrink-0 shadow-sm">
             <Briefcase size="18" />

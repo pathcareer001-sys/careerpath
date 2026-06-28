@@ -42,7 +42,7 @@ export default function ManageApplicationsPage() {
         <p className="mt-1 text-sm text-secondary-text">Manage internship applications</p>
       </div>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-4 animate-fade-in-up animate-delay-100">
+      <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-4 animate-fade-in-up animate-delay-100">
         {[
           { label: "Total", value: total, gradient: "from-accent to-white", icon: <FileText size="16" className="text-primary" /> },
           { label: "Pending", value: pending, gradient: "from-warning/5 to-white", icon: <Clock size="16" className="text-warning" /> },

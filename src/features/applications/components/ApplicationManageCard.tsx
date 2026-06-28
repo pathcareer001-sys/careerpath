@@ -17,7 +17,7 @@ export default function ApplicationManageCard({
 }: Props) {
   return (
     <AppCard>
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div className="flex items-start gap-3">
           <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
             {application.applicantName?.charAt(0) || "?"}

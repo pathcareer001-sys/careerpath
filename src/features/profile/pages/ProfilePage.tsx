@@ -51,6 +51,7 @@ export default function ProfilePage() {
     skills,
   }), [user, username, coverFile, removeCover, university, major, location, bio, skills]);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!user) return;
     setUsername(user.username || "");
@@ -66,6 +67,7 @@ export default function ProfilePage() {
     setCoverFile(null);
     setAvatarFile(null);
   }, [user]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleSave = async () => {
     if (!user) return;
@@ -332,7 +334,7 @@ export default function ProfilePage() {
             <p className="text-sm text-secondary-text mt-1">
               Upload or replace your profile picture
             </p>
-            <div className="mt-4 flex items-center gap-6">
+            <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
               <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-primary/30">
                 {avatarPreview ? (
                   <img src={avatarPreview} alt="Preview" className="h-full w-full object-cover" />
@@ -409,13 +411,14 @@ export default function ProfilePage() {
           <AppCard>
             <h2 className="text-lg font-medium">Skills</h2>
             <p className="text-sm text-secondary-text mt-1">Showcase your strengths</p>
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <AppInput
                 value={skillInput}
                 onChange={(e) => setSkillInput(e.target.value)}
                 placeholder="Add skill..."
+                className="w-full"
               />
-              <AppButton type="button" onClick={handleAddSkill}>Add</AppButton>
+              <AppButton type="button" onClick={handleAddSkill} className="w-full sm:w-auto">Add</AppButton>
             </div>
             {skills.length === 0 ? (
               <div className="mt-6 rounded-xl border border-dashed border-primary/30 p-6 text-center text-sm text-secondary-text">
@@ -487,12 +490,12 @@ export default function ProfilePage() {
 
           {/* SAVE */}
           <AppCard>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
               <div>
                 <h3 className="font-medium">Ready to Save?</h3>
                 <p className="text-sm text-secondary-text">Update your profile information.</p>
               </div>
-              <AppButton onClick={handleSave} disabled={updateProfile.isPending}>
+              <AppButton onClick={handleSave} disabled={updateProfile.isPending} className="w-full sm:w-auto">
                 {updateProfile.isPending ? "Saving..." : "Save Changes"}
               </AppButton>
             </div>

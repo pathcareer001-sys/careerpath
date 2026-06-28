@@ -11,7 +11,7 @@ export default function AppCard({ children, className, hover = true, padding = "
   return (
     <div
       className={cn(
-        "bg-surface border border-border-light rounded-xl shadow-card transition-all duration-300",
+        "bg-surface border border-border/60 rounded-xl shadow-card transition-all duration-300",
         padding === "default" && "p-5",
         padding === "sm" && "p-4",
         padding === "lg" && "p-6",

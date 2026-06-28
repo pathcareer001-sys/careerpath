@@ -41,7 +41,7 @@ export default function ReviewManagePage() {
           <div className="space-y-4">
             {filtered.map((review) => (
               <AppCard key={review.id}>
-                <div className="flex justify-between gap-4">
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
                   <div className="flex items-start gap-3">
                     <div className="h-10 w-10 rounded-full bg-gradient-to-br from-warning to-accent text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
                       {review.userName?.charAt(0) || "?"}
@@ -56,7 +56,7 @@ export default function ReviewManagePage() {
                       <p className="mt-2 text-sm text-body">{review.review}</p>
                     </div>
                   </div>
-                  <AppButton variant="danger" onClick={() => handleDelete(review.id)}>
+                  <AppButton variant="danger" onClick={() => handleDelete(review.id)} className="shrink-0">
                     <Trash2 size="14" /> Delete
                   </AppButton>
                 </div>

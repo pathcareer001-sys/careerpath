@@ -29,7 +29,7 @@ export default function CompanyDetailPage() {
       <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent to-section p-6 text-heading animate-fade-in-up">
         <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-white/60 blur-3xl" />
         <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
-        <div className="relative z-10 flex items-start gap-5">
+        <div className="relative z-10 flex flex-col md:flex-row items-start gap-5">
           <div className="h-16 w-16 rounded-2xl bg-surface flex items-center justify-center text-primary text-2xl font-medium shrink-0 border border-border">
             {company.name.charAt(0)}
           </div>
@@ -52,7 +52,7 @@ export default function CompanyDetailPage() {
             <BookmarkButton companyId={company.id} />
           </div>
         </div>
-        <div className="relative z-10 flex items-center gap-6 mt-6 pt-6 border-t border-border">
+        <div className="relative z-10 flex flex-wrap items-center gap-6 mt-6 pt-6 border-t border-border">
           <div className="text-center">
             <p className="text-[22px] font-medium">{company.avgRating || 0}</p>
             <div className="flex items-center gap-0.5 mt-1 justify-center">
