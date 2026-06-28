@@ -7,14 +7,14 @@ import type { Company } from "@/types/company";
 
 export default function CompanyHero({ company }: { company: Company }) {
   return (
-    <AppCard className="bg-[#2563EB] text-white">
+    <AppCard className="bg-primary text-white">
       <div className="flex flex-col gap-6 md:flex-row md:justify-between">
         <div className="flex gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-white/90 flex items-center justify-center">
+          <div className="w-16 h-16 rounded-2xl bg-surface/90 flex items-center justify-center">
             {company.logo ? (
               <img src={company.logo} alt={company.name} className="h-16 w-16 rounded-2xl object-cover" />
             ) : (
-              <span className="text-2xl font-medium text-blue-600">{company.name.charAt(0)}</span>
+              <span className="text-2xl font-medium text-primary">{company.name.charAt(0)}</span>
             )}
           </div>
 

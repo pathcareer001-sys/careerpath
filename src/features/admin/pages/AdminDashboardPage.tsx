@@ -38,7 +38,7 @@ export default function AdminDashboardPage() {
     <PageContainer>
       <div className="animate-fade-in-up">
         <h1 className="text-2xl font-medium text-[#0F172A]">Admin Dashboard</h1>
-        <p className="mt-1 text-sm text-[#64748B]">Manage CareerPath platform</p>
+        <p className="mt-1 text-sm text-secondary-text">Manage CareerPath platform</p>
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-5 animate-fade-in-up animate-delay-100">
@@ -54,24 +54,24 @@ export default function AdminDashboardPage() {
           <h3 className="mb-4 text-base font-medium">Quick Actions</h3>
           <div className="grid gap-4 md:grid-cols-3">
             <Link to="/admin/companies">
-              <AppCard className="hover:border-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-md">
-                <ShieldX size="20" className="text-blue-600 mb-2" />
+              <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
+                <ShieldX size="20" className="text-primary mb-2" />
                 <p className="font-medium">Manage Companies</p>
-                <p className="text-xs text-slate-500 mt-1">Verify, edit, and manage company data</p>
+                <p className="text-xs text-secondary-text mt-1">Verify, edit, and manage company data</p>
               </AppCard>
             </Link>
             <Link to="/admin/users">
-              <AppCard className="hover:border-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-md">
+              <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
                 <ShieldCheck size="20" className="text-purple-600 mb-2" />
                 <p className="font-medium">Manage Users</p>
-                <p className="text-xs text-slate-500 mt-1">Edit roles and manage user accounts</p>
+                <p className="text-xs text-secondary-text mt-1">Edit roles and manage user accounts</p>
               </AppCard>
             </Link>
             <Link to="/admin/reviews">
-              <AppCard className="hover:border-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-md">
+              <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
                 <ShieldCheck size="20" className="text-emerald-600 mb-2" />
                 <p className="font-medium">Manage Reviews</p>
-                <p className="text-xs text-slate-500 mt-1">Moderate company reviews</p>
+                <p className="text-xs text-secondary-text mt-1">Moderate company reviews</p>
               </AppCard>
             </Link>
           </div>
@@ -89,8 +89,8 @@ export default function AdminDashboardPage() {
               {pendingCompanies.slice(0, 10).map((company) => (
                 <div key={company.id} className="flex items-center justify-between p-3 rounded-lg bg-amber-50/50 hover:bg-amber-50 transition-colors">
                   <div>
-                    <p className="font-medium text-sm text-slate-900">{company.name}</p>
-                    <p className="text-xs text-slate-500">{company.industry || "No industry"}</p>
+                    <p className="font-medium text-sm text-heading">{company.name}</p>
+                    <p className="text-xs text-secondary-text">{company.industry || "No industry"}</p>
                   </div>
                   <AppButton onClick={() => handleVerify(company.id)} className="text-xs h-8 px-3">
                     <ShieldCheck size="13" /> Verify
@@ -98,7 +98,7 @@ export default function AdminDashboardPage() {
                 </div>
               ))}
               {pendingCompanies.length > 10 && (
-                <Link to="/admin/companies" className="flex items-center justify-center gap-1 text-sm text-blue-600 hover:text-blue-700 transition-colors pt-2">
+                <Link to="/admin/companies" className="flex items-center justify-center gap-1 text-sm text-primary hover:text-primary transition-colors pt-2">
                   View all {pendingCompanies.length} pending companies <ArrowRight size="14" />
                 </Link>
               )}
@@ -110,7 +110,7 @@ export default function AdminDashboardPage() {
       <div className="mt-6 grid gap-6 lg:grid-cols-2 animate-fade-in-up animate-delay-300">
         <AppCard>
           <div className="flex items-center gap-2 mb-4">
-            <TrendingUp size="18" className="text-blue-600" />
+            <TrendingUp size="18" className="text-primary" />
             <h3 className="text-base font-medium">Platform Overview</h3>
           </div>
           <AdminBarChart data={barData} />
@@ -122,7 +122,7 @@ export default function AdminDashboardPage() {
             <h3 className="text-base font-medium">Company Verification Status</h3>
           </div>
           {data?.totalCompanies === 0 ? (
-            <div className="h-[280px] flex items-center justify-center text-sm text-slate-400">
+            <div className="h-[280px] flex items-center justify-center text-sm text-muted">
               No company data available
             </div>
           ) : (
@@ -135,20 +135,20 @@ export default function AdminDashboardPage() {
         <AppCard>
           <h3 className="mb-4 text-base font-medium">Platform Overview</h3>
           <div className="grid gap-4 md:grid-cols-4">
-            <div className="p-4 rounded-lg bg-gradient-to-br from-blue-50 to-white border border-[#E2E8F0]">
-              <p className="text-[#64748B] text-sm">Users</p>
+            <div className="p-4 rounded-lg bg-gradient-to-br from-blue-50 to-white border border-border">
+              <p className="text-secondary-text text-sm">Users</p>
               <p className="text-2xl font-medium text-[#0F172A] mt-1">{data?.totalUsers || 0}</p>
             </div>
-            <div className="p-4 rounded-lg bg-gradient-to-br from-purple-50 to-white border border-[#E2E8F0]">
-              <p className="text-[#64748B] text-sm">Companies</p>
+            <div className="p-4 rounded-lg bg-gradient-to-br from-purple-50 to-white border border-border">
+              <p className="text-secondary-text text-sm">Companies</p>
               <p className="text-2xl font-medium text-[#0F172A] mt-1">{data?.totalCompanies || 0}</p>
             </div>
-            <div className="p-4 rounded-lg bg-gradient-to-br from-emerald-50 to-white border border-[#E2E8F0]">
-              <p className="text-[#64748B] text-sm">Internships</p>
+            <div className="p-4 rounded-lg bg-gradient-to-br from-emerald-50 to-white border border-border">
+              <p className="text-secondary-text text-sm">Internships</p>
               <p className="text-2xl font-medium text-[#0F172A] mt-1">{data?.totalInternships || 0}</p>
             </div>
-            <div className="p-4 rounded-lg bg-gradient-to-br from-amber-50 to-white border border-[#E2E8F0]">
-              <p className="text-[#64748B] text-sm">Applications</p>
+            <div className="p-4 rounded-lg bg-gradient-to-br from-amber-50 to-white border border-border">
+              <p className="text-secondary-text text-sm">Applications</p>
               <p className="text-2xl font-medium text-[#0F172A] mt-1">{data?.totalApplications || 0}</p>
             </div>
           </div>

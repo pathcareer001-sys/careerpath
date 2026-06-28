@@ -23,36 +23,36 @@ export default function CompanyInternshipCard({ internship, onDelete }: Props) {
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <h3 className="text-base font-medium text-slate-900">{internship.title}</h3>
+              <h3 className="text-base font-medium text-heading">{internship.title}</h3>
               {internship.status === "draft" && (
                 <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-medium text-amber-700">Draft</span>
               )}
             </div>
-            <p className="text-sm text-slate-500 mt-0.5">{internship.companyName}</p>
+            <p className="text-sm text-secondary-text mt-0.5">{internship.companyName}</p>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-slate-500">
+        <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-secondary-text">
           <span className="inline-flex items-center gap-1.5">
-            <MapPin size="14" className="text-slate-400" /> {internship.location}
+            <MapPin size="14" className="text-muted" /> {internship.location}
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <Briefcase size="14" className="text-slate-400" /> {internship.type}
+            <Briefcase size="14" className="text-muted" /> {internship.type}
           </span>
           {internship.salary && (
             <span className="inline-flex items-center gap-1.5">
-              <DollarSign size="14" className="text-slate-400" /> {internship.salary}
+              <DollarSign size="14" className="text-muted" /> {internship.salary}
             </span>
           )}
           <span className="inline-flex items-center gap-1.5">
-            <Users size="14" className="text-slate-400" /> {applications?.length || 0} Applicants
+            <Users size="14" className="text-muted" /> {applications?.length || 0} Applicants
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <Calendar size="14" className="text-slate-400" /> {internship.deadline || "No deadline"}
+            <Calendar size="14" className="text-muted" /> {internship.deadline || "No deadline"}
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-100">
+        <div className="flex flex-wrap gap-2 pt-2 border-t border-divider">
           <Link to={`/company/applicants/${internship.id}`}>
             <AppButton type="button">View Applicants</AppButton>
           </Link>

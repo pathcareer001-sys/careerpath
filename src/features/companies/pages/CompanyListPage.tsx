@@ -36,7 +36,7 @@ export default function CompanyListPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-medium text-[#0F172A]">Companies</h1>
-        <p className="mt-1 text-sm text-[#64748B]">Discover verified companies and internship providers</p>
+        <p className="mt-1 text-sm text-secondary-text">Discover verified companies and internship providers</p>
       </div>
 
       <div className="flex items-center gap-3 flex-wrap">
@@ -46,7 +46,7 @@ export default function CompanyListPage() {
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             placeholder="Search companies..."
-            className="h-9 w-full rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#CBD5E1] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
+            className="h-9 w-full rounded-lg border border-border bg-[#F8FAFF] pl-9 pr-3 text-sm text-[#0F172A] placeholder:text-[#CBD5E1] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
           />
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -56,8 +56,8 @@ export default function CompanyListPage() {
               onClick={() => { setIndustryFilter(industryFilter === category ? "" : category); setPage(1); }}
               className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                 industryFilter === category
-                  ? "bg-[#2563EB] text-white"
-                  : "bg-white border border-[#E2E8F0] text-[#64748B] hover:border-[#BFDBFE]"
+                  ? "bg-primary text-white"
+                  : "bg-surface border border-border text-secondary-text hover:border-[#BFDBFE]"
               }`}
             >
               {category}
@@ -78,7 +78,7 @@ export default function CompanyListPage() {
       )}
 
       <div className="flex items-center justify-between">
-        <p className="text-sm font-medium text-[#0F172A]">All Companies <span className="text-[#94A3B8] font-normal">({filteredCompanies.length})</span></p>
+        <p className="text-sm font-medium text-[#0F172A]">All Companies <span className="text-muted font-normal">({filteredCompanies.length})</span></p>
       </div>
 
       {filteredCompanies.length === 0 ? (
@@ -98,8 +98,8 @@ export default function CompanyListPage() {
                   onClick={() => setPage(p)}
                   className={`h-7 w-7 rounded-full text-[12px] font-medium transition-all duration-200 flex items-center justify-center ${
                     p === page
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm"
-                      : "text-[#64748B] hover:bg-blue-50 hover:text-blue-600"
+                      ? "bg-gradient-to-r from-primary to-secondary text-white shadow-sm"
+                      : "text-secondary-text hover:bg-accent hover:text-primary"
                   }`}
                 >
                   {p}

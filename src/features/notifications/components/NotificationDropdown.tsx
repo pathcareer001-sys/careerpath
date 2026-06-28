@@ -53,7 +53,7 @@ export default function NotificationDropdown() {
         relative
         rounded-xl
         p-2
-        hover:bg-slate-100
+        hover:bg-section
         "
       >
         <Bell size={18} />
@@ -70,7 +70,7 @@ export default function NotificationDropdown() {
             items-center
             justify-center
             rounded-full
-            bg-red-500
+            bg-error/100
             text-xs
             text-white
             "
@@ -95,7 +95,7 @@ export default function NotificationDropdown() {
           <h3 className="mb-4 font-medium">Notifications</h3>
 
           {notifications?.length === 0 ? (
-            <p className="text-sm text-slate-500">No notifications yet</p>
+            <p className="text-sm text-secondary-text">No notifications yet</p>
           ) : (
             <div className="space-y-3">
               {notifications?.map((item) => (
@@ -109,7 +109,7 @@ export default function NotificationDropdown() {
     p-3
     transition
 
-    ${item.read ? "bg-white" : "bg-blue-50 border-blue-200"}
+    ${item.read ? "bg-surface" : "bg-accent border-primary/30"}
   `}
                 >
                   <div className="flex items-center justify-between">
@@ -131,7 +131,7 @@ export default function NotificationDropdown() {
                     className="
                     mt-1
                     text-sm
-                    text-slate-500
+                    text-secondary-text
                     "
                   >
                     {item.message}

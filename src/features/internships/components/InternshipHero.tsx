@@ -21,10 +21,10 @@ export default function InternshipHero({
   hasApplied,
 }: Props) {
   return (
-    <AppCard className="bg-[#2563EB] text-white">
+    <AppCard className="bg-primary text-white">
       <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
         <div className="flex gap-5">
-          <div className="h-20 w-20 rounded-3xl bg-white text-blue-600 flex items-center justify-center shrink-0">
+          <div className="h-20 w-20 rounded-3xl bg-surface text-primary flex items-center justify-center shrink-0">
             <Building2 size={36} />
           </div>
 
@@ -61,10 +61,10 @@ export default function InternshipHero({
           </div>
         </div>
 
-        <div className="w-full max-w-sm rounded-3xl bg-white p-6 text-slate-900">
+        <div className="w-full max-w-sm rounded-3xl bg-surface p-6 text-heading">
           <h3 className="text-lg font-medium">Ready to Apply?</h3>
 
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-secondary-text">
             Submit your application and start your internship journey today.
           </p>
 
@@ -96,7 +96,7 @@ export default function InternshipHero({
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between">
-      <span className="text-slate-500">{label}</span>
+      <span className="text-secondary-text">{label}</span>
       <span className="font-medium">{value}</span>
     </div>
   );

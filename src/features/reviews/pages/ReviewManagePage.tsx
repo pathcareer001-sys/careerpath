@@ -29,7 +29,7 @@ export default function ReviewManagePage() {
     <PageContainer>
       <div className="animate-fade-in-up">
         <h1 className="text-2xl font-medium text-[#0F172A]">Review Management</h1>
-        <p className="mt-1 text-sm text-[#64748B]">Manage company reviews</p>
+        <p className="mt-1 text-sm text-secondary-text">Manage company reviews</p>
       </div>
 
       <div className="mt-6 space-y-6 animate-fade-in-up animate-delay-100">
@@ -47,13 +47,13 @@ export default function ReviewManagePage() {
                       {review.userName?.charAt(0) || "?"}
                     </div>
                     <div>
-                      <h3 className="font-medium text-slate-900">{review.userName}</h3>
+                      <h3 className="font-medium text-heading">{review.userName}</h3>
                       <div className="flex items-center gap-1 mt-0.5">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <Star key={star} size="12" className={star <= review.rating ? "fill-[#F59E0B] text-[#F59E0B]" : "text-[#CBD5E1]"} />
                         ))}
                       </div>
-                      <p className="mt-2 text-sm text-slate-600">{review.review}</p>
+                      <p className="mt-2 text-sm text-body">{review.review}</p>
                     </div>
                   </div>
                   <AppButton variant="danger" onClick={() => handleDelete(review.id)}>

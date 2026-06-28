@@ -90,25 +90,25 @@ export default function CompanyApplicantsPage() {
       <PageContainer>
         <div className="animate-fade-in-up">
           <h1 className="text-2xl font-medium text-[#0F172A]">Applicants</h1>
-          <p className="mt-1 text-sm text-[#64748B]">Manage internship applicants</p>
+          <p className="mt-1 text-sm text-secondary-text">Manage internship applicants</p>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-5 animate-fade-in-up animate-delay-100">
           {[
-            { label: "Total", value: stats.total, gradient: "from-blue-50 to-white", icon: <Users size="16" className="text-blue-600" /> },
+            { label: "Total", value: stats.total, gradient: "from-blue-50 to-white", icon: <Users size="16" className="text-primary" /> },
             { label: "Pending", value: stats.pending, gradient: "from-amber-50 to-white", icon: <Clock size="16" className="text-amber-600" /> },
-            { label: "Reviewed", value: stats.reviewed, gradient: "from-blue-50 to-white", icon: <SearchCheck size="16" className="text-blue-600" /> },
+            { label: "Reviewed", value: stats.reviewed, gradient: "from-blue-50 to-white", icon: <SearchCheck size="16" className="text-primary" /> },
             { label: "Accepted", value: stats.accepted, gradient: "from-emerald-50 to-white", icon: <CheckCircle2 size="16" className="text-emerald-600" /> },
             { label: "Rejected", value: stats.rejected, gradient: "from-rose-50 to-white", icon: <XCircle size="16" className="text-rose-600" /> },
           ].map((stat, i) => (
-            <div key={stat.label} className={`relative overflow-hidden rounded-xl border border-[#E2E8F0] bg-gradient-to-br ${stat.gradient} px-5 py-4`}>
-              <div className="absolute top-0 right-0 w-16 h-16 rounded-bl-full opacity-10" style={{ background: i === 0 ? "#2563EB" : i === 1 ? "#D97706" : i === 2 ? "#2563EB" : i === 3 ? "#059669" : "#E11D48" }} />
+            <div key={stat.label} className={`relative overflow-hidden rounded-xl border border-border bg-gradient-to-br ${stat.gradient} px-5 py-4`}>
+              <div className="absolute top-0 right-0 w-16 h-16 rounded-bl-full opacity-10" style={{ background: i === 0 ? "#5FAED8" : i === 1 ? "#D97706" : i === 2 ? "#5FAED8" : i === 3 ? "#059669" : "#E11D48" }} />
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-[26px] font-medium text-[#0F172A] leading-none">{stat.value}</p>
-                  <p className="mt-1 text-[13px] text-[#64748B] font-medium">{stat.label}</p>
+                  <p className="mt-1 text-[13px] text-secondary-text font-medium">{stat.label}</p>
                 </div>
-                <div className="h-9 w-9 rounded-lg bg-white shadow-sm border border-[#E2E8F0] flex items-center justify-center">
+                <div className="h-9 w-9 rounded-lg bg-surface shadow-sm border border-border flex items-center justify-center">
                   {stat.icon}
                 </div>
               </div>
@@ -141,10 +141,10 @@ export default function CompanyApplicantsPage() {
                       {application.applicantName?.charAt(0)}
                     </div>
                     <div>
-                      <h3 className="font-medium text-slate-900">{application.applicantName}</h3>
-                      <p className="text-sm text-slate-500">{application.applicantEmail}</p>
-                      <p className="text-sm text-slate-500">{application.internshipTitle}</p>
-                      <p className="text-xs text-slate-400">Applied: {new Date(application.createdAt).toLocaleDateString()}</p>
+                      <h3 className="font-medium text-heading">{application.applicantName}</h3>
+                      <p className="text-sm text-secondary-text">{application.applicantEmail}</p>
+                      <p className="text-sm text-secondary-text">{application.internshipTitle}</p>
+                      <p className="text-xs text-muted">Applied: {new Date(application.createdAt).toLocaleDateString()}</p>
                       <div className="mt-2 flex items-center gap-2">
                         <StatusBadge status={application.status} />
                         {application.interviewDate && (

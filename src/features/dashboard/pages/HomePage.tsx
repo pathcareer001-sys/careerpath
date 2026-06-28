@@ -39,11 +39,11 @@ export default function HomePage() {
   const internshipCount = internships?.length || 500;
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900">
+    <div className="min-h-screen bg-section text-heading">
       <LandingNavbar />
 
       <main>
-        <section className="relative overflow-hidden border-b border-slate-200 bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700">
+        <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-blue-600 via-blue-600 to-purple-700">
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl" />
           <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-blue-400/20 blur-3xl" />
           <div className="mx-auto grid min-h-[calc(100vh-64px)] max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-14 relative z-10">
@@ -64,7 +64,7 @@ export default function HomePage() {
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link
                   to="/register"
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-medium text-blue-700 transition-colors hover:bg-blue-50"
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-surface px-5 text-sm font-medium text-primary transition-colors hover:bg-accent"
                 >
                   Get started
                   <ArrowRight size="16" />
@@ -94,13 +94,13 @@ export default function HomePage() {
             </div>
 
             <div className="flex items-center">
-              <div className="w-full rounded-xl border border-slate-200 bg-white border-blue-100/30">
-                <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+              <div className="w-full rounded-xl border border-border bg-surface border-border/30">
+                <div className="flex items-center justify-between border-b border-divider px-5 py-4">
                   <div>
-                    <p className="text-sm font-medium text-slate-900">Student workspace</p>
-                    <p className="text-xs text-slate-500 mt-0.5">Live opportunities snapshot</p>
+                    <p className="text-sm font-medium text-heading">Student workspace</p>
+                    <p className="text-xs text-secondary-text mt-0.5">Live opportunities snapshot</p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-green-50 px-2.5 py-1 text-xs font-medium text-green-600 ring-1 ring-green-200">
+                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-success/10 px-2.5 py-1 text-xs font-medium text-success ring-1 ring-green-200">
                     <span className="h-1.5 w-1.5 rounded-full bg-green-600" />
                     Active
                   </span>
@@ -113,11 +113,11 @@ export default function HomePage() {
                       ["Product Design Intern", "Hybrid"],
                       ["Data Analyst Intern", "Onsite"],
                     ].map(([role, type]) => (
-                      <div key={role} className="rounded-lg border border-slate-100 bg-blue-50/50 p-4">
+                      <div key={role} className="rounded-lg border border-divider bg-accent/50 p-4">
                         <div className="flex items-start justify-between gap-4">
                           <div>
-                            <p className="text-sm font-medium text-slate-900">{role}</p>
-                            <p className="mt-0.5 text-xs text-slate-500">{type} role</p>
+                            <p className="text-sm font-medium text-heading">{role}</p>
+                            <p className="mt-0.5 text-xs text-secondary-text">{type} role</p>
                           </div>
                           <span className="rounded-md bg-blue-600 px-2 py-0.5 text-[11px] font-medium text-white">
                             New
@@ -127,10 +127,10 @@ export default function HomePage() {
                     ))}
                   </div>
 
-                  <div className="rounded-lg border border-slate-100 bg-white p-4">
+                  <div className="rounded-lg border border-divider bg-surface p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-slate-900">Application flow</p>
-                      <BriefcaseBusiness size="16" className="text-blue-600" />
+                      <p className="text-sm font-medium text-heading">Application flow</p>
+                      <BriefcaseBusiness size="16" className="text-primary" />
                     </div>
                     <div className="mt-4 space-y-3">
                       {[
@@ -141,10 +141,10 @@ export default function HomePage() {
                       ].map(([label, width]) => (
                         <div key={label}>
                           <div className="mb-1 flex items-center justify-between text-xs">
-                            <span className="text-slate-500">{label}</span>
-                            <span className="font-medium text-slate-700">{width}</span>
+                            <span className="text-secondary-text">{label}</span>
+                            <span className="font-medium text-body">{width}</span>
                           </div>
-                          <div className="h-1.5 rounded-full bg-slate-100">
+                          <div className="h-1.5 rounded-full bg-section">
                             <div className="h-1.5 rounded-full bg-blue-600" style={{ width }} />
                           </div>
                         </div>
@@ -157,12 +157,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="border-b border-slate-200 bg-white px-6 py-5">
+        <section className="border-b border-border bg-surface px-6 py-5">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <p className="text-sm text-slate-500">Trusted by students exploring <span className="font-medium text-slate-700">{companyCount}+</span> companies</p>
+            <p className="text-sm text-secondary-text">Trusted by students exploring <span className="font-medium text-body">{companyCount}+</span> companies</p>
             <div className="flex flex-wrap gap-2">
               {partnerNames.map((name, i) => {
-                const tagColors = ["bg-blue-50 text-blue-600", "bg-amber-50 text-amber-600", "bg-purple-50 text-purple-600", "bg-emerald-50 text-emerald-600", "bg-rose-50 text-rose-600"];
+                const tagColors = ["bg-accent text-primary", "bg-amber-50 text-amber-600", "bg-purple-50 text-purple-600", "bg-emerald-50 text-emerald-600", "bg-rose-50 text-rose-600"];
                 return (
                   <span key={name} className={`rounded-lg ${tagColors[i]} px-3 py-1.5 text-xs font-medium`}>
                     {name}
@@ -176,12 +176,12 @@ export default function HomePage() {
         <section className="mx-auto max-w-7xl px-6 py-12">
           <div className="grid gap-4 md:grid-cols-3">
             {workflow.map((item) => (
-              <div key={item.title} className="rounded-xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-blue-200">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+              <div key={item.title} className="rounded-xl border border-border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-primary">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white">
                   <item.icon size="22" />
                 </div>
-                <h2 className="text-base font-medium text-slate-900">{item.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-slate-500">{item.text}</p>
+                <h2 className="text-base font-medium text-heading">{item.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-secondary-text">{item.text}</p>
               </div>
             ))}
           </div>
@@ -190,10 +190,10 @@ export default function HomePage() {
         <section className="mx-auto max-w-7xl px-6 pb-12">
           <div className="mb-6 flex items-end justify-between">
             <div>
-              <p className="text-xs font-medium text-blue-600 uppercase tracking-wider">Featured companies</p>
-              <h2 className="text-[22px] font-medium text-slate-900 mt-1">Compare companies before you apply</h2>
+              <p className="text-xs font-medium text-primary uppercase tracking-wider">Featured companies</p>
+              <h2 className="text-[22px] font-medium text-heading mt-1">Compare companies before you apply</h2>
             </div>
-            <Link to="/companies" className="text-sm font-medium text-blue-600 hover:text-blue-700">Browse companies &rarr;</Link>
+            <Link to="/companies" className="text-sm font-medium text-primary hover:text-primary">Browse companies &rarr;</Link>
           </div>
 
           {featuredCompanies.length > 0 ? (
@@ -205,14 +205,14 @@ export default function HomePage() {
           )}
         </section>
 
-        <section className="border-y border-slate-200 bg-white">
+        <section className="border-y border-border bg-surface">
           <div className="mx-auto max-w-7xl px-6 py-12">
             <div className="mb-6 flex items-end justify-between">
               <div>
-                <p className="text-xs font-medium text-blue-600 uppercase tracking-wider">Latest internships</p>
-                <h2 className="text-[22px] font-medium text-slate-900 mt-1">New roles worth checking today</h2>
+                <p className="text-xs font-medium text-primary uppercase tracking-wider">Latest internships</p>
+                <h2 className="text-[22px] font-medium text-heading mt-1">New roles worth checking today</h2>
               </div>
-              <Link to="/internships" className="text-sm font-medium text-blue-600 hover:text-blue-700">Browse internships &rarr;</Link>
+              <Link to="/internships" className="text-sm font-medium text-primary hover:text-primary">Browse internships &rarr;</Link>
             </div>
 
             {latestInternships.length > 0 ? (
@@ -228,9 +228,9 @@ export default function HomePage() {
         <section className="mx-auto max-w-7xl px-6 py-12">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <p className="text-xs font-medium text-blue-600 uppercase tracking-wider">Built for better decisions</p>
-              <h2 className="text-[22px] font-medium text-slate-900 mt-1">Less guessing. More signal.</h2>
-              <p className="mt-3 text-sm leading-relaxed text-slate-500">
+              <p className="text-xs font-medium text-primary uppercase tracking-wider">Built for better decisions</p>
+              <h2 className="text-[22px] font-medium text-heading mt-1">Less guessing. More signal.</h2>
+              <p className="mt-3 text-sm leading-relaxed text-secondary-text">
                 CareerPath brings opportunity discovery, company reputation, and application progress into the same flow so students can move with confidence.
               </p>
             </div>
@@ -242,8 +242,8 @@ export default function HomePage() {
                 { icon: Search, label: "Deadline-aware browsing" },
                 { icon: FileCheck2, label: "Application status history" },
               ].map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 hover:border-blue-200 transition-colors">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+                <div key={label} className="flex items-center gap-3 rounded-xl border border-border bg-surface p-4 hover:border-primary transition-colors">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-white">
                     <Icon size="16" />
                   </div>
                   <p className="text-sm font-medium text-slate-800">{label}</p>
@@ -263,7 +263,7 @@ export default function HomePage() {
             </div>
             <Link
               to="/register"
-              className="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-medium text-blue-700 transition-colors hover:bg-blue-50"
+              className="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-lg bg-surface px-5 text-sm font-medium text-primary transition-colors hover:bg-accent"
             >
               Create account
               <ArrowRight size="16" />
@@ -279,12 +279,12 @@ export default function HomePage() {
 
 function EmptyPreview({ icon: Icon, title, text }: { icon: LucideIcon; title: string; text: string }) {
   return (
-    <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center">
-      <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+    <div className="rounded-xl border border-dashed border-slate-300 bg-surface p-8 text-center">
+      <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-primary">
         <Icon size="18" />
       </div>
-      <h3 className="text-sm font-medium text-slate-700">{title}</h3>
-      <p className="mx-auto mt-1 max-w-md text-sm text-slate-500">{text}</p>
+      <h3 className="text-sm font-medium text-body">{title}</h3>
+      <p className="mx-auto mt-1 max-w-md text-sm text-secondary-text">{text}</p>
     </div>
   );
 }

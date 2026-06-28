@@ -67,7 +67,7 @@ export default function StudentDashboardPage() {
     <div className="space-y-6 animate-fade-in">
       <div className="animate-fade-in-up">
         <h1 className="text-2xl font-medium text-[#0F172A]">Good morning, {user?.name?.split(" ")[0] || "there"}</h1>
-        <p className="mt-1 text-sm text-[#64748B]">Here's your career overview</p>
+        <p className="mt-1 text-sm text-secondary-text">Here's your career overview</p>
       </div>
 
       {interviewApps.length > 0 && (
@@ -116,7 +116,7 @@ export default function StudentDashboardPage() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-base font-medium text-[#0F172A]">Recommended internships</h2>
-                <Link to="/internships" className="text-[13px] font-medium text-[#2563EB] hover:text-[#1d4ed8] transition-colors">View all →</Link>
+                <Link to="/internships" className="text-[13px] font-medium text-primary hover:text-[#1d4ed8] transition-colors">View all →</Link>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 {internships.slice(0, 2).map((internship, i) => (
@@ -142,7 +142,7 @@ export default function StudentDashboardPage() {
                   <div key={item.id} className="flex items-center justify-between py-3 px-3 rounded-lg transition-all duration-200 hover:bg-[#F8FAFF] -mx-3">
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-[#0F172A] truncate">{item.internshipTitle}</p>
-                      <p className="text-[13px] text-[#64748B] mt-0.5">{item.companyName} &middot; {new Date(item.createdAt).toLocaleDateString()}</p>
+                      <p className="text-[13px] text-secondary-text mt-0.5">{item.companyName} &middot; {new Date(item.createdAt).toLocaleDateString()}</p>
                     </div>
                     <StatusBadge status={item.status} />
                   </div>
@@ -153,27 +153,27 @@ export default function StudentDashboardPage() {
         </div>
 
         <div className="space-y-6 animate-fade-in-up animate-delay-300">
-          <div className="rounded-xl border border-[#E2E8F0] bg-white p-5">
+          <div className="rounded-xl border border-border bg-surface p-5">
             <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-[#64748B] font-medium">Profile Completion</p>
-              <span className="text-[28px] font-medium text-[#2563EB]">{completion}%</span>
+              <p className="text-sm text-secondary-text font-medium">Profile Completion</p>
+              <span className="text-[28px] font-medium text-primary">{completion}%</span>
             </div>
             <div className="h-2 rounded-full bg-[#F1F5F9] overflow-hidden">
-              <div className="h-full rounded-full bg-[#2563EB] transition-all duration-1000 ease-out" style={{ width: `${completion}%` }} />
+              <div className="h-full rounded-full bg-primary transition-all duration-1000 ease-out" style={{ width: `${completion}%` }} />
             </div>
             <div className="mt-4 space-y-2">
               {checklistItems.map(({ key, label }) => {
                 const done = checklistState[key];
                 return (
                   <div key={key} className="flex items-center gap-2 text-sm">
-                    <div className={`h-4 w-4 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${done ? "border-[#2563EB] bg-[#2563EB]" : "border-[#CBD5E1]"}`}>
+                    <div className={`h-4 w-4 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${done ? "border-[#5FAED8] bg-primary" : "border-[#CBD5E1]"}`}>
                       {done && (
                         <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                       )}
                     </div>
-                    <span className={`${done ? "text-[#0F172A]" : "text-[#94A3B8]"}`}>{label}</span>
+                    <span className={`${done ? "text-[#0F172A]" : "text-muted"}`}>{label}</span>
                   </div>
                 );
               })}
@@ -189,15 +189,15 @@ export default function StudentDashboardPage() {
             <h2 className="text-base font-medium text-[#0F172A] mb-3">Quick Stats</h2>
             <div className="space-y-3">
               <div className="flex items-center justify-between py-2 border-b border-[#F1F5F9]">
-                <span className="text-[13px] text-[#64748B]">Application rate</span>
+                <span className="text-[13px] text-secondary-text">Application rate</span>
                 <span className="text-sm font-medium text-[#0F172A]">68%</span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-[#F1F5F9]">
-                <span className="text-[13px] text-[#64748B]">Response rate</span>
+                <span className="text-[13px] text-secondary-text">Response rate</span>
                 <span className="text-sm font-medium text-[#0F172A]">42%</span>
               </div>
               <div className="flex items-center justify-between py-2">
-                <span className="text-[13px] text-[#64748B]">Avg. review rating</span>
+                <span className="text-[13px] text-secondary-text">Avg. review rating</span>
                 <span className="text-sm font-medium text-[#0F172A]">4.2</span>
               </div>
             </div>

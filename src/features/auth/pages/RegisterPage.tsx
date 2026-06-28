@@ -45,18 +45,18 @@ export default function RegisterPage() {
 
   return (
     <div className="w-full max-w-lg animate-fade-in-up">
-      <div className="bg-white border border-slate-200 rounded-xl p-6">
+      <div className="bg-surface border border-border rounded-xl p-6">
         <img src={logo} alt="CareerPath" className="h-8 mb-5" />
 
-        <h1 className="text-[22px] font-medium text-slate-900">Create account</h1>
-        <p className="mt-1 text-sm text-slate-500">Join thousands of students finding opportunities.</p>
+        <h1 className="text-[22px] font-medium text-heading">Create account</h1>
+        <p className="mt-1 text-sm text-secondary-text">Join thousands of students finding opportunities.</p>
 
         <form onSubmit={handleSubmit(handleRegister)} className="mt-6 space-y-4">
           <div>
-            <label className="block text-xs font-medium text-slate-600 mb-1">Register as</label>
+            <label className="block text-xs font-medium text-body mb-1">Register as</label>
             <select
               {...register("role")}
-              className="h-9 w-full rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
+              className="h-9 w-full rounded-lg border border-border bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
             >
               <option value="student">Student</option>
               <option value="company">Company</option>
@@ -69,33 +69,33 @@ export default function RegisterPage() {
                 {...register("name")}
                 placeholder={selectedRole === "company" ? "Company name" : "Full name"}
               />
-              {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>}
+              {errors.name && <p className="mt-1 text-xs text-error">{errors.name.message}</p>}
             </div>
             <div className="sm:col-span-2">
               <AppInput {...register("email")} placeholder="Email" />
-              {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
+              {errors.email && <p className="mt-1 text-xs text-error">{errors.email.message}</p>}
             </div>
             {selectedRole === "student" && (
               <div className="sm:col-span-2">
                 <AppInput {...register("university")} placeholder="University" />
-                {errors.university && <p className="mt-1 text-xs text-red-500">{errors.university.message}</p>}
+                {errors.university && <p className="mt-1 text-xs text-error">{errors.university.message}</p>}
               </div>
             )}
             <div>
               <AppInput type="password" {...register("password")} placeholder="Password" />
-              {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
+              {errors.password && <p className="mt-1 text-xs text-error">{errors.password.message}</p>}
             </div>
             <div>
               <AppInput type="password" {...register("confirmPassword")} placeholder="Confirm password" />
-              {errors.confirmPassword && <p className="mt-1 text-xs text-red-500">{errors.confirmPassword.message}</p>}
+              {errors.confirmPassword && <p className="mt-1 text-xs text-error">{errors.confirmPassword.message}</p>}
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-slate-600">
+          <label className="flex items-center gap-2 text-sm text-body">
             <input type="checkbox" {...register("agreed")} className="accent-blue-600" />
             I agree to the Terms & Privacy Policy
           </label>
-          {errors.agreed && <p className="text-xs text-red-500">{errors.agreed.message}</p>}
+          {errors.agreed && <p className="text-xs text-error">{errors.agreed.message}</p>}
 
           <AppButton type="submit" disabled={isSubmitting} className="w-full">
             {isSubmitting ? "Creating..." : "Create account"}
@@ -104,22 +104,22 @@ export default function RegisterPage() {
 
         <div className="my-5 flex items-center gap-3">
           <div className="h-px flex-1 bg-slate-200" />
-          <span className="text-xs text-slate-400">or</span>
+          <span className="text-xs text-muted">or</span>
           <div className="h-px flex-1 bg-slate-200" />
         </div>
 
         <button
           type="button"
           onClick={handleGoogleRegister}
-          className="w-full rounded-lg border border-slate-200 py-2 flex items-center justify-center gap-2 text-sm text-slate-600 hover:bg-blue-50 hover:border-blue-200 transition-all duration-200"
+          className="w-full rounded-lg border border-border py-2 flex items-center justify-center gap-2 text-sm text-body hover:bg-accent hover:border-primary transition-all duration-200"
         >
           <FcGoogle size="18" />
           Continue with Google
         </button>
 
-        <p className="mt-5 text-center text-sm text-slate-500">
+        <p className="mt-5 text-center text-sm text-secondary-text">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-600 font-medium hover:text-blue-700 transition-colors">Sign in</Link>
+          <Link to="/login" className="text-primary font-medium hover:text-primary transition-colors">Sign in</Link>
         </p>
       </div>
     </div>

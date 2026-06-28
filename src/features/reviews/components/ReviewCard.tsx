@@ -21,7 +21,7 @@ export default function ReviewCard({ review }: { review: Review }) {
           h-12
           w-12
           rounded-full
-          bg-[#2563EB]
+          bg-primary
           text-white
           flex
           items-center
@@ -35,7 +35,7 @@ export default function ReviewCard({ review }: { review: Review }) {
             <div>
               <h4 className="font-medium">{review.userName}</h4>
 
-              <p className="text-xs text-slate-500">Internship Student</p>
+              <p className="text-xs text-secondary-text">Internship Student</p>
             </div>
           </div>
 
@@ -53,7 +53,7 @@ export default function ReviewCard({ review }: { review: Review }) {
 
         <blockquote
           className="
-      text-slate-600
+      text-body
       leading-7
       border-l-4
       border-blue-500

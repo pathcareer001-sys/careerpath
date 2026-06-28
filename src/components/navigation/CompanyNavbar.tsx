@@ -34,9 +34,9 @@ export default function CompanyNavbar() {
       sticky
       top-0
       z-50
-      bg-white
+      bg-surface
       border-b
-      border-slate-200
+      border-border
       "
     >
       <div
@@ -85,9 +85,9 @@ export default function CompanyNavbar() {
             variant="secondary"
             onClick={handleLogout}
             className="
-  border-red-200
-  text-red-600
-  hover:bg-red-50
+  border-error/30
+  text-error
+  hover:bg-error/10
   hidden
   sm:inline-flex
   "
@@ -99,12 +99,12 @@ export default function CompanyNavbar() {
           <UserMenu />
 
           <Sheet>
-            <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-[#64748B] hover:bg-blue-50">
+            <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-secondary-text hover:bg-accent">
               <Menu size="20" />
             </SheetTrigger>
             <SheetContent side="left" className="w-64 p-0">
               <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between px-4 h-14 border-b border-[#E2E8F0]">
+                <div className="flex items-center justify-between px-4 h-14 border-b border-border">
                   <img src={logo} alt="CareerPath" className="h-6 w-auto" />
                 </div>
                 <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
@@ -116,8 +116,8 @@ export default function CompanyNavbar() {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                           isActive
-                            ? "bg-blue-50 text-[#2563EB] font-medium"
-                            : "text-[#64748B] hover:bg-blue-50 hover:text-[#2563EB]"
+                            ? "bg-accent text-primary font-medium"
+                            : "text-secondary-text hover:bg-accent hover:text-primary"
                         }`
                       }
                     >
@@ -126,17 +126,17 @@ export default function CompanyNavbar() {
                     </NavLink>
                   ))}
                 </nav>
-                <div className="px-3 py-3 border-t border-[#E2E8F0] space-y-2">
+                <div className="px-3 py-3 border-t border-border space-y-2">
                   <Link
                     to="/company/profile"
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#64748B] hover:bg-blue-50 hover:text-[#2563EB] transition-colors"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-accent hover:text-primary transition-colors"
                   >
                     <User size="18" />
                     Profile
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
+                    className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-error hover:bg-error/10 transition-colors"
                   >
                     <LogOut size="18" />
                     Logout
@@ -178,8 +178,8 @@ function NavItem({
         transition-colors
         ${
           isActive
-            ? "border-blue-600 text-blue-600 font-medium"
-            : "border-transparent text-slate-500 hover:text-slate-900"
+            ? "border-blue-600 text-primary font-medium"
+            : "border-transparent text-secondary-text hover:text-heading"
         }
         `
       }

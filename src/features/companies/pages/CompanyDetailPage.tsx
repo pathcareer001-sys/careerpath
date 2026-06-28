@@ -76,12 +76,12 @@ export default function CompanyDetailPage() {
       <div className="grid gap-6 mt-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-6 animate-fade-in-up animate-delay-100">
           <AppCard>
-            <h2 className="text-base font-medium text-slate-900 mb-3">About</h2>
-            <p className="text-sm text-slate-600 leading-relaxed">{company.description}</p>
+            <h2 className="text-base font-medium text-heading mb-3">About</h2>
+            <p className="text-sm text-body leading-relaxed">{company.description}</p>
           </AppCard>
 
           <AppCard>
-            <h2 className="text-base font-medium text-slate-900 mb-4">Open Internships</h2>
+            <h2 className="text-base font-medium text-heading mb-4">Open Internships</h2>
             {internships?.length === 0 ? (
               <EmptyState title="No open internships" description="This company has no active positions." />
             ) : (
@@ -95,12 +95,12 @@ export default function CompanyDetailPage() {
 
           <AppCard>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-medium text-slate-900">Reviews ({reviews.data?.length || 0})</h2>
+              <h2 className="text-base font-medium text-heading">Reviews ({reviews.data?.length || 0})</h2>
               <div className="flex items-center gap-3">
-                <Link to={`/companies/${id}/reviews`} className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors">
+                <Link to={`/companies/${id}/reviews`} className="text-xs font-medium text-primary hover:text-primary transition-colors">
                   View all &rarr;
                 </Link>
-                <div className="flex items-center gap-1 text-sm text-slate-500">
+                <div className="flex items-center gap-1 text-sm text-secondary-text">
                   <Star size="14" className="fill-amber-400 text-amber-400" />
                   {company.avgRating || 0}
                 </div>
@@ -118,8 +118,8 @@ export default function CompanyDetailPage() {
 
         <div className="space-y-4 animate-fade-in-up animate-delay-200">
           <AppCard>
-            <h3 className="text-sm font-medium text-slate-900 mb-3">Write a Review</h3>
-            <p className="text-xs text-slate-500 mb-4">Share your experience to help other students.</p>
+            <h3 className="text-sm font-medium text-heading mb-3">Write a Review</h3>
+            <p className="text-xs text-secondary-text mb-4">Share your experience to help other students.</p>
             <ReviewForm companyId={company.id} />
           </AppCard>
         </div>

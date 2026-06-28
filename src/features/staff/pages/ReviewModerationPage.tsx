@@ -69,7 +69,7 @@ export default function ReviewModerationPage() {
           <TabsList className="bg-[#F1F5F9] p-0.5 rounded-lg">
             <TabsTrigger
               value="pending"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-[#64748B] data-active:bg-white data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
             >
               <Clock size="15" />
               Pending
@@ -81,7 +81,7 @@ export default function ReviewModerationPage() {
             </TabsTrigger>
             <TabsTrigger
               value="approved"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-[#64748B] data-active:bg-white data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
             >
               <Check size="15" />
               Approved
@@ -93,7 +93,7 @@ export default function ReviewModerationPage() {
             </TabsTrigger>
             <TabsTrigger
               value="rejected"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-[#64748B] data-active:bg-white data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
             >
               <X size="15" />
               Rejected
@@ -119,14 +119,14 @@ export default function ReviewModerationPage() {
                             {review.userName?.charAt(0) || "?"}
                           </div>
                           <div>
-                            <h3 className="font-medium text-slate-900">{review.userName || "Anonymous"}</h3>
+                            <h3 className="font-medium text-heading">{review.userName || "Anonymous"}</h3>
                             <div className="flex items-center gap-1 mt-0.5">
                               {[1, 2, 3, 4, 5].map((star) => (
                                 <Star key={star} size="12" className={star <= review.rating ? "fill-[#F59E0B] text-[#F59E0B]" : "text-[#CBD5E1]"} />
                               ))}
-                              <span className="text-xs text-slate-400 ml-1">({review.rating}/5)</span>
+                              <span className="text-xs text-muted ml-1">({review.rating}/5)</span>
                             </div>
-                            <p className="mt-2 text-sm text-slate-600 leading-relaxed">"{review.review}"</p>
+                            <p className="mt-2 text-sm text-body leading-relaxed">"{review.review}"</p>
                           </div>
                         </div>
                         <div className="flex gap-2 shrink-0">
@@ -141,7 +141,7 @@ export default function ReviewModerationPage() {
                               </AppButton>
                               <AppButton
                                 variant="secondary"
-                                className="text-red-600 border-red-200 hover:bg-red-50"
+                                className="text-error border-error/30 hover:bg-error/10"
                                 onClick={() => handleReject(review.id)}
                                 disabled={updateModeration.isPending}
                               >

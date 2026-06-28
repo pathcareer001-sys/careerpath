@@ -13,7 +13,7 @@ export default function ErrorState({ message }: { message?: string }) {
         className="
         mx-auto
         mb-3
-        text-red-500
+        text-error
         "
       />
 

@@ -74,7 +74,7 @@ export default function InternshipListPage() {
           <select
             value={sort}
             onChange={(e) => { setSort(e.target.value as SortKey); setPage(1); }}
-            className="h-9 rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
+            className="h-9 rounded-lg border border-border bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
           >
             <option value="newest">Newest</option>
             <option value="deadline">Deadline</option>
@@ -83,7 +83,7 @@ export default function InternshipListPage() {
           <select
             value={location}
             onChange={(e) => { setLocation(e.target.value); setPage(1); }}
-            className="h-9 rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
+            className="h-9 rounded-lg border border-border bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
           >
             <option value="">All locations</option>
             {locations.map((loc) => (
@@ -93,7 +93,7 @@ export default function InternshipListPage() {
           <select
             value={type}
             onChange={(e) => { setType(e.target.value); setPage(1); }}
-            className="h-9 rounded-lg border border-[#E2E8F0] bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#2563EB] focus:outline-none focus:shadow-[0_0_0_3px_#EEF3FE] transition-colors"
+            className="h-9 rounded-lg border border-border bg-[#F8FAFF] px-3 text-sm text-[#0F172A] focus:border-[#5FAED8] focus:outline-none focus:shadow-[0_0_0_3px_#D9F0FB] transition-colors"
           >
             <option value="">All types</option>
             <option value="Remote">Remote</option>
@@ -113,7 +113,7 @@ export default function InternshipListPage() {
         <EmptyState title="No internships found" description="Try different keywords or filters." />
       ) : (
         <>
-          <p className="text-xs text-slate-500">{internships.length} internships found</p>
+          <p className="text-xs text-secondary-text">{internships.length} internships found</p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {paged.map((internship) => (
               <InternshipCard key={internship.id} internship={internship} />
@@ -127,8 +127,8 @@ export default function InternshipListPage() {
                   onClick={() => setPage(p)}
                   className={`h-7 w-7 rounded-full text-[12px] font-medium transition-all duration-200 flex items-center justify-center ${
                     p === page
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm"
-                      : "text-[#64748B] hover:bg-blue-50 hover:text-blue-600"
+                      ? "bg-gradient-to-r from-primary to-secondary text-white shadow-sm"
+                      : "text-secondary-text hover:bg-accent hover:text-primary"
                   }`}
                 >
                   {p}

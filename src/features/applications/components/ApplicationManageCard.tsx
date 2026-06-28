@@ -23,8 +23,8 @@ export default function ApplicationManageCard({
             {application.applicantName?.charAt(0) || "?"}
           </div>
           <div className="space-y-1">
-            <h3 className="font-medium text-slate-900">{application.internshipTitle}</h3>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
+            <h3 className="font-medium text-heading">{application.internshipTitle}</h3>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-secondary-text">
               <span className="flex items-center gap-1"><Building2 size="14" /> {application.companyName}</span>
               <span className="flex items-center gap-1"><User size="14" /> {application.applicantName}</span>
             </div>

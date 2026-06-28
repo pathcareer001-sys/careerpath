@@ -38,21 +38,21 @@ export default function AboutPage() {
       <div className="mx-auto max-w-7xl px-6 -mt-8 relative z-20">
         <div className="grid gap-6 md:grid-cols-3">
           {features.map((feature, i) => (
-            <div key={feature.title} className="animate-fade-in-up rounded-xl bg-white border border-[#E2E8F0] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" style={{ animationDelay: `${i * 150}ms` }}>
+            <div key={feature.title} className="animate-fade-in-up rounded-xl bg-surface border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" style={{ animationDelay: `${i * 150}ms` }}>
               <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${feature.gradient} text-white shadow-sm`}>
                 <feature.icon size="22" />
               </div>
-              <h3 className="mt-4 text-base font-medium text-slate-900">{feature.title}</h3>
-              <p className="mt-2 text-sm text-slate-500 leading-relaxed">{feature.text}</p>
+              <h3 className="mt-4 text-base font-medium text-heading">{feature.title}</h3>
+              <p className="mt-2 text-sm text-secondary-text leading-relaxed">{feature.text}</p>
             </div>
           ))}
         </div>
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <h2 className="text-[22px] font-medium text-slate-900">Ready to start your journey?</h2>
-        <p className="mt-2 text-sm text-slate-500">Join thousands of students already using CareerPath.</p>
-        <Link to="/register" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-700 hover:to-purple-700 shadow-sm">
+        <h2 className="text-[22px] font-medium text-heading">Ready to start your journey?</h2>
+        <p className="mt-2 text-sm text-secondary-text">Join thousands of students already using CareerPath.</p>
+        <Link to="/register" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-700 hover:to-purple-700 shadow-sm">
           Get started <ArrowRight size="16" />
         </Link>
       </div>

@@ -8,10 +8,10 @@ interface Props {
 
 const stageMeta: Record<string, { label: string; color: string }> = {
   pending: { label: "Applied", color: "bg-amber-500" },
-  reviewed: { label: "Under Review", color: "bg-blue-500" },
+  reviewed: { label: "Under Review", color: "bg-accent0" },
   interview: { label: "Interview", color: "bg-purple-500" },
   accepted: { label: "Accepted", color: "bg-emerald-500" },
-  rejected: { label: "Rejected", color: "bg-red-500" },
+  rejected: { label: "Rejected", color: "bg-error/100" },
 };
 
 export default function ApplicationCard({ application }: Props) {
@@ -22,7 +22,7 @@ export default function ApplicationCard({ application }: Props) {
     : stages;
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl overflow-hidden transition-all hover:-translate-y-0.5 hover:shadow-sm">
+    <div className="bg-surface border border-border rounded-xl overflow-hidden transition-all hover:-translate-y-0.5 hover:shadow-sm">
       <div className="flex gap-4 p-4">
         <div className="flex flex-col items-center shrink-0">
           {timelineStages.map((s, i) => {
@@ -31,7 +31,7 @@ export default function ApplicationCard({ application }: Props) {
             const isLast = i === timelineStages.length - 1;
             return (
               <div key={s} className="flex flex-col items-center">
-                <div className={`h-3 w-3 rounded-full border-2 ${isPast ? `${meta.color} border-white` : "border-slate-300 bg-white"}`} />
+                <div className={`h-3 w-3 rounded-full border-2 ${isPast ? `${meta.color} border-white` : "border-slate-300 bg-surface"}`} />
                 {!isLast && <div className={`w-0.5 h-6 ${isPast && timelineStages[i + 1] !== "rejected" ? "bg-blue-300" : "bg-slate-200"}`} />}
               </div>
             );
@@ -42,13 +42,13 @@ export default function ApplicationCard({ application }: Props) {
           <div className="flex items-start justify-between gap-3">
             <div>
               <div className="flex items-center gap-2">
-                <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-[11px] font-medium text-blue-600">
+                <span className="rounded-full bg-accent px-2.5 py-0.5 text-[11px] font-medium text-primary">
                   Internship
                 </span>
                 <StatusBadge status={application.status} />
               </div>
-              <h3 className="text-sm font-medium text-slate-900 mt-1">{application.internshipTitle}</h3>
-              <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
+              <h3 className="text-sm font-medium text-heading mt-1">{application.internshipTitle}</h3>
+              <div className="flex items-center gap-3 mt-1 text-xs text-secondary-text">
                 <span className="flex items-center gap-1">
                   <Building2 size="12" />
                   {application.companyName}
@@ -59,7 +59,7 @@ export default function ApplicationCard({ application }: Props) {
                 </span>
               </div>
             </div>
-            <ChevronRight size="16" className="text-slate-300 mt-1 shrink-0" />
+            <ChevronRight size="16" className="text-muted mt-1 shrink-0" />
           </div>
 
           {application.interviewDate && (

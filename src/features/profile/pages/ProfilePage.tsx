@@ -151,7 +151,7 @@ export default function ProfilePage() {
       <div className="grid gap-6 xl:grid-cols-[380px_1fr]">
         {/* LEFT CARD */}
         <AppCard className="overflow-hidden">
-          <div className="relative h-32 bg-gradient-to-r from-blue-600 to-purple-600 group">
+          <div className="relative h-32 bg-gradient-to-r from-primary to-secondary group">
             {coverPreview && !removeCover && (
               <img
                 src={coverPreview}
@@ -188,7 +188,7 @@ export default function ProfilePage() {
 
           <div className="-mt-14 px-6 pb-6">
             <div className="relative inline-block">
-              <div className="h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-white">
+              <div className="h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-surface">
                 {avatarPreview ? (
                   <img
                     src={avatarPreview}
@@ -196,7 +196,7 @@ export default function ProfilePage() {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center text-4xl font-medium text-blue-600">
+                  <div className="flex h-full w-full items-center justify-center text-4xl font-medium text-primary">
                     {user?.name?.charAt(0)}
                   </div>
                 )}
@@ -214,28 +214,28 @@ export default function ProfilePage() {
 
             <h2 className="mt-4 text-2xl font-medium">{user?.name}</h2>
             {username && (
-              <p className="text-sm text-slate-400">@{username}</p>
+              <p className="text-sm text-muted">@{username}</p>
             )}
-            <p className="text-slate-500">{user?.email}</p>
+            <p className="text-secondary-text">{user?.email}</p>
 
-            <div className="mt-4 inline-flex rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-600">
+            <div className="mt-4 inline-flex rounded-full bg-accent px-3 py-1 text-sm font-medium text-primary">
               {user?.role === "student" ? "Student" : "Company"}
             </div>
 
-            <div className="mt-3 text-sm text-slate-500">
+            <div className="mt-3 text-sm text-secondary-text">
               {major || "Add Major"} • {university || "Add University"}
             </div>
 
-            <div className="mt-2 flex items-center gap-1 text-sm text-slate-500">
+            <div className="mt-2 flex items-center gap-1 text-sm text-secondary-text">
               <MapPin size={16} />
               {location || "Add Location"}
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
-              <span className="rounded-full bg-blue-50 px-3 py-1 text-xs text-blue-600">
+              <span className="rounded-full bg-accent px-3 py-1 text-xs text-primary">
                 {skills.length} Skills
               </span>
-              <span className="rounded-full bg-green-50 px-3 py-1 text-xs text-green-600">
+              <span className="rounded-full bg-success/10 px-3 py-1 text-xs text-success">
                 {completion}% Complete
               </span>
               <span className="rounded-full bg-purple-50 px-3 py-1 text-xs text-purple-600">
@@ -246,9 +246,9 @@ export default function ProfilePage() {
             <div className="mt-6">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium">Profile Completion</span>
-                <span className="text-sm font-medium text-blue-600">{completion}%</span>
+                <span className="text-sm font-medium text-primary">{completion}%</span>
               </div>
-              <div className="h-2 rounded-full bg-blue-100">
+              <div className="h-2 rounded-full bg-section">
                 <div
                   className="h-2 rounded-full bg-blue-600 transition-all duration-500"
                   style={{ width: `${completion}%` }}
@@ -260,13 +260,13 @@ export default function ProfilePage() {
               {skills.slice(0, 3).map((skill) => (
                 <span
                   key={skill}
-                  className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600"
+                  className="rounded-full bg-accent px-3 py-1 text-xs font-medium text-primary"
                 >
                   {skill}
                 </span>
               ))}
               {skills.length > 3 && (
-                <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600">
+                <span className="rounded-full bg-accent px-3 py-1 text-xs font-medium text-primary">
                   +{skills.length - 3}
                 </span>
               )}
@@ -329,15 +329,15 @@ export default function ProfilePage() {
           {/* PROFILE PHOTO */}
           <AppCard>
             <h2 className="text-lg font-medium">Profile Photo</h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-secondary-text mt-1">
               Upload or replace your profile picture
             </p>
             <div className="mt-4 flex items-center gap-6">
-              <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-blue-200">
+              <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-primary/30">
                 {avatarPreview ? (
                   <img src={avatarPreview} alt="Preview" className="h-full w-full object-cover" />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center text-2xl font-medium text-blue-600">
+                  <div className="flex h-full w-full items-center justify-center text-2xl font-medium text-primary">
                     {user?.name?.charAt(0)}
                   </div>
                 )}
@@ -367,11 +367,11 @@ export default function ProfilePage() {
           {/* COVER PHOTO */}
           <AppCard>
             <h2 className="text-lg font-medium">Cover Photo</h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-secondary-text mt-1">
               Upload a banner image for your profile
             </p>
             <div className="mt-4">
-              <div className="relative h-36 rounded-xl overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600">
+              <div className="relative h-36 rounded-xl overflow-hidden bg-gradient-to-r from-primary to-secondary">
                 {coverPreview && !removeCover ? (
                   <img src={coverPreview} alt="Cover preview" className="h-full w-full object-cover" />
                 ) : (
@@ -408,7 +408,7 @@ export default function ProfilePage() {
           {/* SKILLS */}
           <AppCard>
             <h2 className="text-lg font-medium">Skills</h2>
-            <p className="text-sm text-slate-500 mt-1">Showcase your strengths</p>
+            <p className="text-sm text-secondary-text mt-1">Showcase your strengths</p>
             <div className="mt-6 flex gap-3">
               <AppInput
                 value={skillInput}
@@ -418,7 +418,7 @@ export default function ProfilePage() {
               <AppButton type="button" onClick={handleAddSkill}>Add</AppButton>
             </div>
             {skills.length === 0 ? (
-              <div className="mt-6 rounded-xl border border-dashed border-blue-200 p-6 text-center text-sm text-slate-500">
+              <div className="mt-6 rounded-xl border border-dashed border-primary/30 p-6 text-center text-sm text-secondary-text">
                 No skills added yet
               </div>
             ) : (
@@ -428,7 +428,7 @@ export default function ProfilePage() {
                     key={skill}
                     type="button"
                     onClick={() => handleRemoveSkill(skill)}
-                    className="rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600 hover:bg-red-50 hover:text-red-600 transition-all"
+                    className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-primary hover:bg-error/10 hover:text-error transition-all"
                   >
                     {skill} ✕
                   </button>
@@ -440,8 +440,8 @@ export default function ProfilePage() {
           {/* RESUME */}
           <AppCard>
             <h2 className="text-lg font-medium">Resume</h2>
-            <p className="text-sm text-slate-500 mt-1">Upload your latest CV</p>
-            <label className="mt-4 flex h-32 cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-blue-200 hover:border-blue-500">
+            <p className="text-sm text-secondary-text mt-1">Upload your latest CV</p>
+            <label className="mt-4 flex h-32 cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-primary/30 hover:border-blue-500">
               <input
                 type="file"
                 accept=".pdf"
@@ -451,25 +451,25 @@ export default function ProfilePage() {
               <div className="text-center">
                 {resumeFile ? (
                   <>
-                    <p className="font-medium text-blue-600">{resumeFile.name}</p>
-                    <p className="text-xs text-slate-500">{(resumeFile.size / 1024 / 1024).toFixed(2)} MB</p>
-                    <p className="text-sm text-green-600">Ready to upload</p>
+                    <p className="font-medium text-primary">{resumeFile.name}</p>
+                    <p className="text-xs text-secondary-text">{(resumeFile.size / 1024 / 1024).toFixed(2)} MB</p>
+                    <p className="text-sm text-success">Ready to upload</p>
                   </>
                 ) : user?.resumeUrl ? (
                   <>
-                    <p className="font-medium text-green-600">Resume Uploaded ✓</p>
-                    <p className="text-sm text-slate-500">Click Save Changes to replace</p>
+                    <p className="font-medium text-success">Resume Uploaded ✓</p>
+                    <p className="text-sm text-secondary-text">Click Save Changes to replace</p>
                   </>
                 ) : (
                   <>
                     <p className="font-medium">Upload Resume</p>
-                    <p className="text-sm text-slate-500">PDF up to 5MB</p>
+                    <p className="text-sm text-secondary-text">PDF up to 5MB</p>
                   </>
                 )}
               </div>
             </label>
             {user?.resumeUrl && (
-              <a href={user.resumeUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex text-blue-600 font-medium">
+              <a href={user.resumeUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex text-primary font-medium">
                 View Current Resume
               </a>
             )}
@@ -490,7 +490,7 @@ export default function ProfilePage() {
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="font-medium">Ready to Save?</h3>
-                <p className="text-sm text-slate-500">Update your profile information.</p>
+                <p className="text-sm text-secondary-text">Update your profile information.</p>
               </div>
               <AppButton onClick={handleSave} disabled={updateProfile.isPending}>
                 {updateProfile.isPending ? "Saving..." : "Save Changes"}

@@ -1,7 +1,7 @@
 export default function AuthFormSkeleton() {
   return (
     <div className="w-full max-w-sm">
-      <div className="border border-slate-200 rounded-xl bg-white p-6">
+      <div className="border border-border rounded-xl bg-surface p-6">
         <div className="h-8 w-24 bg-slate-200 rounded animate-pulse mb-5" />
         <div className="h-6 w-32 bg-slate-200 rounded animate-pulse mb-1" />
         <div className="h-4 w-48 bg-slate-200 rounded animate-pulse mb-6" />

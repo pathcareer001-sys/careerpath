@@ -10,8 +10,8 @@ export default function AppCard({ children, className, hover = true, ...props }:
   return (
     <div
       className={cn(
-        "bg-white border border-[#E2E8F0] rounded-xl transition-all duration-300",
-        hover && "hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/5 hover:border-blue-200",
+        "bg-surface border border-border rounded-xl transition-all duration-300",
+        hover && "hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/5 hover:border-primary",
         className,
       )}
       {...props}

@@ -19,7 +19,7 @@ export default function UserMenu() {
       rounded-xl
       px-2
       py-2
-      hover:bg-slate-100
+      hover:bg-section
       transition-colors
       "
     >
@@ -38,7 +38,7 @@ export default function UserMenu() {
       <div className="hidden md:block">
         <p className="text-sm font-medium">{user?.name || "User"}</p>
 
-        <p className="text-xs text-slate-500">{user?.email}</p>
+        <p className="text-xs text-secondary-text">{user?.email}</p>
       </div>
     </Link>
   );

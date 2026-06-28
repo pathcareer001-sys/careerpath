@@ -81,24 +81,24 @@ export default function CompanyDashboardPage() {
 
       <div className="mt-6 grid gap-4 md:grid-cols-3 animate-fade-in-up animate-delay-100">
         <Link to="/company/internships">
-          <AppCard className="hover:border-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-md">
-            <Briefcase className="text-blue-600 mb-2" size="20" />
+          <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
+            <Briefcase className="text-primary mb-2" size="20" />
             <h3 className="font-medium">Manage Internships</h3>
-            <p className="text-sm text-slate-500">Create and manage internship postings</p>
+            <p className="text-sm text-secondary-text">Create and manage internship postings</p>
           </AppCard>
         </Link>
         <Link to="/company/internships">
-          <AppCard className="hover:border-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-md">
-            <Users className="text-blue-600 mb-2" size="20" />
+          <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
+            <Users className="text-primary mb-2" size="20" />
             <h3 className="font-medium">View Applicants</h3>
-            <p className="text-sm text-slate-500">Review student applications</p>
+            <p className="text-sm text-secondary-text">Review student applications</p>
           </AppCard>
         </Link>
         <Link to="/company/profile">
-          <AppCard className="hover:border-blue-200 transition-all hover:-translate-y-0.5 hover:shadow-md">
-            <Building2 className="text-blue-600 mb-2" size="20" />
+          <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
+            <Building2 className="text-primary mb-2" size="20" />
             <h3 className="font-medium">Company Profile</h3>
-            <p className="text-sm text-slate-500">Update company information</p>
+            <p className="text-sm text-secondary-text">Update company information</p>
           </AppCard>
         </Link>
       </div>
@@ -114,7 +114,7 @@ export default function CompanyDashboardPage() {
       <div className="mt-6 grid gap-6 lg:grid-cols-2 animate-fade-in-up animate-delay-300">
         <AppCard>
           <h2 className="text-base font-medium mb-1">Recent Applicants</h2>
-          <p className="text-sm text-slate-500 mb-4">Latest internship applications</p>
+          <p className="text-sm text-secondary-text mb-4">Latest internship applications</p>
           {dashboard.applications?.length === 0 ? (
             <EmptyState title="No Applicants Yet" description="Applications will appear here" />
           ) : (
@@ -127,7 +127,7 @@ export default function CompanyDashboardPage() {
                     </div>
                     <div>
                       <p className="text-sm font-medium">{application.applicantName}</p>
-                      <p className="text-xs text-slate-500">{application.internshipTitle}</p>
+                      <p className="text-xs text-secondary-text">{application.internshipTitle}</p>
                     </div>
                   </div>
                   <StatusBadge status={application.status} />
@@ -139,7 +139,7 @@ export default function CompanyDashboardPage() {
 
         <AppCard>
           <h2 className="text-base font-medium mb-1">Active Internships</h2>
-          <p className="text-sm text-slate-500 mb-4">Your latest internship postings</p>
+          <p className="text-sm text-secondary-text mb-4">Your latest internship postings</p>
           {dashboard.internships?.length === 0 ? (
             <EmptyState title="No Internships" description="Create your first internship" />
           ) : (
@@ -148,7 +148,7 @@ export default function CompanyDashboardPage() {
                 <div key={internship.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-[#F8FAFF] transition-colors -mx-3">
                   <div>
                     <p className="text-sm font-medium">{internship.title}</p>
-                    <p className="text-xs text-slate-500">{internship.location}</p>
+                    <p className="text-xs text-secondary-text">{internship.location}</p>
                   </div>
                   <span className="rounded-full bg-gradient-to-r from-emerald-50 to-green-50 px-3 py-1 text-xs font-medium text-emerald-700 border border-emerald-200">
                     Active
@@ -163,7 +163,7 @@ export default function CompanyDashboardPage() {
       <div className="mt-6 grid gap-6 lg:grid-cols-2 animate-fade-in-up animate-delay-300">
         <AppCard>
           <h2 className="text-base font-medium mb-1">Application Analytics</h2>
-          <p className="text-sm text-slate-500 mb-4">Overview of applicant statuses</p>
+          <p className="text-sm text-secondary-text mb-4">Overview of applicant statuses</p>
           {dashboard.totalApplicants === 0 ? (
             <EmptyState title="No Analytics Yet" description="Application statistics will appear here once students apply." />
           ) : (
@@ -173,25 +173,25 @@ export default function CompanyDashboardPage() {
 
         <AppCard>
           <h2 className="text-base font-medium mb-1">Top Performing Internships</h2>
-          <p className="text-sm text-slate-500 mb-4">Ranked by number of applicants</p>
+          <p className="text-sm text-secondary-text mb-4">Ranked by number of applicants</p>
           {dashboard.internshipPerformance?.length === 0 ? (
             <EmptyState title="No Performance Data" description="Internship statistics will appear here." />
           ) : (
             <div className="space-y-3">
               {dashboard.internshipPerformance?.slice(0, 5).map((internship, index) => (
-                <div key={internship.id} className="flex items-center justify-between p-3 rounded-lg border border-[#E2E8F0] hover:border-blue-200 transition-colors">
+                <div key={internship.id} className="flex items-center justify-between p-3 rounded-lg border border-border hover:border-primary transition-colors">
                   <div className="flex items-center gap-3">
                     <span className="h-7 w-7 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-xs font-medium shrink-0">
                       {index + 1}
                     </span>
                     <div>
                       <p className="text-sm font-medium">{internship.title}</p>
-                      <p className="text-xs text-slate-500">{internship.location}</p>
+                      <p className="text-xs text-secondary-text">{internship.location}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-xl font-medium text-blue-600">{internship.applicants}</p>
-                    <p className="text-xs text-slate-500">Applicants</p>
+                    <p className="text-xl font-medium text-primary">{internship.applicants}</p>
+                    <p className="text-xs text-secondary-text">Applicants</p>
                   </div>
                 </div>
               ))}
@@ -203,13 +203,13 @@ export default function CompanyDashboardPage() {
       <div className="mt-6 animate-fade-in-up animate-delay-300">
         <AppCard>
           <h2 className="text-base font-medium mb-1">Recent Reviews</h2>
-          <p className="text-sm text-slate-500 mb-4">Latest student feedback</p>
+          <p className="text-sm text-secondary-text mb-4">Latest student feedback</p>
           {dashboard.reviews?.length === 0 ? (
             <EmptyState title="No Reviews Yet" description="Reviews from students will appear here." />
           ) : (
             <div className="space-y-4">
               {dashboard.reviews?.slice(0, 3).map((review) => (
-                <div key={review.id} className="p-4 rounded-xl border border-[#E2E8F0] hover:border-blue-100 transition-colors">
+                <div key={review.id} className="p-4 rounded-xl border border-border hover:border-border transition-colors">
                   <div className="flex items-center gap-3">
                     <div className="h-8 w-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-white flex items-center justify-center text-xs font-medium">
                       {review.userName?.charAt(0)}
@@ -223,7 +223,7 @@ export default function CompanyDashboardPage() {
                       </div>
                     </div>
                   </div>
-                  <p className="mt-2 text-sm text-slate-600">{review.review}</p>
+                  <p className="mt-2 text-sm text-body">{review.review}</p>
                 </div>
               ))}
             </div>

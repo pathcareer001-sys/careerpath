@@ -22,7 +22,7 @@ export default function CompanyReviewPage() {
 
   return (
     <PageContainer>
-      <Link to={`/companies/${id}`} className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 mb-4 transition-colors">
+      <Link to={`/companies/${id}`} className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary mb-4 transition-colors">
         <ArrowLeft size="14" /> Back to {company.name}
       </Link>
 
@@ -33,20 +33,20 @@ export default function CompanyReviewPage() {
           </div>
           <div>
             <h1 className="text-2xl font-medium text-[#0F172A]">Reviews & Ratings</h1>
-            <p className="text-sm text-slate-500">{company.name}</p>
+            <p className="text-sm text-secondary-text">{company.name}</p>
           </div>
         </div>
       </div>
 
       <div className="mt-6 flex items-center gap-6 p-4 rounded-xl bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200 animate-fade-in-up animate-delay-100">
         <div className="text-center">
-          <p className="text-4xl font-medium text-slate-900">{company.avgRating || 0}</p>
+          <p className="text-4xl font-medium text-heading">{company.avgRating || 0}</p>
           <div className="flex items-center gap-0.5 mt-1 justify-center">
             {[1, 2, 3, 4, 5].map((star) => (
-              <Star key={star} size="16" className={star <= Math.round(company.avgRating || 0) ? "fill-amber-400 text-amber-400" : "text-slate-300"} />
+              <Star key={star} size="16" className={star <= Math.round(company.avgRating || 0) ? "fill-amber-400 text-amber-400" : "text-muted"} />
             ))}
           </div>
-          <p className="text-xs text-slate-500 mt-1">{company.reviewCount || 0} reviews</p>
+          <p className="text-xs text-secondary-text mt-1">{company.reviewCount || 0} reviews</p>
         </div>
       </div>
 
@@ -61,8 +61,8 @@ export default function CompanyReviewPage() {
 
         <div className="animate-fade-in-up animate-delay-300">
           <AppCard>
-            <h3 className="text-sm font-medium text-slate-900 mb-3">Write a Review</h3>
-            <p className="text-xs text-slate-500 mb-4">Share your experience to help other students.</p>
+            <h3 className="text-sm font-medium text-heading mb-3">Write a Review</h3>
+            <p className="text-xs text-secondary-text mb-4">Share your experience to help other students.</p>
             <ReviewForm companyId={company.id} />
           </AppCard>
         </div>

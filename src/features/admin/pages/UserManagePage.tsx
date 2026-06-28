@@ -43,9 +43,9 @@ export default function UserManagePage() {
                     {user.name?.charAt(0) || "?"}
                   </div>
                   <div>
-                    <h3 className="font-medium text-slate-900">{user.name}</h3>
-                    <p className="text-sm text-slate-500">{user.email}</p>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-[11px] font-medium text-blue-600 mt-1">
+                    <h3 className="font-medium text-heading">{user.name}</h3>
+                    <p className="text-sm text-secondary-text">{user.email}</p>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2 py-0.5 text-[11px] font-medium text-primary mt-1">
                       {user.role}
                     </span>
                   </div>

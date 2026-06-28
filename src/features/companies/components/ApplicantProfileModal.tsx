@@ -31,8 +31,8 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
             </div>
             <div>
               <h2 className="text-2xl font-medium">{user.name}</h2>
-              <p className="text-slate-500">{user.email}</p>
-              <div className="mt-2 space-y-1 text-sm text-slate-500">
+              <p className="text-secondary-text">{user.email}</p>
+              <div className="mt-2 space-y-1 text-sm text-secondary-text">
                 <div className="flex items-center gap-2">
                   <GraduationCap size="14" /> {user.university || "University not provided"}
                 </div>
@@ -42,7 +42,7 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
               </div>
             </div>
           </div>
-          <button type="button" onClick={onClose} className="rounded-xl p-2 hover:bg-slate-100">
+          <button type="button" onClick={onClose} className="rounded-xl p-2 hover:bg-section">
             <X size="20" />
           </button>
         </div>
@@ -58,17 +58,17 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
           <div className="flex flex-wrap gap-2">
             {user.skills?.length ? (
               user.skills.map((skill) => (
-                <span key={skill} className="rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-600">{skill}</span>
+                <span key={skill} className="rounded-full bg-accent px-3 py-1 text-sm font-medium text-primary">{skill}</span>
               ))
             ) : (
-              <p className="text-slate-500">No skills</p>
+              <p className="text-secondary-text">No skills</p>
             )}
           </div>
         </div>
 
         <div className="mt-8">
           <h3 className="font-medium mb-3">About</h3>
-          <p className="text-slate-600 leading-7">{user.bio || "This candidate has not added a bio yet."}</p>
+          <p className="text-body leading-7">{user.bio || "This candidate has not added a bio yet."}</p>
         </div>
 
         <div className="mt-8">
@@ -76,26 +76,26 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
           <div className="grid gap-4 md:grid-cols-2">
             {user.resumeUrl && (
               <a href={user.resumeUrl} target="_blank" rel="noopener noreferrer">
-                <AppCard className="hover:border-blue-200 hover:-translate-y-0.5 transition-all">
+                <AppCard className="hover:border-primary hover:-translate-y-0.5 transition-all">
                   <div className="flex items-center gap-3">
-                    <FileText size="20" className="text-blue-600" />
+                    <FileText size="20" className="text-primary" />
                     <div className="flex-1">
                       <p className="font-medium">Resume</p>
-                      <p className="text-sm text-slate-500">View candidate CV</p>
+                      <p className="text-sm text-secondary-text">View candidate CV</p>
                     </div>
-                    <Download size="16" className="text-slate-400" />
+                    <Download size="16" className="text-muted" />
                   </div>
                 </AppCard>
               </a>
             )}
             {user.portfolio && (
               <a href={user.portfolio} target="_blank" rel="noopener noreferrer">
-                <AppCard className="hover:border-blue-200 hover:-translate-y-0.5 transition-all">
+                <AppCard className="hover:border-primary hover:-translate-y-0.5 transition-all">
                   <div className="flex items-center gap-3">
-                    <Globe size="20" className="text-blue-600" />
+                    <Globe size="20" className="text-primary" />
                     <div>
                       <p className="font-medium">Portfolio</p>
-                      <p className="text-sm text-slate-500">Personal projects</p>
+                      <p className="text-sm text-secondary-text">Personal projects</p>
                     </div>
                   </div>
                 </AppCard>
@@ -103,12 +103,12 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
             )}
             {user.linkedin && (
               <a href={user.linkedin} target="_blank" rel="noopener noreferrer">
-                <AppCard className="hover:border-blue-200 hover:-translate-y-0.5 transition-all">
+                <AppCard className="hover:border-primary hover:-translate-y-0.5 transition-all">
                   <div className="flex items-center gap-3">
-                    <FileText size="20" className="text-blue-600" />
+                    <FileText size="20" className="text-primary" />
                     <div>
                       <p className="font-medium">LinkedIn</p>
-                      <p className="text-sm text-slate-500">Professional profile</p>
+                      <p className="text-sm text-secondary-text">Professional profile</p>
                     </div>
                   </div>
                 </AppCard>
@@ -116,12 +116,12 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
             )}
             {user.github && (
               <a href={user.github} target="_blank" rel="noopener noreferrer">
-                <AppCard className="hover:border-blue-200 hover:-translate-y-0.5 transition-all">
+                <AppCard className="hover:border-primary hover:-translate-y-0.5 transition-all">
                   <div className="flex items-center gap-3">
-                    <User size="20" className="text-blue-600" />
+                    <User size="20" className="text-primary" />
                     <div>
                       <p className="font-medium">GitHub</p>
-                      <p className="text-sm text-slate-500">Source code & projects</p>
+                      <p className="text-sm text-secondary-text">Source code & projects</p>
                     </div>
                   </div>
                 </AppCard>
@@ -137,7 +137,7 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
 function InfoRow({ label, value }: { label: string; value?: string }) {
   return (
     <div className="flex justify-between">
-      <span className="text-slate-500">{label}</span>
+      <span className="text-secondary-text">{label}</span>
       <span className="font-medium">{value || "-"}</span>
     </div>
   );

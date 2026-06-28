@@ -5,7 +5,7 @@ import type { Company } from "@/types/company";
 export default function CompanyCard({ company }: { company: Company }) {
   return (
     <Link to={`/companies/${company.id}`} className="block group animate-fade-in-up">
-      <div className="relative bg-white border border-[#E2E8F0] rounded-xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/5 hover:border-blue-200 overflow-hidden">
+      <div className="relative bg-surface border border-border rounded-xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/5 hover:border-primary overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="mx-auto h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white flex items-center justify-center text-lg font-medium overflow-hidden shadow-sm">
           {company.logo ? (
@@ -14,8 +14,8 @@ export default function CompanyCard({ company }: { company: Company }) {
             company.name.charAt(0)
           )}
         </div>
-        <h3 className="mt-3 text-sm font-medium text-[#0F172A] group-hover:text-[#2563EB] transition-colors duration-200">{company.name}</h3>
-        <p className="text-[12px] text-[#94A3B8] mt-0.5">{company.industry || "Company"}</p>
+        <h3 className="mt-3 text-sm font-medium text-[#0F172A] group-hover:text-primary transition-colors duration-200">{company.name}</h3>
+        <p className="text-[12px] text-muted mt-0.5">{company.industry || "Company"}</p>
         <div className="flex items-center justify-center gap-0.5 mt-2">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
@@ -25,7 +25,7 @@ export default function CompanyCard({ company }: { company: Company }) {
             />
           ))}
         </div>
-        <div className="mt-3 inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-[11px] font-medium text-[#2563EB] transition-all duration-200 group-hover:bg-blue-100">
+        <div className="mt-3 inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-[11px] font-medium text-primary transition-all duration-200 group-hover:bg-section">
           {company.reviewCount || 0} open positions
         </div>
       </div>

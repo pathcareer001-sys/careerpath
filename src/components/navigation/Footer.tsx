@@ -16,17 +16,17 @@ const resources = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-gradient-to-br from-white to-blue-50/50">
+    <footer className="border-t border-border bg-gradient-to-br from-white to-blue-50/50">
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-[1.25fr_0.75fr_0.75fr_1fr]">
           <div>
             <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-sm">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-white shadow-sm">
                 <BriefcaseBusiness size="18" />
               </div>
-              <h3 className="text-sm font-medium text-slate-900">CareerPath</h3>
+              <h3 className="text-sm font-medium text-heading">CareerPath</h3>
             </div>
-            <p className="mt-3 max-w-sm text-sm text-slate-500 leading-relaxed">
+            <p className="mt-3 max-w-sm text-sm text-secondary-text leading-relaxed">
               Discover internships, explore company reviews, and track applications from one organized workspace.
             </p>
           </div>
@@ -35,17 +35,17 @@ export default function Footer() {
           <FooterColumn title="Resources" items={resources} />
 
           <div>
-            <h4 className="text-sm font-medium text-slate-900">Contact</h4>
-            <div className="mt-3 space-y-2 text-sm text-slate-500">
-              <div className="flex items-center gap-2 hover:text-blue-600 transition-colors">
+            <h4 className="text-sm font-medium text-heading">Contact</h4>
+            <div className="mt-3 space-y-2 text-sm text-secondary-text">
+              <div className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Mail size="14" />
                 support@careerpath.id
               </div>
-              <div className="flex items-center gap-2 hover:text-blue-600 transition-colors">
+              <div className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Phone size="14" />
                 +62 812-3456-7890
               </div>
-              <div className="flex items-center gap-2 hover:text-blue-600 transition-colors">
+              <div className="flex items-center gap-2 hover:text-primary transition-colors">
                 <MapPin size="14" />
                 Indonesia
               </div>
@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-slate-100 pt-6 text-sm text-slate-500">
+        <div className="mt-8 border-t border-divider pt-6 text-sm text-secondary-text">
           Copyright 2026 CareerPath. All rights reserved.
         </div>
       </div>
@@ -64,10 +64,10 @@ export default function Footer() {
 function FooterColumn({ title, items }: { title: string; items: Array<{ to: string; label: string }> }) {
   return (
     <div>
-      <h4 className="text-sm font-medium text-slate-900">{title}</h4>
-      <div className="mt-3 flex flex-col gap-2 text-sm text-slate-500">
+      <h4 className="text-sm font-medium text-heading">{title}</h4>
+      <div className="mt-3 flex flex-col gap-2 text-sm text-secondary-text">
         {items.map((item) => (
-          <Link key={item.to} to={item.to} className="hover:text-blue-600 transition-colors duration-200">
+          <Link key={item.to} to={item.to} className="hover:text-primary transition-colors duration-200">
             {item.label}
           </Link>
         ))}

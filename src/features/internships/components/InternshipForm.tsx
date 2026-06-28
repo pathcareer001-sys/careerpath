@@ -69,7 +69,7 @@ export default function InternshipForm({
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <h2 className="text-2xl font-medium">{defaultValues ? "Edit Internship" : "Create Internship"}</h2>
-        <p className="mt-1 text-slate-500">
+        <p className="mt-1 text-secondary-text">
           {defaultValues ? "Update the internship opportunity." : "Publish a new internship opportunity for students."}
         </p>
       </div>
@@ -115,7 +115,7 @@ export default function InternshipForm({
 
       <div>
         <h3 className="font-medium">Requirements</h3>
-        <p className="text-sm text-slate-500">Add skills or qualifications needed.</p>
+        <p className="text-sm text-secondary-text">Add skills or qualifications needed.</p>
       </div>
 
       <div className="flex gap-2">
@@ -129,7 +129,7 @@ export default function InternshipForm({
             key={item}
             type="button"
             onClick={() => setRequirements(requirements.filter((req) => req !== item))}
-            className="group rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-red-50 hover:text-red-600 transition-all"
+            className="group rounded-full bg-accent px-4 py-2 text-sm font-medium text-primary hover:bg-error/10 hover:text-error transition-all"
           >
             {item} ✕
           </button>
@@ -143,14 +143,14 @@ export default function InternshipForm({
             <button
               type="button"
               onClick={() => setStatus("draft")}
-              className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "draft" ? "bg-amber-100 text-amber-700 font-medium" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}
+              className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "draft" ? "bg-amber-100 text-amber-700 font-medium" : "bg-section text-secondary-text hover:bg-slate-200"}`}
             >
               Draft
             </button>
             <button
               type="button"
               onClick={() => setStatus("published")}
-              className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "published" ? "bg-emerald-100 text-emerald-700 font-medium" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}
+              className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "published" ? "bg-emerald-100 text-emerald-700 font-medium" : "bg-section text-secondary-text hover:bg-slate-200"}`}
             >
               Published
             </button>

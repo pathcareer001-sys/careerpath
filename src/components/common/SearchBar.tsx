@@ -23,7 +23,7 @@ export default function SearchBar({
         left-3
         top-1/2
         -translate-y-1/2
-        text-slate-400
+        text-muted
         "
       />
 

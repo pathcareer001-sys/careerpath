@@ -25,7 +25,7 @@ export default function RatingInput({ value, onChange }: Props) {
               className={
                 star <= value
                   ? "fill-yellow-400 text-yellow-400"
-                  : "text-slate-300"
+                  : "text-muted"
               }
             />
           </button>

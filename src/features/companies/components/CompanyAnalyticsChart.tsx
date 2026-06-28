@@ -39,12 +39,12 @@ export default function CompanyAnalyticsChart({
             dataKey="name"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#64748B", fontSize: 13 }}
+            tick={{ fill: "#7B94AA", fontSize: 13 }}
           />
           <YAxis
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#94A3B8", fontSize: 12 }}
+            tick={{ fill: "#A5B8C7", fontSize: 12 }}
             allowDecimals={false}
           />
           <Tooltip
@@ -61,7 +61,7 @@ export default function CompanyAnalyticsChart({
             {data.map((entry) => (
               <Cell
                 key={entry.key}
-                fill={COLORS[entry.key as keyof typeof COLORS]?.fill || "#2563EB"}
+                fill={COLORS[entry.key as keyof typeof COLORS]?.fill || "#5FAED8"}
               />
             ))}
           </Bar>

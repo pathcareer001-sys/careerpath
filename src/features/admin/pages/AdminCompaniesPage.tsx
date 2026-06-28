@@ -74,13 +74,13 @@ export default function AdminCompaniesPage() {
           </div>
         </AppCard>
 
-        <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
+        <div className="flex items-center gap-2 border-b border-border pb-2">
           <button
             onClick={() => { setTab("all"); setSearch(""); }}
             className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
               tab === "all"
-                ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50/50"
-                : "text-slate-500 hover:text-slate-700"
+                ? "text-primary border-b-2 border-blue-600 bg-accent/50"
+                : "text-secondary-text hover:text-body"
             }`}
           >
             All Companies
@@ -89,8 +89,8 @@ export default function AdminCompaniesPage() {
             onClick={() => { setTab("pending"); setSearch(""); }}
             className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors flex items-center gap-2 ${
               tab === "pending"
-                ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50/50"
-                : "text-slate-500 hover:text-slate-700"
+                ? "text-primary border-b-2 border-blue-600 bg-accent/50"
+                : "text-secondary-text hover:text-body"
             }`}
           >
             <ShieldCheck size="15" />

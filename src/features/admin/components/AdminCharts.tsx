@@ -11,7 +11,7 @@ import {
   Legend,
 } from "recharts";
 
-const PIE_COLORS = ["#2563EB", "#059669", "#F59E0B", "#E11D48", "#8B5CF6"];
+const PIE_COLORS = ["#5FAED8", "#059669", "#F59E0B", "#E11D48", "#8B5CF6"];
 
 export function AdminBarChart({ data }: { data: { name: string; value: number }[] }) {
   return (
@@ -22,12 +22,12 @@ export function AdminBarChart({ data }: { data: { name: string; value: number }[
             dataKey="name"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#64748B", fontSize: 12 }}
+            tick={{ fill: "#7B94AA", fontSize: 12 }}
           />
           <YAxis
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#94A3B8", fontSize: 12 }}
+            tick={{ fill: "#A5B8C7", fontSize: 12 }}
             allowDecimals={false}
           />
           <Tooltip
@@ -79,7 +79,7 @@ export function AdminPieChart({ data }: { data: { name: string; value: number }[
           <Legend
             verticalAlign="bottom"
             iconType="circle"
-            formatter={(value) => <span className="text-sm text-slate-600">{value}</span>}
+            formatter={(value) => <span className="text-sm text-body">{value}</span>}
           />
         </PieChart>
       </ResponsiveContainer>

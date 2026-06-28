@@ -79,7 +79,7 @@ export default function ReportManagementPage() {
           <TabsList className="bg-[#F1F5F9] p-0.5 rounded-lg">
             <TabsTrigger
               value="pending"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-[#64748B] data-active:bg-white data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
             >
               <Clock size="15" />
               Pending
@@ -91,7 +91,7 @@ export default function ReportManagementPage() {
             </TabsTrigger>
             <TabsTrigger
               value="resolved"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-[#64748B] data-active:bg-white data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
             >
               <Check size="15" />
               Resolved
@@ -103,7 +103,7 @@ export default function ReportManagementPage() {
             </TabsTrigger>
             <TabsTrigger
               value="dismissed"
-              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-[#64748B] data-active:bg-white data-active:text-[#0F172A] data-active:shadow-sm transition-all"
+              className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-[#0F172A] data-active:shadow-sm transition-all"
             >
               <X size="15" />
               Dismissed
@@ -144,16 +144,16 @@ export default function ReportManagementPage() {
                               </div>
                               <div>
                                 <div className="flex items-center gap-2">
-                                  <span className="rounded bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600 leading-none">
+                                  <span className="rounded bg-section px-2 py-0.5 text-[11px] font-medium text-body leading-none">
                                     {typeLabels[report.type]}
                                   </span>
-                                  <span className="text-xs text-slate-400">
+                                  <span className="text-xs text-muted">
                                     {new Date(report.createdAt).toLocaleDateString()}
                                   </span>
                                 </div>
-                                <h3 className="font-medium text-slate-900 mt-1">{report.reason}</h3>
-                                <p className="text-sm text-slate-600 mt-1">{report.description}</p>
-                                <p className="text-xs text-slate-400 mt-2">
+                                <h3 className="font-medium text-heading mt-1">{report.reason}</h3>
+                                <p className="text-sm text-body mt-1">{report.description}</p>
+                                <p className="text-xs text-muted mt-2">
                                   Reported by {report.reporterName}
                                 </p>
                               </div>
@@ -169,7 +169,7 @@ export default function ReportManagementPage() {
                                 </AppButton>
                                 <AppButton
                                   variant="secondary"
-                                  className="text-red-600 border-red-200 hover:bg-red-50"
+                                  className="text-error border-error/30 hover:bg-error/10"
                                   onClick={() => handleDismiss(report.id)}
                                   disabled={updateStatus.isPending}
                                 >

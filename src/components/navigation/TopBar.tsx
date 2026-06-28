@@ -49,7 +49,7 @@ export default function TopBar() {
   };
 
   return (
-    <header className="h-[60px] bg-white/80 backdrop-blur-xl border-b border-[#E2E8F0] flex items-center px-4 gap-3 sticky top-0 z-50">
+    <header className="h-[60px] bg-surface/80 backdrop-blur-xl border-b border-border flex items-center px-4 gap-3 sticky top-0 z-50">
       <Link to="/" className="shrink-0">
         <img src={logo} alt="CareerPath" className="h-7 w-auto" />
       </Link>
@@ -63,16 +63,16 @@ export default function TopBar() {
             className={({ isActive }) =>
               `relative inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium transition-all duration-200 ${
                 isActive
-                  ? "text-[#2563EB]"
-                  : "text-[#64748B] hover:text-[#2563EB]"
+                  ? "text-primary"
+                  : "text-secondary-text hover:text-primary"
               }`
             }
           >
             {({ isActive }) => (
               <>
-                <item.icon size="16" className={isActive ? "text-[#2563EB]" : ""} />
+                <item.icon size="16" className={isActive ? "text-primary" : ""} />
                 {item.label}
-                {isActive && <span className="absolute bottom-[-10px] left-0 right-0 h-[2px] bg-[#2563EB] rounded-full" />}
+                {isActive && <span className="absolute bottom-[-10px] left-0 right-0 h-[2px] bg-primary rounded-full" />}
               </>
             )}
           </NavLink>
@@ -82,30 +82,30 @@ export default function TopBar() {
       <div className="flex items-center gap-3 shrink-0">
         <NotificationDropdown />
 
-        <Link to={profilePath} className="hidden sm:flex items-center gap-2 p-1 rounded-lg hover:bg-[#2563EB]/10 transition-all duration-200">
+        <Link to={profilePath} className="hidden sm:flex items-center gap-2 p-1 rounded-lg hover:bg-primary/10 transition-all duration-200">
           <img
             src={user?.photoURL || "https://ui-avatars.com/api/?name=User&background=EEF3FE&color=2563EB&size=32"}
             alt=""
-            className="w-7 h-7 rounded-full ring-2 ring-[#2563EB]/20"
+            className="w-7 h-7 rounded-full ring-2 ring-primary/20"
           />
-          <span className="text-sm text-[#64748B] hidden md:inline">{user?.name || "User"}</span>
+          <span className="text-sm text-secondary-text hidden md:inline">{user?.name || "User"}</span>
         </Link>
 
         <button
           onClick={handleLogout}
-          className="hidden sm:inline-flex p-2 rounded-lg text-[#94A3B8] hover:bg-red-50 hover:text-red-500 transition-all duration-200"
+          className="hidden sm:inline-flex p-2 rounded-lg text-muted hover:bg-error/10 hover:text-error transition-all duration-200"
           title="Logout"
         >
           <LogOut size="16" />
         </button>
 
         <Sheet>
-          <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-[#64748B] hover:bg-blue-50">
+          <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-secondary-text hover:bg-accent">
             <Menu size="20" />
           </SheetTrigger>
           <SheetContent side="left" className="w-64 p-0">
             <div className="flex flex-col h-full">
-              <div className="flex items-center justify-between px-4 h-14 border-b border-[#E2E8F0]">
+              <div className="flex items-center justify-between px-4 h-14 border-b border-border">
                 <img src={logo} alt="CareerPath" className="h-6 w-auto" />
               </div>
               <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
@@ -117,8 +117,8 @@ export default function TopBar() {
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                         isActive
-                          ? "bg-blue-50 text-[#2563EB] font-medium"
-                          : "text-[#64748B] hover:bg-blue-50 hover:text-[#2563EB]"
+                          ? "bg-accent text-primary font-medium"
+                          : "text-secondary-text hover:bg-accent hover:text-primary"
                       }`
                     }
                   >
@@ -127,10 +127,10 @@ export default function TopBar() {
                   </NavLink>
                 ))}
               </nav>
-              <div className="px-3 py-3 border-t border-[#E2E8F0] space-y-2">
+              <div className="px-3 py-3 border-t border-border space-y-2">
                 <Link
                   to={profilePath}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#64748B] hover:bg-blue-50 hover:text-[#2563EB] transition-colors"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-accent hover:text-primary transition-colors"
                 >
                   <img
                     src={user?.photoURL || "https://ui-avatars.com/api/?name=User&background=EEF3FE&color=2563EB&size=32"}
@@ -141,7 +141,7 @@ export default function TopBar() {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
+                  className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-error hover:bg-error/10 transition-colors"
                 >
                   <LogOut size="18" />
                   Logout

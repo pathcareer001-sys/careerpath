@@ -2,7 +2,31 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --color-surface-alt: #f8faff;
+
+  --color-primary: #5FAED8;
+  --color-primary-hover: #4798C8;
+  --color-primary-active: #2F7FB3;
+
+  --color-secondary: #A9D8F2;
+  --color-accent: #D9F0FB;
+
+  --color-background: #F8FBFD;
+  --color-surface: #FFFFFF;
+  --color-section: #EEF7FC;
+
+  --color-border: #D8EAF5;
+  --color-divider: #E8F2F8;
+
+  --color-heading: #16324F;
+  --color-body: #4F6B85;
+  --color-secondary-text: #7B94AA;
+  --color-muted: #A5B8C7;
+
+  --color-success: #5CBF8F;
+  --color-warning: #F2B84B;
+  --color-error: #E57373;
+  --color-info: #7BC7F2;
+
   --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
   --animate-fade-in: fade-in 0.5s ease-out forwards;
   --animate-scale-in: scale-in 0.4s ease-out forwards;
@@ -15,19 +39,21 @@
     font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
     font-size: 14px;
     line-height: 1.6;
-    background-color: #f8faff;
+    background-color: var(--color-background);
+    color: var(--color-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6, label, strong, .heading {
     font-weight: 500;
+    color: var(--color-heading);
   }
 
   *:focus-visible {
     outline: none;
-    border-color: #2563EB;
-    box-shadow: 0 0 0 3px #EEF3FE;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-accent);
   }
 }
 

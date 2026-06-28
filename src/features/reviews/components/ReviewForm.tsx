@@ -50,13 +50,13 @@ export default function ReviewForm({ companyId }: Props) {
         className="
   text-sm
   font-medium
-  text-slate-700
+  text-body
   "
       >
         Overall Rating
       </h3>
 
-      <div className="rounded-2xl bg-slate-50 p-4">
+      <div className="rounded-2xl bg-background p-4">
         <p className="text-sm font-medium mb-3">How was your experience?</p>
 
         <RatingInput value={rating} onChange={setRating} />

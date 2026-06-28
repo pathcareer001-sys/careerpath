@@ -66,8 +66,8 @@ export default function AppSidebar() {
   };
 
   return (
-    <aside className="w-[220px] min-h-screen bg-white border-r border-slate-200 flex flex-col shrink-0">
-      <div className="px-4 py-4 border-b border-slate-200 bg-blue-600">
+    <aside className="w-[220px] min-h-screen bg-surface border-r border-border flex flex-col shrink-0">
+      <div className="px-4 py-4 border-b border-border bg-blue-600">
         <div className="flex items-center gap-2">
           <img src={logo} alt="CareerPath" className="h-7 brightness-0 invert" />
         </div>
@@ -76,7 +76,7 @@ export default function AppSidebar() {
       <nav className="flex-1 px-3 py-4 space-y-6 overflow-y-auto">
         {navGroups.map((group) => (
           <div key={group.label}>
-            <p className="px-3 mb-2 text-[10px] font-medium tracking-[0.8px] text-slate-400 uppercase">
+            <p className="px-3 mb-2 text-[10px] font-medium tracking-[0.8px] text-muted uppercase">
               {group.label}
             </p>
             <div className="space-y-1">
@@ -88,8 +88,8 @@ export default function AppSidebar() {
                   className={({ isActive }) =>
                     `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
                       isActive
-                        ? "bg-sidebar-active text-blue-600 font-medium"
-                        : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
+                        ? "bg-sidebar-active text-primary font-medium"
+                        : "text-body hover:bg-accent hover:text-primary"
                     }`
                   }
                 >
@@ -102,10 +102,10 @@ export default function AppSidebar() {
         ))}
       </nav>
 
-      <div className="px-3 py-3 border-t border-slate-200">
+      <div className="px-3 py-3 border-t border-border">
         <button
           onClick={handleLogout}
-          className="flex w-full items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-500 hover:bg-red-50 hover:text-red-500 transition-colors"
+          className="flex w-full items-center gap-3 px-3 py-2 rounded-lg text-sm text-secondary-text hover:bg-error/10 hover:text-error transition-colors"
         >
           <LogOut size="18" />
           Logout

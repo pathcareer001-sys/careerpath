@@ -2,7 +2,7 @@ import { BriefcaseBusiness } from "lucide-react";
 
 export default function AuthHero() {
   return (
-    <div className="relative hidden lg:flex flex-col justify-center p-12 bg-[#2563EB]">
+    <div className="relative hidden lg:flex flex-col justify-center p-12 bg-primary">
       <div className="absolute inset-0 bg-[radial ellipse_at_top_right,_rgba(255,255,255,0.05)_0%,_transparent_50%]" />
       <div className="mb-8 relative">
         <div className="flex items-center gap-2">

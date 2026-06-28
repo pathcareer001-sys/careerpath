@@ -9,8 +9,8 @@ const statusConfig: Record<string, { label: string; gradient: string; dot: strin
   },
   reviewed: {
     label: "Reviewed",
-    gradient: "bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 border border-blue-200",
-    dot: "bg-blue-500",
+    gradient: "bg-gradient-to-r from-blue-50 to-indigo-50 text-primary border border-primary/30",
+    dot: "bg-accent0",
     icon: <AlertCircle size="12" />,
   },
   interview: {
@@ -27,13 +27,13 @@ const statusConfig: Record<string, { label: string; gradient: string; dot: strin
   },
   rejected: {
     label: "Rejected",
-    gradient: "bg-gradient-to-r from-red-50 to-rose-50 text-red-700 border border-red-200",
-    dot: "bg-red-500",
+    gradient: "bg-gradient-to-r from-red-50 to-rose-50 text-red-700 border border-error/30",
+    dot: "bg-error/100",
     icon: <XCircle size="12" />,
   },
   withdrawn: {
     label: "Withdrawn",
-    gradient: "bg-gradient-to-r from-slate-50 to-gray-50 text-slate-500 border border-slate-200",
+    gradient: "bg-gradient-to-r from-slate-50 to-gray-50 text-secondary-text border border-border",
     dot: "bg-slate-400",
     icon: <ArrowLeft size="12" />,
   },

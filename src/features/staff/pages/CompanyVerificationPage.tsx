@@ -54,13 +54,13 @@ export default function CompanyVerificationPage() {
       />
 
       <div className="mt-6 space-y-6 animate-fade-in-up">
-        <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
+        <div className="flex items-center gap-2 border-b border-border pb-2">
           <button
             onClick={() => { setTab("pending"); setSearch(""); }}
             className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors flex items-center gap-2 ${
               tab === "pending"
-                ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50/50"
-                : "text-slate-500 hover:text-slate-700"
+                ? "text-primary border-b-2 border-blue-600 bg-accent/50"
+                : "text-secondary-text hover:text-body"
             }`}
           >
             <ShieldX size="15" />
@@ -70,8 +70,8 @@ export default function CompanyVerificationPage() {
             onClick={() => { setTab("verified"); setSearch(""); }}
             className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors flex items-center gap-2 ${
               tab === "verified"
-                ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50/50"
-                : "text-slate-500 hover:text-slate-700"
+                ? "text-primary border-b-2 border-blue-600 bg-accent/50"
+                : "text-secondary-text hover:text-body"
             }`}
           >
             <BadgeCheck size="15" />
@@ -100,38 +100,38 @@ export default function CompanyVerificationPage() {
                       )}
                     </div>
                     <div>
-                      <h3 className="font-medium text-slate-900">{company.name}</h3>
+                      <h3 className="font-medium text-heading">{company.name}</h3>
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
                         {company.industry && (
-                          <span className="text-sm text-slate-500 flex items-center gap-1">
+                          <span className="text-sm text-secondary-text flex items-center gap-1">
                             <Building2 size="13" /> {company.industry}
                           </span>
                         )}
                         {company.location && (
-                          <span className="text-sm text-slate-500 flex items-center gap-1">
+                          <span className="text-sm text-secondary-text flex items-center gap-1">
                             <MapPin size="13" /> {company.location}
                           </span>
                         )}
                         {company.website && (
-                          <a href={company.website} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline flex items-center gap-1">
+                          <a href={company.website} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline flex items-center gap-1">
                             <Globe size="13" /> Website
                           </a>
                         )}
                       </div>
                       {company.description && (
-                        <p className="text-sm text-slate-500 mt-2 line-clamp-2">{company.description}</p>
+                        <p className="text-sm text-secondary-text mt-2 line-clamp-2">{company.description}</p>
                       )}
                       <div className="flex items-center gap-2 mt-2">
                         <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
                           company.verified
                             ? "bg-emerald-50 text-emerald-700"
                             : company.verificationRequested
-                              ? "bg-blue-50 text-blue-700"
+                              ? "bg-accent text-primary"
                               : "bg-amber-50 text-amber-700"
                         }`}>
                           {company.verified ? "Verified" : company.verificationRequested ? "Requested" : "Unverified"}
                         </span>
-                        <span className="text-xs text-slate-400">
+                        <span className="text-xs text-muted">
                           {company.reviewCount || 0} reviews &middot; {company.avgRating || 0} avg rating
                         </span>
                       </div>

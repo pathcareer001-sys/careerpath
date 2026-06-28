@@ -94,17 +94,17 @@ export default function CompanyProfilePage() {
 
       <div className="mt-6 space-y-6 animate-fade-in-up animate-delay-100">
         {company && (
-          <AppCard className={`border ${company.verified ? "border-emerald-200 bg-emerald-50/30" : company.verificationRequested ? "border-amber-200 bg-amber-50/30" : "border-slate-200"}`}>
+          <AppCard className={`border ${company.verified ? "border-emerald-200 bg-emerald-50/30" : company.verificationRequested ? "border-amber-200 bg-amber-50/30" : "border-border"}`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className={`h-8 w-8 rounded-full ${company.verified ? "bg-emerald-100 text-emerald-600" : company.verificationRequested ? "bg-amber-100 text-amber-600" : "bg-slate-100 text-slate-500"} flex items-center justify-center`}>
+                <div className={`h-8 w-8 rounded-full ${company.verified ? "bg-emerald-100 text-emerald-600" : company.verificationRequested ? "bg-amber-100 text-amber-600" : "bg-section text-secondary-text"} flex items-center justify-center`}>
                   {company.verified ? "✓" : company.verificationRequested ? "⏳" : "○"}
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-slate-900">
+                  <h3 className="text-sm font-medium text-heading">
                     {company.verified ? "Verified Company" : company.verificationRequested ? "Verification Requested" : "Not Verified"}
                   </h3>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-secondary-text">
                     {company.verified
                       ? "Your company is verified and shows the verified badge."
                       : company.verificationRequested
@@ -143,7 +143,7 @@ export default function CompanyProfilePage() {
             <AppInput value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="Website" />
           </div>
 
-          <label className="flex h-40 cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-slate-300 text-slate-500 hover:border-blue-500 transition-colors mt-4">
+          <label className="flex h-40 cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-slate-300 text-secondary-text hover:border-blue-500 transition-colors mt-4">
             <input hidden type="file" accept="image/*" onChange={handleLogoUpload} />
             {logo ? (
               <img src={logo} alt="Company Logo" className="h-full w-full rounded-xl object-cover" />
@@ -179,13 +179,13 @@ export default function CompanyProfilePage() {
               )}
             </div>
             <div>
-              <h3 className="font-medium text-slate-900">{name || "Company Name"}</h3>
-              <p className="text-sm text-slate-500">{industry || "Industry"} &middot; {location || "Location"}</p>
+              <h3 className="font-medium text-heading">{name || "Company Name"}</h3>
+              <p className="text-sm text-secondary-text">{industry || "Industry"} &middot; {location || "Location"}</p>
             </div>
           </div>
-          <p className="mt-3 text-sm text-slate-600">{description || "Company description"}</p>
+          <p className="mt-3 text-sm text-body">{description || "Company description"}</p>
           {website && (
-            <a href={website} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 transition-colors">
+            <a href={website} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm text-primary hover:text-primary transition-colors">
               <Globe size="14" /> Visit Website →
             </a>
           )}

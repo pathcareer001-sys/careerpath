@@ -27,7 +27,7 @@ export default function ApplicantCard({
           <div>
             <h3 className="font-medium">{application.applicantName}</h3>
 
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-secondary-text">
               {application.internshipTitle}
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function ApplicantCard({
           <StatusBadge status={application.status} />
         </div>
 
-        <div className="space-y-2 text-sm text-slate-500">
+        <div className="space-y-2 text-sm text-secondary-text">
           <div className="flex items-center gap-2">
             <User size={16} />
             {application.applicantName}

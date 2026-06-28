@@ -39,23 +39,23 @@ export default function ManageApplicationsPage() {
     <PageContainer>
       <div className="animate-fade-in-up">
         <h1 className="text-2xl font-medium text-[#0F172A]">Applications</h1>
-        <p className="mt-1 text-sm text-[#64748B]">Manage internship applications</p>
+        <p className="mt-1 text-sm text-secondary-text">Manage internship applications</p>
       </div>
 
       <div className="mt-6 grid gap-4 md:grid-cols-4 animate-fade-in-up animate-delay-100">
         {[
-          { label: "Total", value: total, gradient: "from-blue-50 to-white", icon: <FileText size="16" className="text-blue-600" /> },
+          { label: "Total", value: total, gradient: "from-blue-50 to-white", icon: <FileText size="16" className="text-primary" /> },
           { label: "Pending", value: pending, gradient: "from-amber-50 to-white", icon: <Clock size="16" className="text-amber-600" /> },
           { label: "Accepted", value: accepted, gradient: "from-emerald-50 to-white", icon: <CheckCircle2 size="16" className="text-emerald-600" /> },
           { label: "Rejected", value: rejected, gradient: "from-rose-50 to-white", icon: <XCircle size="16" className="text-rose-600" /> },
         ].map((stat) => (
-          <div key={stat.label} className={`relative overflow-hidden rounded-xl border border-[#E2E8F0] bg-gradient-to-br ${stat.gradient} px-5 py-4`}>
+          <div key={stat.label} className={`relative overflow-hidden rounded-xl border border-border bg-gradient-to-br ${stat.gradient} px-5 py-4`}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[26px] font-medium text-[#0F172A] leading-none">{stat.value}</p>
-                <p className="mt-1 text-[13px] text-[#64748B] font-medium">{stat.label}</p>
+                <p className="mt-1 text-[13px] text-secondary-text font-medium">{stat.label}</p>
               </div>
-              <div className="h-9 w-9 rounded-lg bg-white shadow-sm border border-[#E2E8F0] flex items-center justify-center">
+              <div className="h-9 w-9 rounded-lg bg-surface shadow-sm border border-border flex items-center justify-center">
                 {stat.icon}
               </div>
             </div>

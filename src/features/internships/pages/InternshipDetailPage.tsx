@@ -18,7 +18,7 @@ import { useDeleteInternshipBookmark } from "@/features/bookmarks/hooks/useDelet
 
 const typeColors: Record<string, string> = {
   Remote: "bg-gradient-to-r from-emerald-50 to-green-50 text-emerald-700 border border-emerald-200",
-  Hybrid: "bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 border border-blue-200",
+  Hybrid: "bg-gradient-to-r from-blue-50 to-indigo-50 text-primary border border-primary/30",
   "Full-time": "bg-gradient-to-r from-purple-50 to-violet-50 text-purple-700 border border-purple-200",
   Onsite: "bg-gradient-to-r from-amber-50 to-orange-50 text-amber-700 border border-amber-200",
 };
@@ -125,7 +125,7 @@ export default function InternshipDetailPage() {
               {user?.role === "student" && (
                 <>
                   <AppButton
-                    className="w-full bg-white text-blue-700 hover:bg-blue-50"
+                    className="w-full bg-surface text-primary hover:bg-accent"
                     onClick={handleApply}
                     disabled={hasApplied && myApplication?.status !== "withdrawn" || createApplication.isPending}
                   >
@@ -150,15 +150,15 @@ export default function InternshipDetailPage() {
       <div className="grid gap-6 mt-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-6 animate-fade-in-up animate-delay-100">
           <AppCard>
-            <h2 className="text-base font-medium text-slate-900 mb-3">About this internship</h2>
-            <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">{internship.description}</p>
+            <h2 className="text-base font-medium text-heading mb-3">About this internship</h2>
+            <p className="text-sm text-body leading-relaxed whitespace-pre-line">{internship.description}</p>
           </AppCard>
 
           <AppCard>
-            <h2 className="text-base font-medium text-slate-900 mb-4">Requirements</h2>
+            <h2 className="text-base font-medium text-heading mb-4">Requirements</h2>
             <div className="flex flex-wrap gap-2">
               {(internship.requirements || []).map((item) => (
-                <span key={item} className="rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 px-3 py-1.5 text-xs font-medium text-blue-700 border border-blue-200">
+                <span key={item} className="rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 px-3 py-1.5 text-xs font-medium text-primary border border-primary/30">
                   {item}
                 </span>
               ))}
@@ -168,28 +168,28 @@ export default function InternshipDetailPage() {
 
         <div className="space-y-4 animate-fade-in-up animate-delay-200">
           <AppCard>
-            <h3 className="text-sm font-medium text-slate-900 mb-3">Details</h3>
+            <h3 className="text-sm font-medium text-heading mb-3">Details</h3>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between py-2 border-b border-slate-100">
-                <span className="text-slate-500">Type</span>
-                <span className="text-slate-700 font-medium">{internship.type}</span>
+              <div className="flex justify-between py-2 border-b border-divider">
+                <span className="text-secondary-text">Type</span>
+                <span className="text-body font-medium">{internship.type}</span>
               </div>
-              <div className="flex justify-between py-2 border-b border-slate-100">
-                <span className="text-slate-500">Location</span>
-                <span className="text-slate-700 font-medium">{internship.location}</span>
+              <div className="flex justify-between py-2 border-b border-divider">
+                <span className="text-secondary-text">Location</span>
+                <span className="text-body font-medium">{internship.location}</span>
               </div>
               {internship.salary && (
-                <div className="flex justify-between py-2 border-b border-slate-100">
-                  <span className="text-slate-500">Salary</span>
+                <div className="flex justify-between py-2 border-b border-divider">
+                  <span className="text-secondary-text">Salary</span>
                   <span className="text-emerald-600 font-medium">{internship.salary}</span>
                 </div>
               )}
-              <div className="flex justify-between py-2 border-b border-slate-100">
-                <span className="text-slate-500">Company</span>
-                <span className="text-slate-700 font-medium">{internship.companyName}</span>
+              <div className="flex justify-between py-2 border-b border-divider">
+                <span className="text-secondary-text">Company</span>
+                <span className="text-body font-medium">{internship.companyName}</span>
               </div>
               <div className="flex justify-between py-2">
-                <span className="text-slate-500">Status</span>
+                <span className="text-secondary-text">Status</span>
                 <span className={`inline-flex items-center gap-1 font-medium ${internship.status === "draft" ? "text-amber-600" : "text-emerald-600"}`}>
                   <span className={`h-1.5 w-1.5 rounded-full ${internship.status === "draft" ? "bg-amber-500" : "bg-emerald-500"}`} />
                   {internship.status === "draft" ? "Draft" : "Open"}
@@ -199,14 +199,14 @@ export default function InternshipDetailPage() {
           </AppCard>
 
           <AppCard>
-            <h3 className="text-sm font-medium text-slate-900 mb-3">Company</h3>
+            <h3 className="text-sm font-medium text-heading mb-3">Company</h3>
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white shadow-sm">
                 <Building2 size="20" />
               </div>
               <div>
-                <p className="text-sm font-medium text-slate-900">{internship.companyName}</p>
-                <p className="text-xs text-slate-500">Internship provider</p>
+                <p className="text-sm font-medium text-heading">{internship.companyName}</p>
+                <p className="text-xs text-secondary-text">Internship provider</p>
               </div>
             </div>
             <Link to={`/companies/${internship.companyId}`}>
@@ -216,14 +216,14 @@ export default function InternshipDetailPage() {
             </Link>
           </AppCard>
 
-          <div className="rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 p-4">
+          <div className="rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-border p-4">
             <div className="flex items-start gap-3">
-              <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+              <div className="h-8 w-8 rounded-full bg-section flex items-center justify-center text-primary shrink-0">
                 <Clock size="15" />
               </div>
               <div>
-                <h3 className="text-sm font-medium text-slate-900">Tip</h3>
-                <p className="text-xs text-slate-500 leading-relaxed mt-1">
+                <h3 className="text-sm font-medium text-heading">Tip</h3>
+                <p className="text-xs text-secondary-text leading-relaxed mt-1">
                   Make sure your profile is complete before applying. Companies are more likely to review candidates with detailed information.
                 </p>
               </div>

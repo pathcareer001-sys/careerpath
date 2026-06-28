@@ -13,9 +13,9 @@ export default function AppButton({
 }: Props) {
   const variants = {
     primary:
-      "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 active:from-blue-800 active:to-purple-800 shadow-sm hover:shadow-md",
+      "bg-gradient-to-r from-primary to-secondary text-white hover:from-blue-700 hover:to-purple-700 active:from-blue-800 active:to-purple-800 shadow-sm hover:shadow-md",
     secondary:
-      "bg-white text-blue-600 border border-slate-200 hover:bg-blue-50 hover:border-blue-200 active:bg-blue-100",
+      "bg-surface text-primary border border-border hover:bg-accent hover:border-primary active:bg-section",
     danger:
       "bg-gradient-to-r from-red-500 to-rose-600 text-white hover:from-red-600 hover:to-rose-700 active:from-red-700 active:to-rose-800 shadow-sm hover:shadow-md",
   };

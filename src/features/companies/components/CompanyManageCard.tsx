@@ -24,16 +24,16 @@ export default function CompanyManageCard({
             <Building2 size="18" />
           </div>
           <div className="space-y-1">
-            <h3 className="font-medium text-slate-900">{company.name}</h3>
-            <p className="text-sm text-slate-500">{company.industry || "No industry"}</p>
+            <h3 className="font-medium text-heading">{company.name}</h3>
+            <p className="text-sm text-secondary-text">{company.industry || "No industry"}</p>
             <div className="flex items-center gap-2">
-              <BadgeCheck size="16" className={company.verified ? "text-emerald-600" : "text-slate-300"} />
-              <span className={company.verified ? "text-sm text-emerald-600 font-medium" : "text-sm text-slate-400"}>
+              <BadgeCheck size="16" className={company.verified ? "text-emerald-600" : "text-muted"} />
+              <span className={company.verified ? "text-sm text-emerald-600 font-medium" : "text-sm text-muted"}>
                 {company.verified ? "Verified" : "Unverified"}
               </span>
             </div>
             {company.location && (
-              <div className="flex items-center gap-1 text-sm text-slate-500">
+              <div className="flex items-center gap-1 text-sm text-secondary-text">
                 <MapPin size="14" />
                 {company.location}
               </div>

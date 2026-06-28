@@ -22,8 +22,8 @@ export default function InternshipManageCard({
             <Briefcase size="18" />
           </div>
           <div className="space-y-1">
-            <h3 className="font-medium text-slate-900">{internship.title}</h3>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
+            <h3 className="font-medium text-heading">{internship.title}</h3>
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-secondary-text">
               <span className="flex items-center gap-1"><Building2 size="14" /> {internship.companyName}</span>
               <span className="flex items-center gap-1"><MapPin size="14" /> {internship.location}</span>
               <span className="flex items-center gap-1"><Briefcase size="14" /> {internship.type}</span>

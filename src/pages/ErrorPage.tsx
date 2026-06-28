@@ -12,8 +12,8 @@ export default function ErrorPage() {
         <div className="inline-flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-white text-3xl font-medium shadow-sm mb-6">
           404
         </div>
-        <h1 className="text-3xl font-medium text-slate-900">Page Not Found</h1>
-        <p className="mt-2 text-sm text-slate-500">
+        <h1 className="text-3xl font-medium text-heading">Page Not Found</h1>
+        <p className="mt-2 text-sm text-secondary-text">
           The page you are looking for does not exist or has been moved.
         </p>
         <Link to="/" className="mt-6 inline-block">

@@ -53,7 +53,7 @@ export default function CompanyInternshipsPage() {
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between animate-fade-in-up">
         <div>
           <h1 className="text-2xl font-medium text-[#0F172A]">My Internships</h1>
-          <p className="text-sm text-[#64748B] mt-1">Manage and track internship postings</p>
+          <p className="text-sm text-secondary-text mt-1">Manage and track internship postings</p>
         </div>
         <CreateInternshipDialog company={company} />
       </div>
