@@ -39,25 +39,33 @@ export default function MyApplicationsPage() {
       </div>
 
       <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 animate-fade-in-up animate-delay-100">
-        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-accent to-white px-6 py-5">
-          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-accent/5" />
-          <p className="text-[28px] font-medium text-heading leading-none">{data?.length || 0}</p>
-          <p className="mt-1.5 text-[13px] text-secondary-text font-medium">Total</p>
+        <div className="group relative overflow-hidden rounded-xl border border-border-light bg-surface p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border">
+          <div className="relative z-10">
+            <p className="text-[28px] font-semibold text-heading leading-none tracking-tight">{data?.length || 0}</p>
+            <p className="mt-1.5 text-[13px] text-secondary-text font-medium">Total</p>
+          </div>
+          <div className="absolute top-0 right-0 w-24 h-24 rounded-bl-full bg-gradient-to-br from-accent to-white opacity-[0.06] transition-all duration-300 group-hover:opacity-[0.12] group-hover:scale-110" />
         </div>
-        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-success/10 to-white px-6 py-5">
-          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-success/5" />
-          <p className="text-[28px] font-medium text-heading leading-none">{data?.filter((i) => i.status === "accepted").length || 0}</p>
-          <p className="mt-1.5 text-[13px] text-secondary-text font-medium">Accepted</p>
+        <div className="group relative overflow-hidden rounded-xl border border-border-light bg-surface p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border">
+          <div className="relative z-10">
+            <p className="text-[28px] font-semibold text-heading leading-none tracking-tight">{data?.filter((i) => i.status === "accepted").length || 0}</p>
+            <p className="mt-1.5 text-[13px] text-secondary-text font-medium">Accepted</p>
+          </div>
+          <div className="absolute top-0 right-0 w-24 h-24 rounded-bl-full bg-gradient-to-br from-success to-info opacity-[0.06] transition-all duration-300 group-hover:opacity-[0.12] group-hover:scale-110" />
         </div>
-        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-warning/10 to-white px-6 py-5">
-          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-warning/5" />
-          <p className="text-[28px] font-medium text-heading leading-none">{data?.filter((i) => i.status === "pending" || i.status === "reviewed" || i.status === "interview").length || 0}</p>
-          <p className="mt-1.5 text-[13px] text-secondary-text font-medium">In Progress</p>
+        <div className="group relative overflow-hidden rounded-xl border border-border-light bg-surface p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border">
+          <div className="relative z-10">
+            <p className="text-[28px] font-semibold text-heading leading-none tracking-tight">{data?.filter((i) => i.status === "pending" || i.status === "reviewed" || i.status === "interview").length || 0}</p>
+            <p className="mt-1.5 text-[13px] text-secondary-text font-medium">In Progress</p>
+          </div>
+          <div className="absolute top-0 right-0 w-24 h-24 rounded-bl-full bg-gradient-to-br from-warning to-accent opacity-[0.06] transition-all duration-300 group-hover:opacity-[0.12] group-hover:scale-110" />
         </div>
-        <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-error/10 to-white px-6 py-5">
-          <div className="absolute top-0 right-0 w-20 h-20 rounded-bl-full bg-error/5" />
-          <p className="text-[28px] font-medium text-heading leading-none">{data?.filter((i) => i.status === "rejected" || i.status === "withdrawn").length || 0}</p>
-          <p className="mt-1.5 text-[13px] text-secondary-text font-medium">Closed</p>
+        <div className="group relative overflow-hidden rounded-xl border border-border-light bg-surface p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border">
+          <div className="relative z-10">
+            <p className="text-[28px] font-semibold text-heading leading-none tracking-tight">{data?.filter((i) => i.status === "rejected" || i.status === "withdrawn").length || 0}</p>
+            <p className="mt-1.5 text-[13px] text-secondary-text font-medium">Closed</p>
+          </div>
+          <div className="absolute top-0 right-0 w-24 h-24 rounded-bl-full bg-gradient-to-br from-error to-accent opacity-[0.06] transition-all duration-300 group-hover:opacity-[0.12] group-hover:scale-110" />
         </div>
       </div>
 

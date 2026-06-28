@@ -95,23 +95,23 @@ export default function CompanyApplicantsPage() {
 
         <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 animate-fade-in-up animate-delay-100">
           {[
-            { label: "Total", value: stats.total, gradient: "from-accent to-white", icon: <Users size="16" className="text-primary" /> },
-            { label: "Pending", value: stats.pending, gradient: "from-warning/10 to-white", icon: <Clock size="16" className="text-warning" /> },
-            { label: "Reviewed", value: stats.reviewed, gradient: "from-accent to-white", icon: <SearchCheck size="16" className="text-primary" /> },
-            { label: "Accepted", value: stats.accepted, gradient: "from-success/10 to-white", icon: <CheckCircle2 size="16" className="text-success" /> },
-            { label: "Rejected", value: stats.rejected, gradient: "from-error/10 to-white", icon: <XCircle size="16" className="text-error" /> },
-          ].map((stat, i) => (
-            <div key={stat.label} className={`relative overflow-hidden rounded-xl border border-border bg-gradient-to-br ${stat.gradient} px-5 py-4`}>
-              <div className="absolute top-0 right-0 w-16 h-16 rounded-bl-full opacity-10" style={{ background: i === 0 ? "var(--color-primary)" : i === 1 ? "var(--color-warning)" : i === 2 ? "var(--color-primary)" : i === 3 ? "var(--color-success)" : "var(--color-error)" }} />
-              <div className="flex items-center justify-between">
+            { label: "Total", value: stats.total, gradient: "from-primary to-secondary", icon: <Users size="16" className="text-primary" /> },
+            { label: "Pending", value: stats.pending, gradient: "from-warning to-accent", icon: <Clock size="16" className="text-warning" /> },
+            { label: "Reviewed", value: stats.reviewed, gradient: "from-primary to-secondary", icon: <SearchCheck size="16" className="text-primary" /> },
+            { label: "Accepted", value: stats.accepted, gradient: "from-success to-info", icon: <CheckCircle2 size="16" className="text-success" /> },
+            { label: "Rejected", value: stats.rejected, gradient: "from-error to-accent", icon: <XCircle size="16" className="text-error" /> },
+          ].map((stat) => (
+            <div key={stat.label} className="group relative overflow-hidden rounded-xl border border-border-light bg-surface p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border">
+              <div className="relative z-10 flex items-center justify-between">
                 <div>
-                  <p className="text-[26px] font-medium text-heading leading-none">{stat.value}</p>
-                  <p className="mt-1 text-[13px] text-secondary-text font-medium">{stat.label}</p>
+                  <p className="text-[28px] font-semibold text-heading leading-none tracking-tight">{stat.value}</p>
+                  <p className="mt-1.5 text-[13px] text-secondary-text font-medium">{stat.label}</p>
                 </div>
                 <div className="h-9 w-9 rounded-lg bg-surface shadow-sm border border-border flex items-center justify-center">
                   {stat.icon}
                 </div>
               </div>
+              <div className={`absolute top-0 right-0 w-24 h-24 rounded-bl-full bg-gradient-to-br ${stat.gradient} opacity-[0.06] transition-all duration-300 group-hover:opacity-[0.12] group-hover:scale-110`} />
             </div>
           ))}
         </div>
