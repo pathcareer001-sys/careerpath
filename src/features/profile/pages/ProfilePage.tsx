@@ -1,6 +1,7 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 
 import { toast } from "sonner";
+import { MapPin, Camera, X, Trash2, Upload } from "lucide-react";
 
 import PageContainer from "@/components/common/PageContainer";
 import PageHeader from "@/components/common/PageHeader";
@@ -15,95 +16,93 @@ import { useUpdateProfile } from "../hooks/useUpdateProfile";
 import { calculateProfileCompletion } from "../components/ProfileCompletionCard";
 
 import { uploadImage, uploadPdf } from "@/services/cloudinaryService";
-import { MapPin } from "lucide-react";
 
 export default function ProfilePage() {
   const { user, refreshUser } = useAuth();
-
   const updateProfile = useUpdateProfile();
 
+  const [username, setUsername] = useState(user?.username || "");
   const [university, setUniversity] = useState(user?.university || "");
-
   const [major, setMajor] = useState(user?.major || "");
-
   const [location, setLocation] = useState(user?.location || "");
-
   const [bio, setBio] = useState(user?.bio || "");
-
   const [skills, setSkills] = useState<string[]>(user?.skills || []);
+  const [skillInput, setSkillInput] = useState("");
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [linkedin, setLinkedin] = useState(user?.linkedin || "");
+  const [github, setGithub] = useState(user?.github || "");
+  const [portfolio, setPortfolio] = useState(user?.portfolio || "");
 
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [coverFile, setCoverFile] = useState<File | null>(null);
+  const [removeCover, setRemoveCover] = useState(false);
 
-  const completion = calculateProfileCompletion({
+  const avatarInputRef = useRef<HTMLInputElement>(null);
+  const coverInputRef = useRef<HTMLInputElement>(null);
+
+  const completion = useMemo(() => calculateProfileCompletion({
     ...user,
+    username: username || user?.username,
+    coverPhoto: removeCover ? undefined : (coverFile ? "pending" : user?.coverPhoto),
     university,
     major,
     location,
     bio,
     skills,
-  });
+  }), [user, username, coverFile, removeCover, university, major, location, bio, skills]);
 
-  const [skillInput, setSkillInput] = useState("");
-
-  const [resumeFile, setResumeFile] = useState<File | null>(null);
-
-  const [linkedin, setLinkedin] = useState(user?.linkedin || "");
-
-  const [github, setGithub] = useState(user?.github || "");
-
-  const [portfolio, setPortfolio] = useState(user?.portfolio || "");
-
-  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!user) return;
+    setUsername(user.username || "");
     setUniversity(user.university || "");
     setMajor(user.major || "");
     setLocation(user.location || "");
     setBio(user.bio || "");
     setSkills(user.skills || []);
-
     setLinkedin(user.linkedin || "");
     setGithub(user.github || "");
     setPortfolio(user.portfolio || "");
+    setRemoveCover(false);
+    setCoverFile(null);
+    setAvatarFile(null);
   }, [user]);
-  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleSave = async () => {
     if (!user) return;
 
     try {
       let photoURL = user?.photoURL || "";
+      let resumeUrl = user?.resumeUrl || "";
 
       if (avatarFile) {
         photoURL = await uploadImage(avatarFile);
       }
 
-      let resumeUrl = user?.resumeUrl || "";
-
       if (resumeFile) {
         resumeUrl = await uploadPdf(resumeFile);
       }
 
-      await updateProfile.mutateAsync({
-        uid: user.uid,
-        data: {
-          university,
-          major,
-          location,
-          bio,
-          skills,
+      const data: Record<string, unknown> = {
+        username: username || undefined,
+        university,
+        major,
+        location,
+        bio,
+        skills,
+        photoURL,
+        resumeUrl,
+        linkedin,
+        github,
+        portfolio,
+      };
 
-          photoURL,
+      if (removeCover) {
+        data.coverPhoto = "";
+      } else if (coverFile) {
+        data.coverPhoto = await uploadImage(coverFile);
+      }
 
-          resumeUrl,
-
-          linkedin,
-
-          github,
-
-          portfolio,
-        },
-      });
+      await updateProfile.mutateAsync({ uid: user.uid, data });
 
       await refreshUser();
 
@@ -115,16 +114,12 @@ export default function ProfilePage() {
 
   const handleAddSkill = () => {
     const value = skillInput.trim();
-
     if (!value) return;
-
     if (skills.includes(value)) {
       toast.error("Skill already exists");
       return;
     }
-
     setSkills([...skills, value]);
-
     setSkillInput("");
   };
 
@@ -133,12 +128,18 @@ export default function ProfilePage() {
   };
 
   const avatarPreview = useMemo(() => {
-    if (avatarFile) {
-      return URL.createObjectURL(avatarFile);
-    }
-
+    if (avatarFile) return URL.createObjectURL(avatarFile);
     return user?.photoURL;
   }, [avatarFile, user?.photoURL]);
+
+  const coverPreview = useMemo(() => {
+    if (coverFile) return URL.createObjectURL(coverFile);
+    return user?.coverPhoto;
+  }, [coverFile, user?.coverPhoto]);
+
+  const handleRemoveAvatar = () => {
+    setAvatarFile(null);
+  };
 
   return (
     <PageContainer>
@@ -147,83 +148,61 @@ export default function ProfilePage() {
         description="Manage your personal information"
       />
 
-      <div
-        className="
-      grid
-      gap-6
-      xl:grid-cols-[380px_1fr]
-      "
-      >
-        {/* LEFT */}
-        <AppCard
-          className="
-        overflow-hidden
-        "
-        >
-          <div
-            className="
-          h-32
-          bg-[#2563EB]
-          "
-          />
+      <div className="grid gap-6 xl:grid-cols-[380px_1fr]">
+        {/* LEFT CARD */}
+        <AppCard className="overflow-hidden">
+          <div className="relative h-32 bg-gradient-to-r from-blue-600 to-purple-600 group">
+            {coverPreview && !removeCover && (
+              <img
+                src={coverPreview}
+                alt="Cover"
+                className="h-full w-full object-cover"
+              />
+            )}
+            <label className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-all cursor-pointer">
+              <Camera className="text-white opacity-0 group-hover:opacity-100 transition-all" size={24} />
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  setCoverFile(e.target.files?.[0] || null);
+                  setRemoveCover(false);
+                }}
+              />
+            </label>
+            {(user?.coverPhoto || coverFile) && !removeCover && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setRemoveCover(true);
+                  setCoverFile(null);
+                }}
+                className="absolute top-2 right-2 rounded-full bg-black/50 p-1.5 text-white hover:bg-black/70 transition-all"
+              >
+                <X size={14} />
+              </button>
+            )}
+          </div>
 
           <div className="-mt-14 px-6 pb-6">
-            <div className="relative">
-              <div
-                className="
-    h-28
-    w-28
-    overflow-hidden
-    rounded-full
-    border-4
-    border-white
-    bg-white
-    "
-              >
+            <div className="relative inline-block">
+              <div className="h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-white">
                 {avatarPreview ? (
                   <img
                     src={avatarPreview}
                     alt={user?.name}
-                    className="
-    h-full
-    w-full
-    object-cover
-    "
+                    className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div
-                    className="
-        flex
-        h-full
-        w-full
-        items-center
-        justify-center
-        text-4xl
-        font-medium
-        text-blue-600
-        "
-                  >
+                  <div className="flex h-full w-full items-center justify-center text-4xl font-medium text-blue-600">
                     {user?.name?.charAt(0)}
                   </div>
                 )}
               </div>
-
-              <label
-                className="
-    absolute
-    bottom-0
-    right-0
-    cursor-pointer
-    rounded-full
-    bg-blue-600
-    px-3
-    py-2
-    text-xs
-    font-medium
-    text-white
-    "
-              >
-                Edit
+              <label className="absolute -bottom-1 -right-1 cursor-pointer rounded-full bg-blue-600 p-2 text-xs font-medium text-white shadow-md hover:bg-blue-700 transition-all">
+                <Camera size={14} />
                 <input
                   type="file"
                   accept="image/*"
@@ -234,22 +213,12 @@ export default function ProfilePage() {
             </div>
 
             <h2 className="mt-4 text-2xl font-medium">{user?.name}</h2>
-
+            {username && (
+              <p className="text-sm text-slate-400">@{username}</p>
+            )}
             <p className="text-slate-500">{user?.email}</p>
 
-            <div
-              className="
-            mt-4
-            inline-flex
-            rounded-full
-            bg-blue-50
-            px-3
-            py-1
-            text-sm
-            font-medium
-            text-blue-600
-            "
-            >
+            <div className="mt-4 inline-flex rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-600">
               {user?.role === "student" ? "Student" : "Company"}
             </div>
 
@@ -257,48 +226,19 @@ export default function ProfilePage() {
               {major || "Add Major"} • {university || "Add University"}
             </div>
 
-            <div className="mt-2 text-sm text-slate-500">
-              <MapPin size={18} />
+            <div className="mt-2 flex items-center gap-1 text-sm text-slate-500">
+              <MapPin size={16} />
               {location || "Add Location"}
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
-              <span
-                className="
-    rounded-full
-    bg-blue-50
-    px-3
-    py-1
-    text-xs
-    text-blue-600
-    "
-              >
+              <span className="rounded-full bg-blue-50 px-3 py-1 text-xs text-blue-600">
                 {skills.length} Skills
               </span>
-
-              <span
-                className="
-    rounded-full
-    bg-green-50
-    px-3
-    py-1
-    text-xs
-    text-green-600
-    "
-              >
+              <span className="rounded-full bg-green-50 px-3 py-1 text-xs text-green-600">
                 {completion}% Complete
               </span>
-
-              <span
-                className="
-    rounded-full
-    bg-purple-50
-    px-3
-    py-1
-    text-xs
-    text-purple-600
-    "
-              >
+              <span className="rounded-full bg-purple-50 px-3 py-1 text-xs text-purple-600">
                 {user?.resumeUrl ? "Resume ✓" : "No Resume"}
               </span>
             </div>
@@ -306,24 +246,12 @@ export default function ProfilePage() {
             <div className="mt-6">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium">Profile Completion</span>
-
-                <span className="text-sm font-medium text-blue-600">
-                  {completion}%
-                </span>
+                <span className="text-sm font-medium text-blue-600">{completion}%</span>
               </div>
-
               <div className="h-2 rounded-full bg-blue-100">
                 <div
-                  className="
-                h-2
-                rounded-full
-                bg-blue-600
-                transition-all
-                duration-500
-                "
-                  style={{
-                    width: `${completion}%`,
-                  }}
+                  className="h-2 rounded-full bg-blue-600 transition-all duration-500"
+                  style={{ width: `${completion}%` }}
                 />
               </div>
             </div>
@@ -332,32 +260,13 @@ export default function ProfilePage() {
               {skills.slice(0, 3).map((skill) => (
                 <span
                   key={skill}
-                  className="
-                rounded-full
-                bg-blue-50
-                px-3
-                py-1
-                text-xs
-                font-medium
-                text-blue-600
-                "
+                  className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600"
                 >
                   {skill}
                 </span>
               ))}
-
               {skills.length > 3 && (
-                <span
-                  className="
-                rounded-full
-                bg-blue-50
-                px-3
-                py-1
-                text-xs
-                font-medium
-                text-blue-600
-                "
-                >
+                <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600">
                   +{skills.length - 3}
                 </span>
               )}
@@ -365,8 +274,9 @@ export default function ProfilePage() {
           </div>
         </AppCard>
 
-        {/* RIGHT */}
+        {/* RIGHT SECTION */}
         <div className="space-y-6">
+          {/* PERSONAL INFORMATION */}
           <AppCard>
             <h2 className="text-lg font-medium mb-6">Personal Information</h2>
 
@@ -376,25 +286,26 @@ export default function ProfilePage() {
                 disabled
                 placeholder="Full Name"
               />
-
+              <AppInput
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+              />
               <AppInput
                 value={user?.email || ""}
                 disabled
                 placeholder="Email"
               />
-
               <AppInput
                 value={university}
                 onChange={(e) => setUniversity(e.target.value)}
                 placeholder="University"
               />
-
               <AppInput
                 value={major}
                 onChange={(e) => setMajor(e.target.value)}
                 placeholder="Major"
               />
-
               <AppInput
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
@@ -404,9 +315,9 @@ export default function ProfilePage() {
             </div>
           </AppCard>
 
+          {/* ABOUT ME */}
           <AppCard>
             <h2 className="text-lg font-medium mb-4">About Me</h2>
-
             <AppTextarea
               className="min-h-[180px]"
               value={bio}
@@ -415,39 +326,99 @@ export default function ProfilePage() {
             />
           </AppCard>
 
+          {/* PROFILE PHOTO */}
+          <AppCard>
+            <h2 className="text-lg font-medium">Profile Photo</h2>
+            <p className="text-sm text-slate-500 mt-1">
+              Upload or replace your profile picture
+            </p>
+            <div className="mt-4 flex items-center gap-6">
+              <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-blue-200">
+                {avatarPreview ? (
+                  <img src={avatarPreview} alt="Preview" className="h-full w-full object-cover" />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center text-2xl font-medium text-blue-600">
+                    {user?.name?.charAt(0)}
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <AppButton type="button" variant="secondary" onClick={() => avatarInputRef.current?.click()}>
+                  <Upload size={14} />
+                  Choose Image
+                </AppButton>
+                <input
+                  ref={avatarInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
+                />
+                {(avatarFile || user?.photoURL) && (
+                  <AppButton type="button" variant="danger" onClick={handleRemoveAvatar}>
+                    <Trash2 size={14} />
+                    Remove
+                  </AppButton>
+                )}
+              </div>
+            </div>
+          </AppCard>
+
+          {/* COVER PHOTO */}
+          <AppCard>
+            <h2 className="text-lg font-medium">Cover Photo</h2>
+            <p className="text-sm text-slate-500 mt-1">
+              Upload a banner image for your profile
+            </p>
+            <div className="mt-4">
+              <div className="relative h-36 rounded-xl overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600">
+                {coverPreview && !removeCover ? (
+                  <img src={coverPreview} alt="Cover preview" className="h-full w-full object-cover" />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center text-white/50 text-sm">
+                    No cover photo
+                  </div>
+                )}
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <AppButton type="button" variant="secondary" onClick={() => coverInputRef.current?.click()}>
+                  <Upload size={14} />
+                  {coverPreview && !removeCover ? "Change Cover" : "Upload Cover"}
+                </AppButton>
+                <input
+                  ref={coverInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    setCoverFile(e.target.files?.[0] || null);
+                    setRemoveCover(false);
+                  }}
+                />
+                {(user?.coverPhoto || coverFile) && !removeCover && (
+                  <AppButton type="button" variant="danger" onClick={() => { setRemoveCover(true); setCoverFile(null); }}>
+                    <Trash2 size={14} />
+                    Remove Cover
+                  </AppButton>
+                )}
+              </div>
+            </div>
+          </AppCard>
+
+          {/* SKILLS */}
           <AppCard>
             <h2 className="text-lg font-medium">Skills</h2>
-
-            <p className="text-sm text-slate-500 mt-1">
-              Showcase your strengths
-            </p>
-
+            <p className="text-sm text-slate-500 mt-1">Showcase your strengths</p>
             <div className="mt-6 flex gap-3">
               <AppInput
                 value={skillInput}
                 onChange={(e) => setSkillInput(e.target.value)}
                 placeholder="Add skill..."
               />
-
-              <AppButton type="button" onClick={handleAddSkill}>
-                Add
-              </AppButton>
+              <AppButton type="button" onClick={handleAddSkill}>Add</AppButton>
             </div>
-
             {skills.length === 0 ? (
-              <div
-                className="
-              mt-6
-              rounded-xl
-              border
-              border-dashed
-              border-blue-200
-              p-6
-              text-center
-              text-sm
-              text-slate-500
-              "
-              >
+              <div className="mt-6 rounded-xl border border-dashed border-blue-200 p-6 text-center text-sm text-slate-500">
                 No skills added yet
               </div>
             ) : (
@@ -457,18 +428,7 @@ export default function ProfilePage() {
                     key={skill}
                     type="button"
                     onClick={() => handleRemoveSkill(skill)}
-                    className="
-                  rounded-full
-                  bg-blue-50
-                  px-4
-                  py-2
-                  text-sm
-                  font-medium
-                  text-blue-600
-                  hover:bg-red-50
-                  hover:text-red-600
-                  transition-all
-                  "
+                    className="rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600 hover:bg-red-50 hover:text-red-600 transition-all"
                   >
                     {skill} ✕
                   </button>
@@ -476,52 +436,29 @@ export default function ProfilePage() {
               </div>
             )}
           </AppCard>
+
+          {/* RESUME */}
           <AppCard>
             <h2 className="text-lg font-medium">Resume</h2>
-
             <p className="text-sm text-slate-500 mt-1">Upload your latest CV</p>
-
-            <label
-              className="
-  flex
-  h-32
-  cursor-pointer
-  items-center
-  justify-center
-  rounded-2xl
-  border-2
-  border-dashed
-  border-blue-200
-  hover:border-blue-500
-  "
-            >
+            <label className="mt-4 flex h-32 cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-blue-200 hover:border-blue-500">
               <input
                 type="file"
                 accept=".pdf"
                 className="hidden"
                 onChange={(e) => setResumeFile(e.target.files?.[0] || null)}
               />
-
               <div className="text-center">
                 {resumeFile ? (
                   <>
-                    <p className="font-medium text-blue-600">
-                      {resumeFile.name}
-                    </p>
-
-                    <p className="text-xs text-slate-500">
-                      {(resumeFile.size / 1024 / 1024).toFixed(2)} MB
-                    </p>
+                    <p className="font-medium text-blue-600">{resumeFile.name}</p>
+                    <p className="text-xs text-slate-500">{(resumeFile.size / 1024 / 1024).toFixed(2)} MB</p>
                     <p className="text-sm text-green-600">Ready to upload</p>
                   </>
                 ) : user?.resumeUrl ? (
                   <>
-                    <p className="font-medium text-green-600">
-                      Resume Uploaded ✓
-                    </p>
-                    <p className="text-sm text-slate-500">
-                      Click Save Changes to replace
-                    </p>
+                    <p className="font-medium text-green-600">Resume Uploaded ✓</p>
+                    <p className="text-sm text-slate-500">Click Save Changes to replace</p>
                   </>
                 ) : (
                   <>
@@ -531,60 +468,31 @@ export default function ProfilePage() {
                 )}
               </div>
             </label>
-
             {user?.resumeUrl && (
-              <a
-                href={user.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-      mt-4
-      inline-flex
-      text-blue-600
-      font-medium
-      "
-              >
+              <a href={user.resumeUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex text-blue-600 font-medium">
                 View Current Resume
               </a>
             )}
           </AppCard>
+
+          {/* SOCIAL LINKS */}
           <AppCard>
             <h2 className="text-lg font-medium">Social Links</h2>
-
             <div className="mt-6 space-y-4">
-              <AppInput
-                value={linkedin}
-                onChange={(e) => setLinkedin(e.target.value)}
-                placeholder="LinkedIn URL"
-              />
-
-              <AppInput
-                value={github}
-                onChange={(e) => setGithub(e.target.value)}
-                placeholder="Github URL"
-              />
-
-              <AppInput
-                value={portfolio}
-                onChange={(e) => setPortfolio(e.target.value)}
-                placeholder="Portfolio URL"
-              />
+              <AppInput value={linkedin} onChange={(e) => setLinkedin(e.target.value)} placeholder="LinkedIn URL" />
+              <AppInput value={github} onChange={(e) => setGithub(e.target.value)} placeholder="Github URL" />
+              <AppInput value={portfolio} onChange={(e) => setPortfolio(e.target.value)} placeholder="Portfolio URL" />
             </div>
           </AppCard>
+
+          {/* SAVE */}
           <AppCard>
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="font-medium">Ready to Save?</h3>
-
-                <p className="text-sm text-slate-500">
-                  Update your profile information.
-                </p>
+                <p className="text-sm text-slate-500">Update your profile information.</p>
               </div>
-
-              <AppButton
-                onClick={handleSave}
-                disabled={updateProfile.isPending}
-              >
+              <AppButton onClick={handleSave} disabled={updateProfile.isPending}>
                 {updateProfile.isPending ? "Saving..." : "Save Changes"}
               </AppButton>
             </div>

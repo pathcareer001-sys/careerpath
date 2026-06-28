@@ -5,7 +5,9 @@ export function calculateProfileCompletion(profile?: Partial<AppUser> | null) {
 
   let score = 0;
 
-  if (profile.photoURL) score += 15;
+  if (profile.photoURL) score += 10;
+  if (profile.coverPhoto) score += 5;
+  if (profile.username) score += 5;
 
   if (profile.university) score += 10;
 

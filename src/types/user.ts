@@ -6,7 +6,9 @@ export interface AppUser {
   email: string;
   role: Role;
 
+  username?: string;
   photoURL?: string;
+  coverPhoto?: string;
 
   university?: string;
   major?: string;

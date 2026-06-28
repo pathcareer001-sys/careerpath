@@ -31,6 +31,7 @@ export const authService = {
       email,
       role,
       photoURL: "",
+      coverPhotoURL: "",
       createdAt: serverTimestamp(),
     });
 
@@ -55,6 +56,7 @@ export const authService = {
         email: credential.user.email || "",
         role: "student",
         photoURL: credential.user.photoURL || "",
+        coverPhotoURL: "",
         createdAt: serverTimestamp(),
       });
     }
