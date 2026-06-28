@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithEmailLink,
   signOut,
   sendPasswordResetEmail,
 } from "firebase/auth";
@@ -70,5 +71,13 @@ export const authService = {
 
   resetPassword(email: string) {
     return sendPasswordResetEmail(auth, email);
+  },
+
+  async signInWithEmailLink() {
+    const email = localStorage.getItem("emailForSignIn");
+    if (!email) throw new Error("Email not found for sign-in link.");
+    const credential = await signInWithEmailLink(auth, email, window.location.href);
+    localStorage.removeItem("emailForSignIn");
+    return credential;
   },
 };
