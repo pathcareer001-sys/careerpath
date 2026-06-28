@@ -23,8 +23,8 @@ export default function StudentProfilePage() {
   return (
     <PageContainer>
       <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/[0.04] to-section p-6 text-heading animate-fade-in-up">
-        <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-white/60 blur-3xl" />
-        <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
+        <div className="absolute top-0 right-0 w-36 h-36 md:w-72 md:h-72 rounded-full bg-white/60 blur-3xl" />
+        <div className="absolute -bottom-10 -left-10 w-24 h-24 md:w-48 md:h-48 rounded-full bg-section blur-3xl" />
         <div className="relative z-10 flex flex-col md:flex-row items-start gap-5">
           <div className="h-20 w-20 rounded-full shrink-0 overflow-hidden border-2 border-border-light shadow-sm">
             {user.photoURL ? (
@@ -89,21 +89,21 @@ export default function StudentProfilePage() {
           <AppCard>
             <h2 className="text-base font-medium text-heading mb-3">Details</h2>
             <div className="space-y-3 text-sm">
-              <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text">University</span>
-                <span className="text-body font-semibold text-right">{user.university || "-"}</span>
+              <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
+                <span className="text-secondary-text whitespace-nowrap">University</span>
+                <span className="text-body font-semibold text-right overflow-hidden break-words">{user.university || "-"}</span>
               </div>
-              <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text">Major</span>
-                <span className="text-body font-semibold text-right">{user.major || "-"}</span>
+              <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
+                <span className="text-secondary-text whitespace-nowrap">Major</span>
+                <span className="text-body font-semibold text-right overflow-hidden break-words">{user.major || "-"}</span>
               </div>
-              <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text">Location</span>
-                <span className="text-body font-semibold text-right">{user.location || "-"}</span>
+              <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
+                <span className="text-secondary-text whitespace-nowrap">Location</span>
+                <span className="text-body font-semibold text-right overflow-hidden break-words">{user.location || "-"}</span>
               </div>
-              <div className="grid grid-cols-[auto_1fr] gap-x-6 py-2.5">
-                <span className="text-secondary-text">Email</span>
-                <span className="text-body font-semibold text-right break-words">{user.email}</span>
+              <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5">
+                <span className="text-secondary-text whitespace-nowrap">Email</span>
+                <span className="text-body font-semibold text-right break-words overflow-hidden">{user.email}</span>
               </div>
             </div>
           </AppCard>

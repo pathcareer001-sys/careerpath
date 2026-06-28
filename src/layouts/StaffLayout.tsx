@@ -75,7 +75,7 @@ export default function StaffLayout() {
       </Sheet>
 
       <div className="flex-1 flex flex-col">
-        <header className="h-14 bg-surface/80 backdrop-blur-xl border-b border-border flex items-center justify-end px-6 gap-3 pl-14 md:pl-6">
+        <header className="h-14 bg-surface/80 backdrop-blur-xl border-b border-border flex items-center justify-end px-4 md:px-6 gap-3">
           <ThemeToggle />
           <NotificationDropdown />
           <span className="inline-flex items-center gap-1.5 rounded-full bg-info/10 px-3 py-1 text-xs font-medium text-info border border-info/30">
@@ -83,7 +83,7 @@ export default function StaffLayout() {
             Staff
           </span>
         </header>
-        <main className="flex-1 p-4 md:p-6 overflow-auto">
+        <main className="flex-1 p-4 md:p-6 overflow-x-hidden overflow-y-auto">
           <div className="max-w-7xl mx-auto">
             <Outlet />
           </div>

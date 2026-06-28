@@ -54,7 +54,7 @@ export default function EditInternshipDialog({ internship }: Props) {
       />
       <DialogContent
         className="
-  sm:max-w-4xl
+  lg:max-w-4xl
   max-h-[90vh]
   overflow-y-auto
   p-2

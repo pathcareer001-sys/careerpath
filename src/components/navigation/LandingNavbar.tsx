@@ -38,7 +38,7 @@ export default function LandingNavbar() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 sm:flex">
+        <div className="hidden items-center gap-2 md:flex">
           <ThemeToggle />
           <Link
             to="/login"

@@ -11,7 +11,7 @@ export default function AppInput({ className, type, ...props }: InputHTMLAttribu
     <input
       type={isPassword && visible ? "text" : type}
       className={cn(
-        "h-9 w-full rounded-lg border border-input bg-surface px-3 text-sm text-heading placeholder:text-muted focus:border-primary focus:outline-none focus:ring-3 focus:ring-primary-subtle transition-all",
+        "h-9 w-full rounded-lg border border-input bg-surface px-3 text-sm text-heading placeholder:text-muted focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary-subtle transition-all",
         isPassword && "pr-10",
         className,
       )}

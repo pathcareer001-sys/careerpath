@@ -40,8 +40,8 @@ export default function CompanyDashboardPage() {
     <PageContainer>
       <div className="animate-fade-in-up">
         <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/[0.04] to-section p-6 text-heading">
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/60 blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
+          <div className="absolute top-0 right-0 w-36 h-36 md:w-64 md:h-64 rounded-full bg-white/60 blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 w-24 h-24 md:w-48 md:h-48 rounded-full bg-section blur-3xl" />
           <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:justify-between">
             <div>
               <p className="text-body text-sm">Welcome Back</p>

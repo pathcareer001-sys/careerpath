@@ -54,8 +54,8 @@ export default function HomePage() {
         {/* Hero */}
         <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-accent via-surface to-section">
           <div className="absolute inset-0 bg-dot-pattern" />
-          <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/[0.03] blur-3xl" />
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-primary/[0.02] blur-3xl" />
+          <div className="absolute top-0 right-0 w-48 h-48 md:w-96 md:h-96 rounded-full bg-primary/[0.03] blur-3xl" />
+          <div className="absolute -bottom-32 -left-32 w-40 h-40 md:w-80 md:h-80 rounded-full bg-primary/[0.02] blur-3xl" />
           <div className="mx-auto grid min-h-[calc(100vh-64px)] max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-14 relative z-10">
             <div className="flex flex-col justify-center animate-fade-in-up">
               <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-lg bg-primary-subtle px-3 py-1.5 text-sm font-medium text-primary backdrop-blur-sm border border-primary/20">

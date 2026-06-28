@@ -61,7 +61,7 @@ export default function CreateInternshipDialog({ company }: Props) {
 
       <DialogContent
         className="
-  sm:max-w-4xl
+  lg:max-w-4xl
   max-h-[90vh]
   overflow-y-auto
   p-2

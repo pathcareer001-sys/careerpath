@@ -57,7 +57,7 @@ export default function InternshipManagePage() {
       <PageHeader title="Internship Management" description="Manage internships" />
 
       <Dialog open={!!editingInternship} onOpenChange={(o) => { if (!o) setEditingInternship(null); }}>
-        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto p-6">
+        <DialogContent className="lg:max-w-4xl max-h-[90vh] overflow-y-auto p-6">
           {editingInternship && (
             <InternshipForm
               defaultValues={editingInternship}

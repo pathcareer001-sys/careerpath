@@ -22,7 +22,7 @@ const accentColors: Record<string, string> = {
 
 export default function StatCard({ title, value, gradient = "blue" }: Props) {
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-border-light bg-surface p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border">
+    <div className="group relative overflow-hidden rounded-xl border border-border-light bg-surface p-5 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-hover hover:border-border">
       <div className="relative z-10">
         <p className="text-[28px] font-semibold text-heading leading-none tracking-tight">{value}</p>
         <p className="mt-1.5 text-[13px] text-secondary-text font-medium">{title}</p>

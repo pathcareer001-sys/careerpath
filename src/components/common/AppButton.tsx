@@ -21,13 +21,13 @@ export default function AppButton({
 
   const variants = {
     primary:
-      "bg-primary text-white shadow-button hover:shadow-button-hover hover:bg-primary-hover hover:-translate-y-0.5 active:bg-primary-active active:translate-y-0 active:scale-[0.97]",
+      "bg-primary text-white shadow-button hover:shadow-button-hover hover:bg-primary-hover hover:-translate-y-0.5 active:bg-primary-active active:translate-y-0 active:scale-[0.97] disabled:shadow-none",
     secondary:
-      "bg-surface text-body border border-border hover:border-primary/30 hover:bg-primary-subtle hover:text-primary active:bg-primary-subtle/80",
+      "bg-surface text-body border border-border hover:border-primary/40 hover:bg-primary-subtle hover:text-primary active:bg-primary-subtle/80 active:scale-[0.98]",
     danger:
-      "bg-error text-white shadow-sm hover:shadow-md hover:bg-error/90 hover:-translate-y-0.5 active:bg-error/80 active:translate-y-0 active:scale-[0.97]",
+      "bg-error text-white shadow-sm hover:shadow-md hover:bg-error/90 hover:-translate-y-0.5 active:bg-error/80 active:translate-y-0 active:scale-[0.97] disabled:shadow-none",
     outline:
-      "bg-transparent text-secondary-text border border-border/60 hover:border-primary/30 hover:text-primary hover:bg-primary-subtle active:bg-primary-subtle/80",
+      "bg-transparent text-secondary-text border border-border/60 hover:border-primary/40 hover:text-primary hover:bg-primary-subtle active:bg-primary-subtle/80 active:scale-[0.98]",
   };
 
   return (

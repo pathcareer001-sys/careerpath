@@ -19,8 +19,9 @@ import type { Internship } from "@/types/internship";
 function cleanPayload<T extends Record<string, unknown>>(data: T): T {
   const cleaned = {} as T;
   for (const key of Object.keys(data)) {
-    if (data[key] !== undefined) {
-      cleaned[key as keyof T] = data[key];
+    const value = data[key];
+    if (value !== undefined) {
+      cleaned[key as keyof T] = value as T[keyof T];
     }
   }
   return cleaned;
