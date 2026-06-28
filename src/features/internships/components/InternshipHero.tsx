@@ -21,7 +21,7 @@ export default function InternshipHero({
   hasApplied,
 }: Props) {
   return (
-    <AppCard className="bg-primary text-white">
+    <AppCard className="bg-accent text-heading">
       <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
         <div className="flex gap-5">
           <div className="h-20 w-20 rounded-3xl bg-surface text-primary flex items-center justify-center shrink-0">
@@ -29,7 +29,7 @@ export default function InternshipHero({
           </div>
 
           <div>
-            <span className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-medium">
+            <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
               Internship Opportunity
             </span>
 
@@ -37,23 +37,23 @@ export default function InternshipHero({
               {internship.title}
             </h1>
 
-            <div className="mt-3 flex items-center gap-2 text-white/70">
+            <div className="mt-3 flex items-center gap-2 text-body">
               <Building2 size={18} />
               {internship.companyName}
             </div>
 
             <div className="mt-5 flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2">
+              <div className="flex items-center gap-2 rounded-xl bg-section px-3 py-2">
                 <MapPin size={16} />
                 {internship.location}
               </div>
 
-              <div className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2">
+              <div className="flex items-center gap-2 rounded-xl bg-section px-3 py-2">
                 <Briefcase size={16} />
                 {internship.type}
               </div>
 
-              <div className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2">
+              <div className="flex items-center gap-2 rounded-xl bg-section px-3 py-2">
                 <Calendar size={16} />
                 {internship.deadline}
               </div>

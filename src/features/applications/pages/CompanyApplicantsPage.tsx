@@ -117,12 +117,12 @@ export default function CompanyApplicantsPage() {
         </div>
 
         <div className="mt-6 animate-fade-in-up animate-delay-200">
-          <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-5 text-white">
-            <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-secondary/30 blur-3xl" />
-            <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-primary/30 blur-xl" />
+          <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent to-section p-5 text-heading">
+            <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-white/60 blur-3xl" />
+            <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-section blur-xl" />
             <div className="relative z-10">
               <h2 className="text-xl font-medium">Applicant Management</h2>
-              <p className="text-white/70 mt-1">Review and manage internship applications.</p>
+              <p className="text-body mt-1">Review and manage internship applications.</p>
             </div>
           </div>
         </div>

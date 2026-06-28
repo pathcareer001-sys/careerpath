@@ -84,38 +84,38 @@ export default function InternshipDetailPage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-6 text-white">
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-secondary/30 blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-primary/30 blur-3xl" />
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent to-section p-6 text-heading">
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/60 blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
           <div className="relative z-10 flex items-start gap-5">
-            <div className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white shrink-0 border border-white/10">
+            <div className="h-16 w-16 rounded-2xl bg-surface flex items-center justify-center text-primary shrink-0 border border-border">
               <Building2 size="32" />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <span className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur-sm border border-white/10">
+                <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary border border-primary/20">
                   Internship Opportunity
                 </span>
                 {internship.status === "draft" && (
-                  <span className="inline-flex rounded-full bg-warning/20 px-3 py-1 text-xs font-medium backdrop-blur-sm border border-warning/30 text-white/80">
+                  <span className="inline-flex rounded-full bg-warning/20 px-3 py-1 text-xs font-medium backdrop-blur-sm border border-warning/30 text-warning">
                     Draft
                   </span>
                 )}
               </div>
               <h1 className="text-[24px] font-medium leading-tight">{internship.title}</h1>
-              <p className="text-white/70 mt-1">{internship.companyName}</p>
+              <p className="text-body mt-1">{internship.companyName}</p>
               <div className="flex flex-wrap gap-2 mt-4">
-                <span className={`rounded-full px-3 py-1 text-[12px] font-medium ${typeColors[internship.type] || "bg-white/10 text-white"}`}>
+                <span className={`rounded-full px-3 py-1 text-[12px] font-medium ${typeColors[internship.type] || "bg-section text-body"}`}>
                   {internship.type}
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-[12px] text-white/70 border border-white/10">
+                <span className="inline-flex items-center gap-1 rounded-full bg-section px-3 py-1 text-[12px] text-body border border-border">
                   <MapPin size="12" /> {internship.location}
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-[12px] text-white/70 border border-white/10">
+                <span className="inline-flex items-center gap-1 rounded-full bg-section px-3 py-1 text-[12px] text-body border border-border">
                   <Calendar size="12" /> {internship.deadline || "No deadline"}
                 </span>
                 {internship.salary && (
-                  <span className="inline-flex rounded-full bg-success/20 px-3 py-1 text-[12px] font-medium text-white/80 border border-success/30">
+                  <span className="inline-flex rounded-full bg-success/20 px-3 py-1 text-[12px] font-medium text-success border border-success/30">
                     {internship.salary}
                   </span>
                 )}

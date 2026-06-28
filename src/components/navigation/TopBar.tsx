@@ -49,9 +49,9 @@ export default function TopBar() {
   };
 
   return (
-    <header className="h-[60px] bg-surface/80 backdrop-blur-xl border-b border-border flex items-center px-4 gap-3 sticky top-0 z-50">
+    <header className="h-[60px] bg-surface/80 backdrop-blur-xl border-b border-border flex items-center px-4 md:px-6 gap-3 sticky top-0 z-50">
       <Link to="/" className="shrink-0">
-        <img src={logo} alt="CareerPath" className="h-7 w-auto" />
+        <img src={logo} alt="CareerPath" className="h-9 w-auto" />
       </Link>
 
       <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
@@ -61,7 +61,7 @@ export default function TopBar() {
             to={item.to}
             end={item.to === "/dashboard" || item.to === "/admin" || item.to === "/company"}
             className={({ isActive }) =>
-              `relative inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium transition-all duration-200 ${
+              `relative inline-flex items-center gap-1.5 px-3.5 py-1.5 text-sm font-medium transition-all duration-200 ${
                 isActive
                   ? "text-primary"
                   : "text-secondary-text hover:text-primary"
@@ -79,14 +79,14 @@ export default function TopBar() {
         ))}
       </nav>
 
-      <div className="flex items-center gap-3 shrink-0">
+      <div className="flex items-center gap-2 shrink-0">
         <NotificationDropdown />
 
-        <Link to={profilePath} className="hidden sm:flex items-center gap-2 p-1 rounded-lg hover:bg-primary/10 transition-all duration-200">
+        <Link to={profilePath} className="hidden sm:flex items-center gap-2 p-1 rounded-lg hover:bg-primary-subtle transition-all duration-200">
           <img
-            src={user?.photoURL || "https://ui-avatars.com/api/?name=User&background=EEF3FE&color=2563EB&size=32"}
+            src={user?.photoURL || "https://ui-avatars.com/api/?name=User&background=EBF3FA&color=4682B4&size=32"}
             alt=""
-            className="w-7 h-7 rounded-full ring-2 ring-primary/20"
+            className="w-7 h-7 rounded-full ring-2 ring-primary/15"
           />
           <span className="text-sm text-secondary-text hidden md:inline">{user?.name || "User"}</span>
         </Link>
@@ -100,13 +100,13 @@ export default function TopBar() {
         </button>
 
         <Sheet>
-          <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-secondary-text hover:bg-accent">
+          <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-secondary-text hover:bg-primary-subtle transition-colors">
             <Menu size="20" />
           </SheetTrigger>
           <SheetContent side="left" className="w-64 p-0">
             <div className="flex flex-col h-full">
               <div className="flex items-center justify-between px-4 h-14 border-b border-border">
-                <img src={logo} alt="CareerPath" className="h-6 w-auto" />
+                <img src={logo} alt="CareerPath" className="h-8 w-auto" />
               </div>
               <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
                 {navLinks.map((item) => (
@@ -117,8 +117,8 @@ export default function TopBar() {
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                         isActive
-                          ? "bg-accent text-primary font-medium"
-                          : "text-secondary-text hover:bg-accent hover:text-primary"
+                          ? "bg-primary-subtle text-primary font-medium"
+                          : "text-secondary-text hover:bg-primary-subtle hover:text-primary"
                       }`
                     }
                   >
@@ -130,10 +130,10 @@ export default function TopBar() {
               <div className="px-3 py-3 border-t border-border space-y-2">
                 <Link
                   to={profilePath}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-accent hover:text-primary transition-colors"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-primary-subtle hover:text-primary transition-colors"
                 >
                   <img
-                    src={user?.photoURL || "https://ui-avatars.com/api/?name=User&background=EEF3FE&color=2563EB&size=32"}
+                    src={user?.photoURL || "https://ui-avatars.com/api/?name=User&background=EBF3FA&color=4682B4&size=32"}
                     alt=""
                     className="w-7 h-7 rounded-full"
                   />

@@ -5,7 +5,7 @@ export default function AppInput({ className, ...props }: InputHTMLAttributes<HT
   return (
     <input
       className={cn(
-        "h-9 w-full rounded-lg border border-border bg-background px-3 text-sm text-heading placeholder:text-muted focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors",
+        "h-9 w-full rounded-lg border border-input bg-surface px-3 text-sm text-heading placeholder:text-muted focus:border-primary focus:outline-none focus:ring-3 focus:ring-primary-subtle transition-all",
         className,
       )}
       {...props}

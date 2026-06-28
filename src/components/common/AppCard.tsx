@@ -4,19 +4,24 @@ import type { HTMLAttributes } from "react";
 interface Props extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   hover?: boolean;
+  padding?: "default" | "sm" | "lg" | "none";
 }
 
-export default function AppCard({ children, className, hover = true, ...props }: Props) {
+export default function AppCard({ children, className, hover = true, padding = "default", ...props }: Props) {
   return (
     <div
       className={cn(
-        "bg-surface border border-border rounded-xl transition-all duration-300",
-        hover && "hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10 hover:border-primary",
+        "bg-surface border border-border-light rounded-xl shadow-card transition-all duration-300",
+        padding === "default" && "p-5",
+        padding === "sm" && "p-4",
+        padding === "lg" && "p-6",
+        padding === "none" && "p-0",
+        hover && "hover:shadow-card-hover hover:border-border",
         className,
       )}
       {...props}
     >
-      <div className="p-4">{children}</div>
+      {children}
     </div>
   );
 }

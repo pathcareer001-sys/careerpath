@@ -39,27 +39,27 @@ export default function CompanyDashboardPage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-6 text-white">
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-secondary/30 blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-primary/30 blur-3xl" />
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent to-section p-6 text-heading">
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/60 blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
           <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:justify-between">
             <div>
-              <p className="text-white/70 text-sm">Welcome Back</p>
+              <p className="text-body text-sm">Welcome Back</p>
               <h1 className="mt-2 text-3xl font-medium">{company?.name || "Your Company"}</h1>
-              <p className="mt-1 text-white/70">{company?.industry || "Company Profile"}</p>
+              <p className="mt-1 text-body">{company?.industry || "Company Profile"}</p>
               {company?.verified && (
-                <span className="inline-flex mt-3 rounded-full bg-success/20 px-3 py-1 text-xs text-white/80 border border-success/30">
+                <span className="inline-flex mt-3 rounded-full bg-success/20 px-3 py-1 text-xs text-success border border-success/30">
                   ✓ Verified Company
                 </span>
               )}
               {company?.location && (
-                <div className="mt-2 flex items-center gap-2 text-white/70 text-sm">
+                <div className="mt-2 flex items-center gap-2 text-body text-sm">
                   <MapPin size="14" />
                   <span>{company.location}</span>
                 </div>
               )}
               {company?.website && (
-                <a href={company.website} target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors">
+                <a href={company.website} target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center gap-2 text-secondary-text hover:text-primary text-sm transition-colors">
                   <Globe size="14" />
                   <span className="truncate">{company.website}</span>
                 </a>
@@ -67,13 +67,13 @@ export default function CompanyDashboardPage() {
               <div className="mt-4 flex items-center gap-2">
                 <Star size="16" className="fill-warning text-warning" />
                 <span className="text-lg font-medium">{company?.avgRating || 0}</span>
-                <span className="text-white/70 text-sm">({company?.reviewCount || 0} reviews)</span>
+                <span className="text-secondary-text text-sm">({company?.reviewCount || 0} reviews)</span>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-white/70 text-sm">Total Applicants</p>
+              <p className="text-body text-sm">Total Applicants</p>
               <h2 className="text-5xl font-medium">{dashboard.totalApplicants || 0}</h2>
-              <p className="mt-1 text-white/70 text-sm">Acceptance Rate: {acceptanceRate}%</p>
+              <p className="mt-1 text-body text-sm">Acceptance Rate: {acceptanceRate}%</p>
             </div>
           </div>
         </div>

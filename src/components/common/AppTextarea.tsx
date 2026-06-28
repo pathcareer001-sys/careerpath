@@ -5,7 +5,7 @@ export default function AppTextarea({ className, ...props }: TextareaHTMLAttribu
   return (
     <textarea
       className={cn(
-        "w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-body placeholder:text-muted focus:border-primary focus:outline-none transition-colors resize-y min-h-[80px]",
+        "w-full rounded-lg border border-input bg-surface px-3 py-2 text-sm text-body placeholder:text-muted focus:border-primary focus:ring-3 focus:ring-primary-subtle transition-all resize-y min-h-[80px]",
         className,
       )}
       {...props}

@@ -29,10 +29,10 @@ function NavLinkItem({ to, Icon, label, end }: { to: string; Icon: React.Compone
       to={to}
       end={end}
       className={({ isActive }) =>
-        `flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
+        `flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200 ${
           isActive
-            ? "bg-accent text-primary"
-            : "text-body hover:bg-section"
+            ? "bg-primary-subtle text-primary font-medium"
+            : "text-body hover:bg-primary-subtle/50 hover:text-primary"
         }`
       }
     >
@@ -52,19 +52,19 @@ export default function AdminSidebar() {
 
   const sidebarContent = (
     <div className="flex flex-col h-full">
-      <div className="p-6">
+      <div className="p-5 border-b border-border">
         <img src={logo} alt="CareerPath" className="h-14" />
       </div>
-      <div className="flex flex-col flex-1">
-        <nav className="px-4 space-y-2 flex-1">
+      <div className="flex flex-col flex-1 py-3">
+        <nav className="px-3 space-y-0.5 flex-1">
           {navItems.map(({ to, Icon, label, end }) => (
             <NavLinkItem key={to} to={to} Icon={Icon} label={label} end={end} />
           ))}
         </nav>
-        <div className="p-4">
+        <div className="px-3 pt-3 border-t border-border mt-3">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 rounded-xl px-4 py-3 text-error hover:bg-error/10 transition-colors"
+            className="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-error hover:bg-error/10 transition-colors"
           >
             <LogOut size={18} />
             Logout
@@ -76,15 +76,15 @@ export default function AdminSidebar() {
 
   return (
     <>
-      <aside className="hidden md:flex w-72 bg-surface border-r border-border min-h-screen flex-col shrink-0">
+      <aside className="hidden md:flex w-64 bg-surface border-r border-border min-h-screen flex-col shrink-0">
         {sidebarContent}
       </aside>
 
       <Sheet>
-        <SheetTrigger className="fixed top-3 left-3 z-50 inline-flex md:hidden h-9 w-9 items-center justify-center rounded-lg bg-surface border border-border text-body shadow-sm">
+        <SheetTrigger className="fixed top-3 left-3 z-50 inline-flex md:hidden h-9 w-9 items-center justify-center rounded-lg bg-surface border border-border text-body shadow-sm hover:bg-primary-subtle transition-colors">
           <Menu size="18" />
         </SheetTrigger>
-        <SheetContent side="left" className="w-72 p-0">
+        <SheetContent side="left" className="w-64 p-0">
           {sidebarContent}
         </SheetContent>
       </Sheet>

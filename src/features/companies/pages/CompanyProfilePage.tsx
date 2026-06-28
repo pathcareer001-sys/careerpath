@@ -70,21 +70,21 @@ export default function CompanyProfilePage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-6 text-white">
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-secondary/30 blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-primary/30 blur-3xl" />
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent to-section p-6 text-heading">
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/60 blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
           <div className="relative z-10 flex items-center gap-6">
-            <div className="h-20 w-20 overflow-hidden rounded-2xl bg-white/20 backdrop-blur-sm border border-white/10 flex items-center justify-center shrink-0">
+            <div className="h-20 w-20 overflow-hidden rounded-2xl bg-surface border border-border flex items-center justify-center shrink-0">
               {logo ? (
                 <img src={logo} alt={name} className="h-full w-full object-cover" />
               ) : (
-                <Building2 size="32" className="text-white" />
+                <Building2 size="32" className="text-primary" />
               )}
             </div>
             <div>
               <h1 className="text-2xl font-medium">{name || "Company Name"}</h1>
-              <p className="mt-1 text-white/70">{industry || "Industry"}</p>
-              <p className="text-white/70 text-sm flex items-center gap-1 mt-1">
+              <p className="mt-1 text-body">{industry || "Industry"}</p>
+              <p className="text-body text-sm flex items-center gap-1 mt-1">
                 <MapPin size="14" /> {location || "Location"}
               </p>
             </div>

@@ -53,12 +53,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full max-w-sm animate-fade-in-up">
-      <div className="bg-surface border border-border rounded-xl p-6 border-border/30">
-        <img src={logo} alt="CareerPath" className="h-8 mb-5" />
+    <div className="w-full max-w-sm animate-spring-up">
+      <div className="bg-surface border border-border-light rounded-xl p-6 shadow-card">
+        <img src={logo} alt="CareerPath" className="h-10 mb-6" />
 
-        <h1 className="text-[22px] font-medium text-heading">Sign in</h1>
-        <p className="mt-1 text-sm text-secondary-text">Enter your account credentials</p>
+        <h1 className="text-[22px] font-semibold tracking-tight text-heading">Sign in</h1>
+        <p className="mt-1 text-sm text-secondary-text leading-relaxed">Enter your account credentials</p>
 
         <form onSubmit={handleSubmit(handleLogin)} className="mt-6 space-y-4">
           <div>
@@ -71,11 +71,11 @@ export default function LoginPage() {
           </div>
 
           <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center gap-2 text-body">
-              <input type="checkbox" className="accent-[#5FAED8]" />
+            <label className="flex items-center gap-2 text-body cursor-pointer">
+              <input type="checkbox" className="rounded border-border text-primary focus:ring-primary focus:ring-2" />
               Remember me
             </label>
-            <Link to="/forgot-password" className="text-primary text-sm font-medium hover:text-primary transition-colors">Forgot password?</Link>
+            <Link to="/forgot-password" className="text-primary text-sm font-medium hover:text-primary-hover transition-colors">Forgot password?</Link>
           </div>
 
           <AppButton type="submit" disabled={isSubmitting} className="w-full">
@@ -84,15 +84,15 @@ export default function LoginPage() {
         </form>
 
         <div className="my-5 flex items-center gap-3">
-          <div className="h-px flex-1 bg-section" />
+          <div className="h-px flex-1 bg-divider" />
           <span className="text-xs text-muted">or</span>
-          <div className="h-px flex-1 bg-section" />
+          <div className="h-px flex-1 bg-divider" />
         </div>
 
         <button
           type="button"
           onClick={handleGoogleLogin}
-          className="w-full rounded-lg border border-border py-2 flex items-center justify-center gap-2 text-sm text-body hover:bg-accent hover:border-primary transition-all duration-200"
+          className="w-full rounded-lg border border-border bg-surface px-4 py-2.5 flex items-center justify-center gap-2 text-sm text-body hover:border-primary/30 hover:bg-primary-subtle transition-all duration-200"
         >
           <FcGoogle size="18" />
           Continue with Google
@@ -100,7 +100,7 @@ export default function LoginPage() {
 
         <p className="mt-5 text-center text-sm text-secondary-text">
           Don't have an account?{" "}
-          <Link to="/register" className="text-primary font-medium hover:text-primary transition-colors">Create one</Link>
+          <Link to="/register" className="text-primary font-semibold hover:text-primary-hover transition-colors">Create one</Link>
         </p>
       </div>
     </div>

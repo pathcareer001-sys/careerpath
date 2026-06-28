@@ -25,11 +25,11 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary to-secondary text-white">
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/30 blur-3xl" />
+      <div className="relative overflow-hidden bg-gradient-to-br from-accent to-section text-heading">
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-white/60 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">
           <h1 className="text-3xl sm:text-5xl font-medium">About CareerPath</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
             CareerPath helps students discover internship opportunities, read company reviews, and track applications in one platform.
           </p>
         </div>

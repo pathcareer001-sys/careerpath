@@ -21,7 +21,6 @@ export default function CompanyNavbar() {
   const handleLogout = async () => {
     try {
       await authService.logout();
-
       navigate("/login");
     } catch (error) {
       console.error(error);
@@ -29,40 +28,10 @@ export default function CompanyNavbar() {
   };
 
   return (
-    <header
-      className="
-      sticky
-      top-0
-      z-50
-      bg-surface
-      border-b
-      border-border
-      "
-    >
-      <div
-        className="
-  max-w-7xl
-  mx-auto
-  h-16
-  px-4
-  flex
-  items-center
-  md:h-20
-  md:px-6
-  "
-      >
-        <img src={logo} alt="CareerPath" className="h-12 w-auto md:h-16" />
-        <nav
-          className="
-  ml-4
-  hidden
-  md:flex
-  items-center
-  gap-4
-  md:ml-10
-  md:gap-10
-  "
-        >
+    <header className="sticky top-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-border">
+      <div className="mx-auto flex h-16 max-w-7xl items-center px-4 md:h-20 md:px-8">
+        <img src={logo} alt="CareerPath" className="h-14 w-auto md:h-16" />
+        <nav className="ml-4 hidden md:flex items-center gap-1 md:ml-10">
           {navLinks.map((item) => (
             <NavItem
               key={item.to}
@@ -73,24 +42,11 @@ export default function CompanyNavbar() {
           ))}
         </nav>
 
-        <div
-          className="
-  ml-auto
-  flex
-  items-center
-  gap-3
-  "
-        >
+        <div className="ml-auto flex items-center gap-3">
           <AppButton
             variant="secondary"
             onClick={handleLogout}
-            className="
-  border-error/30
-  text-error
-  hover:bg-error/10
-  hidden
-  sm:inline-flex
-  "
+            className="border-error/30 text-error hover:bg-error/10 hidden sm:inline-flex"
           >
             <LogOut size={16} />
             Logout
@@ -99,13 +55,13 @@ export default function CompanyNavbar() {
           <UserMenu />
 
           <Sheet>
-            <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-secondary-text hover:bg-accent">
+            <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-secondary-text hover:bg-primary-subtle transition-colors">
               <Menu size="20" />
             </SheetTrigger>
             <SheetContent side="left" className="w-64 p-0">
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between px-4 h-14 border-b border-border">
-                  <img src={logo} alt="CareerPath" className="h-6 w-auto" />
+                  <img src={logo} alt="CareerPath" className="h-8 w-auto" />
                 </div>
                 <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
                   {navLinks.map((item) => (
@@ -116,8 +72,8 @@ export default function CompanyNavbar() {
                       className={({ isActive }) =>
                         `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
                           isActive
-                            ? "bg-accent text-primary font-medium"
-                            : "text-secondary-text hover:bg-accent hover:text-primary"
+                            ? "bg-primary-subtle text-primary font-medium"
+                            : "text-secondary-text hover:bg-primary-subtle hover:text-primary"
                         }`
                       }
                     >
@@ -129,7 +85,7 @@ export default function CompanyNavbar() {
                 <div className="px-3 py-3 border-t border-border space-y-2">
                   <Link
                     to="/company/profile"
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-accent hover:text-primary transition-colors"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-primary-subtle hover:text-primary transition-colors"
                   >
                     <User size="18" />
                     Profile
@@ -165,23 +121,11 @@ function NavItem({
       to={to}
       end={to === "/company"}
       className={({ isActive }) =>
-        `
-        flex
-        flex-col
-        items-center
-        min-w-[60px]
-        gap-1
-        px-2
-        py-2
-        text-xs
-        border-b-2
-        transition-colors
-        ${
+        `inline-flex h-9 items-center gap-2 rounded-lg px-3.5 text-sm font-medium transition-all duration-200 ${
           isActive
-            ? "border-primary text-primary font-medium"
-            : "border-transparent text-secondary-text hover:text-heading"
-        }
-        `
+            ? "bg-primary-subtle text-primary shadow-sm"
+            : "text-body hover:text-primary hover:bg-primary-subtle/50"
+        }`
       }
     >
       {icon}

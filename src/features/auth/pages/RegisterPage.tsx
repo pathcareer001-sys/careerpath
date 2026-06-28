@@ -44,19 +44,19 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="w-full max-w-lg animate-fade-in-up">
-      <div className="bg-surface border border-border rounded-xl p-6">
-        <img src={logo} alt="CareerPath" className="h-8 mb-5" />
+    <div className="w-full max-w-lg animate-spring-up">
+      <div className="bg-surface border border-border-light rounded-xl p-6 shadow-card">
+        <img src={logo} alt="CareerPath" className="h-10 mb-6" />
 
-        <h1 className="text-[22px] font-medium text-heading">Create account</h1>
-        <p className="mt-1 text-sm text-secondary-text">Join thousands of students finding opportunities.</p>
+        <h1 className="text-[22px] font-semibold tracking-tight text-heading">Create account</h1>
+        <p className="mt-1 text-sm text-secondary-text leading-relaxed">Join thousands of students finding opportunities.</p>
 
         <form onSubmit={handleSubmit(handleRegister)} className="mt-6 space-y-4">
           <div>
-            <label className="block text-xs font-medium text-body mb-1">Register as</label>
+            <label className="block text-xs font-medium text-body mb-1.5">Register as</label>
             <select
               {...register("role")}
-              className="h-9 w-full rounded-lg border border-border bg-background px-3 text-sm text-heading focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
+              className="h-9 w-full rounded-lg border border-input bg-surface px-3 text-sm text-heading focus:border-primary focus:ring-3 focus:ring-primary-subtle transition-all outline-none"
             >
               <option value="student">Student</option>
               <option value="company">Company</option>
@@ -91,8 +91,8 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-body">
-            <input type="checkbox" {...register("agreed")} className="accent-[#5FAED8]" />
+          <label className="flex items-center gap-2 text-sm text-body cursor-pointer">
+            <input type="checkbox" {...register("agreed")} className="rounded border-border text-primary focus:ring-primary focus:ring-2" />
             I agree to the Terms & Privacy Policy
           </label>
           {errors.agreed && <p className="text-xs text-error">{errors.agreed.message}</p>}
@@ -103,15 +103,15 @@ export default function RegisterPage() {
         </form>
 
         <div className="my-5 flex items-center gap-3">
-          <div className="h-px flex-1 bg-section" />
+          <div className="h-px flex-1 bg-divider" />
           <span className="text-xs text-muted">or</span>
-          <div className="h-px flex-1 bg-section" />
+          <div className="h-px flex-1 bg-divider" />
         </div>
 
         <button
           type="button"
           onClick={handleGoogleRegister}
-          className="w-full rounded-lg border border-border py-2 flex items-center justify-center gap-2 text-sm text-body hover:bg-accent hover:border-primary transition-all duration-200"
+          className="w-full rounded-lg border border-border bg-surface px-4 py-2.5 flex items-center justify-center gap-2 text-sm text-body hover:border-primary/30 hover:bg-primary-subtle transition-all duration-200"
         >
           <FcGoogle size="18" />
           Continue with Google
@@ -119,7 +119,7 @@ export default function RegisterPage() {
 
         <p className="mt-5 text-center text-sm text-secondary-text">
           Already have an account?{" "}
-          <Link to="/login" className="text-primary font-medium hover:text-primary transition-colors">Sign in</Link>
+          <Link to="/login" className="text-primary font-semibold hover:text-primary-hover transition-colors">Sign in</Link>
         </p>
       </div>
     </div>

@@ -14,22 +14,22 @@ const staffNav = [
 
 const sidebarContent = (handleLogout: () => void) => (
   <div className="flex flex-col h-full">
-    <div className="px-5 py-4 border-b border-border bg-gradient-to-r from-primary to-secondary">
+    <div className="px-5 py-5 border-b border-border">
       <div className="flex items-center gap-2">
-        <img src={logo} alt="CareerPath" className="h-7 brightness-0 invert" />
+        <img src={logo} alt="CareerPath" className="h-10" />
       </div>
     </div>
-    <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+    <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
       {staffNav.map((item) => (
         <NavLink
           key={item.to}
           to={item.to}
           end={item.end}
           className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+            `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ${
               isActive
-                ? "bg-accent text-primary font-medium"
-                : "text-body hover:bg-section"
+                ? "bg-primary-subtle text-primary font-medium"
+                : "text-body hover:bg-primary-subtle/50 hover:text-primary"
             }`
           }
         >
@@ -65,7 +65,7 @@ export default function StaffLayout() {
       </aside>
 
       <Sheet>
-        <SheetTrigger className="fixed top-3 left-3 z-50 inline-flex md:hidden h-9 w-9 items-center justify-center rounded-lg bg-surface border border-border text-body shadow-sm">
+        <SheetTrigger className="fixed top-3 left-3 z-50 inline-flex md:hidden h-9 w-9 items-center justify-center rounded-lg bg-surface border border-border text-body shadow-sm hover:bg-primary-subtle transition-colors">
           <Menu size="18" />
         </SheetTrigger>
         <SheetContent side="left" className="w-64 p-0">

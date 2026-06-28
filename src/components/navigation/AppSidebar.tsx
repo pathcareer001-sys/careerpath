@@ -66,30 +66,30 @@ export default function AppSidebar() {
   };
 
   return (
-    <aside className="w-[220px] min-h-screen bg-surface border-r border-border flex flex-col shrink-0">
-      <div className="px-4 py-4 border-b border-border bg-primary">
+    <aside className="w-[240px] min-h-screen bg-surface border-r border-border flex flex-col shrink-0">
+      <div className="px-5 py-5 border-b border-border">
         <div className="flex items-center gap-2">
-          <img src={logo} alt="CareerPath" className="h-7 brightness-0 invert" />
+          <img src={logo} alt="CareerPath" className="h-10" />
         </div>
       </div>
 
-      <nav className="flex-1 px-3 py-4 space-y-6 overflow-y-auto">
+      <nav className="flex-1 px-3 py-5 space-y-6 overflow-y-auto">
         {navGroups.map((group) => (
           <div key={group.label}>
-            <p className="px-3 mb-2 text-[10px] font-medium tracking-[0.8px] text-muted uppercase">
+            <p className="px-3 mb-2 text-[10px] font-semibold tracking-[1px] text-muted uppercase">
               {group.label}
             </p>
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               {group.items.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   end={item.to === "/admin" || item.to === "/company" || item.to === "/dashboard"}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                    `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ${
                       isActive
-                        ? "bg-accent text-primary font-medium"
-                        : "text-body hover:bg-accent hover:text-primary"
+                        ? "bg-primary-subtle text-primary font-medium"
+                        : "text-body hover:bg-primary-subtle/50 hover:text-primary"
                     }`
                   }
                 >
@@ -105,7 +105,7 @@ export default function AppSidebar() {
       <div className="px-3 py-3 border-t border-border">
         <button
           onClick={handleLogout}
-          className="flex w-full items-center gap-3 px-3 py-2 rounded-lg text-sm text-secondary-text hover:bg-error/10 hover:text-error transition-colors"
+          className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-error/10 hover:text-error transition-colors"
         >
           <LogOut size="18" />
           Logout

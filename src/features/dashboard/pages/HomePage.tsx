@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BarChart3, BriefcaseBusiness, Building2, FileCheck2, Search, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  BriefcaseBusiness,
+  Building2,
+  FileCheck2,
+  Search,
+  ShieldCheck,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import LandingNavbar from "@/components/navigation/LandingNavbar";
@@ -39,65 +47,67 @@ export default function HomePage() {
   const internshipCount = internships?.length || 500;
 
   return (
-    <div className="min-h-screen bg-section text-heading">
+    <div className="min-h-screen bg-background text-heading">
       <LandingNavbar />
 
       <main>
-        <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-primary to-secondary">
-          <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/30 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-primary/30 blur-3xl" />
+        {/* Hero */}
+        <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-accent via-surface to-section">
+          <div className="absolute inset-0 bg-dot-pattern" />
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/[0.03] blur-3xl" />
+          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-primary/[0.02] blur-3xl" />
           <div className="mx-auto grid min-h-[calc(100vh-64px)] max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-14 relative z-10">
             <div className="flex flex-col justify-center animate-fade-in-up">
-              <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-lg bg-white/15 px-3 py-1.5 text-sm font-medium text-white/70 backdrop-blur-sm border border-white/10">
+              <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-lg bg-primary-subtle px-3 py-1.5 text-sm font-medium text-primary backdrop-blur-sm border border-primary/20">
                 <ShieldCheck size="15" />
                 Verified internships and reviewed companies
               </div>
 
-              <h1 className="max-w-3xl text-4xl font-medium leading-tight text-white md:text-5xl">
+              <h1 className="max-w-3xl text-4xl font-semibold tracking-tight leading-tight text-heading md:text-5xl">
                 CareerPath for modern internship discovery
               </h1>
 
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-body">
                 Discover internships, compare company experiences, and manage every application from one focused workspace built for students.
               </p>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link
                   to="/register"
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-surface px-5 text-sm font-medium text-primary transition-colors hover:bg-accent"
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground shadow-button transition-all duration-200 hover:bg-primary-hover hover:shadow-button-hover active:bg-primary-active"
                 >
                   Get started
                   <ArrowRight size="16" />
                 </Link>
                 <Link
                   to="/login"
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-5 text-sm font-medium text-white transition-colors hover:bg-white/20"
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-border bg-surface px-5 text-sm font-medium text-body transition-all duration-200 hover:border-primary/30 hover:bg-primary-subtle hover:text-primary"
                 >
                   Sign in
                 </Link>
               </div>
 
-              <div className="mt-8 flex gap-8 border-t border-white/20 pt-6 flex-wrap">
+              <div className="mt-8 flex gap-8 border-t border-border pt-6 flex-wrap">
                 <div>
-                  <p className="text-[22px] font-medium text-white">{companyCount}+</p>
-                  <p className="text-sm text-white/60">Companies</p>
+                  <p className="text-[22px] font-semibold tracking-tight text-heading">{companyCount}+</p>
+                  <p className="text-sm text-secondary-text">Companies</p>
                 </div>
                 <div>
-                  <p className="text-[22px] font-medium text-white">{internshipCount}+</p>
-                  <p className="text-sm text-white/60">Open roles</p>
+                  <p className="text-[22px] font-semibold tracking-tight text-heading">{internshipCount}+</p>
+                  <p className="text-sm text-secondary-text">Open roles</p>
                 </div>
                 <div>
-                  <p className="text-[22px] font-medium text-white">4.8</p>
-                  <p className="text-sm text-white/60">Avg rating</p>
+                  <p className="text-[22px] font-semibold tracking-tight text-heading">4.8</p>
+                  <p className="text-sm text-secondary-text">Avg rating</p>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center">
-              <div className="w-full rounded-xl border border-border bg-surface border-border/30">
+              <div className="w-full rounded-xl border border-border-light bg-surface shadow-card">
                 <div className="flex items-center justify-between border-b border-divider px-5 py-4">
                   <div>
-                    <p className="text-sm font-medium text-heading">Student workspace</p>
+                    <p className="text-sm font-semibold text-heading tracking-tight">Student workspace</p>
                     <p className="text-xs text-secondary-text mt-0.5">Live opportunities snapshot</p>
                   </div>
                   <span className="inline-flex items-center gap-1.5 rounded-lg bg-success/10 px-2.5 py-1 text-xs font-medium text-success ring-1 ring-success/30">
@@ -113,13 +123,13 @@ export default function HomePage() {
                       ["Product Design Intern", "Hybrid"],
                       ["Data Analyst Intern", "Onsite"],
                     ].map(([role, type]) => (
-                      <div key={role} className="rounded-lg border border-divider bg-accent/50 p-4">
+                      <div key={role} className="rounded-lg border border-border-light bg-surface-alt/50 p-4 shadow-xs">
                         <div className="flex items-start justify-between gap-4">
                           <div>
                             <p className="text-sm font-medium text-heading">{role}</p>
                             <p className="mt-0.5 text-xs text-secondary-text">{type} role</p>
                           </div>
-                          <span className="rounded-md bg-primary px-2 py-0.5 text-[11px] font-medium text-white">
+                          <span className="rounded-md bg-primary px-2 py-0.5 text-[11px] font-medium text-primary-foreground">
                             New
                           </span>
                         </div>
@@ -129,7 +139,7 @@ export default function HomePage() {
 
                   <div className="rounded-lg border border-divider bg-surface p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-heading">Application flow</p>
+                      <p className="text-sm font-semibold text-heading tracking-tight">Application flow</p>
                       <BriefcaseBusiness size="16" className="text-primary" />
                     </div>
                     <div className="mt-4 space-y-3">
@@ -157,12 +167,13 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Partners */}
         <section className="border-b border-border bg-surface px-6 py-5">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <p className="text-sm text-secondary-text">Trusted by students exploring <span className="font-medium text-body">{companyCount}+</span> companies</p>
             <div className="flex flex-wrap gap-2">
               {partnerNames.map((name, i) => {
-                const tagColors = ["bg-accent text-primary", "bg-warning/5 text-warning", "bg-info/10 text-info", "bg-success/5 text-success", "bg-error/5 text-error"];
+                const tagColors = ["bg-primary-subtle text-primary", "bg-warning/5 text-warning", "bg-info/10 text-info", "bg-success/5 text-success", "bg-error/5 text-error"];
                 return (
                   <span key={name} className={`rounded-lg ${tagColors[i]} px-3 py-1.5 text-xs font-medium`}>
                     {name}
@@ -173,31 +184,33 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-6 py-12">
-          <div className="grid gap-4 md:grid-cols-3">
+        {/* Workflow */}
+        <section className="mx-auto max-w-7xl px-6 py-16">
+          <div className="grid gap-5 md:grid-cols-3">
             {workflow.map((item) => (
-              <div key={item.title} className="rounded-xl border border-border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-primary">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white">
+              <div key={item.title} className="rounded-xl border border-border-light bg-surface p-6 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-sm">
                   <item.icon size="22" />
                 </div>
-                <h2 className="text-base font-medium text-heading">{item.title}</h2>
+                <h3 className="text-base font-semibold tracking-tight text-heading">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-secondary-text">{item.text}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-6 pb-12">
-          <div className="mb-6 flex items-end justify-between">
+        {/* Featured companies */}
+        <section className="mx-auto max-w-7xl px-6 pb-8">
+          <div className="mb-8 flex items-end justify-between">
             <div>
-              <p className="text-xs font-medium text-primary uppercase tracking-wider">Featured companies</p>
-              <h2 className="text-[22px] font-medium text-heading mt-1">Compare companies before you apply</h2>
+              <p className="text-xs font-semibold text-primary uppercase tracking-wider">Featured companies</p>
+              <h2 className="text-[22px] font-semibold tracking-tight text-heading mt-1">Compare companies before you apply</h2>
             </div>
-            <Link to="/companies" className="text-sm font-medium text-primary hover:text-primary">Browse companies &rarr;</Link>
+            <Link to="/companies" className="text-sm font-medium text-primary hover:text-primary-hover transition-colors">Browse companies &rarr;</Link>
           </div>
 
           {featuredCompanies.length > 0 ? (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {featuredCompanies.map((company) => <CompanyCard key={company.id} company={company} />)}
             </div>
           ) : (
@@ -205,18 +218,19 @@ export default function HomePage() {
           )}
         </section>
 
+        {/* Latest internships */}
         <section className="border-y border-border bg-surface">
-          <div className="mx-auto max-w-7xl px-6 py-12">
-            <div className="mb-6 flex items-end justify-between">
+          <div className="mx-auto max-w-7xl px-6 py-16">
+            <div className="mb-8 flex items-end justify-between">
               <div>
-                <p className="text-xs font-medium text-primary uppercase tracking-wider">Latest internships</p>
-                <h2 className="text-[22px] font-medium text-heading mt-1">New roles worth checking today</h2>
+                <p className="text-xs font-semibold text-primary uppercase tracking-wider">Latest internships</p>
+                <h2 className="text-[22px] font-semibold tracking-tight text-heading mt-1">New roles worth checking today</h2>
               </div>
-              <Link to="/internships" className="text-sm font-medium text-primary hover:text-primary">Browse internships &rarr;</Link>
+              <Link to="/internships" className="text-sm font-medium text-primary hover:text-primary-hover transition-colors">Browse internships &rarr;</Link>
             </div>
 
             {latestInternships.length > 0 ? (
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {latestInternships.map((internship) => <InternshipCard key={internship.id} internship={internship} />)}
               </div>
             ) : (
@@ -225,11 +239,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-6 py-12">
+        {/* Features */}
+        <section className="mx-auto max-w-7xl px-6 py-16">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <p className="text-xs font-medium text-primary uppercase tracking-wider">Built for better decisions</p>
-              <h2 className="text-[22px] font-medium text-heading mt-1">Less guessing. More signal.</h2>
+              <p className="text-xs font-semibold text-primary uppercase tracking-wider">Built for better decisions</p>
+              <h2 className="text-[22px] font-semibold tracking-tight text-heading mt-1">Less guessing. More signal.</h2>
               <p className="mt-3 text-sm leading-relaxed text-secondary-text">
                 CareerPath brings opportunity discovery, company reputation, and application progress into the same flow so students can move with confidence.
               </p>
@@ -242,8 +257,8 @@ export default function HomePage() {
                 { icon: Search, label: "Deadline-aware browsing" },
                 { icon: FileCheck2, label: "Application status history" },
               ].map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-3 rounded-xl border border-border bg-surface p-4 hover:border-primary transition-colors">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-white">
+                <div key={label} className="flex items-center gap-3 rounded-xl border border-border-light bg-surface p-4 shadow-card transition-all duration-200 hover:shadow-card-hover hover:border-border">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-secondary text-white shadow-sm">
                     <Icon size="16" />
                   </div>
                   <p className="text-sm font-medium text-heading">{label}</p>
@@ -253,17 +268,19 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-gradient-to-br from-primary to-secondary px-6 py-12 text-white">
-          <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        {/* CTA */}
+        <section className="bg-gradient-to-br from-accent via-surface-alt to-section px-6 py-16 relative overflow-hidden">
+          <div className="absolute inset-0 bg-dot-pattern" />
+          <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between relative z-10">
             <div>
-              <h2 className="text-[22px] font-medium">Start building your application pipeline.</h2>
-              <p className="mt-2 text-sm text-white/70 max-w-2xl">
+              <h2 className="text-[22px] font-semibold tracking-tight text-heading">Start building your application pipeline.</h2>
+              <p className="mt-2 text-sm text-body max-w-2xl leading-relaxed">
                 Create a student account, save interesting companies, and keep every internship opportunity organized.
               </p>
             </div>
             <Link
               to="/register"
-              className="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-lg bg-surface px-5 text-sm font-medium text-primary transition-colors hover:bg-accent"
+              className="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground shadow-button transition-all duration-200 hover:bg-primary-hover hover:shadow-button-hover active:bg-primary-active shrink-0"
             >
               Create account
               <ArrowRight size="16" />
@@ -279,12 +296,12 @@ export default function HomePage() {
 
 function EmptyPreview({ icon: Icon, title, text }: { icon: LucideIcon; title: string; text: string }) {
   return (
-    <div className="rounded-xl border border-dashed border-border bg-surface p-8 text-center">
-      <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-primary">
+    <div className="rounded-xl border border-dashed border-border-light bg-surface p-10 text-center shadow-card">
+      <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary-subtle text-primary">
         <Icon size="18" />
       </div>
       <h3 className="text-sm font-medium text-body">{title}</h3>
-      <p className="mx-auto mt-1 max-w-md text-sm text-secondary-text">{text}</p>
+      <p className="mx-auto mt-1 max-w-md text-sm text-secondary-text leading-relaxed">{text}</p>
     </div>
   );
 }

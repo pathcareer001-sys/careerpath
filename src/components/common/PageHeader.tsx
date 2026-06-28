@@ -6,10 +6,10 @@ export default function PageHeader({
   description?: string;
 }) {
   return (
-    <div className="mb-6">
-      <h1 className="text-[22px] font-medium text-heading">{title}</h1>
+    <div className="mb-8">
+      <h1 className="text-[24px] font-semibold tracking-tight text-heading">{title}</h1>
       {description && (
-        <p className="mt-1 text-sm text-secondary-text">{description}</p>
+        <p className="mt-1.5 text-sm text-secondary-text leading-relaxed">{description}</p>
       )}
     </div>
   );

@@ -61,7 +61,7 @@ export default function CompanyAnalyticsChart({
             {data.map((entry) => (
               <Cell
                 key={entry.key}
-                fill={COLORS[entry.key as keyof typeof COLORS]?.fill || "#5FAED8"}
+                fill={COLORS[entry.key as keyof typeof COLORS]?.fill || "#4682B4"}
               />
             ))}
           </Bar>

@@ -26,23 +26,23 @@ export default function CompanyDetailPage() {
 
   return (
     <PageContainer>
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary p-6 text-white animate-fade-in-up">
-        <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-secondary/30 blur-3xl" />
-        <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-primary/30 blur-3xl" />
+      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-accent to-section p-6 text-heading animate-fade-in-up">
+        <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-white/60 blur-3xl" />
+        <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
         <div className="relative z-10 flex items-start gap-5">
-          <div className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl font-medium shrink-0 border border-white/10">
+          <div className="h-16 w-16 rounded-2xl bg-surface flex items-center justify-center text-primary text-2xl font-medium shrink-0 border border-border">
             {company.name.charAt(0)}
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <h1 className="text-[24px] font-medium">{company.name}</h1>
-              {company.verified && <BadgeCheck size="20" className="text-white/60" />}
+              {company.verified && <BadgeCheck size="20" className="text-primary/60" />}
             </div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/70 mt-1">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-body mt-1">
               <span className="flex items-center gap-1"><MapPin size="14" />{company.location}</span>
               <span className="flex items-center gap-1"><Building2 size="14" />{company.industry}</span>
               {company.website && (
-                <a href={company.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-white/60 hover:text-white transition-colors">
+                <a href={company.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-secondary-text hover:text-primary transition-colors">
                   <Globe size="14" />Website
                 </a>
               )}
@@ -52,23 +52,23 @@ export default function CompanyDetailPage() {
             <BookmarkButton companyId={company.id} />
           </div>
         </div>
-        <div className="relative z-10 flex items-center gap-6 mt-6 pt-6 border-t border-white/10">
+        <div className="relative z-10 flex items-center gap-6 mt-6 pt-6 border-t border-border">
           <div className="text-center">
             <p className="text-[22px] font-medium">{company.avgRating || 0}</p>
             <div className="flex items-center gap-0.5 mt-1 justify-center">
               <Star size="14" className="fill-warning text-warning" />
             </div>
-            <p className="text-xs text-white/60 mt-0.5">Rating</p>
+            <p className="text-xs text-secondary-text mt-0.5">Rating</p>
           </div>
-          <div className="w-px h-10 bg-white/20" />
+          <div className="w-px h-10 bg-border" />
           <div className="text-center">
             <p className="text-[22px] font-medium">{company.reviewCount || 0}</p>
-            <p className="text-xs text-white/60 mt-1">Reviews</p>
+            <p className="text-xs text-secondary-text mt-1">Reviews</p>
           </div>
-          <div className="w-px h-10 bg-white/20" />
+          <div className="w-px h-10 bg-border" />
           <div className="text-center">
             <p className="text-[22px] font-medium">{internships?.length || 0}</p>
-            <p className="text-xs text-white/60 mt-1">Open roles</p>
+            <p className="text-xs text-secondary-text mt-1">Open roles</p>
           </div>
         </div>
       </div>

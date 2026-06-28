@@ -11,7 +11,7 @@ import {
   Legend,
 } from "recharts";
 
-const PIE_COLORS = ["#5FAED8", "#5CBF8F", "#F2B84B", "#E57373", "#7BC7F2"];
+const PIE_COLORS = ["#4682B4", "#5CBF8F", "#F2B84B", "#E57373", "#A1C6E8"];
 
 export function AdminBarChart({ data }: { data: { name: string; value: number }[] }) {
   return (

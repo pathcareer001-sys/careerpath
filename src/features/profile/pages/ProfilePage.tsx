@@ -151,7 +151,7 @@ export default function ProfilePage() {
       <div className="grid gap-6 xl:grid-cols-[380px_1fr]">
         {/* LEFT CARD */}
         <AppCard className="overflow-hidden">
-          <div className="relative h-32 bg-gradient-to-r from-primary to-secondary group">
+          <div className="relative h-32 bg-gradient-to-r from-accent to-section group">
             {coverPreview && !removeCover && (
               <img
                 src={coverPreview}
@@ -371,7 +371,7 @@ export default function ProfilePage() {
               Upload a banner image for your profile
             </p>
             <div className="mt-4">
-              <div className="relative h-36 rounded-xl overflow-hidden bg-gradient-to-r from-primary to-secondary">
+              <div className="relative h-36 rounded-xl overflow-hidden bg-gradient-to-r from-accent to-section">
                 {coverPreview && !removeCover ? (
                   <img src={coverPreview} alt="Cover preview" className="h-full w-full object-cover" />
                 ) : (
