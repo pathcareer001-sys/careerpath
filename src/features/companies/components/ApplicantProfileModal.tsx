@@ -26,8 +26,14 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
       <AppCard onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()} className="w-full max-w-3xl max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-4">
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-xl font-medium shadow-sm">
-              {user.name?.charAt(0)}
+            <div className="h-16 w-16 rounded-full shrink-0 overflow-hidden border-2 border-border-light shadow-sm">
+              {user.photoURL ? (
+                <img src={user.photoURL} alt={user.name} className="h-full w-full object-cover" />
+              ) : (
+                <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xl font-medium">
+                  {user.name?.charAt(0)}
+                </div>
+              )}
             </div>
             <div>
               <h2 className="text-2xl font-medium">{user.name}</h2>

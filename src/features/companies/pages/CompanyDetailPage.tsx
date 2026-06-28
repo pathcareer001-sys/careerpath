@@ -30,8 +30,14 @@ export default function CompanyDetailPage() {
         <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-white/60 blur-3xl" />
         <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
         <div className="relative z-10 flex flex-col md:flex-row items-start gap-5">
-          <div className="h-16 w-16 rounded-2xl bg-surface flex items-center justify-center text-primary text-2xl font-medium shrink-0 border border-border">
-            {company.name.charAt(0)}
+          <div className="h-16 w-16 rounded-2xl shrink-0 overflow-hidden border border-border">
+            {company.logo ? (
+              <img src={company.logo} alt={company.name} className="h-full w-full object-cover" />
+            ) : (
+              <div className="h-full w-full bg-surface flex items-center justify-center text-primary text-2xl font-medium">
+                {company.name.charAt(0)}
+              </div>
+            )}
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">

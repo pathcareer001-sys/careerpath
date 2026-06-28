@@ -26,8 +26,14 @@ export default function StudentProfilePage() {
         <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-white/60 blur-3xl" />
         <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-section blur-3xl" />
         <div className="relative z-10 flex flex-col md:flex-row items-start gap-5">
-          <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-2xl font-medium shadow-sm shrink-0">
-            {user.name?.charAt(0) || "?"}
+          <div className="h-20 w-20 rounded-full shrink-0 overflow-hidden border-2 border-border-light shadow-sm">
+            {user.photoURL ? (
+              <img src={user.photoURL} alt={user.name} className="h-full w-full object-cover" />
+            ) : (
+              <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-2xl font-medium">
+                {user.name?.charAt(0) || "?"}
+              </div>
+            )}
           </div>
           <div className="flex-1 min-w-0">
             <h1 className="text-[24px] font-medium">{user.name}</h1>
