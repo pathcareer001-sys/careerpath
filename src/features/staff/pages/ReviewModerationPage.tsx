@@ -113,7 +113,7 @@ export default function ReviewModerationPage() {
                 <div className="space-y-4">
                   {filtered.map((review) => (
                     <AppCard key={review.id}>
-                      <div className="flex justify-between gap-4">
+                      <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
                         <div className="flex items-start gap-3">
                           <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium shrink-0 shadow-sm">
                             {review.userName?.charAt(0) || "?"}
@@ -129,7 +129,7 @@ export default function ReviewModerationPage() {
                             <p className="mt-2 text-sm text-body leading-relaxed">"{review.review}"</p>
                           </div>
                         </div>
-                        <div className="flex gap-2 shrink-0">
+                        <div className="flex flex-wrap gap-2">
                           {tab === "pending" && (
                             <>
                               <AppButton

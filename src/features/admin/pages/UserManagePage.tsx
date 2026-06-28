@@ -37,7 +37,7 @@ export default function UserManagePage() {
         <div className="space-y-4 animate-fade-in-up">
           {users.map((user) => (
             <AppCard key={user.uid}>
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-sm font-medium shrink-0">
                     {user.name?.charAt(0) || "?"}

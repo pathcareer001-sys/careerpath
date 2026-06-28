@@ -131,7 +131,7 @@ export default function ReportManagementPage() {
                       const TypeIcon = typeIcons[report.type] || Flag;
                       return (
                         <AppCard key={report.id}>
-                          <div className="flex justify-between gap-4">
+                          <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
                             <div className="flex items-start gap-3">
                               <div className={`h-10 w-10 rounded-lg flex items-center justify-center text-white shrink-0 ${
                                 report.type === "review"
@@ -159,14 +159,14 @@ export default function ReportManagementPage() {
                               </div>
                             </div>
                             {t === "pending" && (
-                              <div className="flex gap-2 shrink-0">
-                              <AppButton
-                                variant="primary"
-                                onClick={() => handleResolve(report.id)}
-                                disabled={updateStatus.isPending}
-                              >
-                                <Check size="14" /> Resolve
-                              </AppButton>
+                              <div className="flex flex-wrap gap-2">
+                                <AppButton
+                                  variant="primary"
+                                  onClick={() => handleResolve(report.id)}
+                                  disabled={updateStatus.isPending}
+                                >
+                                  <Check size="14" /> Resolve
+                                </AppButton>
                                 <AppButton
                                   variant="secondary"
                                   className="text-error border-error/30 hover:bg-error/10"

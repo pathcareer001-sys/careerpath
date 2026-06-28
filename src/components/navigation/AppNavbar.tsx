@@ -1,5 +1,4 @@
 import { NavLink, useNavigate } from "react-router-dom";
-
 import {
   LayoutDashboard,
   Building2,
@@ -7,13 +6,14 @@ import {
   Bookmark,
   FileText,
   LogOut,
+  Menu,
 } from "lucide-react";
-
 import UserMenu from "./UserMenu";
 import { authService } from "@/features/auth/services/authService";
 import logo from "@/assets/images/logo.png";
 import NotificationDropdown from "@/features/notifications/components/NotificationDropdown";
 import { toast } from "sonner";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
   { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
@@ -29,13 +29,10 @@ export default function AppNavbar() {
   const handleLogout = async () => {
     try {
       await authService.logout();
-
       toast.success("Logged out successfully");
-
       navigate("/login");
     } catch (error) {
       console.error(error);
-
       toast.error("Failed to logout");
     }
   };
@@ -47,7 +44,7 @@ export default function AppNavbar() {
           <img src={logo} alt="CareerPath" className="h-12 w-auto md:h-16" />
         </div>
 
-        <nav className="ml-4 flex items-center gap-1 rounded-lg border border-border bg-accent/70 p-1 md:ml-10">
+        <nav className="hidden md:flex ml-4 items-center gap-1 rounded-lg border border-border bg-accent/70 p-1 md:ml-10">
           {navItems.map(({ to, icon: Icon, label }) => (
             <NavLink
               key={to}
@@ -72,13 +69,53 @@ export default function AppNavbar() {
 
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-medium text-body transition hover:border-primary hover:bg-accent"
+            className="hidden sm:flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-medium text-body transition hover:border-primary hover:bg-accent"
           >
             <LogOut size={16} />
             <span className="hidden md:inline">Logout</span>
           </button>
 
           <UserMenu />
+
+          <Sheet>
+            <SheetTrigger className="inline-flex md:hidden p-2 rounded-lg text-secondary-text hover:bg-accent">
+              <Menu size="20" />
+            </SheetTrigger>
+            <SheetContent side="left" className="w-64 p-0">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-between px-4 h-14 border-b border-border">
+                  <img src={logo} alt="CareerPath" className="h-6 w-auto" />
+                </div>
+                <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                  {navItems.map(({ to, icon: Icon, label }) => (
+                    <NavLink
+                      key={to}
+                      to={to}
+                      className={({ isActive }) =>
+                        `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                          isActive
+                            ? "bg-accent text-primary font-medium"
+                            : "text-secondary-text hover:bg-accent hover:text-primary"
+                        }`
+                      }
+                    >
+                      <Icon size="18" />
+                      {label}
+                    </NavLink>
+                  ))}
+                </nav>
+                <div className="px-3 py-3 border-t border-border">
+                  <button
+                    onClick={handleLogout}
+                    className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-error hover:bg-error/10 transition-colors"
+                  >
+                    <LogOut size="18" />
+                    Logout
+                  </button>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

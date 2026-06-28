@@ -18,7 +18,7 @@ export default function CompanyManageCard({
 }: Props) {
   return (
     <AppCard>
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div className="flex items-start gap-3">
           <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center shrink-0 shadow-sm">
             <Building2 size="18" />
@@ -41,7 +41,7 @@ export default function CompanyManageCard({
           </div>
         </div>
 
-        <div className="flex gap-2 shrink-0">
+        <div className="flex flex-wrap gap-2">
           <AppButton onClick={() => onEdit(company)}>
             <Pencil size="16" />
           </AppButton>

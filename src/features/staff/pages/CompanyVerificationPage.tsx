@@ -90,7 +90,7 @@ export default function CompanyVerificationPage() {
           <div className="space-y-4">
             {filtered.map((company) => (
               <AppCard key={company.id}>
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                   <div className="flex items-start gap-3">
                     <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center text-lg font-medium shrink-0 shadow-sm">
                       {company.logo ? (
