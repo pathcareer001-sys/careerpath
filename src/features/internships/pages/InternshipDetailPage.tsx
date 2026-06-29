@@ -190,33 +190,14 @@ export default function InternshipDetailPage() {
 
           <AppCard>
             <h2 className="text-[15px] font-semibold text-heading mb-4">Requirements</h2>
-            {(internship.requirements?.length > 0 || internship.requiredSkills?.length > 0) && (
-              <>
-                {internship.requirements?.length > 0 && (
-                  <>
-                    <h3 className="text-xs font-medium text-secondary-text uppercase tracking-wider mb-2">Requirements</h3>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {(internship.requirements || []).map((item) => (
-                        <span key={item} className="rounded-full bg-primary/[0.06] px-3.5 py-1.5 text-xs font-medium text-primary border border-primary/15">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </>
-                )}
-                {internship.requiredSkills?.length > 0 && (
-                  <>
-                    <h3 className="text-xs font-medium text-secondary-text uppercase tracking-wider mb-2">Required Skills</h3>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {(internship.requiredSkills || []).map((item) => (
-                        <span key={item} className="rounded-full bg-info/10 px-3.5 py-1.5 text-xs font-medium text-info border border-info/15">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </>
+            {internship.requiredSkills?.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {(internship.requiredSkills || []).map((item) => (
+                  <span key={item} className="rounded-full bg-info/10 px-3.5 py-1.5 text-xs font-medium text-info border border-info/15">
+                    {item}
+                  </span>
+                ))}
+              </div>
             )}
             {internship.preferredSkills?.length > 0 && (
               <>
@@ -233,7 +214,7 @@ export default function InternshipDetailPage() {
             {internship.languageRequirement && (
               <p className="text-sm text-body"><span className="text-secondary-text">Language: </span>{internship.languageRequirement}</p>
             )}
-            {!internship.requirements?.length && !internship.requiredSkills?.length && !internship.preferredSkills?.length && !internship.languageRequirement && (
+            {!internship.requiredSkills?.length && !internship.preferredSkills?.length && !internship.languageRequirement && (
               <p className="text-sm text-secondary-text">No specific requirements listed.</p>
             )}
           </AppCard>

@@ -10,7 +10,6 @@ export interface Internship {
   location: string;
   type: string;
   description: string;
-  requirements: string[];
   deadline: string;
   salary?: string;
   status?: "draft" | "published";

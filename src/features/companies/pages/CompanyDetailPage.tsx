@@ -26,11 +26,9 @@ export default function CompanyDetailPage() {
 
   return (
     <PageContainer>
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/[0.04] to-section p-6 text-heading animate-fade-in-up">
-        <div className="absolute top-0 right-0 w-36 h-36 md:w-72 md:h-72 rounded-full bg-white/60 blur-3xl" />
-        <div className="absolute -bottom-10 -left-10 w-24 h-24 md:w-48 md:h-48 rounded-full bg-section blur-3xl" />
-        <div className="relative z-10 flex flex-col md:flex-row items-start gap-5">
-          <div className="h-16 w-16 rounded-2xl shrink-0 overflow-hidden border border-border">
+      <AppCard className="animate-fade-in-up">
+        <div className="flex flex-col md:flex-row items-start gap-5">
+          <div className="h-16 w-16 rounded-2xl shrink-0 overflow-hidden border border-border-light">
             {company.logo ? (
               <img src={company.logo} alt={company.name} className="h-full w-full object-cover" />
             ) : (
@@ -58,26 +56,26 @@ export default function CompanyDetailPage() {
             <BookmarkButton companyId={company.id} />
           </div>
         </div>
-        <div className="relative z-10 flex flex-wrap items-center gap-6 mt-6 pt-6 border-t border-border">
-          <div className="text-center">
+        <div className="flex flex-wrap items-center gap-6 mt-6 pt-6 border-t border-border-light">
+          <div className="text-center flex-1 min-w-[80px]">
             <p className="text-[22px] font-medium">{company.avgRating || 0}</p>
             <div className="flex items-center gap-0.5 mt-1 justify-center">
               <Star size="14" className="fill-warning text-warning" />
             </div>
             <p className="text-xs text-secondary-text mt-0.5">Rating</p>
           </div>
-          <div className="w-px h-10 bg-border" />
-          <div className="text-center">
+          <div className="w-px h-10 bg-border-light" />
+          <div className="text-center flex-1 min-w-[80px]">
             <p className="text-[22px] font-medium">{company.reviewCount || 0}</p>
             <p className="text-xs text-secondary-text mt-1">Reviews</p>
           </div>
-          <div className="w-px h-10 bg-border" />
-          <div className="text-center">
+          <div className="w-px h-10 bg-border-light" />
+          <div className="text-center flex-1 min-w-[80px]">
             <p className="text-[22px] font-medium">{internships?.length || 0}</p>
             <p className="text-xs text-secondary-text mt-1">Open roles</p>
           </div>
         </div>
-      </div>
+      </AppCard>
 
       <div className="grid gap-6 mt-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-6 animate-fade-in-up animate-delay-100">

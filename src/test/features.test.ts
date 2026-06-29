@@ -11,7 +11,7 @@ describe("Internship type", () => {
       location: "Jakarta",
       type: "Remote",
       description: "Great opportunity",
-      requirements: ["React", "TypeScript"],
+      requiredSkills: ["React", "TypeScript"],
       deadline: "2026-12-31",
       salary: "$1,000/month",
       status: "published" as const,

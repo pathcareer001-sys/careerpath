@@ -14,7 +14,7 @@ export async function seedInternships() {
       type: "Remote",
       description: "Frontend internship opportunity",
 
-      requirements: ["React", "TypeScript", "TailwindCSS"],
+      requiredSkills: ["React", "TypeScript", "TailwindCSS"],
 
       deadline: "2026-12-31",
     },
@@ -27,7 +27,7 @@ export async function seedInternships() {
       type: "Hybrid",
       description: "Backend internship opportunity",
 
-      requirements: ["NodeJS", "Express", "Firebase"],
+      requiredSkills: ["NodeJS", "Express", "Firebase"],
 
       deadline: "2026-12-31",
     },
@@ -40,7 +40,7 @@ export async function seedInternships() {
       type: "Remote",
       description: "Design internship opportunity",
 
-      requirements: ["Figma", "Wireframing"],
+      requiredSkills: ["Figma", "Wireframing"],
 
       deadline: "2026-12-31",
     },

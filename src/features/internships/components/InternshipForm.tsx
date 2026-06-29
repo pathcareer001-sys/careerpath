@@ -22,7 +22,6 @@ export interface InternshipFormData {
   location: string;
   type: string;
   description: string;
-  requirements: string[];
   deadline: string;
   salary?: string;
   status?: "draft" | "published";
@@ -73,7 +72,6 @@ export default function InternshipForm({
       location,
       type,
       description,
-      requirements,
       deadline,
       salary: salary || undefined,
       status,
@@ -91,16 +89,6 @@ export default function InternshipForm({
       responsibilities: responsibilities || undefined,
       benefits: benefits || undefined,
     });
-  };
-
-  const [requirements, setRequirements] = useState<string[]>(defaultValues?.requirements || []);
-  const [requirementInput, setRequirementInput] = useState("");
-
-  const handleAddRequirement = () => {
-    if (!requirementInput.trim()) return;
-    if (requirements.includes(requirementInput.trim())) return;
-    setRequirements([...requirements, requirementInput.trim()]);
-    setRequirementInput("");
   };
 
   const [requiredSkills, setRequiredSkills] = useState<string[]>(defaultValues?.requiredSkills || []);
@@ -122,8 +110,6 @@ export default function InternshipForm({
     setPreferredSkills([...preferredSkills, preferredSkillInput.trim()]);
     setPreferredSkillInput("");
   };
-
-  const inputClass = "h-9 rounded-lg border border-border bg-background px-3 text-sm text-heading focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors w-full";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -227,31 +213,10 @@ export default function InternshipForm({
         </div>
 
         <div>
-          <h3 className="font-medium">Requirements</h3>
-          <p className="text-sm text-secondary-text">Add skills or qualifications needed.</p>
-          <div className="flex gap-2 mt-2">
-            <AppInput value={requirementInput} onChange={(e) => setRequirementInput(e.target.value)} placeholder="Add requirement..." />
-            <AppButton type="button" onClick={handleAddRequirement}>Add</AppButton>
-          </div>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {requirements.map((item) => (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setRequirements(requirements.filter((req) => req !== item))}
-                className="group rounded-full bg-accent px-4 py-2 text-sm font-medium text-primary hover:bg-error/10 hover:text-error transition-all"
-              >
-                {item} ✕
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div>
           <h3 className="font-medium">Required Skills</h3>
           <p className="text-sm text-secondary-text">Essential skills candidates must have.</p>
           <div className="flex gap-2 mt-2">
-            <AppInput value={requiredSkillInput} onChange={(e) => setRequiredSkillInput(e.target.value)} placeholder="Add required skill..." />
+            <AppInput value={requiredSkillInput} onChange={(e) => setRequiredSkillInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleAddRequiredSkill(); } }} placeholder="Add required skill..." />
             <AppButton type="button" onClick={handleAddRequiredSkill}>Add</AppButton>
           </div>
           <div className="flex flex-wrap gap-2 mt-2">
