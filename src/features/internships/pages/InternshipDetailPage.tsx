@@ -190,7 +190,7 @@ export default function InternshipDetailPage() {
 
           <AppCard>
             <h2 className="text-[15px] font-semibold text-heading mb-4">Requirements</h2>
-            {internship.requiredSkills?.length > 0 && (
+            {(internship.requiredSkills || []).length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
                 {(internship.requiredSkills || []).map((item) => (
                   <span key={item} className="rounded-full bg-info/10 px-3.5 py-1.5 text-xs font-medium text-info border border-info/15">
@@ -199,7 +199,7 @@ export default function InternshipDetailPage() {
                 ))}
               </div>
             )}
-            {internship.preferredSkills?.length > 0 && (
+            {(internship.preferredSkills || []).length > 0 && (
               <>
                 <h3 className="text-xs font-medium text-secondary-text uppercase tracking-wider mb-2">Preferred Skills</h3>
                 <div className="flex flex-wrap gap-2 mb-4">
