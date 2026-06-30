@@ -11,7 +11,7 @@ interface SEOProps {
   noIndex?: boolean;
 }
 
-const BASE_URL = "https://careerpath.vercel.app";
+const BASE_URL = "https://mycareerpath.site";
 const SITE_NAME = "CareerPath";
 const DEFAULT_DESCRIPTION =
   "CareerPath connects students with top internship opportunities. Discover internships, explore companies, read reviews, and kickstart your career.";
