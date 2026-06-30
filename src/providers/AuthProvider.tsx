@@ -1,7 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 
 import { userService } from "@/features/users/services/userService";
-import { authService } from "@/features/auth/services/authService";
 
 import { createContext, useEffect, useState } from "react";
 
@@ -31,36 +30,22 @@ export default function AuthProvider({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let unsubscribe: () => void;
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (!firebaseUser) {
+        setUser(null);
+        setLoading(false);
 
-    const init = async () => {
-      try {
-        await authService.handleGoogleRedirectResult();
-      } catch (err) {
-        console.error("Google redirect result error:", err);
+        return;
       }
 
-      unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-        if (!firebaseUser) {
-          setUser(null);
-          setLoading(false);
+      const appUser = await userService.getUser(firebaseUser.uid);
 
-          return;
-        }
+      setUser(appUser);
 
-        const appUser = await userService.getUser(firebaseUser.uid);
+      setLoading(false);
+    });
 
-        setUser(appUser);
-
-        setLoading(false);
-      });
-    };
-
-    init();
-
-    return () => {
-      if (unsubscribe) unsubscribe();
-    };
+    return unsubscribe;
   }, []);
   const refreshUser = async () => {
     const firebaseUser = auth.currentUser;
