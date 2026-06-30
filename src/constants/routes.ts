@@ -15,6 +15,8 @@ export const ROUTES = {
 
   PROFILE: "/profile",
 
+  SUBSCRIPTION: "/subscription",
+
   ADMIN: "/admin",
 
   COMPANY: "/company",

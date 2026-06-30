@@ -23,5 +23,7 @@ export interface AppUser {
   github?: string;
   portfolio?: string;
 
+  subscription?: "free" | "premium";
+
   createdAt: string;
 }

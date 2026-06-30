@@ -14,6 +14,7 @@ import { useAuth } from "@/features/auth/hooks/useAuth";
 
 import { useUpdateProfile } from "../hooks/useUpdateProfile";
 import { calculateProfileCompletion } from "../components/ProfileCompletionCard";
+import StudentSubscriptionCard from "@/features/subscription/components/StudentSubscriptionCard";
 
 import { uploadImage, uploadPdf } from "@/services/cloudinaryService";
 
@@ -316,6 +317,9 @@ export default function ProfilePage() {
               />
             </div>
           </AppCard>
+
+          {/* SUBSCRIPTION */}
+          <StudentSubscriptionCard />
 
           {/* ABOUT ME */}
           <AppCard>

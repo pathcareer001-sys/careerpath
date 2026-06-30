@@ -5,6 +5,7 @@ import {
   ClipboardList,
   Bookmark,
   User,
+  Crown,
 } from "lucide-react";
 
 import { ROUTES } from "./routes";
@@ -39,5 +40,10 @@ export const studentMenu = [
     title: "Profil",
     href: ROUTES.PROFILE,
     icon: User,
+  },
+  {
+    title: "Berlangganan",
+    href: ROUTES.SUBSCRIPTION,
+    icon: Crown,
   },
 ];

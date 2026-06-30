@@ -16,6 +16,7 @@ const studentNav = [
   { to: "/internships", label: "Magang", icon: Briefcase },
   { to: "/applications", label: "Lamaran", icon: FileText },
   { to: "/bookmarks", label: "Tersimpan", icon: Bookmark },
+  { to: "/subscription", label: "Berlangganan", icon: Crown },
 ];
 
 const adminNav = [
