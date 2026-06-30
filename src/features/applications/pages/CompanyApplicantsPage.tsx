@@ -2,15 +2,16 @@ import { Link, useParams } from "react-router-dom";
 import PageContainer from "@/components/common/PageContainer";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import EmptyState from "@/components/shared/EmptyState";
 import { useInternshipApplications } from "@/features/applications/hooks/useInternshipApplications";
 import { useUpdateApplicationStatus } from "@/features/applications/hooks/useUpdateApplicationStatus";
 import { toast } from "sonner";
 import StatusBadge from "@/features/applications/components/StatusBadge";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { notificationService } from "@/features/notifications/services/notificationService";
 import type { Application } from "@/types/application";
-import { Eye, Users, Clock, CheckCircle2, XCircle, SearchCheck } from "lucide-react";
+import { Eye, Users, Clock, CheckCircle2, XCircle, SearchCheck, Crown } from "lucide-react";
 
 export default function CompanyApplicantsPage() {
   const { internshipId } = useParams();
@@ -44,12 +45,22 @@ export default function CompanyApplicantsPage() {
     }
   };
 
+  const sortedApplications = useMemo(() => {
+    if (!applications) return [];
+    return [...applications].sort((a, b) => {
+      const aPremium = a.applicantSubscription === "premium" ? 1 : 0;
+      const bPremium = b.applicantSubscription === "premium" ? 1 : 0;
+      if (aPremium !== bPremium) return bPremium - aPremium;
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+  }, [applications]);
+
   const stats = {
-    total: applications?.length || 0,
-    pending: applications?.filter((a) => a.status === "pending").length || 0,
-    reviewed: applications?.filter((a) => a.status === "reviewed").length || 0,
-    accepted: applications?.filter((a) => a.status === "accepted").length || 0,
-    rejected: applications?.filter((a) => a.status === "rejected").length || 0,
+    total: sortedApplications.length || 0,
+    pending: sortedApplications.filter((a) => a.status === "pending").length || 0,
+    reviewed: sortedApplications.filter((a) => a.status === "reviewed").length || 0,
+    accepted: sortedApplications.filter((a) => a.status === "accepted").length || 0,
+    rejected: sortedApplications.filter((a) => a.status === "rejected").length || 0,
   };
 
   return (
@@ -126,13 +137,15 @@ export default function CompanyApplicantsPage() {
           </div>
         </div>
 
-        {applications?.length === 0 ? (
+        {sortedApplications.length === 0 ? (
           <div className="mt-6">
             <EmptyState title="Belum Ada Pelamar" description="Lamaran akan muncul setelah mahasiswa mulai mendaftar." />
           </div>
         ) : (
           <div className="mt-6 space-y-4 animate-fade-in-up animate-delay-300">
-            {applications?.map((application) => (
+            {sortedApplications.map((application) => {
+              const isPremiumStudent = application.applicantSubscription === "premium";
+              return (
               <AppCard key={application.id}>
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div className="flex items-center gap-4">
@@ -146,8 +159,17 @@ export default function CompanyApplicantsPage() {
                       )}
                     </div>
                     <div>
-                      <h3 className="font-medium text-heading">{application.applicantName}</h3>
-                      <p className="text-sm text-secondary-text">{application.applicantEmail}</p>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-medium text-heading">{application.applicantName}</h3>
+                        {isPremiumStudent && <VerifiedBadge show size={14} />}
+                      </div>
+                      {isPremiumStudent && (
+                        <div className="flex items-center gap-1.5 rounded-lg bg-primary/[0.06] px-2.5 py-1 text-xs font-medium text-primary w-fit mt-1">
+                          <Crown size="11" />
+                          Kandidat Prioritas
+                        </div>
+                      )}
+                      <p className="text-sm text-secondary-text mt-1">{application.applicantEmail}</p>
                       <p className="text-sm text-secondary-text">{application.internshipTitle}</p>
                       <p className="text-xs text-muted">Mendaftar: {new Date(application.createdAt).toLocaleDateString()}</p>
                       <div className="mt-2 flex items-center gap-2">
@@ -186,7 +208,7 @@ export default function CompanyApplicantsPage() {
                   </div>
                 </div>
               </AppCard>
-            ))}
+            );})}
           </div>
         )}
       </PageContainer>

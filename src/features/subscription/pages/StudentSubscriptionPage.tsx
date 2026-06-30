@@ -17,18 +17,18 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
-import { Crown, CheckCircle, Building2, Shield, Sparkles } from "lucide-react";
+import { Crown, CheckCircle, Sparkles, ArrowUp } from "lucide-react";
 
 const benefits = [
   {
-    icon: Building2,
-    title: "Melamar ke seluruh perusahaan Premium",
-    description: "Akses penuh ke lowongan eksklusif dari semua mitra Premium",
+    icon: Crown,
+    title: "Kandidat Prioritas",
+    description: "Tampil sebagai Kandidat Prioritas dengan badge Premium di profil Anda",
   },
   {
-    icon: Shield,
-    title: "Akses eksklusif ke perusahaan dengan Blue Badge",
-    description: "Lihat dan lamar ke perusahaan terverifikasi dengan badge biru",
+    icon: ArrowUp,
+    title: "Urutan teratas dalam daftar pelamar",
+    description: "Pelamar Premium muncul pertama di perusahaan Premium",
   },
   {
     icon: Sparkles,
@@ -67,7 +67,7 @@ export default function StudentSubscriptionPage() {
     <PageContainer>
       <PageHeader
         title="Berlangganan"
-        description="Tingkatkan pengalaman magang Anda dengan langganan Premium"
+        description="Tingkatkan visibilitas Anda dengan langganan Premium"
       />
 
       <div className="grid gap-6 lg:grid-cols-[1fr_380px] animate-fade-in-up">
@@ -134,9 +134,9 @@ export default function StudentSubscriptionPage() {
 
             <ul className="space-y-2 mb-6">
               {[
-                "Melamar ke seluruh perusahaan Premium",
-                "Akses eksklusif ke perusahaan dengan Blue Badge",
-                "Prioritas fitur Premium mendatang",
+                "Kandidat Prioritas dengan badge Premium",
+                "Urutan teratas dalam daftar pelamar",
+                "Akses prioritas ke fitur Premium mendatang",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2 text-sm text-body">
                   <CheckCircle size="14" className="text-success shrink-0" />

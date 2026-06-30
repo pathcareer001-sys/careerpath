@@ -52,6 +52,7 @@ export default function InternshipDetailPage() {
         applicantName: user.name,
         applicantEmail: user.email,
         applicantPhotoURL: user.photoURL || "",
+        applicantSubscription: user.subscription,
         status: "pending",
         createdAt: new Date().toISOString(),
       });

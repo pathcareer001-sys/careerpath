@@ -1,7 +1,8 @@
-import { User, Mail, CheckCircle2, XCircle } from "lucide-react";
+import { User, Mail, CheckCircle2, XCircle, Crown } from "lucide-react";
 
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 
 import StatusBadge from "./StatusBadge";
 
@@ -20,20 +21,30 @@ export default function ApplicantCard({
   onAccept,
   onReject,
 }: Props) {
+  const isPremium = application.applicantSubscription === "premium";
+
   return (
     <AppCard>
       <div className="space-y-4">
         <div className="flex justify-between">
-          <div>
+          <div className="flex items-center gap-2">
             <h3 className="font-medium">{application.applicantName}</h3>
-
-            <p className="text-sm text-secondary-text">
-              {application.internshipTitle}
-            </p>
+            {isPremium && <VerifiedBadge show size={14} />}
           </div>
 
           <StatusBadge status={application.status} />
         </div>
+
+        {isPremium && (
+          <div className="flex items-center gap-1.5 rounded-lg bg-primary/[0.06] px-3 py-1.5 text-xs font-medium text-primary w-fit">
+            <Crown size="12" />
+            Kandidat Prioritas
+          </div>
+        )}
+
+        <p className="text-sm text-secondary-text">
+          {application.internshipTitle}
+        </p>
 
         <div className="space-y-2 text-sm text-secondary-text">
           <div className="flex items-center gap-2">

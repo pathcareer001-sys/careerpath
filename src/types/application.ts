@@ -8,6 +8,7 @@ export interface Application {
   applicantName: string;
   applicantEmail: string;
   applicantPhotoURL?: string;
+  applicantSubscription?: "free" | "premium";
   status: "pending" | "reviewed" | "interview" | "accepted" | "rejected" | "withdrawn";
   interviewDate?: string;
   interviewLocation?: string;
