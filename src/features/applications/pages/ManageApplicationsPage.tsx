@@ -5,13 +5,20 @@ import EmptyState from "@/components/shared/EmptyState";
 import ApplicationManageCard from "../components/ApplicationManageCard";
 import { useAllApplications } from "../hooks/useAllApplications";
 import { useUpdateApplicationStatus } from "../hooks/useUpdateApplicationStatus";
+import { useCompanies } from "@/features/companies/hooks/useCompanies";
 import { toast } from "sonner";
 import { FileText, CheckCircle2, XCircle, Clock } from "lucide-react";
 
 export default function ManageApplicationsPage() {
   const [search, setSearch] = useState("");
   const { data: applications } = useAllApplications();
+  const { data: companies } = useCompanies();
   const updateStatus = useUpdateApplicationStatus();
+
+  const premiumCompanyIds = useMemo(() => {
+    if (!companies) return new Set<string>();
+    return new Set(companies.filter((c) => c.subscription === "premium").map((c) => c.id));
+  }, [companies]);
 
   const filteredApplications = useMemo(() => {
     if (!applications) return [];
@@ -75,6 +82,7 @@ export default function ManageApplicationsPage() {
               <ApplicationManageCard
                 key={application.id}
                 application={application}
+                showPremiumBadge={premiumCompanyIds.has(application.companyId)}
                 onAccept={handleAccept}
                 onReject={handleReject}
               />

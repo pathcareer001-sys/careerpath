@@ -10,16 +10,23 @@ import InternshipForm from "@/features/internships/components/InternshipForm";
 import { useInternships } from "../hooks/useInternships";
 import { useDeleteInternship } from "../hooks/useDeleteInternship";
 import { useUpdateInternship } from "../hooks/useUpdateInternship";
+import { useCompanies } from "@/features/companies/hooks/useCompanies";
 import type { Internship } from "@/types/internship";
 import { toast } from "sonner";
 import type { InternshipFormData } from "@/features/internships/components/InternshipForm";
 
 export default function InternshipManagePage() {
   const { data: internships } = useInternships();
+  const { data: companies } = useCompanies();
   const deleteInternship = useDeleteInternship();
   const updateInternship = useUpdateInternship();
   const [search, setSearch] = useState("");
   const [editingInternship, setEditingInternship] = useState<Internship | null>(null);
+
+  const companyMap = useMemo(() => {
+    if (!companies) return new Map<string, typeof companies[0]>();
+    return new Map(companies.map((c) => [c.id, c]));
+  }, [companies]);
 
   const filteredInternships = useMemo(() => {
     if (!internships) return [];
@@ -83,6 +90,7 @@ export default function InternshipManagePage() {
               <InternshipManageCard
                 key={internship.id}
                 internship={internship}
+                company={companyMap.get(internship.companyId)}
                 onEdit={setEditingInternship}
                 onDelete={handleDelete}
               />

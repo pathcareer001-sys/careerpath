@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import PageContainer from "@/components/common/PageContainer";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import { useInternship } from "../hooks/useInternship";
 import { useCreateApplication } from "@/features/applications/hooks/useCreateApplication";
 import { useAuth } from "@/features/auth/hooks/useAuth";
@@ -15,6 +16,7 @@ import { useUpdateApplicationStatus } from "@/features/applications/hooks/useUpd
 import { useInternshipBookmarks } from "@/features/bookmarks/hooks/useInternshipBookmarks";
 import { useCreateInternshipBookmark } from "@/features/bookmarks/hooks/useCreateInternshipBookmark";
 import { useDeleteInternshipBookmark } from "@/features/bookmarks/hooks/useDeleteInternshipBookmark";
+import { useCompany } from "@/features/companies/hooks/useCompany";
 
 const typeColors: Record<string, string> = {
   Remote: "bg-success/10 text-success border border-success/20",
@@ -26,6 +28,7 @@ const typeColors: Record<string, string> = {
 export default function InternshipDetailPage() {
   const { id } = useParams();
   const { data: internship, isLoading } = useInternship(id || "");
+  const { data: internshipCompany } = useCompany(internship?.companyId || "");
   const { user } = useAuth();
   const createApplication = useCreateApplication();
   const updateStatus = useUpdateApplicationStatus();
@@ -109,7 +112,10 @@ export default function InternshipDetailPage() {
                 )}
               </div>
               <h1 className="text-[26px] font-semibold leading-tight tracking-tight">{internship.title}</h1>
-              <p className="text-[15px] text-secondary-text mt-1.5">{internship.companyName}</p>
+              <p className="text-[15px] text-secondary-text mt-1.5 flex items-center gap-1.5">
+                {internship.companyName}
+                <VerifiedBadge show={internshipCompany?.subscription === "premium"} size={14} />
+              </p>
               <div className="flex flex-wrap gap-2 mt-5">
                 <span className={`rounded-full px-3.5 py-1 text-[12px] font-medium ${typeColors[internship.type] || "bg-section text-body border border-border"}`}>
                   {internship.type}
@@ -293,7 +299,10 @@ export default function InternshipDetailPage() {
               )}
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
                 <span className="text-secondary-text whitespace-nowrap">Perusahaan</span>
-                <Link to={`/companies/${internship.companyId}`} className="text-body font-semibold text-right break-words overflow-hidden hover:text-primary transition-colors">{internship.companyName}</Link>
+                <Link to={`/companies/${internship.companyId}`} className="text-body font-semibold text-right break-words overflow-hidden hover:text-primary transition-colors inline-flex items-center gap-1 justify-end">
+                  {internship.companyName}
+                  <VerifiedBadge show={internshipCompany?.subscription === "premium"} size={12} />
+                </Link>
               </div>
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5">
                 <span className="text-secondary-text whitespace-nowrap">Status</span>
@@ -312,7 +321,10 @@ export default function InternshipDetailPage() {
                 <Building2 size="20" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-heading">{internship.companyName}</p>
+                <p className="text-sm font-semibold text-heading flex items-center gap-1">
+                  {internship.companyName}
+                  <VerifiedBadge show={internshipCompany?.subscription === "premium"} size={12} />
+                </p>
                 <p className="text-xs text-secondary-text">Penyedia magang</p>
               </div>
             </div>

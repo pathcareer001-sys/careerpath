@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { useMemo } from "react";
 import SEO from "@/components/seo/SEO";
 import AppCard from "@/components/common/AppCard";
 import StatCard from "@/components/shared/StatCard";
 import EmptyState from "@/components/shared/EmptyState";
 import AppButton from "@/components/common/AppButton";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useApplications } from "@/features/applications/hooks/useApplications";
 import { useUpdateApplicationStatus } from "@/features/applications/hooks/useUpdateApplicationStatus";
@@ -11,6 +13,7 @@ import StatusBadge from "@/features/applications/components/StatusBadge";
 import { useDashboardStats } from "../hooks/useDashboardStats";
 import { useInternships } from "@/features/internships/hooks/useInternships";
 import InternshipCard from "@/features/internships/components/InternshipCard";
+import { useCompanies } from "@/features/companies/hooks/useCompanies";
 import { calculateProfileCompletion } from "@/utils/profileCompletion";
 import { useGreeting } from "@/hooks/useGreeting";
 import { toast } from "sonner";
@@ -30,8 +33,24 @@ export default function StudentDashboardPage() {
   const { applicationCount, bookmarkCount } = useDashboardStats(user?.uid || "");
   const { data: applications } = useApplications(user?.uid || "");
   const { data: internships } = useInternships();
+  const { data: companies } = useCompanies();
   const updateStatus = useUpdateApplicationStatus();
   const completion = calculateProfileCompletion(user ?? undefined);
+
+  const premiumCompanyIds = useMemo(() => {
+    if (!companies) return new Set<string>();
+    return new Set(companies.filter((c) => c.subscription === "premium").map((c) => c.id));
+  }, [companies]);
+
+  const recommendedInternships = useMemo(() => {
+    if (!internships) return [];
+    return [...internships].sort((a, b) => {
+      const aPremium = premiumCompanyIds.has(a.companyId) ? 1 : 0;
+      const bPremium = premiumCompanyIds.has(b.companyId) ? 1 : 0;
+      if (aPremium !== bPremium) return bPremium - aPremium;
+      return 0;
+    });
+  }, [internships, premiumCompanyIds]);
 
   const interviewApps = applications?.filter((a) => a.status === "interview") || [];
   const hasPersonal = !!user?.name && !!user?.email;
@@ -82,7 +101,10 @@ export default function StudentDashboardPage() {
                 <CalendarCheck size="20" className="text-info shrink-0" />
                 <div>
                   <p className="text-sm font-medium text-heading">Undangan Wawancara</p>
-                  <p className="text-xs text-info mt-0.5">{app.internshipTitle} di {app.companyName}</p>
+                  <p className="text-xs text-info mt-0.5 flex items-center gap-1">
+                    {app.internshipTitle} di {app.companyName}
+                    <VerifiedBadge show={premiumCompanyIds.has(app.companyId)} size={10} />
+                  </p>
                   {app.interviewDate && <p className="text-xs text-info/80 mt-0.5">Jadwal: {app.interviewDate} {app.interviewLocation ? `(${app.interviewLocation})` : ""}</p>}
                 </div>
               </div>
@@ -116,16 +138,16 @@ export default function StudentDashboardPage() {
 
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
         <div className="space-y-6 animate-fade-in-up animate-delay-200">
-          {internships?.length ? (
+          {recommendedInternships.length ? (
             <div>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-base font-medium text-heading">Magang Direkomendasikan</h2>
                 <Link to="/internships" className="text-[13px] font-medium text-primary hover:text-primary-hover transition-colors">Lihat semua →</Link>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
-                {internships.slice(0, 2).map((internship, i) => (
+                {recommendedInternships.slice(0, 2).map((internship, i) => (
                   <div key={internship.id} style={{ animationDelay: `${300 + i * 150}ms` }} className="animate-fade-in-up">
-                    <InternshipCard internship={internship} />
+                    <InternshipCard internship={internship} showPremiumBadge={premiumCompanyIds.has(internship.companyId)} />
                   </div>
                 ))}
               </div>
@@ -146,7 +168,11 @@ export default function StudentDashboardPage() {
                   <div key={item.id} className="flex items-center justify-between py-3 px-3 rounded-lg transition-all duration-200 hover:bg-section -mx-3">
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-heading truncate">{item.internshipTitle}</p>
-                      <p className="text-[13px] text-secondary-text mt-0.5">{item.companyName} &middot; {new Date(item.createdAt).toLocaleDateString()}</p>
+                      <p className="text-[13px] text-secondary-text mt-0.5 flex items-center gap-1">
+                        {item.companyName}
+                        <VerifiedBadge show={premiumCompanyIds.has(item.companyId)} size={12} />
+                        &middot; {new Date(item.createdAt).toLocaleDateString()}
+                      </p>
                     </div>
                     <StatusBadge status={item.status} />
                   </div>

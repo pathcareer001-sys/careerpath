@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import EmptyState from "@/components/shared/EmptyState";
 import { useApplications } from "../hooks/useApplications";
@@ -8,14 +8,22 @@ import StatusBadge from "../components/StatusBadge";
 import { useUpdateApplicationStatus } from "../hooks/useUpdateApplicationStatus";
 import { toast } from "sonner";
 import { XCircle } from "lucide-react";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
+import { useCompanies } from "@/features/companies/hooks/useCompanies";
 
 const PAGE_SIZE = 8;
 
 export default function MyApplicationsPage() {
   const { user } = useAuth();
   const { data, isLoading } = useApplications(user?.uid || "");
+  const { data: companies } = useCompanies();
   const updateStatus = useUpdateApplicationStatus();
   const [page, setPage] = useState(1);
+
+  const premiumCompanyIds = useMemo(() => {
+    if (!companies) return new Set<string>();
+    return new Set(companies.filter((c) => c.subscription === "premium").map((c) => c.id));
+  }, [companies]);
 
   if (isLoading) return <LoadingState />;
 
@@ -81,7 +89,10 @@ export default function MyApplicationsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-heading truncate">{application.internshipTitle}</p>
-                  <Link to={`/companies/${application.companyId}`} className="text-[13px] text-secondary-text hover:text-primary transition-colors">{application.companyName}</Link>
+                  <Link to={`/companies/${application.companyId}`} className="text-[13px] text-secondary-text hover:text-primary transition-colors inline-flex items-center gap-1">
+                    {application.companyName}
+                    <VerifiedBadge show={premiumCompanyIds.has(application.companyId)} size={12} />
+                  </Link>
                   {application.interviewDate && (
                     <p className="text-[12px] text-info mt-0.5">Wawancara: {application.interviewDate}</p>
                   )}

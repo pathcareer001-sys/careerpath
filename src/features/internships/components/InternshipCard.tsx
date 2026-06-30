@@ -5,6 +5,7 @@ import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useCreateInternshipBookmark } from "@/features/bookmarks/hooks/useCreateInternshipBookmark";
 import { useDeleteInternshipBookmark } from "@/features/bookmarks/hooks/useDeleteInternshipBookmark";
 import { useInternshipBookmarks } from "@/features/bookmarks/hooks/useInternshipBookmarks";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 
 const tagStyles: Record<string, string> = {
   Remote: "bg-gradient-to-r from-success/10 to-accent text-success border border-success/30",
@@ -28,7 +29,12 @@ const badgeStyles: Record<string, string> = {
   "5+ Years": "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20",
 };
 
-export default function InternshipCard({ internship }: { internship: Internship }) {
+interface InternshipCardProps {
+  internship: Internship;
+  showPremiumBadge?: boolean;
+}
+
+export default function InternshipCard({ internship, showPremiumBadge }: InternshipCardProps) {
   const { user } = useAuth();
   const { data: bookmarks } = useInternshipBookmarks(user?.uid || "");
   const createBookmark = useCreateInternshipBookmark();
@@ -80,7 +86,10 @@ export default function InternshipCard({ internship }: { internship: Internship 
                 <span className="rounded bg-warning/10 px-1.5 py-0.5 text-[10px] font-medium text-warning leading-none">Draf</span>
               )}
             </div>
-            <p className="text-[13px] text-secondary-text mt-0.5">{internship.companyName}</p>
+            <p className="text-[13px] text-secondary-text mt-0.5 flex items-center gap-1">
+              {internship.companyName}
+              <VerifiedBadge show={showPremiumBadge} size={12} />
+            </p>
           </div>
         </div>
 

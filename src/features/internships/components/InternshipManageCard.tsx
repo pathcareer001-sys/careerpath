@@ -1,10 +1,13 @@
 import { Building2, MapPin, Briefcase, Pencil, Trash2 } from "lucide-react";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import type { Internship } from "@/types/internship";
+import type { Company } from "@/types/company";
 
 interface Props {
   internship: Internship;
+  company?: Company;
   onEdit: (internship: Internship) => void;
   onDelete: (id: string) => void;
 }
@@ -36,6 +39,7 @@ function MiniBadge({ label }: { label: string }) {
 
 export default function InternshipManageCard({
   internship,
+  company,
   onEdit,
   onDelete,
 }: Props) {
@@ -49,7 +53,11 @@ export default function InternshipManageCard({
           <div className="space-y-1">
             <h3 className="font-medium text-heading">{internship.title}</h3>
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-secondary-text">
-              <span className="flex items-center gap-1"><Building2 size="14" /> {internship.companyName}</span>
+              <span className="flex items-center gap-1">
+                <Building2 size="14" />
+                {internship.companyName}
+                <VerifiedBadge show={company?.subscription === "premium"} size={12} />
+              </span>
               <span className="flex items-center gap-1"><MapPin size="14" /> {internship.location}</span>
               <span className="flex items-center gap-1"><Briefcase size="14" /> {internship.type}</span>
             </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Search, Building2, Briefcase } from "lucide-react";
 import EmptyState from "@/components/shared/EmptyState";
 import CompanyCard from "@/features/companies/components/CompanyCard";
@@ -7,14 +7,21 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useBookmarkedCompanies } from "../hooks/useBookmarkedCompanies";
 import { useBookmarkedInternships } from "../hooks/useBookmarkedInternships";
+import { useCompanies } from "@/features/companies/hooks/useCompanies";
 import LoadingState from "@/components/shared/LoadingState";
 
 export default function BookmarkPage() {
   const { user } = useAuth();
   const { data: companies, isLoading: companiesLoading } = useBookmarkedCompanies(user?.uid || "");
   const { data: internships, isLoading: internshipsLoading } = useBookmarkedInternships(user?.uid || "");
+  const { data: allCompanies } = useCompanies();
   const [search, setSearch] = useState("");
   const [tab, setTab] = useState("companies");
+
+  const premiumCompanyIds = useMemo(() => {
+    if (!allCompanies) return new Set<string>();
+    return new Set(allCompanies.filter((c) => c.subscription === "premium").map((c) => c.id));
+  }, [allCompanies]);
 
   const filteredCompanies =
     companies?.filter((c) =>
@@ -106,7 +113,7 @@ export default function BookmarkPage() {
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {filteredInternships.map((internship) => (
-                <InternshipCard key={internship.id} internship={internship} />
+                <InternshipCard key={internship.id} internship={internship} showPremiumBadge={premiumCompanyIds.has(internship.companyId)} />
               ))}
             </div>
           )}

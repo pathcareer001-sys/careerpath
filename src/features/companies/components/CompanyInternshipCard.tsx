@@ -2,12 +2,15 @@ import { Briefcase, MapPin, Trash2, Users, Calendar, DollarSign } from "lucide-r
 import { Link } from "react-router-dom";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import type { Internship } from "@/types/internship";
+import type { Company } from "@/types/company";
 import EditInternshipDialog from "./EditInternshipDialog";
 import { useInternshipApplications } from "@/features/applications/hooks/useInternshipApplications";
 
 interface Props {
   internship: Internship;
+  company?: Company;
   onDelete: (id: string) => void;
 }
 
@@ -36,7 +39,7 @@ function MiniBadge({ label }: { label: string }) {
   );
 }
 
-export default function CompanyInternshipCard({ internship, onDelete }: Props) {
+export default function CompanyInternshipCard({ internship, company, onDelete }: Props) {
   const { data: applications } = useInternshipApplications(internship.id);
 
   return (
@@ -53,7 +56,10 @@ export default function CompanyInternshipCard({ internship, onDelete }: Props) {
                 <span className="rounded bg-warning/10 px-1.5 py-0.5 text-[10px] font-medium text-warning">Draf</span>
               )}
             </div>
-            <p className="text-sm text-secondary-text mt-0.5">{internship.companyName}</p>
+            <p className="text-sm text-secondary-text mt-0.5 flex items-center gap-1">
+              {internship.companyName}
+              <VerifiedBadge show={company?.subscription === "premium"} size={12} />
+            </p>
           </div>
         </div>
 

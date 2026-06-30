@@ -3,16 +3,19 @@ import { Building2, User, CheckCircle, XCircle, Eye } from "lucide-react";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
 import StatusBadge from "./StatusBadge";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import type { Application } from "@/types/application";
 
 interface Props {
   application: Application;
+  showPremiumBadge?: boolean;
   onAccept: (id: string) => void;
   onReject: (id: string) => void;
 }
 
 export default function ApplicationManageCard({
   application,
+  showPremiumBadge,
   onAccept,
   onReject,
 }: Props) {
@@ -32,7 +35,7 @@ export default function ApplicationManageCard({
           <div className="space-y-1">
             <h3 className="font-medium text-heading">{application.internshipTitle}</h3>
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-secondary-text">
-              <span className="flex items-center gap-1"><Building2 size="14" /> {application.companyName}</span>
+              <span className="flex items-center gap-1"><Building2 size="14" /> {application.companyName} <VerifiedBadge show={showPremiumBadge} size={12} /></span>
               <span className="flex items-center gap-1"><User size="14" /> {application.applicantName}</span>
             </div>
             <div className="mt-1">

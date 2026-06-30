@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Star, BadgeCheck, Globe, MapPin, Building2 } from "lucide-react";
 import PageContainer from "@/components/common/PageContainer";
 import AppCard from "@/components/common/AppCard";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import { useCompany } from "../hooks/useCompany";
 import { useReviews } from "@/features/reviews/hooks/useReviews";
 import ReviewCard from "@/features/reviews/components/ReviewCard";
@@ -40,6 +41,7 @@ export default function CompanyDetailPage() {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <h1 className="text-[24px] font-medium">{company.name}</h1>
+              <VerifiedBadge show={company.subscription === "premium"} />
               {company.verified && <BadgeCheck size="20" className="text-primary/60" />}
             </div>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-body mt-1">

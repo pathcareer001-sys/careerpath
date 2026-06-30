@@ -19,12 +19,22 @@ export default function CompanyListPage() {
       const matchSearch = company.name.toLowerCase().includes(search.toLowerCase());
       const matchIndustry = !industryFilter || company.industry === industryFilter;
       return matchSearch && matchIndustry;
+    }).sort((a, b) => {
+      const aPremium = a.subscription === "premium" ? 1 : 0;
+      const bPremium = b.subscription === "premium" ? 1 : 0;
+      if (aPremium !== bPremium) return bPremium - aPremium;
+      return (b.createdAt || "").localeCompare(a.createdAt || "");
     });
   }, [companies, search, industryFilter]);
 
   const topCompanies = useMemo(() => {
     if (!companies) return [];
-    return [...companies].sort((a, b) => b.avgRating - a.avgRating).slice(0, 4);
+    return [...companies].sort((a, b) => {
+      const aPremium = a.subscription === "premium" ? 1 : 0;
+      const bPremium = b.subscription === "premium" ? 1 : 0;
+      if (aPremium !== bPremium) return bPremium - aPremium;
+      return b.avgRating - a.avgRating;
+    }).slice(0, 4);
   }, [companies]);
 
   const totalPages = Math.ceil(filteredCompanies.length / PAGE_SIZE);

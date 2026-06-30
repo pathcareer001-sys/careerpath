@@ -4,6 +4,7 @@ import AppCard from "@/components/common/AppCard";
 import AppInput from "@/components/common/AppInput";
 import AppTextarea from "@/components/common/AppTextarea";
 import AppButton from "@/components/common/AppButton";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import { useAuth } from "@/hooks/useAuth";
 import { useMyCompany } from "../hooks/useMyCompany";
 import { useCreateCompany } from "../hooks/useCreateCompany";
@@ -80,7 +81,10 @@ export default function CompanyProfilePage() {
               )}
             </div>
             <div>
-              <h1 className="text-2xl font-medium">{name || "Nama Perusahaan"}</h1>
+              <div className="flex items-center gap-2">
+                <h1 className="text-2xl font-medium">{name || "Nama Perusahaan"}</h1>
+                <VerifiedBadge show={company?.subscription === "premium"} />
+              </div>
               <p className="mt-1 text-body">{industry || "Industri"}</p>
               <p className="text-body text-sm flex items-center gap-1 mt-1">
                 <MapPin size="14" /> {location || "Lokasi"}
@@ -177,7 +181,10 @@ export default function CompanyProfilePage() {
               )}
             </div>
             <div>
-              <h3 className="font-medium text-heading">{name || "Nama Perusahaan"}</h3>
+              <h3 className="font-medium text-heading flex items-center gap-1.5">
+                {name || "Nama Perusahaan"}
+                <VerifiedBadge show={company?.subscription === "premium"} size={14} />
+              </h3>
               <p className="text-sm text-secondary-text">{industry || "Industri"} &middot; {location || "Lokasi"}</p>
             </div>
           </div>

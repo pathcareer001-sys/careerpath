@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useMemo } from "react";
 import SEO from "@/components/seo/SEO";
 import {
   ArrowRight,
@@ -42,8 +43,28 @@ export default function HomePage() {
   const { data: companies } = useCompanies();
   const { data: internships } = useInternships();
 
-  const featuredCompanies = companies?.sort((a, b) => b.avgRating - a.avgRating).slice(0, 3) || [];
-  const latestInternships = internships?.slice(0, 6) || [];
+  const premiumCompanyIds = useMemo(() => {
+    if (!companies) return new Set<string>();
+    return new Set(companies.filter((c) => c.subscription === "premium").map((c) => c.id));
+  }, [companies]);
+
+  const featuredCompanies = companies
+    ?.sort((a, b) => {
+      const aPremium = a.subscription === "premium" ? 1 : 0;
+      const bPremium = b.subscription === "premium" ? 1 : 0;
+      if (aPremium !== bPremium) return bPremium - aPremium;
+      return b.avgRating - a.avgRating;
+    })
+    .slice(0, 3) || [];
+
+  const latestInternships = internships
+    ?.sort((a, b) => {
+      const aPremium = premiumCompanyIds.has(a.companyId) ? 1 : 0;
+      const bPremium = premiumCompanyIds.has(b.companyId) ? 1 : 0;
+      if (aPremium !== bPremium) return bPremium - aPremium;
+      return 0;
+    })
+    .slice(0, 6) || [];
   const companyCount = companies?.length || 120;
   const internshipCount = internships?.length || 500;
 
@@ -233,7 +254,9 @@ export default function HomePage() {
 
             {latestInternships.length > 0 ? (
               <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {latestInternships.map((internship) => <InternshipCard key={internship.id} internship={internship} />)}
+                {latestInternships.map((internship) => (
+                  <InternshipCard key={internship.id} internship={internship} showPremiumBadge={premiumCompanyIds.has(internship.companyId)} />
+                ))}
               </div>
             ) : (
               <EmptyPreview icon={BriefcaseBusiness} title="Magang akan muncul di sini" text="Publikasikan lowongan untuk menampilkannya di halaman beranda." />

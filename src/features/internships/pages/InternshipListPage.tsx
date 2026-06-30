@@ -6,6 +6,7 @@ import AppCard from "@/components/common/AppCard";
 import EmptyState from "@/components/shared/EmptyState";
 import InternshipCard from "../components/InternshipCard";
 import { useInternships } from "../hooks/useInternships";
+import { useCompanies } from "@/features/companies/hooks/useCompanies";
 import CardSkeleton from "@/components/shared/CardSkeleton";
 
 const PAGE_SIZE = 12;
@@ -20,6 +21,12 @@ export default function InternshipListPage() {
   const [sort, setSort] = useState<SortKey>("newest");
   const [page, setPage] = useState(1);
   const { data, isLoading } = useInternships();
+  const { data: companies } = useCompanies();
+
+  const premiumCompanyIds = useMemo(() => {
+    if (!companies) return new Set<string>();
+    return new Set(companies.filter((c) => c.subscription === "premium").map((c) => c.id));
+  }, [companies]);
 
   const internships = useMemo(() => {
     let list = data?.filter((item) => {
@@ -31,20 +38,24 @@ export default function InternshipListPage() {
       return matchSearch && matchLocation && matchType && matchSalary;
     }) || [];
 
-    switch (sort) {
-      case "newest":
-        list = [...list].sort((a, b) => ((b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0)));
-        break;
-      case "deadline":
-        list = [...list].sort((a, b) => new Date(a.deadline || "").getTime() - new Date(b.deadline || "").getTime());
-        break;
-      case "title":
-        list = [...list].sort((a, b) => a.title.localeCompare(b.title));
-        break;
-    }
+    list = [...list].sort((a, b) => {
+      const aPremium = premiumCompanyIds.has(a.companyId) ? 1 : 0;
+      const bPremium = premiumCompanyIds.has(b.companyId) ? 1 : 0;
+      if (aPremium !== bPremium) return bPremium - aPremium;
+      switch (sort) {
+        case "newest":
+          return ((b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0));
+        case "deadline":
+          return new Date(a.deadline || "").getTime() - new Date(b.deadline || "").getTime();
+        case "title":
+          return a.title.localeCompare(b.title);
+        default:
+          return 0;
+      }
+    });
 
     return list;
-  }, [data, search, location, type, salaryFilter, sort]);
+  }, [data, search, location, type, salaryFilter, sort, premiumCompanyIds]);
 
   const totalPages = Math.ceil(internships.length / PAGE_SIZE);
   const paged = internships.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
@@ -116,7 +127,7 @@ export default function InternshipListPage() {
           <p className="text-xs text-secondary-text">{internships.length} magang ditemukan</p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {paged.map((internship) => (
-              <InternshipCard key={internship.id} internship={internship} />
+              <InternshipCard key={internship.id} internship={internship} showPremiumBadge={premiumCompanyIds.has(internship.companyId)} />
             ))}
           </div>
           {totalPages > 1 && (

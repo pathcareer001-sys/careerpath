@@ -47,6 +47,7 @@ const ReportManagementPage = lazy(() => import("@/features/staff/pages/ReportMan
 const CompanyDashboardPage = lazy(() => import("@/features/companies/pages/CompanyDashboardPage"));
 const CompanyInternshipsPage = lazy(() => import("@/features/companies/pages/CompanyInternshipsPage"));
 const CompanyProfilePage = lazy(() => import("@/features/companies/pages/CompanyProfilePage"));
+const CompanySubscriptionPage = lazy(() => import("@/features/companies/pages/CompanySubscriptionPage"));
 const CompanyApplicantsPage = lazy(() => import("@/features/applications/pages/CompanyApplicantsPage"));
 const StudentProfilePage = lazy(() => import("@/features/users/pages/StudentProfilePage"));
 
@@ -331,6 +332,14 @@ export const router = createBrowserRouter([
             element: (
               <Suspense fallback={<PageSkeleton />}>
                 <CompanyProfilePage />
+              </Suspense>
+            ),
+          },
+          {
+            path: "subscription",
+            element: (
+              <Suspense fallback={<PageSkeleton />}>
+                <CompanySubscriptionPage />
               </Suspense>
             ),
           },

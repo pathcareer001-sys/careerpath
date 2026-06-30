@@ -2,6 +2,7 @@ import { BadgeCheck, Building2, MapPin, Pencil, Trash2 } from "lucide-react";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
 import type { Company } from "@/types/company";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 
 interface Props {
   company: Company;
@@ -24,7 +25,10 @@ export default function CompanyManageCard({
             <Building2 size="18" />
           </div>
           <div className="space-y-1">
-            <h3 className="font-medium text-heading">{company.name}</h3>
+            <h3 className="font-medium text-heading flex items-center gap-1.5">
+              {company.name}
+              <VerifiedBadge show={company.subscription === "premium"} size={14} />
+            </h3>
             <p className="text-sm text-secondary-text">{company.industry || "Tidak ada industri"}</p>
             <div className="flex items-center gap-2">
               <BadgeCheck size="16" className={company.verified ? "text-success" : "text-muted"} />

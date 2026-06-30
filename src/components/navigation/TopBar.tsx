@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
-import { LayoutDashboard, Building2, Briefcase, FileText, Bookmark, LogOut, Menu } from "lucide-react";
+import { LayoutDashboard, Building2, Briefcase, FileText, Bookmark, LogOut, Menu, Crown } from "lucide-react";
 
 import logo from "@/assets/images/logo.png";
 import { useAuth } from "@/hooks/useAuth";
@@ -31,6 +31,7 @@ const companyNav = [
   { to: "/company", label: "Dashboard", icon: LayoutDashboard },
   { to: "/company/internships", label: "Magang", icon: Briefcase },
   { to: "/company/profile", label: "Profil", icon: Building2 },
+  { to: "/company/subscription", label: "Berlangganan", icon: Crown },
 ];
 
 export default function TopBar() {

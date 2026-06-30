@@ -2,6 +2,7 @@ import PageContainer from "@/components/common/PageContainer";
 import StatCard from "@/components/shared/StatCard";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import { Link } from "react-router-dom";
 import { useCompanies } from "@/features/companies/hooks/useCompanies";
 import { useUpdateCompany } from "@/features/companies/hooks/useUpdateCompany";
@@ -89,7 +90,7 @@ export default function AdminDashboardPage() {
               {pendingCompanies.slice(0, 10).map((company) => (
                 <div key={company.id} className="flex items-center justify-between p-3 rounded-lg bg-warning/5 hover:bg-warning/5 transition-colors">
                   <div>
-                    <p className="font-medium text-sm text-heading">{company.name}</p>
+                    <p className="font-medium text-sm text-heading flex items-center gap-1">{company.name} <VerifiedBadge show={company.subscription === "premium"} size={12} /></p>
                     <p className="text-xs text-secondary-text">{company.industry || "Tidak ada industri"}</p>
                   </div>
                   <AppButton onClick={() => handleVerify(company.id)} className="text-xs h-8 px-3">

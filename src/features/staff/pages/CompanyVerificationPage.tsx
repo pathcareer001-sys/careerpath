@@ -10,6 +10,7 @@ import { useCompanies } from "@/features/companies/hooks/useCompanies";
 import { useUpdateCompany } from "@/features/companies/hooks/useUpdateCompany";
 import { ShieldCheck, ShieldX, Globe, MapPin, Building2, BadgeCheck } from "lucide-react";
 import { toast } from "sonner";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 
 type Tab = "pending" | "verified";
 
@@ -100,7 +101,10 @@ export default function CompanyVerificationPage() {
                       )}
                     </div>
                     <div>
-                      <h3 className="font-medium text-heading">{company.name}</h3>
+                      <h3 className="font-medium text-heading flex items-center gap-1.5">
+                        {company.name}
+                        <VerifiedBadge show={company.subscription === "premium"} size={14} />
+                      </h3>
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
                         {company.industry && (
                           <span className="text-sm text-secondary-text flex items-center gap-1">

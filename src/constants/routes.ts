@@ -18,4 +18,5 @@ export const ROUTES = {
   ADMIN: "/admin",
 
   COMPANY: "/company",
+  COMPANY_SUBSCRIPTION: "/company/subscription",
 } as const;

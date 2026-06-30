@@ -78,6 +78,7 @@ export default function CompanyInternshipsPage() {
               <CompanyInternshipCard
                 key={internship.id}
                 internship={internship}
+                company={company}
                 onDelete={handleDelete}
               />
             ))}

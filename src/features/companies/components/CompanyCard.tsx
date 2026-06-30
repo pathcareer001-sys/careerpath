@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import type { Company } from "@/types/company";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 
 export default function CompanyCard({ company }: { company: Company }) {
   return (
@@ -14,7 +15,10 @@ export default function CompanyCard({ company }: { company: Company }) {
             company.name.charAt(0)
           )}
         </div>
-        <h3 className="mt-3 text-sm font-medium text-heading group-hover:text-primary transition-colors duration-200">{company.name}</h3>
+        <h3 className="mt-3 text-sm font-medium text-heading group-hover:text-primary transition-colors duration-200 flex items-center justify-center gap-1">
+          {company.name}
+          <VerifiedBadge show={company.subscription === "premium"} size={14} />
+        </h3>
         <p className="text-[12px] text-muted mt-0.5">{company.industry || "Perusahaan"}</p>
         <div className="flex items-center justify-center gap-0.5 mt-2">
           {[1, 2, 3, 4, 5].map((star) => (

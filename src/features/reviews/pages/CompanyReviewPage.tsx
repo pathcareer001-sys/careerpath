@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { Star, ArrowLeft } from "lucide-react";
 import PageContainer from "@/components/common/PageContainer";
 import AppCard from "@/components/common/AppCard";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import ReviewCard from "@/features/reviews/components/ReviewCard";
 import ReviewForm from "@/features/reviews/components/ReviewForm";
 import LoadingState from "@/components/shared/LoadingState";
@@ -39,7 +40,10 @@ export default function CompanyReviewPage() {
           </div>
           <div>
             <h1 className="text-2xl font-medium text-heading">Ulasan & Rating</h1>
-            <p className="text-sm text-secondary-text">{company.name}</p>
+            <p className="text-sm text-secondary-text flex items-center gap-1">
+              {company.name}
+              <VerifiedBadge show={company.subscription === "premium"} size={12} />
+            </p>
           </div>
         </div>
       </div>

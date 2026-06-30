@@ -10,6 +10,7 @@ import {
 import PageContainer from "@/components/common/PageContainer";
 import AppCard from "@/components/common/AppCard";
 import StatCard from "@/components/shared/StatCard";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 
 import LoadingState from "@/components/shared/LoadingState";
 import EmptyState from "@/components/shared/EmptyState";
@@ -45,7 +46,10 @@ export default function CompanyDashboardPage() {
           <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:justify-between">
             <div>
               <p className="text-body text-sm">Selamat Datang Kembali</p>
-              <h1 className="mt-2 text-3xl font-medium">{company?.name || "Perusahaan Anda"}</h1>
+              <div className="mt-2 flex items-center gap-2">
+                <h1 className="text-3xl font-medium">{company?.name || "Perusahaan Anda"}</h1>
+                <VerifiedBadge show={company?.subscription === "premium"} />
+              </div>
               <p className="mt-1 text-body">{company?.industry || "Profil Perusahaan"}</p>
               {company?.verified && (
                 <span className="inline-flex mt-3 rounded-full bg-success/20 px-3 py-1 text-xs text-success border border-success/30">

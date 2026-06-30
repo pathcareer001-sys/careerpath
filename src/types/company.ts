@@ -24,4 +24,6 @@ export interface Company {
   reviewCount: number;
 
   createdAt?: string;
+
+  subscription?: "free" | "premium";
 }
