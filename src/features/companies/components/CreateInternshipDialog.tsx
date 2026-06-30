@@ -34,7 +34,7 @@ export default function CreateInternshipDialog({ company }: Props) {
         companyName: company.name,
         companyLogo: company.logo,
       });
-      toast.success("Internship created successfully");
+      toast.success("Magang berhasil dibuat");
       setOpen(false);
     } catch (error: unknown) {
       console.error(error);
@@ -54,7 +54,7 @@ export default function CreateInternshipDialog({ company }: Props) {
         render={
           <AppButton>
             <Plus size={16} />
-            Create Internship
+            Buat Magang
           </AppButton>
         }
       />

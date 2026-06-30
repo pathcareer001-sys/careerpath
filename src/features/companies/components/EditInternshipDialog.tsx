@@ -29,7 +29,7 @@ export default function EditInternshipDialog({ internship }: Props) {
         id: internship.id,
         data,
       });
-      toast.success("Internship updated successfully");
+      toast.success("Magang berhasil diperbarui");
       setOpen(false);
     } catch (error: unknown) {
       console.error(error);

@@ -14,9 +14,9 @@ interface SEOProps {
 const BASE_URL = "https://mycareerpath.site";
 const SITE_NAME = "CareerPath";
 const DEFAULT_DESCRIPTION =
-  "CareerPath connects students with top internship opportunities. Discover internships, explore companies, read reviews, and kickstart your career.";
+  "CareerPath menghubungkan mahasiswa dengan peluang magang terbaik. Temukan magang, jelajahi perusahaan, baca ulasan, dan mulai karir Anda.";
 const DEFAULT_KEYWORDS =
-  "internship, career, student, job, magang, lowongan magang, internship Indonesia, careerpath";
+  "magang, karir, mahasiswa, lowongan magang, internship Indonesia, careerpath, cari magang";
 
 export default function SEO({
   title,

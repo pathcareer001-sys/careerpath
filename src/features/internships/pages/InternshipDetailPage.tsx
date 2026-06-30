@@ -52,9 +52,9 @@ export default function InternshipDetailPage() {
         status: "pending",
         createdAt: new Date().toISOString(),
       });
-      toast.success("Application submitted");
+      toast.success("Lamaran terkirim");
     } catch {
-      toast.error("You already applied");
+      toast.error("Anda sudah melamar");
     }
   };
 
@@ -62,9 +62,9 @@ export default function InternshipDetailPage() {
     if (!myApplication) return;
     try {
       await updateStatus.mutateAsync({ id: myApplication.id, status: "withdrawn" });
-      toast.success("Application withdrawn");
+      toast.success("Lamaran ditarik");
     } catch {
-      toast.error("Failed to withdraw application");
+      toast.error("Gagal menarik lamaran");
     }
   };
 
@@ -72,15 +72,15 @@ export default function InternshipDetailPage() {
     if (!user || !internship) return;
     if (bookmark) {
       deleteBookmark.mutate(bookmark.id);
-      toast.success("Removed from bookmarks");
+      toast.success("Dihapus dari bookmark");
     } else {
       createBookmark.mutate({ userId: user.uid, internshipId: internship.id });
-      toast.success("Internship bookmarked");
+      toast.success("Magang di-bookmark");
     }
   };
 
   if (isLoading) return <LoadingState />;
-  if (!internship) return <EmptyState title="Internship not found" description="The internship may have been removed." />;
+  if (!internship) return <EmptyState title="Magang tidak ditemukan" description="Magang mungkin telah dihapus." />;
 
   return (
     <PageContainer>
@@ -96,11 +96,11 @@ export default function InternshipDetailPage() {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-3">
                 <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary border border-primary/20">
-                  Internship Opportunity
+                  Kesempatan Magang
                 </span>
                 {internship.status === "draft" && (
                   <span className="inline-flex rounded-full bg-warning/20 px-3 py-1 text-xs font-medium border border-warning/30 text-warning">
-                    Draft
+                    Draf
                   </span>
                 )}
               </div>
@@ -114,7 +114,7 @@ export default function InternshipDetailPage() {
                   <MapPin size="13" /> {internship.location}
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-section/80 px-3.5 py-1 text-[12px] text-secondary-text border border-border/60">
-                  <Calendar size="13" /> {internship.deadline || "No deadline"}
+                  <Calendar size="13" /> {internship.deadline || "Tidak ada batas waktu"}
                 </span>
                 {internship.salary && (
                   <span className="inline-flex rounded-full bg-success/10 px-3.5 py-1 text-[12px] font-medium text-success border border-success/20">
@@ -149,23 +149,23 @@ export default function InternshipDetailPage() {
                     disabled={hasApplied && myApplication?.status !== "withdrawn" || createApplication.isPending}
                   >
                     {myApplication?.status === "withdrawn" ? (
-                      <><Send size="16" /> Re-apply</>
+                      <><Send size="16" /> Lamar Ulang</>
                     ) : hasApplied ? (
-                      "Applied ✓"
+                      "Terdaftar ✓"
                     ) : createApplication.isPending ? (
-                      "Applying..."
+                      "Melamar..."
                     ) : (
-                      <><Send size="16" /> Apply Now</>
+                      <><Send size="16" /> Lamar Sekarang</>
                     )}
                   </AppButton>
                   {hasApplied && myApplication?.status !== "withdrawn" && (
                     <AppButton variant="outline" className="w-full md:w-auto" onClick={handleWithdraw} disabled={updateStatus.isPending}>
-                      <XCircle size="15" /> Withdraw
+                      <XCircle size="15" /> Tarik Lamaran
                     </AppButton>
                   )}
                   <AppButton variant="outline" className="w-full md:w-auto" onClick={handleBookmark}>
                     {bookmark ? <BookmarkCheck size="15" /> : <Bookmark size="15" />}
-                    {bookmark ? "Saved" : "Save"}
+                    {bookmark ? "Tersimpan" : "Simpan"}
                   </AppButton>
                 </>
               )}
@@ -177,19 +177,19 @@ export default function InternshipDetailPage() {
       <div className="grid gap-6 mt-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-6 animate-fade-in-up animate-delay-100">
           <AppCard>
-            <h2 className="text-[15px] font-semibold text-heading mb-3">About this internship</h2>
+            <h2 className="text-[15px] font-semibold text-heading mb-3">Tentang magang ini</h2>
             <p className="text-sm text-body leading-relaxed whitespace-pre-line">{internship.description}</p>
           </AppCard>
 
           {internship.responsibilities && (
             <AppCard>
-              <h2 className="text-[15px] font-semibold text-heading mb-3">Responsibilities</h2>
+              <h2 className="text-[15px] font-semibold text-heading mb-3">Tanggung Jawab</h2>
               <p className="text-sm text-body leading-relaxed whitespace-pre-line">{internship.responsibilities}</p>
             </AppCard>
           )}
 
           <AppCard>
-            <h2 className="text-[15px] font-semibold text-heading mb-4">Requirements</h2>
+            <h2 className="text-[15px] font-semibold text-heading mb-4">Persyaratan</h2>
             {(internship.requiredSkills || []).length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
                 {(internship.requiredSkills || []).map((item) => (
@@ -201,7 +201,7 @@ export default function InternshipDetailPage() {
             )}
             {(internship.preferredSkills || []).length > 0 && (
               <>
-                <h3 className="text-xs font-medium text-secondary-text uppercase tracking-wider mb-2">Preferred Skills</h3>
+                <h3 className="text-xs font-medium text-secondary-text uppercase tracking-wider mb-2">Keahlian Tambahan</h3>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {(internship.preferredSkills || []).map((item) => (
                     <span key={item} className="rounded-full bg-accent px-3.5 py-1.5 text-xs font-medium text-primary border border-primary/15">
@@ -212,16 +212,16 @@ export default function InternshipDetailPage() {
               </>
             )}
             {internship.languageRequirement && (
-              <p className="text-sm text-body"><span className="text-secondary-text">Language: </span>{internship.languageRequirement}</p>
+              <p className="text-sm text-body"><span className="text-secondary-text">Bahasa: </span>{internship.languageRequirement}</p>
             )}
             {!internship.requiredSkills?.length && !internship.preferredSkills?.length && !internship.languageRequirement && (
-              <p className="text-sm text-secondary-text">No specific requirements listed.</p>
+              <p className="text-sm text-secondary-text">Tidak ada persyaratan khusus.</p>
             )}
           </AppCard>
 
           {internship.benefits && (
             <AppCard>
-              <h2 className="text-[15px] font-semibold text-heading mb-3">Benefits & Perks</h2>
+              <h2 className="text-[15px] font-semibold text-heading mb-3">Manfaat & Tunjangan</h2>
               <p className="text-sm text-body leading-relaxed whitespace-pre-line">{internship.benefits}</p>
             </AppCard>
           )}
@@ -229,92 +229,92 @@ export default function InternshipDetailPage() {
 
         <div className="space-y-4 animate-fade-in-up animate-delay-200">
           <AppCard>
-            <h3 className="text-[13.5px] font-semibold text-heading mb-3">Details</h3>
+            <h3 className="text-[13.5px] font-semibold text-heading mb-3">Detail</h3>
             <div className="space-y-3 text-sm">
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text whitespace-nowrap">Work Mode</span>
+                <span className="text-secondary-text whitespace-nowrap">Mode Kerja</span>
                 <span className="text-body font-semibold text-right overflow-hidden break-words">{internship.type}</span>
               </div>
               {internship.employmentType && (
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                  <span className="text-secondary-text whitespace-nowrap">Employment Type</span>
+                  <span className="text-secondary-text whitespace-nowrap">Tipe Pekerjaan</span>
                   <span className="text-body font-semibold text-right overflow-hidden break-words">{internship.employmentType}</span>
                 </div>
               )}
               {internship.category && (
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                  <span className="text-secondary-text whitespace-nowrap">Category</span>
+                  <span className="text-secondary-text whitespace-nowrap">Kategori</span>
                   <span className="text-body font-semibold text-right overflow-hidden break-words">{internship.category}</span>
                 </div>
               )}
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text whitespace-nowrap">Location</span>
+                <span className="text-secondary-text whitespace-nowrap">Lokasi</span>
                 <span className="text-body font-semibold text-right overflow-hidden break-words">{internship.location}</span>
               </div>
               {internship.salary && (
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                  <span className="text-secondary-text whitespace-nowrap">Salary</span>
+                  <span className="text-secondary-text whitespace-nowrap">Gaji</span>
                   <span className="text-success font-semibold text-right overflow-hidden break-words">{internship.salary}</span>
                 </div>
               )}
               {!internship.salary && (internship.salaryMin || internship.salaryMax) && (
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                  <span className="text-secondary-text whitespace-nowrap">Salary Range</span>
+                  <span className="text-secondary-text whitespace-nowrap">Kisaran Gaji</span>
                   <span className="text-success font-semibold text-right overflow-hidden break-words">{internship.salaryMin || "—"} – {internship.salaryMax || "—"}</span>
                 </div>
               )}
               {internship.numberOfOpenings && (
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                  <span className="text-secondary-text whitespace-nowrap">Openings</span>
+                  <span className="text-secondary-text whitespace-nowrap">Lowongan</span>
                   <span className="text-body font-semibold text-right overflow-hidden break-words">{internship.numberOfOpenings}</span>
                 </div>
               )}
               {internship.workingHours && (
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                  <span className="text-secondary-text whitespace-nowrap">Working Hours</span>
+                  <span className="text-secondary-text whitespace-nowrap">Jam Kerja</span>
                   <span className="text-body font-semibold text-right overflow-hidden break-words">{internship.workingHours}</span>
                 </div>
               )}
               {internship.minEducation && (
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                  <span className="text-secondary-text whitespace-nowrap">Min. Education</span>
+                  <span className="text-secondary-text whitespace-nowrap">Pendidikan Minimal</span>
                   <span className="text-body font-semibold text-right overflow-hidden break-words">{internship.minEducation}</span>
                 </div>
               )}
               {internship.experienceLevel && (
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                  <span className="text-secondary-text whitespace-nowrap">Experience</span>
+                  <span className="text-secondary-text whitespace-nowrap">Pengalaman</span>
                   <span className="text-body font-semibold text-right overflow-hidden break-words">{internship.experienceLevel}</span>
                 </div>
               )}
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text whitespace-nowrap">Company</span>
+                <span className="text-secondary-text whitespace-nowrap">Perusahaan</span>
                 <Link to={`/companies/${internship.companyId}`} className="text-body font-semibold text-right break-words overflow-hidden hover:text-primary transition-colors">{internship.companyName}</Link>
               </div>
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5">
                 <span className="text-secondary-text whitespace-nowrap">Status</span>
                 <span className={`inline-flex items-center justify-end gap-1.5 font-semibold ${internship.status === "draft" ? "text-warning" : "text-success"}`}>
                   <span className={`h-2 w-2 rounded-full ${internship.status === "draft" ? "bg-warning" : "bg-success"}`} />
-                  {internship.status === "draft" ? "Draft" : "Open"}
+                  {internship.status === "draft" ? "Draf" : "Buka"}
                 </span>
               </div>
             </div>
           </AppCard>
 
           <AppCard>
-            <h3 className="text-[13.5px] font-semibold text-heading mb-3">Company</h3>
+            <h3 className="text-[13.5px] font-semibold text-heading mb-3">Perusahaan</h3>
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white shadow-xs">
                 <Building2 size="20" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-heading">{internship.companyName}</p>
-                <p className="text-xs text-secondary-text">Internship provider</p>
+                <p className="text-xs text-secondary-text">Penyedia magang</p>
               </div>
             </div>
             <Link to={`/companies/${internship.companyId}`}>
               <AppButton variant="outline" className="w-full mt-4">
-                View company <ArrowRight size="14" />
+                Lihat perusahaan <ArrowRight size="14" />
               </AppButton>
             </Link>
           </AppCard>
@@ -325,9 +325,9 @@ export default function InternshipDetailPage() {
                 <Clock size="15" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-heading">Tip</h3>
+                <h3 className="text-sm font-semibold text-heading">Tips</h3>
                 <p className="text-xs text-secondary-text leading-relaxed mt-1.5">
-                  Make sure your profile is complete before applying. Companies are more likely to review candidates with detailed information.
+                  Pastikan profil Anda lengkap sebelum melamar. Perusahaan lebih cenderung meninjau kandidat dengan informasi yang detail.
                 </p>
               </div>
             </div>

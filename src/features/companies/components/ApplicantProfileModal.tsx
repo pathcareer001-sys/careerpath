@@ -14,7 +14,7 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
   if (isLoading) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-        <AppCard>Loading profile...</AppCard>
+        <AppCard>Memuat profil...</AppCard>
       </div>
     );
   }
@@ -40,10 +40,10 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
               <p className="text-secondary-text">{user.email}</p>
               <div className="mt-2 space-y-1 text-sm text-secondary-text">
                 <div className="flex items-center gap-2">
-                  <GraduationCap size="14" /> {user.university || "University not provided"}
+                  <GraduationCap size="14" /> {user.university || "Universitas tidak diisi"}
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin size="14" /> {user.location || "Location not provided"}
+                  <MapPin size="14" /> {user.location || "Lokasi tidak diisi"}
                 </div>
               </div>
             </div>
@@ -54,31 +54,31 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
-          <InfoRow label="University" value={user.university} />
-          <InfoRow label="Major" value={user.major} />
-          <InfoRow label="Location" value={user.location} />
+          <InfoRow label="Universitas" value={user.university} />
+          <InfoRow label="Jurusan" value={user.major} />
+          <InfoRow label="Lokasi" value={user.location} />
         </div>
 
         <div className="mt-8">
-          <h3 className="font-medium mb-3">Skills ({user.skills?.length || 0})</h3>
+          <h3 className="font-medium mb-3">Keahlian ({user.skills?.length || 0})</h3>
           <div className="flex flex-wrap gap-2">
             {user.skills?.length ? (
               user.skills.map((skill) => (
                 <span key={skill} className="rounded-full bg-accent px-3 py-1 text-sm font-medium text-primary">{skill}</span>
               ))
             ) : (
-              <p className="text-secondary-text">No skills</p>
+              <p className="text-secondary-text">Tidak ada keahlian</p>
             )}
           </div>
         </div>
 
         <div className="mt-8">
-          <h3 className="font-medium mb-3">About</h3>
-          <p className="text-body leading-7">{user.bio || "This candidate has not added a bio yet."}</p>
+          <h3 className="font-medium mb-3">Tentang</h3>
+          <p className="text-body leading-7">{user.bio || "Kandidat ini belum menambahkan bio."}</p>
         </div>
 
         <div className="mt-8">
-          <h3 className="mb-4 font-medium">Professional Links</h3>
+          <h3 className="mb-4 font-medium">Tautan Profesional</h3>
           <div className="grid gap-4 md:grid-cols-2">
             {user.resumeUrl && (
               <a href={user.resumeUrl} target="_blank" rel="noopener noreferrer">
@@ -87,7 +87,7 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
                     <FileText size="20" className="text-primary" />
                     <div className="flex-1">
                       <p className="font-medium">Resume</p>
-                      <p className="text-sm text-secondary-text">View candidate CV</p>
+                      <p className="text-sm text-secondary-text">Lihat CV kandidat</p>
                     </div>
                     <Download size="16" className="text-muted" />
                   </div>
@@ -100,8 +100,8 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
                   <div className="flex items-center gap-3">
                     <Globe size="20" className="text-primary" />
                     <div>
-                      <p className="font-medium">Portfolio</p>
-                      <p className="text-sm text-secondary-text">Personal projects</p>
+                      <p className="font-medium">Portofolio</p>
+                      <p className="text-sm text-secondary-text">Proyek pribadi</p>
                     </div>
                   </div>
                 </AppCard>
@@ -114,7 +114,7 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
                     <FileText size="20" className="text-primary" />
                     <div>
                       <p className="font-medium">LinkedIn</p>
-                      <p className="text-sm text-secondary-text">Professional profile</p>
+                      <p className="text-sm text-secondary-text">Profil profesional</p>
                     </div>
                   </div>
                 </AppCard>
@@ -127,7 +127,7 @@ export default function ApplicantProfileModal({ uid, onClose }: Props) {
                     <User size="20" className="text-primary" />
                     <div>
                       <p className="font-medium">GitHub</p>
-                      <p className="text-sm text-secondary-text">Source code & projects</p>
+                      <p className="text-sm text-secondary-text">Kode & proyek</p>
                     </div>
                   </div>
                 </AppCard>

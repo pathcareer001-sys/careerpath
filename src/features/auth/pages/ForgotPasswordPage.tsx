@@ -22,9 +22,9 @@ export default function ForgotPasswordPage() {
   const handleReset = async (data: ForgotPasswordSchema) => {
     try {
       await authService.resetPassword(data.email);
-      toast.success("Password reset email sent. Please check your inbox.");
+      toast.success("Email reset password telah dikirim. Silakan cek kotak masuk Anda.");
     } catch {
-      toast.error("Failed to send reset email");
+      toast.error("Gagal mengirim email reset");
     }
   };
 
@@ -34,8 +34,8 @@ export default function ForgotPasswordPage() {
       <div className="bg-surface border border-border rounded-xl p-6">
         <img src={logo} alt="CareerPath" className="h-12 mb-6" />
 
-        <h1 className="text-[22px] font-medium text-heading">Reset password</h1>
-        <p className="mt-1 text-sm text-secondary-text">Enter your email and we'll send you a reset link.</p>
+        <h1 className="text-[22px] font-medium text-heading">Atur Ulang Kata Sandi</h1>
+        <p className="mt-1 text-sm text-secondary-text">Masukkan email dan kami akan mengirimkan tautan reset.</p>
 
         <form onSubmit={handleSubmit(handleReset)} className="mt-6 space-y-4">
           <div>
@@ -44,13 +44,13 @@ export default function ForgotPasswordPage() {
           </div>
 
           <AppButton type="submit" disabled={isSubmitting} className="w-full">
-            {isSubmitting ? "Sending..." : "Send reset link"}
+            {isSubmitting ? "Mengirim..." : "Kirim tautan reset"}
           </AppButton>
         </form>
 
         <p className="mt-5 text-center text-sm text-secondary-text">
-          Remember your password?{" "}
-          <Link to="/login" className="text-primary font-medium hover:text-primary transition-colors">Sign in</Link>
+          Ingat password?{" "}
+          <Link to="/login" className="text-primary font-medium hover:text-primary transition-colors">Masuk</Link>
         </p>
       </div>
     </div>

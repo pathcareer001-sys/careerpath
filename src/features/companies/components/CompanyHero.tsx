@@ -48,7 +48,7 @@ export default function CompanyHero({ company }: { company: Company }) {
           <div className="flex items-center gap-2 rounded-2xl bg-accent px-4 py-3">
             <Star size={18} className="fill-warning text-warning" />
             <span className="text-lg font-medium">{company.avgRating}</span>
-            <span className="text-secondary-text">({company.reviewCount} reviews)</span>
+            <span className="text-secondary-text">({company.reviewCount} ulasan)</span>
           </div>
 
           <BookmarkButton companyId={company.id} />

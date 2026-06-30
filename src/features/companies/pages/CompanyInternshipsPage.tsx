@@ -34,16 +34,16 @@ export default function CompanyInternshipsPage() {
   }, [internships, search]);
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete internship?")) return;
+    if (!confirm("Hapus magang?")) return;
     await deleteInternship.mutateAsync(id);
-    toast.success("Internship deleted successfully");
+    toast.success("Magang berhasil dihapus");
   };
 
   if (!company) {
     return (
       <EmptyState
-        title="No Company Profile"
-        description="Create your company profile first"
+        title="Belum Ada Profil Perusahaan"
+        description="Buat profil perusahaan Anda terlebih dahulu"
       />
     );
   }
@@ -52,8 +52,8 @@ export default function CompanyInternshipsPage() {
     <PageContainer>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between animate-fade-in-up">
         <div>
-          <h1 className="text-2xl font-medium text-heading">My Internships</h1>
-          <p className="text-sm text-secondary-text mt-1">Manage and track internship postings</p>
+          <h1 className="text-2xl font-medium text-heading">Magang Saya</h1>
+          <p className="text-sm text-secondary-text mt-1">Kelola dan lacak postingan magang</p>
         </div>
         <CreateInternshipDialog company={company} />
       </div>
@@ -62,15 +62,15 @@ export default function CompanyInternshipsPage() {
         <SearchBar
           value={search}
           onChange={setSearch}
-          placeholder="Search internships..."
+          placeholder="Cari magang..."
         />
       </div>
 
       <div className="mt-6 animate-fade-in-up animate-delay-200">
         {filteredInternships.length === 0 ? (
           <EmptyState
-            title="No Internships"
-            description="Create your first internship and start receiving applicants."
+            title="Tidak Ada Magang"
+            description="Buat magang pertama Anda dan mulailah menerima pelamar."
           />
         ) : (
           <div className="grid gap-6 md:grid-cols-2">

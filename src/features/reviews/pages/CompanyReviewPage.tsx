@@ -17,13 +17,13 @@ export default function CompanyReviewPage() {
   if (isLoading) return <LoadingState />;
 
   if (!company) {
-    return <EmptyState title="Company not found" description="The company may have been removed." />;
+    return <EmptyState title="Perusahaan tidak ditemukan" description="Perusahaan mungkin telah dihapus." />;
   }
 
   return (
     <PageContainer>
       <Link to={`/companies/${id}`} className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary mb-4 transition-colors">
-        <ArrowLeft size="14" /> Back to {company.name}
+        <ArrowLeft size="14" /> Kembali ke {company.name}
       </Link>
 
       <div className="animate-fade-in-up">
@@ -38,7 +38,7 @@ export default function CompanyReviewPage() {
             )}
           </div>
           <div>
-            <h1 className="text-2xl font-medium text-heading">Reviews & Ratings</h1>
+            <h1 className="text-2xl font-medium text-heading">Ulasan & Rating</h1>
             <p className="text-sm text-secondary-text">{company.name}</p>
           </div>
         </div>
@@ -52,14 +52,14 @@ export default function CompanyReviewPage() {
               <Star key={star} size="16" className={star <= Math.round(company.avgRating || 0) ? "fill-warning text-warning" : "text-muted"} />
             ))}
           </div>
-          <p className="text-xs text-secondary-text mt-1">{company.reviewCount || 0} reviews</p>
+          <p className="text-xs text-secondary-text mt-1">{company.reviewCount || 0} ulasan</p>
         </div>
       </div>
 
       <div className="grid gap-6 mt-6 lg:grid-cols-[1fr_360px]">
         <div className="space-y-4 animate-fade-in-up animate-delay-200">
           {reviews.data?.length === 0 ? (
-            <EmptyState title="No reviews yet" description="Be the first to review this company." />
+            <EmptyState title="Belum ada ulasan" description="Jadilah yang pertama memberi ulasan perusahaan ini." />
           ) : (
             reviews.data?.map((review) => <ReviewCard key={review.id} review={review} />)
           )}
@@ -67,8 +67,8 @@ export default function CompanyReviewPage() {
 
         <div className="animate-fade-in-up animate-delay-300">
           <AppCard>
-            <h3 className="text-sm font-medium text-heading mb-3">Write a Review</h3>
-            <p className="text-xs text-secondary-text mb-4">Share your experience to help other students.</p>
+            <h3 className="text-sm font-medium text-heading mb-3">Tulis Ulasan</h3>
+            <p className="text-xs text-secondary-text mb-4">Bagikan pengalaman Anda untuk membantu mahasiswa lain.</p>
             <ReviewForm companyId={company.id} />
           </AppCard>
         </div>

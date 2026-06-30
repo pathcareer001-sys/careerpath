@@ -22,12 +22,12 @@ export default function ManageApplicationsPage() {
 
   const handleAccept = async (id: string) => {
     await updateStatus.mutateAsync({ id, status: "accepted" });
-    toast.success("Applicant accepted");
+    toast.success("Pelamar diterima");
   };
 
   const handleReject = async (id: string) => {
     await updateStatus.mutateAsync({ id, status: "rejected" });
-    toast.success("Applicant rejected");
+    toast.success("Pelamar ditolak");
   };
 
   const total = applications?.length || 0;
@@ -38,16 +38,16 @@ export default function ManageApplicationsPage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <h1 className="text-2xl font-medium text-heading">Applications</h1>
-        <p className="mt-1 text-sm text-secondary-text">Manage internship applications</p>
+        <h1 className="text-2xl font-medium text-heading">Lamaran</h1>
+        <p className="mt-1 text-sm text-secondary-text">Kelola lamaran magang</p>
       </div>
 
       <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-4 animate-fade-in-up animate-delay-100">
         {[
           { label: "Total", value: total, gradient: "from-primary to-secondary", icon: <FileText size="16" className="text-primary" /> },
-          { label: "Pending", value: pending, gradient: "from-warning to-accent", icon: <Clock size="16" className="text-warning" /> },
-          { label: "Accepted", value: accepted, gradient: "from-success to-info", icon: <CheckCircle2 size="16" className="text-success" /> },
-          { label: "Rejected", value: rejected, gradient: "from-error to-accent", icon: <XCircle size="16" className="text-error" /> },
+          { label: "Menunggu", value: pending, gradient: "from-warning to-accent", icon: <Clock size="16" className="text-warning" /> },
+          { label: "Diterima", value: accepted, gradient: "from-success to-info", icon: <CheckCircle2 size="16" className="text-success" /> },
+          { label: "Ditolak", value: rejected, gradient: "from-error to-accent", icon: <XCircle size="16" className="text-error" /> },
         ].map((stat) => (
           <div key={stat.label} className="group relative overflow-hidden rounded-xl border border-border-light bg-surface p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border">
             <div className="relative z-10 flex items-center justify-between">
@@ -65,10 +65,10 @@ export default function ManageApplicationsPage() {
       </div>
 
       <div className="mt-6 space-y-6 animate-fade-in-up animate-delay-200">
-        <SearchBar value={search} onChange={setSearch} placeholder="Search applications..." />
+        <SearchBar value={search} onChange={setSearch} placeholder="Cari lamaran..." />
 
         {filteredApplications.length === 0 ? (
-          <EmptyState title="No Applications" description="No applications found" />
+          <EmptyState title="Tidak Ada Lamaran" description="Tidak ada lamaran ditemukan" />
         ) : (
           <div className="space-y-4">
             {filteredApplications.map((application) => (

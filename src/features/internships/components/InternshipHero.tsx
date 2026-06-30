@@ -30,7 +30,7 @@ export default function InternshipHero({
 
           <div>
             <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-              Internship Opportunity
+              Kesempatan Magang
             </span>
 
             <h1 className="mt-4 text-4xl font-medium leading-tight">
@@ -62,16 +62,16 @@ export default function InternshipHero({
         </div>
 
         <div className="w-full max-w-sm rounded-3xl bg-surface p-6 text-heading">
-          <h3 className="text-lg font-medium">Ready to Apply?</h3>
+          <h3 className="text-lg font-medium">Siap Melamar?</h3>
 
           <p className="mt-2 text-sm text-secondary-text">
-            Submit your application and start your internship journey today.
+            Kirim lamaran Anda dan mulailah perjalanan magang Anda hari ini.
           </p>
 
           <div className="mt-6 space-y-3">
-            <InfoRow label="Company" value={internship.companyName} />
-            <InfoRow label="Type" value={internship.type} />
-            <InfoRow label="Location" value={internship.location} />
+            <InfoRow label="Perusahaan" value={internship.companyName} />
+            <InfoRow label="Tipe" value={internship.type} />
+            <InfoRow label="Lokasi" value={internship.location} />
           </div>
 
           {userRole === "student" && (
@@ -81,10 +81,10 @@ export default function InternshipHero({
               disabled={isApplying || hasApplied}
             >
               {hasApplied
-                ? "Applied ✓"
+                ? "Terdaftar ✓"
                 : isApplying
-                  ? "Applying..."
-                  : "Apply Internship"}
+                  ? "Melamar..."
+                  : "Lamar Magang"}
             </AppButton>
           )}
         </div>

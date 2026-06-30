@@ -16,27 +16,27 @@ export const studentMenu = [
     icon: LayoutDashboard,
   },
   {
-    title: "Companies",
+    title: "Perusahaan",
     href: ROUTES.COMPANIES,
     icon: Building2,
   },
   {
-    title: "Internships",
+    title: "Magang",
     href: ROUTES.INTERNSHIPS,
     icon: Briefcase,
   },
   {
-    title: "Applications",
+    title: "Lamaran",
     href: ROUTES.APPLICATIONS,
     icon: ClipboardList,
   },
   {
-    title: "Bookmarks",
+    title: "Tersimpan",
     href: ROUTES.BOOKMARKS,
     icon: Bookmark,
   },
   {
-    title: "Profile",
+    title: "Profil",
     href: ROUTES.PROFILE,
     icon: User,
   },

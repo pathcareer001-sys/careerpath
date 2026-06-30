@@ -108,9 +108,9 @@ export default function ProfilePage() {
 
       await refreshUser();
 
-      toast.success("Profile updated");
+      toast.success("Profil diperbarui");
     } catch {
-      toast.error("Failed to update profile");
+      toast.error("Gagal memperbarui profil");
     }
   };
 
@@ -118,7 +118,7 @@ export default function ProfilePage() {
     const value = skillInput.trim();
     if (!value) return;
     if (skills.includes(value)) {
-      toast.error("Skill already exists");
+      toast.error("Keahlian sudah ada");
       return;
     }
     setSkills([...skills, value]);
@@ -146,8 +146,8 @@ export default function ProfilePage() {
   return (
     <PageContainer>
       <PageHeader
-        title="My Profile"
-        description="Manage your personal information"
+        title="Profil Saya"
+        description="Kelola informasi pribadi Anda"
       />
 
       <div className="grid gap-6 xl:grid-cols-[380px_1fr]">
@@ -221,33 +221,33 @@ export default function ProfilePage() {
             <p className="text-secondary-text">{user?.email}</p>
 
             <div className="mt-4 inline-flex rounded-full bg-accent px-3 py-1 text-sm font-medium text-primary">
-              {user?.role === "student" ? "Student" : "Company"}
+              {user?.role === "student" ? "Mahasiswa" : "Perusahaan"}
             </div>
 
             <div className="mt-3 text-sm text-secondary-text">
-              {major || "Add Major"} • {university || "Add University"}
+              {major || "Tambah Jurusan"} • {university || "Tambah Universitas"}
             </div>
 
             <div className="mt-2 flex items-center gap-1 text-sm text-secondary-text">
               <MapPin size={16} />
-              {location || "Add Location"}
+              {location || "Tambah Lokasi"}
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
               <span className="rounded-full bg-accent px-3 py-1 text-xs text-primary">
-                {skills.length} Skills
+                {skills.length} Keahlian
               </span>
               <span className="rounded-full bg-success/10 px-3 py-1 text-xs text-success">
-                {completion}% Complete
+                {completion}% Lengkap
               </span>
               <span className="rounded-full bg-info/10 px-3 py-1 text-xs text-info">
-                {user?.resumeUrl ? "Resume ✓" : "No Resume"}
+                {user?.resumeUrl ? "Resume ✓" : "Tidak Ada Resume"}
               </span>
             </div>
 
             <div className="mt-6">
               <div className="flex justify-between mb-2">
-                <span className="text-sm font-medium">Profile Completion</span>
+                <span className="text-sm font-medium">Kelengkapan Profil</span>
                 <span className="text-sm font-medium text-primary">{completion}%</span>
               </div>
               <div className="h-2 rounded-full bg-section">
@@ -280,18 +280,18 @@ export default function ProfilePage() {
         <div className="space-y-6">
           {/* PERSONAL INFORMATION */}
           <AppCard>
-            <h2 className="text-lg font-medium mb-6">Personal Information</h2>
+            <h2 className="text-lg font-medium mb-6">Informasi Pribadi</h2>
 
             <div className="grid gap-4 md:grid-cols-2">
               <AppInput
                 value={user?.name || ""}
                 disabled
-                placeholder="Full Name"
+                placeholder="Nama Lengkap"
               />
               <AppInput
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
+                placeholder="Nama Pengguna"
               />
               <AppInput
                 value={user?.email || ""}
@@ -301,38 +301,38 @@ export default function ProfilePage() {
               <AppInput
                 value={university}
                 onChange={(e) => setUniversity(e.target.value)}
-                placeholder="University"
+                placeholder="Universitas"
               />
               <AppInput
                 value={major}
                 onChange={(e) => setMajor(e.target.value)}
-                placeholder="Major"
+                placeholder="Jurusan"
               />
               <AppInput
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 className="md:col-span-2"
-                placeholder="Location"
+                placeholder="Lokasi"
               />
             </div>
           </AppCard>
 
           {/* ABOUT ME */}
           <AppCard>
-            <h2 className="text-lg font-medium mb-4">About Me</h2>
+            <h2 className="text-lg font-medium mb-4">Tentang Saya</h2>
             <AppTextarea
               className="min-h-[180px]"
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-              placeholder="Tell companies about yourself, your interests, achievements, and career goals..."
+              placeholder="Ceritakan tentang diri Anda, minat, pencapaian, dan tujuan karir kepada perusahaan..."
             />
           </AppCard>
 
           {/* PROFILE PHOTO */}
           <AppCard>
-            <h2 className="text-lg font-medium">Profile Photo</h2>
+            <h2 className="text-lg font-medium">Foto Profil</h2>
             <p className="text-sm text-secondary-text mt-1">
-              Upload or replace your profile picture
+              Unggah atau ganti foto profil Anda
             </p>
             <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
               <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-primary/30">
@@ -347,7 +347,7 @@ export default function ProfilePage() {
               <div className="flex flex-wrap gap-2">
                 <AppButton type="button" variant="secondary" onClick={() => avatarInputRef.current?.click()}>
                   <Upload size={14} />
-                  Choose Image
+                  Pilih Gambar
                 </AppButton>
                 <input
                   ref={avatarInputRef}
@@ -359,7 +359,7 @@ export default function ProfilePage() {
                 {(avatarFile || user?.photoURL) && (
                   <AppButton type="button" variant="danger" onClick={handleRemoveAvatar}>
                     <Trash2 size={14} />
-                    Remove
+                    Hapus
                   </AppButton>
                 )}
               </div>
@@ -368,9 +368,9 @@ export default function ProfilePage() {
 
           {/* COVER PHOTO */}
           <AppCard>
-            <h2 className="text-lg font-medium">Cover Photo</h2>
+            <h2 className="text-lg font-medium">Foto Sampul</h2>
             <p className="text-sm text-secondary-text mt-1">
-              Upload a banner image for your profile
+              Unggah gambar spanduk untuk profil Anda
             </p>
             <div className="mt-4">
               <div className="relative h-36 rounded-xl overflow-hidden bg-gradient-to-r from-accent to-section">
@@ -378,14 +378,14 @@ export default function ProfilePage() {
                   <img src={coverPreview} alt="Cover preview" className="h-full w-full object-cover" />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center text-white/50 text-sm">
-                    No cover photo
+                    Tidak ada foto sampul
                   </div>
                 )}
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 <AppButton type="button" variant="secondary" onClick={() => coverInputRef.current?.click()}>
                   <Upload size={14} />
-                  {coverPreview && !removeCover ? "Change Cover" : "Upload Cover"}
+                  {coverPreview && !removeCover ? "Ganti Sampul" : "Unggah Sampul"}
                 </AppButton>
                 <input
                   ref={coverInputRef}
@@ -400,7 +400,7 @@ export default function ProfilePage() {
                 {(user?.coverPhoto || coverFile) && !removeCover && (
                   <AppButton type="button" variant="danger" onClick={() => { setRemoveCover(true); setCoverFile(null); }}>
                     <Trash2 size={14} />
-                    Remove Cover
+                    Hapus Sampul
                   </AppButton>
                 )}
               </div>
@@ -409,20 +409,20 @@ export default function ProfilePage() {
 
           {/* SKILLS */}
           <AppCard>
-            <h2 className="text-lg font-medium">Skills</h2>
-            <p className="text-sm text-secondary-text mt-1">Showcase your strengths</p>
+            <h2 className="text-lg font-medium">Keahlian</h2>
+            <p className="text-sm text-secondary-text mt-1">Tunjukkan keahlian Anda</p>
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <AppInput
                 value={skillInput}
                 onChange={(e) => setSkillInput(e.target.value)}
-                placeholder="Add skill..."
+                placeholder="Tambah keahlian..."
                 className="w-full"
               />
-              <AppButton type="button" onClick={handleAddSkill} className="w-full sm:w-auto">Add</AppButton>
+              <AppButton type="button" onClick={handleAddSkill} className="w-full sm:w-auto">Tambah</AppButton>
             </div>
             {skills.length === 0 ? (
               <div className="mt-6 rounded-xl border border-dashed border-primary/30 p-6 text-center text-sm text-secondary-text">
-                No skills added yet
+                Belum ada keahlian ditambahkan
               </div>
             ) : (
               <div className="mt-6 flex flex-wrap gap-2">
@@ -443,7 +443,7 @@ export default function ProfilePage() {
           {/* RESUME */}
           <AppCard>
             <h2 className="text-lg font-medium">Resume</h2>
-            <p className="text-sm text-secondary-text mt-1">Upload your latest CV</p>
+            <p className="text-sm text-secondary-text mt-1">Unggah CV terbaru Anda</p>
             <label className="mt-4 flex h-32 cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-primary/30 hover:border-primary">
               <input
                 type="file"
@@ -456,35 +456,35 @@ export default function ProfilePage() {
                   <>
                     <p className="font-medium text-primary">{resumeFile.name}</p>
                     <p className="text-xs text-secondary-text">{(resumeFile.size / 1024 / 1024).toFixed(2)} MB</p>
-                    <p className="text-sm text-success">Ready to upload</p>
+                    <p className="text-sm text-success">Siap diunggah</p>
                   </>
                 ) : user?.resumeUrl ? (
                   <>
-                    <p className="font-medium text-success">Resume Uploaded ✓</p>
-                    <p className="text-sm text-secondary-text">Click Save Changes to replace</p>
+                    <p className="font-medium text-success">Resume Terunggah ✓</p>
+                    <p className="text-sm text-secondary-text">Klik Simpan untuk mengganti</p>
                   </>
                 ) : (
                   <>
-                    <p className="font-medium">Upload Resume</p>
-                    <p className="text-sm text-secondary-text">PDF up to 5MB</p>
+                    <p className="font-medium">Unggah Resume</p>
+                    <p className="text-sm text-secondary-text">PDF maksimal 5MB</p>
                   </>
                 )}
               </div>
             </label>
             {user?.resumeUrl && (
               <a href={user.resumeUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex text-primary font-medium">
-                View Current Resume
+                Lihat Resume Saat Ini
               </a>
             )}
           </AppCard>
 
           {/* SOCIAL LINKS */}
           <AppCard>
-            <h2 className="text-lg font-medium">Social Links</h2>
+            <h2 className="text-lg font-medium">Tautan Sosial</h2>
             <div className="mt-6 space-y-4">
-              <AppInput value={linkedin} onChange={(e) => setLinkedin(e.target.value)} placeholder="LinkedIn URL" />
-              <AppInput value={github} onChange={(e) => setGithub(e.target.value)} placeholder="Github URL" />
-              <AppInput value={portfolio} onChange={(e) => setPortfolio(e.target.value)} placeholder="Portfolio URL" />
+              <AppInput value={linkedin} onChange={(e) => setLinkedin(e.target.value)} placeholder="URL LinkedIn" />
+              <AppInput value={github} onChange={(e) => setGithub(e.target.value)} placeholder="URL GitHub" />
+              <AppInput value={portfolio} onChange={(e) => setPortfolio(e.target.value)} placeholder="URL Portofolio" />
             </div>
           </AppCard>
 
@@ -492,11 +492,11 @@ export default function ProfilePage() {
           <AppCard>
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
               <div>
-                <h3 className="font-medium">Ready to Save?</h3>
-                <p className="text-sm text-secondary-text">Update your profile information.</p>
+                <h3 className="font-medium">Siap Disimpan?</h3>
+                <p className="text-sm text-secondary-text">Perbarui informasi profil Anda.</p>
               </div>
               <AppButton onClick={handleSave} disabled={updateProfile.isPending} className="w-full sm:w-auto">
-                {updateProfile.isPending ? "Saving..." : "Save Changes"}
+                {updateProfile.isPending ? "Menyimpan..." : "Simpan Perubahan"}
               </AppButton>
             </div>
           </AppCard>

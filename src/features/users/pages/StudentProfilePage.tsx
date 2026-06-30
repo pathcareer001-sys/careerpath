@@ -15,7 +15,7 @@ export default function StudentProfilePage() {
   if (!user) {
     return (
       <PageContainer>
-        <EmptyState title="Profile not found" description="This student profile does not exist or has been removed." />
+        <EmptyState title="Profil tidak ditemukan" description="Profil mahasiswa ini tidak ada atau telah dihapus." />
       </PageContainer>
     );
   }
@@ -65,13 +65,13 @@ export default function StudentProfilePage() {
       <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-6 animate-fade-in-up animate-delay-100">
           <AppCard>
-            <h2 className="text-base font-medium text-heading mb-3">About</h2>
-            <p className="text-sm text-body leading-relaxed">{user.bio || "No bio provided."}</p>
+            <h2 className="text-base font-medium text-heading mb-3">Tentang</h2>
+            <p className="text-sm text-body leading-relaxed">{user.bio || "Belum ada bio."}</p>
           </AppCard>
 
           <AppCard>
             <h2 className="text-base font-medium text-heading mb-4">
-              Skills {user.skills?.length ? `(${user.skills.length})` : ""}
+              Keahlian {user.skills?.length ? `(${user.skills.length})` : ""}
             </h2>
             {user.skills?.length ? (
               <div className="flex flex-wrap gap-2">
@@ -82,23 +82,23 @@ export default function StudentProfilePage() {
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-secondary-text">No skills listed.</p>
+              <p className="text-sm text-secondary-text">Tidak ada keahlian.</p>
             )}
           </AppCard>
 
           <AppCard>
-            <h2 className="text-base font-medium text-heading mb-3">Details</h2>
+            <h2 className="text-base font-medium text-heading mb-3">Detail</h2>
             <div className="space-y-3 text-sm">
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text whitespace-nowrap">University</span>
+                <span className="text-secondary-text whitespace-nowrap">Universitas</span>
                 <span className="text-body font-semibold text-right overflow-hidden break-words">{user.university || "-"}</span>
               </div>
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text whitespace-nowrap">Major</span>
+                <span className="text-secondary-text whitespace-nowrap">Jurusan</span>
                 <span className="text-body font-semibold text-right overflow-hidden break-words">{user.major || "-"}</span>
               </div>
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5 border-b border-border/50">
-                <span className="text-secondary-text whitespace-nowrap">Location</span>
+                <span className="text-secondary-text whitespace-nowrap">Lokasi</span>
                 <span className="text-body font-semibold text-right overflow-hidden break-words">{user.location || "-"}</span>
               </div>
               <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 md:gap-x-6 py-2.5">
@@ -111,7 +111,7 @@ export default function StudentProfilePage() {
 
         <div className="space-y-4 animate-fade-in-up animate-delay-200">
           <AppCard>
-            <h3 className="text-sm font-medium text-heading mb-4">Professional Links</h3>
+            <h3 className="text-sm font-medium text-heading mb-4">Tautan Profesional</h3>
             <div className="space-y-3">
               {user.resumeUrl && (
                 <a href={user.resumeUrl} target="_blank" rel="noopener noreferrer">
@@ -120,7 +120,7 @@ export default function StudentProfilePage() {
                       <FileText size="18" className="text-primary" />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">Resume</p>
-                        <p className="text-xs text-secondary-text">View candidate CV</p>
+                        <p className="text-xs text-secondary-text">Lihat CV kandidat</p>
                       </div>
                     </div>
                   </AppCard>
@@ -132,8 +132,8 @@ export default function StudentProfilePage() {
                     <div className="flex items-center gap-3">
                       <Globe size="18" className="text-primary" />
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium truncate">Portfolio</p>
-                        <p className="text-xs text-secondary-text">Personal projects</p>
+                        <p className="text-sm font-medium truncate">Portofolio</p>
+                        <p className="text-xs text-secondary-text">Proyek pribadi</p>
                       </div>
                     </div>
                   </AppCard>
@@ -146,7 +146,7 @@ export default function StudentProfilePage() {
                       <ExternalLink size="18" className="text-primary" />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">LinkedIn</p>
-                        <p className="text-xs text-secondary-text">Professional profile</p>
+                        <p className="text-xs text-secondary-text">Profil profesional</p>
                       </div>
                     </div>
                   </AppCard>
@@ -159,14 +159,14 @@ export default function StudentProfilePage() {
                       <Code2 size="18" className="text-primary" />
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium truncate">GitHub</p>
-                        <p className="text-xs text-secondary-text">Source code & projects</p>
+                        <p className="text-xs text-secondary-text">Kode & proyek</p>
                       </div>
                     </div>
                   </AppCard>
                 </a>
               )}
               {!user.resumeUrl && !user.portfolio && !user.linkedin && !user.github && (
-                <p className="text-sm text-secondary-text">No links provided.</p>
+                <p className="text-sm text-secondary-text">Tidak ada tautan.</p>
               )}
             </div>
           </AppCard>

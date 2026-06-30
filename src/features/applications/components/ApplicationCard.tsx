@@ -7,11 +7,11 @@ interface Props {
 }
 
 const stageMeta: Record<string, { label: string; color: string }> = {
-  pending: { label: "Applied", color: "bg-warning/50" },
-  reviewed: { label: "Under Review", color: "bg-accent" },
-  interview: { label: "Interview", color: "bg-info/100" },
-  accepted: { label: "Accepted", color: "bg-success/50" },
-  rejected: { label: "Rejected", color: "bg-error/100" },
+  pending: { label: "Mendaftar", color: "bg-warning/50" },
+  reviewed: { label: "Ditinjau", color: "bg-accent" },
+  interview: { label: "Wawancara", color: "bg-info/100" },
+  accepted: { label: "Diterima", color: "bg-success/50" },
+  rejected: { label: "Ditolak", color: "bg-error/100" },
 };
 
 export default function ApplicationCard({ application }: Props) {
@@ -43,7 +43,7 @@ export default function ApplicationCard({ application }: Props) {
             <div>
               <div className="flex items-center gap-2">
                 <span className="rounded-full bg-accent px-2.5 py-0.5 text-[11px] font-medium text-primary">
-                  Internship
+                  Magang
                 </span>
                 <StatusBadge status={application.status} />
               </div>
@@ -65,7 +65,7 @@ export default function ApplicationCard({ application }: Props) {
           {application.interviewDate && (
             <div className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-info/10 px-2.5 py-1 text-xs font-medium text-info">
               <CalendarDays size="12" />
-              Interview: {new Date(application.interviewDate).toLocaleDateString()}
+              Wawancara: {new Date(application.interviewDate).toLocaleDateString()}
             </div>
           )}
         </div>

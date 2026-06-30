@@ -35,8 +35,8 @@ export default function CompanyListPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-medium text-heading">Companies</h1>
-        <p className="mt-1 text-sm text-secondary-text">Discover verified companies and internship providers</p>
+        <h1 className="text-2xl font-medium text-heading">Perusahaan</h1>
+        <p className="mt-1 text-sm text-secondary-text">Temukan perusahaan terverifikasi dan penyedia magang</p>
       </div>
 
       <div className="flex items-center gap-3 flex-wrap">
@@ -45,12 +45,12 @@ export default function CompanyListPage() {
           <input
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-            placeholder="Search companies..."
+            placeholder="Cari perusahaan..."
             className="h-9 w-full rounded-lg border border-border bg-background pl-9 pr-3 text-sm text-heading placeholder:text-muted focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
           />
         </div>
         <div className="flex gap-2 flex-wrap">
-          {["Technology", "Design", "Marketing", "Finance", "Business"].map((category) => (
+          {["Teknologi", "Desain", "Marketing", "Keuangan", "Bisnis"].map((category) => (
             <button
               key={category}
               onClick={() => { setIndustryFilter(industryFilter === category ? "" : category); setPage(1); }}
@@ -68,7 +68,7 @@ export default function CompanyListPage() {
 
       {topCompanies.length > 0 && (
         <div>
-          <h2 className="text-base font-medium text-heading mb-4">Top Companies</h2>
+          <h2 className="text-base font-medium text-heading mb-4">Perusahaan Teratas</h2>
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {topCompanies.map((company) => (
               <CompanyCard key={company.id} company={company} />
@@ -78,11 +78,11 @@ export default function CompanyListPage() {
       )}
 
       <div className="flex items-center justify-between">
-        <p className="text-sm font-medium text-heading">All Companies <span className="text-muted font-normal">({filteredCompanies.length})</span></p>
+        <p className="text-sm font-medium text-heading">Semua Perusahaan <span className="text-muted font-normal">({filteredCompanies.length})</span></p>
       </div>
 
       {filteredCompanies.length === 0 ? (
-        <EmptyState title="No companies found" description="Try another keyword or filter." />
+        <EmptyState title="Perusahaan tidak ditemukan" description="Coba kata kunci atau filter lain." />
       ) : (
         <>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

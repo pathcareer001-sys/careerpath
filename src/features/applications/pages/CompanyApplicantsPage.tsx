@@ -24,10 +24,10 @@ export default function CompanyApplicantsPage() {
     try {
       await updateStatus.mutateAsync({ id: application.id, status });
       const notificationMap: Record<string, { title: string; message: string }> = {
-        accepted: { title: "Application Accepted", message: `Congratulations! Your application for ${application.internshipTitle} has been accepted.` },
-        rejected: { title: "Application Rejected", message: `Your application for ${application.internshipTitle} was not selected.` },
-        interview: { title: "Interview Invitation", message: `You have been invited to interview for ${application.internshipTitle}.` },
-        reviewed: { title: "Application Reviewed", message: `Your application for ${application.internshipTitle} is now being reviewed.` },
+        accepted: { title: "Lamaran Diterima", message: `Selamat! Lamaran Anda untuk ${application.internshipTitle} telah diterima.` },
+        rejected: { title: "Lamaran Ditolak", message: `Lamaran Anda untuk ${application.internshipTitle} tidak dipilih.` },
+        interview: { title: "Undangan Wawancara", message: `Anda diundang untuk wawancara untuk ${application.internshipTitle}.` },
+        reviewed: { title: "Lamaran Ditinjau", message: `Lamaran Anda untuk ${application.internshipTitle} sedang ditinjau.` },
       };
       await notificationService.createNotification({
         userId: application.applicantId,
@@ -37,9 +37,9 @@ export default function CompanyApplicantsPage() {
         read: false,
         createdAt: new Date().toISOString(),
       });
-      toast.success(`Applicant ${status}`);
+      toast.success(`Pelamar ${status === "accepted" ? "diterima" : status === "rejected" ? "ditolak" : status === "interview" ? "diwawancara" : "ditinjau"}`);
     } catch {
-      toast.error("Failed to update applicant");
+      toast.error("Gagal memperbarui pelamar");
     }
   };
 
@@ -56,25 +56,25 @@ export default function CompanyApplicantsPage() {
       {interviewApplication && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <AppCard className="w-full max-w-md">
-            <h2 className="mb-4 text-xl font-medium">Schedule Interview</h2>
+            <h2 className="mb-4 text-xl font-medium">Jadwalkan Wawancara</h2>
             <div className="space-y-4">
               <div>
-                <label className="mb-1 block text-sm">Interview Date</label>
+                <label className="mb-1 block text-sm">Tanggal Wawancara</label>
                 <input type="datetime-local" value={interviewDate} onChange={(e) => setInterviewDate(e.target.value)} className="w-full rounded-xl border px-3 py-2" />
               </div>
               <div>
-                <label className="mb-1 block text-sm">Location / Meeting Link</label>
-                <input value={interviewLocation} onChange={(e) => setInterviewLocation(e.target.value)} placeholder="Zoom Meeting / Office Address" className="w-full rounded-xl border px-3 py-2" />
+                <label className="mb-1 block text-sm">Lokasi / Tautan Meeting</label>
+                <input value={interviewLocation} onChange={(e) => setInterviewLocation(e.target.value)} placeholder="Zoom Meeting / Alamat Kantor" className="w-full rounded-xl border px-3 py-2" />
               </div>
               <div className="flex justify-end gap-2">
-                <AppButton type="button" onClick={() => { setInterviewApplication(null); setInterviewDate(""); setInterviewLocation(""); }}>Cancel</AppButton>
+                <AppButton type="button" onClick={() => { setInterviewApplication(null); setInterviewDate(""); setInterviewLocation(""); }}>Batal</AppButton>
                 <AppButton type="button" onClick={async () => {
                   if (!interviewApplication) return;
                   await updateStatus.mutateAsync({ id: interviewApplication.id, status: "interview", interviewDate, interviewLocation });
-                  await notificationService.createNotification({ userId: interviewApplication.applicantId, title: "Interview Invitation", message: `Interview for ${interviewApplication.internshipTitle}\nDate: ${interviewDate}\nLocation: ${interviewLocation}`, type: "application", read: false, createdAt: new Date().toISOString() });
-                  toast.success("Interview scheduled");
+                  await notificationService.createNotification({ userId: interviewApplication.applicantId, title: "Undangan Wawancara", message: `Wawancara untuk ${interviewApplication.internshipTitle}\nTanggal: ${interviewDate}\nLokasi: ${interviewLocation}`, type: "application", read: false, createdAt: new Date().toISOString() });
+                  toast.success("Wawancara dijadwalkan");
                   setInterviewApplication(null); setInterviewDate(""); setInterviewLocation("");
-                }}>Schedule Interview</AppButton>
+                }}>Jadwalkan Wawancara</AppButton>
               </div>
             </div>
           </AppCard>
@@ -83,17 +83,17 @@ export default function CompanyApplicantsPage() {
 
       <PageContainer>
         <div className="animate-fade-in-up">
-          <h1 className="text-2xl font-medium text-heading">Applicants</h1>
-          <p className="mt-1 text-sm text-secondary-text">Manage internship applicants</p>
+          <h1 className="text-2xl font-medium text-heading">Pelamar</h1>
+          <p className="mt-1 text-sm text-secondary-text">Kelola pelamar magang</p>
         </div>
 
         <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 animate-fade-in-up animate-delay-100">
           {[
             { label: "Total", value: stats.total, gradient: "from-primary to-secondary", icon: <Users size="16" className="text-primary" /> },
-            { label: "Pending", value: stats.pending, gradient: "from-warning to-accent", icon: <Clock size="16" className="text-warning" /> },
-            { label: "Reviewed", value: stats.reviewed, gradient: "from-primary to-secondary", icon: <SearchCheck size="16" className="text-primary" /> },
-            { label: "Accepted", value: stats.accepted, gradient: "from-success to-info", icon: <CheckCircle2 size="16" className="text-success" /> },
-            { label: "Rejected", value: stats.rejected, gradient: "from-error to-accent", icon: <XCircle size="16" className="text-error" /> },
+            { label: "Menunggu", value: stats.pending, gradient: "from-warning to-accent", icon: <Clock size="16" className="text-warning" /> },
+            { label: "Ditinjau", value: stats.reviewed, gradient: "from-primary to-secondary", icon: <SearchCheck size="16" className="text-primary" /> },
+            { label: "Diterima", value: stats.accepted, gradient: "from-success to-info", icon: <CheckCircle2 size="16" className="text-success" /> },
+            { label: "Ditolak", value: stats.rejected, gradient: "from-error to-accent", icon: <XCircle size="16" className="text-error" /> },
           ].map((stat) => (
             <div key={stat.label} className="group relative overflow-hidden rounded-xl border border-border-light bg-surface p-5 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-border">
               <div className="relative z-10 flex items-center justify-between">
@@ -115,15 +115,15 @@ export default function CompanyApplicantsPage() {
             <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-white/60 blur-3xl" />
             <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-section blur-xl" />
             <div className="relative z-10">
-              <h2 className="text-xl font-medium">Applicant Management</h2>
-              <p className="text-body mt-1">Review and manage internship applications.</p>
+              <h2 className="text-xl font-medium">Manajemen Pelamar</h2>
+              <p className="text-body mt-1">Tinjau dan kelola lamaran magang.</p>
             </div>
           </div>
         </div>
 
         {applications?.length === 0 ? (
           <div className="mt-6">
-            <EmptyState title="No Applicants Yet" description="Applications will appear once students start applying." />
+            <EmptyState title="Belum Ada Pelamar" description="Lamaran akan muncul setelah mahasiswa mulai mendaftar." />
           </div>
         ) : (
           <div className="mt-6 space-y-4 animate-fade-in-up animate-delay-300">
@@ -144,11 +144,11 @@ export default function CompanyApplicantsPage() {
                       <h3 className="font-medium text-heading">{application.applicantName}</h3>
                       <p className="text-sm text-secondary-text">{application.applicantEmail}</p>
                       <p className="text-sm text-secondary-text">{application.internshipTitle}</p>
-                      <p className="text-xs text-muted">Applied: {new Date(application.createdAt).toLocaleDateString()}</p>
+                      <p className="text-xs text-muted">Mendaftar: {new Date(application.createdAt).toLocaleDateString()}</p>
                       <div className="mt-2 flex items-center gap-2">
                         <StatusBadge status={application.status} />
                         {application.interviewDate && (
-                          <span className="text-xs text-info">Interview: {application.interviewDate} {application.interviewLocation ? `(${application.interviewLocation})` : ""}</span>
+                          <span className="text-xs text-info">Wawancara: {application.interviewDate} {application.interviewLocation ? `(${application.interviewLocation})` : ""}</span>
                         )}
                       </div>
                     </div>
@@ -157,24 +157,24 @@ export default function CompanyApplicantsPage() {
                   <div className="flex gap-2 flex-wrap shrink-0">
                     <Link to={`/students/${application.applicantId}`}>
                       <AppButton type="button">
-                        <Eye size="14" /> Profile
+                        <Eye size="14" /> Profil
                       </AppButton>
                     </Link>
                     {application.status !== "accepted" && application.status !== "rejected" && application.status !== "withdrawn" && (
                       <>
                         {application.status === "pending" && (
                           <AppButton type="button" disabled={updateStatus.isPending} onClick={() => handleStatus(application, "reviewed")}>
-                            Mark Reviewed
+                            Tandai Ditinjau
                           </AppButton>
                         )}
                         <AppButton type="button" disabled={updateStatus.isPending} onClick={() => handleStatus(application, "accepted")}>
-                          Accept
+                          Terima
                         </AppButton>
                         <AppButton type="button" disabled={updateStatus.isPending} onClick={() => setInterviewApplication(application)}>
-                          Interview
+                          Wawancara
                         </AppButton>
                         <AppButton type="button" disabled={updateStatus.isPending} onClick={() => handleStatus(application, "rejected")}>
-                          Reject
+                          Tolak
                         </AppButton>
                       </>
                     )}

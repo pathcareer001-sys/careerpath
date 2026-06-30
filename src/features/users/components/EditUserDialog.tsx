@@ -28,7 +28,7 @@ export default function EditUserDialog({ user, open, onClose }: Props) {
 
   const handleSave = async () => {
     if (!user?.uid) {
-      toast.error("Invalid user data");
+      toast.error("Data pengguna tidak valid");
       return;
     }
     try {
@@ -36,20 +36,20 @@ export default function EditUserDialog({ user, open, onClose }: Props) {
         uid: user.uid,
         data: { name, email, role },
       });
-      toast.success("User updated");
+      toast.success("Pengguna diperbarui");
       onClose();
     } catch {
-      toast.error("Failed to update user");
+      toast.error("Gagal memperbarui pengguna");
     }
   };
 
   return (
     <Dialog open={open} onOpenChange={(o) => { if (!o) onClose(); }}>
       <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto p-6">
-        <h2 className="text-xl font-medium mb-6">Edit User</h2>
+        <h2 className="text-xl font-medium mb-6">Edit Pengguna</h2>
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium">Name</label>
+            <label className="mb-1 block text-sm font-medium">Nama</label>
             <AppInput value={name} onChange={(e) => setName(e.target.value)} />
           </div>
           <div>
@@ -57,21 +57,21 @@ export default function EditUserDialog({ user, open, onClose }: Props) {
             <AppInput value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium">Role</label>
+            <label className="mb-1 block text-sm font-medium">Peran</label>
             <Select value={role} onValueChange={(value) => setRole(value as typeof role)}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value={ROLES.STUDENT}>Student</SelectItem>
-                <SelectItem value={ROLES.COMPANY}>Company</SelectItem>
-                <SelectItem value={ROLES.STAFF}>Staff</SelectItem>
+                <SelectItem value={ROLES.STUDENT}>Mahasiswa</SelectItem>
+                <SelectItem value={ROLES.COMPANY}>Perusahaan</SelectItem>
+                <SelectItem value={ROLES.STAFF}>Staf</SelectItem>
                 <SelectItem value={ROLES.ADMIN}>Admin</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div className="flex justify-end gap-2 pt-4 border-t">
-            <AppButton variant="secondary" onClick={onClose}>Cancel</AppButton>
+            <AppButton variant="secondary" onClick={onClose}>Batal</AppButton>
             <AppButton onClick={handleSave} disabled={updateUser.isPending}>
-              {updateUser.isPending ? "Saving..." : "Save"}
+              {updateUser.isPending ? "Menyimpan..." : "Simpan"}
             </AppButton>
           </div>
         </div>

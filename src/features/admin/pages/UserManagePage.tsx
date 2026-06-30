@@ -16,14 +16,14 @@ export default function UserManagePage() {
   const [editingUser, setEditingUser] = useState<AppUser | null>(null);
 
   const handleDelete = async (uid: string) => {
-    if (!confirm("Delete user?")) return;
+    if (!confirm("Hapus pengguna?")) return;
     await deleteUser.mutateAsync(uid);
-    toast.success("User deleted");
+    toast.success("Pengguna dihapus");
   };
 
   return (
     <PageContainer>
-      <PageHeader title="User Management" description="Manage platform users" />
+      <PageHeader title="Manajemen Pengguna" description="Kelola pengguna platform" />
 
       <EditUserDialog
         user={editingUser}
@@ -32,7 +32,7 @@ export default function UserManagePage() {
       />
 
       {!users?.length ? (
-        <EmptyState title="No Users" description="Users will appear here" />
+        <EmptyState title="Tidak Ada Pengguna" description="Pengguna akan muncul di sini" />
       ) : (
         <div className="space-y-4 animate-fade-in-up">
           {users.map((user) => (
@@ -57,8 +57,8 @@ export default function UserManagePage() {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <AppButton onClick={() => setEditingUser(user)}>Edit</AppButton>
-                  <AppButton variant="danger" onClick={() => handleDelete(user.uid)}>Delete</AppButton>
+                  <AppButton onClick={() => setEditingUser(user)}>Ubah</AppButton>
+                  <AppButton variant="danger" onClick={() => handleDelete(user.uid)}>Hapus</AppButton>
                 </div>
               </div>
             </AppCard>

@@ -41,7 +41,7 @@ export default function CompanyVerificationPage() {
 
   const handleVerify = async (id: string, verified: boolean) => {
     await updateCompany.mutateAsync({ id, data: { verified: !verified } });
-    toast.success(verified ? "Company unverified" : "Company verified");
+    toast.success(verified ? "Perusahaan tidak terverifikasi" : "Perusahaan terverifikasi");
   };
 
   if (isLoading) return <LoadingState />;
@@ -49,8 +49,8 @@ export default function CompanyVerificationPage() {
   return (
     <PageContainer>
       <PageHeader
-        title="Company Verification"
-        description="Verify company profiles to ensure authenticity"
+        title="Verifikasi Perusahaan"
+        description="Verifikasi profil perusahaan untuk memastikan keaslian"
       />
 
       <div className="mt-6 space-y-6 animate-fade-in-up">
@@ -64,7 +64,7 @@ export default function CompanyVerificationPage() {
             }`}
           >
             <ShieldX size="15" />
-            Pending ({pendingCount})
+            Tertunda ({pendingCount})
           </button>
           <button
             onClick={() => { setTab("verified"); setSearch(""); }}
@@ -75,16 +75,16 @@ export default function CompanyVerificationPage() {
             }`}
           >
             <BadgeCheck size="15" />
-            Verified ({verifiedCount})
+            Terverifikasi ({verifiedCount})
           </button>
         </div>
 
-        <SearchBar value={search} onChange={setSearch} placeholder="Search companies..." />
+        <SearchBar value={search} onChange={setSearch} placeholder="Cari perusahaan..." />
 
         {filtered.length === 0 ? (
           <EmptyState
-            title={tab === "pending" ? "No pending verifications" : "No verified companies"}
-            description={tab === "pending" ? "All companies have been verified." : "No companies have been verified yet."}
+            title={tab === "pending" ? "Tidak ada verifikasi tertunda" : "Tidak ada perusahaan terverifikasi"}
+            description={tab === "pending" ? "Semua perusahaan telah terverifikasi." : "Belum ada perusahaan yang terverifikasi."}
           />
         ) : (
           <div className="space-y-4">
@@ -129,10 +129,10 @@ export default function CompanyVerificationPage() {
                               ? "bg-accent text-primary"
                               : "bg-warning/5 text-warning"
                         }`}>
-                          {company.verified ? "Verified" : company.verificationRequested ? "Requested" : "Unverified"}
+                          {company.verified ? "Terverifikasi" : company.verificationRequested ? "Diminta" : "Belum Terverifikasi"}
                         </span>
                         <span className="text-xs text-muted">
-                          {company.reviewCount || 0} reviews &middot; {company.avgRating || 0} avg rating
+                          {company.reviewCount || 0} ulasan &middot; {company.avgRating || 0} rating rata-rata
                         </span>
                       </div>
                     </div>
@@ -143,7 +143,7 @@ export default function CompanyVerificationPage() {
                     className={company.verified ? "!bg-warning/50 hover:!bg-warning/70" : "!bg-success hover:!bg-success/80"}
                   >
                     <ShieldCheck size="14" />
-                    {company.verified ? "Unverify" : "Verify"}
+                    {company.verified ? "Batalkan" : "Verifikasi"}
                   </AppButton>
                 </div>
               </AppCard>

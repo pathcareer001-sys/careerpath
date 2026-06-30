@@ -52,7 +52,7 @@ export default function CompanyProfilePage() {
         name, logo, description, location, industry, website,
         verified: false, avgRating: 0, reviewCount: 0,
       });
-      toast.success("Company profile created successfully");
+      toast.success("Profil perusahaan berhasil dibuat");
     } catch (error) {
       console.error(error);
     }
@@ -64,7 +64,7 @@ export default function CompanyProfilePage() {
       id: company.id,
       data: { name, logo, description, location, industry, website },
     });
-    toast.success("Company profile updated successfully");
+    toast.success("Profil perusahaan berhasil diperbarui");
   };
 
   return (
@@ -80,10 +80,10 @@ export default function CompanyProfilePage() {
               )}
             </div>
             <div>
-              <h1 className="text-2xl font-medium">{name || "Company Name"}</h1>
-              <p className="mt-1 text-body">{industry || "Industry"}</p>
+              <h1 className="text-2xl font-medium">{name || "Nama Perusahaan"}</h1>
+              <p className="mt-1 text-body">{industry || "Industri"}</p>
               <p className="text-body text-sm flex items-center gap-1 mt-1">
-                <MapPin size="14" /> {location || "Location"}
+                <MapPin size="14" /> {location || "Lokasi"}
               </p>
             </div>
           </div>
@@ -100,14 +100,14 @@ export default function CompanyProfilePage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-medium text-heading">
-                    {company.verified ? "Verified Company" : company.verificationRequested ? "Verification Requested" : "Not Verified"}
+                    {company.verified ? "Perusahaan Terverifikasi" : company.verificationRequested ? "Verifikasi Diminta" : "Belum Terverifikasi"}
                   </h3>
                   <p className="text-xs text-secondary-text">
                     {company.verified
-                      ? "Your company is verified and shows the verified badge."
+                      ? "Perusahaan Anda terverifikasi dan menampilkan lencana terverifikasi."
                       : company.verificationRequested
-                        ? "Your verification request is pending review by our team."
-                        : "Verify your company to build trust with students."}
+                        ? "Permintaan verifikasi Anda sedang ditinjau oleh tim kami."
+                        : "Verifikasi perusahaan Anda untuk membangun kepercayaan dengan mahasiswa."}
                   </p>
                 </div>
               </div>
@@ -115,17 +115,17 @@ export default function CompanyProfilePage() {
                 <AppButton
                   onClick={async () => {
                     await updateCompany.mutateAsync({ id: company.id, data: { verificationRequested: true } });
-                    toast.success("Verification requested");
+                    toast.success("Verifikasi diminta");
                   }}
                   disabled={updateCompany.isPending}
                   className="text-xs h-8 px-3"
                 >
-                  Request Verification
+                  Minta Verifikasi
                 </AppButton>
               )}
               {company.verificationRequested && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-warning/10 px-3 py-1 text-xs font-medium text-warning">
-                  Pending Review
+                  Menunggu Review
                 </span>
               )}
             </div>
@@ -133,11 +133,11 @@ export default function CompanyProfilePage() {
         )}
 
         <AppCard>
-          <h2 className="text-base font-medium mb-4">Company Information</h2>
+          <h2 className="text-base font-medium mb-4">Informasi Perusahaan</h2>
           <div className="grid gap-4 md:grid-cols-2">
-            <AppInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Company Name" />
-            <AppInput value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Location" />
-            <AppInput value={industry} onChange={(e) => setIndustry(e.target.value)} placeholder="Industry" />
+            <AppInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Nama Perusahaan" />
+            <AppInput value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Lokasi" />
+            <AppInput value={industry} onChange={(e) => setIndustry(e.target.value)} placeholder="Industri" />
             <AppInput value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="Website" />
           </div>
 
@@ -146,7 +146,7 @@ export default function CompanyProfilePage() {
             {logo ? (
               <img src={logo} alt="Company Logo" className="h-full w-full rounded-xl object-cover" />
             ) : (
-              <span className="text-sm">Upload Company Logo</span>
+              <span className="text-sm">Unggah Logo Perusahaan</span>
             )}
           </label>
 
@@ -154,20 +154,20 @@ export default function CompanyProfilePage() {
             <AppTextarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Tell students about your company, culture, mission, and opportunities..."
+              placeholder="Ceritakan tentang perusahaan, budaya, misi, dan peluang kepada mahasiswa..."
               className="min-h-[160px]"
             />
           </div>
 
           <div className="mt-6">
             <AppButton variant="secondary" className="h-11 w-full" onClick={company ? handleUpdate : handleCreate}>
-              {company ? "Update Company Profile" : "Create Company Profile"}
+              {company ? "Perbarui Profil Perusahaan" : "Buat Profil Perusahaan"}
             </AppButton>
           </div>
         </AppCard>
 
         <AppCard>
-          <h2 className="text-base font-medium mb-4">Preview</h2>
+          <h2 className="text-base font-medium mb-4">Pratinjau</h2>
           <div className="flex items-center gap-4">
             <div className="h-14 w-14 overflow-hidden rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white shrink-0">
               {logo ? (
@@ -177,14 +177,14 @@ export default function CompanyProfilePage() {
               )}
             </div>
             <div>
-              <h3 className="font-medium text-heading">{name || "Company Name"}</h3>
-              <p className="text-sm text-secondary-text">{industry || "Industry"} &middot; {location || "Location"}</p>
+              <h3 className="font-medium text-heading">{name || "Nama Perusahaan"}</h3>
+              <p className="text-sm text-secondary-text">{industry || "Industri"} &middot; {location || "Lokasi"}</p>
             </div>
           </div>
-          <p className="mt-3 text-sm text-body">{description || "Company description"}</p>
+          <p className="mt-3 text-sm text-body">{description || "Deskripsi perusahaan"}</p>
           {website && (
             <a href={website} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm text-primary hover:text-primary transition-colors">
-              <Globe size="14" /> Visit Website →
+              <Globe size="14" /> Kunjungi Website →
             </a>
           )}
         </AppCard>

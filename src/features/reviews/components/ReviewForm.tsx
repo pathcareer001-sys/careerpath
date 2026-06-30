@@ -27,14 +27,14 @@ export default function ReviewForm({ companyId }: Props) {
     if (!user) return;
 
     if (!review.trim()) {
-      toast.error("Review cannot be empty");
+      toast.error("Ulasan tidak boleh kosong");
       return;
     }
 
     await createReview.mutateAsync({
       companyId,
       userId: user?.uid || "",
-      userName: user?.name || user?.email || "Anonymous",
+      userName: user?.name || user?.email || "Anonim",
       userPhotoURL: user?.photoURL || "",
       rating,
       review,
@@ -42,7 +42,7 @@ export default function ReviewForm({ companyId }: Props) {
 
     setReview("");
     setRating(5);
-    toast.success("Review submitted");
+    toast.success("Ulasan terkirim");
   };
 
   return (
@@ -54,11 +54,11 @@ export default function ReviewForm({ companyId }: Props) {
   text-body
   "
       >
-        Overall Rating
+        Rating Keseluruhan
       </h3>
 
       <div className="rounded-2xl bg-background p-4">
-        <p className="text-sm font-medium mb-3">How was your experience?</p>
+        <p className="text-sm font-medium mb-3">Bagaimana pengalaman Anda?</p>
 
         <RatingInput value={rating} onChange={setRating} />
       </div>
@@ -66,11 +66,11 @@ export default function ReviewForm({ companyId }: Props) {
       <AppTextarea
         value={review}
         onChange={(e) => setReview(e.target.value)}
-        placeholder="Share your internship experience, work environment, mentorship, and company culture..."
+        placeholder="Bagikan pengalaman magang Anda, lingkungan kerja, bimbingan, dan budaya perusahaan..."
         className="min-h-[140px}"
       />
 
-      <AppButton type="submit">Submit Review</AppButton>
+      <AppButton type="submit">Kirim Ulasan</AppButton>
     </form>
   );
 }

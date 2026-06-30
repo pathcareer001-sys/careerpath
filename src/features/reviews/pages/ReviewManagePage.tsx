@@ -15,9 +15,9 @@ export default function ReviewManagePage() {
   const [search, setSearch] = useState("");
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete review?")) return;
+    if (!confirm("Hapus ulasan?")) return;
     await deleteReview.mutateAsync(id);
-    toast.success("Review deleted");
+    toast.success("Ulasan dihapus");
   };
 
   const filtered = reviews?.filter((r) =>
@@ -28,15 +28,15 @@ export default function ReviewManagePage() {
   return (
     <PageContainer>
       <div className="animate-fade-in-up">
-        <h1 className="text-2xl font-medium text-heading">Review Management</h1>
-        <p className="mt-1 text-sm text-secondary-text">Manage company reviews</p>
+        <h1 className="text-2xl font-medium text-heading">Manajemen Ulasan</h1>
+        <p className="mt-1 text-sm text-secondary-text">Kelola ulasan perusahaan</p>
       </div>
 
       <div className="mt-6 space-y-6 animate-fade-in-up animate-delay-100">
-        <SearchBar value={search} onChange={setSearch} placeholder="Search reviews..." />
+        <SearchBar value={search} onChange={setSearch} placeholder="Cari ulasan..." />
 
         {filtered.length === 0 ? (
-          <EmptyState title="No Reviews" description="Reviews will appear here" />
+          <EmptyState title="Tidak Ada Ulasan" description="Ulasan akan muncul di sini" />
         ) : (
           <div className="space-y-4">
             {filtered.map((review) => (
@@ -63,7 +63,7 @@ export default function ReviewManagePage() {
                     </div>
                   </div>
                   <AppButton variant="danger" onClick={() => handleDelete(review.id)} className="shrink-0">
-                    <Trash2 size="14" /> Delete
+                    <Trash2 size="14" /> Hapus
                   </AppButton>
                 </div>
               </AppCard>

@@ -51,12 +51,12 @@ export default function ApplicantCard({
           <div className="flex gap-2">
             <AppButton onClick={() => onAccept(application.id)}>
               <CheckCircle2 size={16} />
-              Accept
+              Terima
             </AppButton>
 
             <AppButton onClick={() => onReject(application.id)}>
               <XCircle size={16} />
-              Reject
+              Tolak
             </AppButton>
           </div>
         )}

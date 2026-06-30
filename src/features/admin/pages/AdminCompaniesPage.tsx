@@ -40,19 +40,19 @@ export default function AdminCompaniesPage() {
   const pendingCount = companies?.filter((c) => !c.verified).length || 0;
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete company?")) return;
+    if (!confirm("Hapus perusahaan?")) return;
     await deleteCompany.mutateAsync(id);
-    toast.success("Company deleted");
+    toast.success("Perusahaan dihapus");
   };
 
   const handleVerify = async (id: string, verified: boolean) => {
     await updateCompany.mutateAsync({ id, data: { verified: !verified } });
-    toast.success(verified ? "Company unverified" : "Company verified");
+    toast.success(verified ? "Perusahaan tidak terverifikasi" : "Perusahaan terverifikasi");
   };
 
   return (
     <PageContainer>
-      <PageHeader title="Company Management" description="Manage and verify company data" />
+      <PageHeader title="Manajemen Perusahaan" description="Kelola dan verifikasi data perusahaan" />
 
       <EditCompanyDialog
         company={editingCompany}
@@ -69,7 +69,7 @@ export default function AdminCompaniesPage() {
         <AppCard>
           <div className="flex items-center gap-3">
             <AppButton onClick={() => setShowCreate(true)}>
-              <Building2 size="16" /> Create Company
+              <Building2 size="16" /> Buat Perusahaan
             </AppButton>
           </div>
         </AppCard>
@@ -83,7 +83,7 @@ export default function AdminCompaniesPage() {
                 : "text-secondary-text hover:text-body"
             }`}
           >
-            All Companies
+            Semua Perusahaan
           </button>
           <button
             onClick={() => { setTab("pending"); setSearch(""); }}
@@ -94,7 +94,7 @@ export default function AdminCompaniesPage() {
             }`}
           >
             <ShieldCheck size="15" />
-            Pending Verification
+            Menunggu Verifikasi
             {pendingCount > 0 && (
               <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-warning/10 text-warning text-[11px] font-bold">
                 {pendingCount}
@@ -106,13 +106,13 @@ export default function AdminCompaniesPage() {
         <SearchBar
           value={search}
           onChange={setSearch}
-          placeholder="Search companies..."
+          placeholder="Cari perusahaan..."
         />
 
         {filteredCompanies.length === 0 ? (
           <EmptyState
-            title={tab === "pending" ? "No pending verifications" : "No Companies"}
-            description={tab === "pending" ? "All companies have been verified." : "Create your first company"}
+            title={tab === "pending" ? "Tidak ada verifikasi tertunda" : "Tidak Ada Perusahaan"}
+            description={tab === "pending" ? "Semua perusahaan telah terverifikasi." : "Buat perusahaan pertama Anda"}
           />
         ) : (
           <div className="space-y-4">

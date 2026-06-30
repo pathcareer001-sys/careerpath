@@ -34,11 +34,11 @@ export default function BookmarkPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-0 sm:justify-between">
         <div>
-          <h1 className="text-2xl font-medium text-heading">Bookmarks</h1>
+          <h1 className="text-2xl font-medium text-heading">Tersimpan</h1>
           <p className="mt-1 text-sm text-secondary-text">
             {totalBookmarks > 0
-              ? `${totalBookmarks} saved ${totalBookmarks === 1 ? "item" : "items"}`
-              : "Saved companies and opportunities"}
+              ? `${totalBookmarks} ${totalBookmarks === 1 ? "item" : "item"} tersimpan`
+              : "Perusahaan dan peluang tersimpan"}
           </p>
         </div>
         <div className="relative">
@@ -48,7 +48,7 @@ export default function BookmarkPage() {
             onChange={(e) => {
               setSearch(e.target.value);
             }}
-            placeholder="Search bookmarks..."
+            placeholder="Cari bookmark..."
             className="h-9 w-full sm:w-56 rounded-lg border border-border bg-background pl-9 pr-3 text-sm text-heading placeholder:text-muted focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
           />
         </div>
@@ -61,7 +61,7 @@ export default function BookmarkPage() {
             className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
           >
             <Building2 size="15" />
-            Companies
+            Perusahaan
             {companies && companies.length > 0 && (
               <span className="ml-0.5 rounded-full bg-border px-1.5 py-0.5 text-[11px] font-medium text-secondary-text">
                 {companies.length}
@@ -73,7 +73,7 @@ export default function BookmarkPage() {
             className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
           >
             <Briefcase size="15" />
-            Internships
+            Magang
             {internships && internships.length > 0 && (
               <span className="ml-0.5 rounded-full bg-border px-1.5 py-0.5 text-[11px] font-medium text-secondary-text">
                 {internships.length}
@@ -85,8 +85,8 @@ export default function BookmarkPage() {
         <TabsContent value="companies" className="mt-6">
           {filteredCompanies.length === 0 ? (
             <EmptyState
-              title="No saved companies"
-              description="Browse companies and bookmark the ones you're interested in."
+              title="Belum ada perusahaan tersimpan"
+              description="Jelajahi perusahaan dan bookmark yang Anda minati."
             />
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -100,8 +100,8 @@ export default function BookmarkPage() {
         <TabsContent value="internships" className="mt-6">
           {filteredInternships.length === 0 ? (
             <EmptyState
-              title="No saved internships"
-              description="Browse internships and bookmark the ones you're interested in."
+              title="Belum ada magang tersimpan"
+              description="Jelajahi magang dan bookmark yang Anda minati."
             />
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

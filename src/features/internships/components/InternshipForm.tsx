@@ -114,47 +114,47 @@ export default function InternshipForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h2 className="text-2xl font-medium">{defaultValues ? "Edit Internship" : "Create Internship"}</h2>
+        <h2 className="text-2xl font-medium">{defaultValues ? "Edit Magang" : "Buat Magang"}</h2>
         <p className="mt-1 text-secondary-text">
-          {defaultValues ? "Update the internship opportunity." : "Publish a new internship opportunity for students."}
+          {defaultValues ? "Perbarui kesempatan magang." : "Publikasikan kesempatan magang baru untuk mahasiswa."}
         </p>
       </div>
 
       <div className="space-y-5">
-        <h3 className="text-sm font-semibold text-heading uppercase tracking-wider">General Information</h3>
+        <h3 className="text-sm font-semibold text-heading uppercase tracking-wider">Informasi Umum</h3>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">Job Title</label>
+          <label className="mb-2 block text-sm font-medium">Judul Pekerjaan</label>
           <AppInput value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Frontend Developer Intern" />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="mb-2 block text-sm font-medium">Job Category / Department</label>
+            <label className="mb-2 block text-sm font-medium">Kategori / Departemen</label>
             <Select value={category} onValueChange={(value) => setCategory(value ?? "")}>
-              <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
+              <SelectTrigger><SelectValue placeholder="Pilih kategori" /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="Technology">Technology</SelectItem>
-                <SelectItem value="Design">Design</SelectItem>
+                <SelectItem value="Technology">Teknologi</SelectItem>
+                <SelectItem value="Design">Desain</SelectItem>
                 <SelectItem value="Marketing">Marketing</SelectItem>
-                <SelectItem value="Finance">Finance</SelectItem>
-                <SelectItem value="Human Resources">Human Resources</SelectItem>
-                <SelectItem value="Operations">Operations</SelectItem>
-                <SelectItem value="Sales">Sales</SelectItem>
-                <SelectItem value="Other">Other</SelectItem>
+                <SelectItem value="Finance">Keuangan</SelectItem>
+                <SelectItem value="Human Resources">SDM</SelectItem>
+                <SelectItem value="Operations">Operasional</SelectItem>
+                <SelectItem value="Sales">Penjualan</SelectItem>
+                <SelectItem value="Other">Lainnya</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium">Employment Type</label>
+            <label className="mb-2 block text-sm font-medium">Tipe Pekerjaan</label>
             <Select value={employmentType} onValueChange={(value) => setEmploymentType(value ?? "")}>
-              <SelectTrigger><SelectValue placeholder="Select type" /></SelectTrigger>
+              <SelectTrigger><SelectValue placeholder="Pilih tipe" /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="Internship">Internship</SelectItem>
-                <SelectItem value="Full Time">Full Time</SelectItem>
-                <SelectItem value="Part Time">Part Time</SelectItem>
-                <SelectItem value="Contract">Contract</SelectItem>
+                <SelectItem value="Internship">Magang</SelectItem>
+                <SelectItem value="Full Time">Penuh Waktu</SelectItem>
+                <SelectItem value="Part Time">Paruh Waktu</SelectItem>
+                <SelectItem value="Contract">Kontrak</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -162,62 +162,62 @@ export default function InternshipForm({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="mb-2 block text-sm font-medium">Work Mode</label>
+            <label className="mb-2 block text-sm font-medium">Mode Kerja</label>
             <Select value={type} onValueChange={(value) => setType(value ?? "Remote")}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="Remote">Remote</SelectItem>
+                <SelectItem value="Remote">Jarak Jauh</SelectItem>
                 <SelectItem value="Hybrid">Hybrid</SelectItem>
-                <SelectItem value="Onsite">Onsite</SelectItem>
+                <SelectItem value="Onsite">Di Lokasi</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium">Location</label>
+            <label className="mb-2 block text-sm font-medium">Lokasi</label>
             <AppInput value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Jakarta, Indonesia" />
           </div>
         </div>
       </div>
 
       <div className="space-y-5">
-        <h3 className="text-sm font-semibold text-heading uppercase tracking-wider">Requirements</h3>
+        <h3 className="text-sm font-semibold text-heading uppercase tracking-wider">Persyaratan</h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="mb-2 block text-sm font-medium">Minimum Education</label>
+            <label className="mb-2 block text-sm font-medium">Pendidikan Minimal</label>
             <Select value={minEducation} onValueChange={(value) => setMinEducation(value ?? "")}>
-              <SelectTrigger><SelectValue placeholder="Select education" /></SelectTrigger>
+              <SelectTrigger><SelectValue placeholder="Pilih pendidikan" /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="SMA/SMK">SMA/SMK</SelectItem>
                 <SelectItem value="Diploma (D3)">Diploma (D3)</SelectItem>
-                <SelectItem value="Bachelor's Degree (S1)">Bachelor's Degree (S1)</SelectItem>
-                <SelectItem value="Master's Degree (S2)">Master's Degree (S2)</SelectItem>
+                <SelectItem value="Bachelor's Degree (S1)">Sarjana (S1)</SelectItem>
+                <SelectItem value="Master's Degree (S2)">Magister (S2)</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium">Experience Requirement</label>
+            <label className="mb-2 block text-sm font-medium">Pengalaman Kerja</label>
             <Select value={experienceLevel} onValueChange={(value) => setExperienceLevel(value ?? "")}>
-              <SelectTrigger><SelectValue placeholder="Select experience" /></SelectTrigger>
+              <SelectTrigger><SelectValue placeholder="Pilih pengalaman" /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="Fresh Graduate">Fresh Graduate</SelectItem>
-                <SelectItem value="Less than 1 Year">Less than 1 Year</SelectItem>
-                <SelectItem value="1-3 Years">1–3 Years</SelectItem>
-                <SelectItem value="3-5 Years">3–5 Years</SelectItem>
-                <SelectItem value="5+ Years">5+ Years</SelectItem>
+                <SelectItem value="Less than 1 Year">Kurang dari 1 Tahun</SelectItem>
+                <SelectItem value="1-3 Years">1–3 Tahun</SelectItem>
+                <SelectItem value="3-5 Years">3–5 Tahun</SelectItem>
+                <SelectItem value="5+ Years">5+ Tahun</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
 
         <div>
-          <h3 className="font-medium">Required Skills</h3>
-          <p className="text-sm text-secondary-text">Essential skills candidates must have.</p>
+          <h3 className="font-medium">Keahlian Wajib</h3>
+          <p className="text-sm text-secondary-text">Keahlian penting yang harus dimiliki kandidat.</p>
           <div className="flex gap-2 mt-2">
-            <AppInput value={requiredSkillInput} onChange={(e) => setRequiredSkillInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleAddRequiredSkill(); } }} placeholder="Add required skill..." />
-            <AppButton type="button" onClick={handleAddRequiredSkill}>Add</AppButton>
+            <AppInput value={requiredSkillInput} onChange={(e) => setRequiredSkillInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleAddRequiredSkill(); } }} placeholder="Tambah keahlian wajib..." />
+            <AppButton type="button" onClick={handleAddRequiredSkill}>Tambah</AppButton>
           </div>
           <div className="flex flex-wrap gap-2 mt-2">
             {requiredSkills.map((item) => (
@@ -234,11 +234,11 @@ export default function InternshipForm({
         </div>
 
         <div>
-          <h3 className="font-medium">Preferred Skills</h3>
-          <p className="text-sm text-secondary-text">Nice-to-have skills (optional).</p>
+          <h3 className="font-medium">Keahlian Tambahan</h3>
+          <p className="text-sm text-secondary-text">Keahlian yang lebih disukai (opsional).</p>
           <div className="flex gap-2 mt-2">
-            <AppInput value={preferredSkillInput} onChange={(e) => setPreferredSkillInput(e.target.value)} placeholder="Add preferred skill..." />
-            <AppButton type="button" onClick={handleAddPreferredSkill}>Add</AppButton>
+            <AppInput value={preferredSkillInput} onChange={(e) => setPreferredSkillInput(e.target.value)} placeholder="Tambah keahlian tambahan..." />
+            <AppButton type="button" onClick={handleAddPreferredSkill}>Tambah</AppButton>
           </div>
           <div className="flex flex-wrap gap-2 mt-2">
             {preferredSkills.map((item) => (
@@ -255,57 +255,57 @@ export default function InternshipForm({
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">Language Requirement (optional)</label>
-          <AppInput value={languageRequirement} onChange={(e) => setLanguageRequirement(e.target.value)} placeholder="e.g. English, Bahasa Indonesia" />
+          <label className="mb-2 block text-sm font-medium">Persyaratan Bahasa (opsional)</label>
+          <AppInput value={languageRequirement} onChange={(e) => setLanguageRequirement(e.target.value)} placeholder="Misal: Inggris, Bahasa Indonesia" />
         </div>
       </div>
 
       <div className="space-y-5">
-        <h3 className="text-sm font-semibold text-heading uppercase tracking-wider">Job Details</h3>
+        <h3 className="text-sm font-semibold text-heading uppercase tracking-wider">Detail Pekerjaan</h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
-            <label className="mb-2 block text-sm font-medium">Salary Min</label>
-            <AppInput value={salaryMin} onChange={(e) => setSalaryMin(e.target.value)} placeholder="e.g. $500" />
+            <label className="mb-2 block text-sm font-medium">Gaji Minimal</label>
+            <AppInput value={salaryMin} onChange={(e) => setSalaryMin(e.target.value)} placeholder="Misal: Rp2.000.000" />
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium">Salary Max</label>
-            <AppInput value={salaryMax} onChange={(e) => setSalaryMax(e.target.value)} placeholder="e.g. $1,000" />
+            <label className="mb-2 block text-sm font-medium">Gaji Maksimal</label>
+            <AppInput value={salaryMax} onChange={(e) => setSalaryMax(e.target.value)} placeholder="Misal: Rp5.000.000" />
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium">Or Set Display Salary</label>
-            <AppInput value={salary} onChange={(e) => setSalary(e.target.value)} placeholder="e.g. $1,000/month" />
+            <label className="mb-2 block text-sm font-medium">Atur Gaji Tampilan</label>
+            <AppInput value={salary} onChange={(e) => setSalary(e.target.value)} placeholder="Misal: Rp3.000.000/bulan" />
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
-            <label className="mb-2 block text-sm font-medium">Number of Open Positions</label>
-            <AppInput type="number" min="1" value={numberOfOpenings} onChange={(e) => setNumberOfOpenings(e.target.value)} placeholder="e.g. 2" />
+            <label className="mb-2 block text-sm font-medium">Jumlah Posisi Tersedia</label>
+            <AppInput type="number" min="1" value={numberOfOpenings} onChange={(e) => setNumberOfOpenings(e.target.value)} placeholder="Misal: 2" />
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium">Application Deadline</label>
+            <label className="mb-2 block text-sm font-medium">Batas Waktu Pendaftaran</label>
             <AppInput type="date" value={deadline} onChange={(e) => setDeadline(e.target.value)} />
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium">Working Hours (optional)</label>
-            <AppInput value={workingHours} onChange={(e) => setWorkingHours(e.target.value)} placeholder="e.g. 40 hrs/week, 9AM-5PM" />
+            <label className="mb-2 block text-sm font-medium">Jam Kerja (opsional)</label>
+            <AppInput value={workingHours} onChange={(e) => setWorkingHours(e.target.value)} placeholder="Misal: 40 jam/minggu, 9AM-5PM" />
           </div>
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">Job Description</label>
-          <AppTextarea className="min-h-[120px]" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe the internship role..." />
+          <label className="mb-2 block text-sm font-medium">Deskripsi Pekerjaan</label>
+          <AppTextarea className="min-h-[120px]" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Jelaskan peran magang..." />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">Job Responsibilities</label>
-          <AppTextarea className="min-h-[120px]" value={responsibilities} onChange={(e) => setResponsibilities(e.target.value)} placeholder="List the key responsibilities..." />
+          <label className="mb-2 block text-sm font-medium">Tanggung Jawab</label>
+          <AppTextarea className="min-h-[120px]" value={responsibilities} onChange={(e) => setResponsibilities(e.target.value)} placeholder="Daftar tanggung jawab utama..." />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium">Benefits & Perks</label>
-          <AppTextarea className="min-h-[100px]" value={benefits} onChange={(e) => setBenefits(e.target.value)} placeholder="e.g. Health insurance, flexible hours, meal allowance..." />
+          <label className="mb-2 block text-sm font-medium">Manfaat & Tunjangan</label>
+          <AppTextarea className="min-h-[100px]" value={benefits} onChange={(e) => setBenefits(e.target.value)} placeholder="Misal: Asuransi kesehatan, jam fleksibel, tunjangan makan..." />
         </div>
       </div>
 
@@ -318,19 +318,19 @@ export default function InternshipForm({
               onClick={() => setStatus("draft")}
               className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "draft" ? "bg-warning/10 text-warning font-medium" : "bg-section text-secondary-text hover:bg-section"}`}
             >
-              Draft
+              Draf
             </button>
             <button
               type="button"
               onClick={() => setStatus("published")}
               className={`rounded-lg px-3 py-1.5 text-sm transition-all ${status === "published" ? "bg-success/10 text-success font-medium" : "bg-section text-secondary-text hover:bg-section"}`}
             >
-              Published
+              Publikasikan
             </button>
           </div>
         </div>
         <AppButton type="submit" disabled={loading} className="min-w-[200px]">
-          {loading ? "Saving..." : defaultValues ? "Update Internship" : status === "draft" ? "Save as Draft" : "Publish Internship"}
+          {loading ? "Menyimpan..." : defaultValues ? "Perbarui Magang" : status === "draft" ? "Simpan sebagai Draf" : "Publikasikan Magang"}
         </AppButton>
       </div>
     </form>

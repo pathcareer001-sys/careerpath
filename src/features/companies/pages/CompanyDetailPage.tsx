@@ -21,7 +21,7 @@ export default function CompanyDetailPage() {
   if (isLoading) return <LoadingState />;
 
   if (!company) {
-    return <EmptyState title="Company not found" description="The company may have been removed." />;
+    return <EmptyState title="Perusahaan tidak ditemukan" description="Perusahaan mungkin telah dihapus." />;
   }
 
   return (
@@ -67,12 +67,12 @@ export default function CompanyDetailPage() {
           <div className="w-px h-10 bg-border-light" />
           <div className="text-center flex-1 min-w-[80px]">
             <p className="text-[22px] font-medium">{company.reviewCount || 0}</p>
-            <p className="text-xs text-secondary-text mt-1">Reviews</p>
+            <p className="text-xs text-secondary-text mt-1">Ulasan</p>
           </div>
           <div className="w-px h-10 bg-border-light" />
           <div className="text-center flex-1 min-w-[80px]">
             <p className="text-[22px] font-medium">{internships?.length || 0}</p>
-            <p className="text-xs text-secondary-text mt-1">Open roles</p>
+            <p className="text-xs text-secondary-text mt-1">Posisi terbuka</p>
           </div>
         </div>
       </AppCard>
@@ -80,14 +80,14 @@ export default function CompanyDetailPage() {
       <div className="grid gap-6 mt-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-6 animate-fade-in-up animate-delay-100">
           <AppCard>
-            <h2 className="text-base font-medium text-heading mb-3">About</h2>
+            <h2 className="text-base font-medium text-heading mb-3">Tentang</h2>
             <p className="text-sm text-body leading-relaxed">{company.description}</p>
           </AppCard>
 
           <AppCard>
-            <h2 className="text-base font-medium text-heading mb-4">Open Internships</h2>
+            <h2 className="text-base font-medium text-heading mb-4">Magang Terbuka</h2>
             {internships?.length === 0 ? (
-              <EmptyState title="No open internships" description="This company has no active positions." />
+              <EmptyState title="Tidak ada magang terbuka" description="Perusahaan ini tidak memiliki posisi aktif." />
             ) : (
               <div className="grid gap-4 sm:grid-cols-2">
                 {internships?.slice(0, 4).map((internship) => (
@@ -99,10 +99,10 @@ export default function CompanyDetailPage() {
 
           <AppCard>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-medium text-heading">Reviews ({reviews.data?.length || 0})</h2>
+              <h2 className="text-base font-medium text-heading">Ulasan ({reviews.data?.length || 0})</h2>
               <div className="flex items-center gap-3">
                 <Link to={`/companies/${id}/reviews`} className="text-xs font-medium text-primary hover:text-primary transition-colors">
-                  View all &rarr;
+                  Lihat semua &rarr;
                 </Link>
                 <div className="flex items-center gap-1 text-sm text-secondary-text">
                   <Star size="14" className="fill-warning text-warning" />
@@ -111,7 +111,7 @@ export default function CompanyDetailPage() {
               </div>
             </div>
             {reviews.data?.length === 0 ? (
-              <EmptyState title="No reviews yet" description="Be the first to review this company." />
+              <EmptyState title="Belum ada ulasan" description="Jadilah yang pertama memberi ulasan perusahaan ini." />
             ) : (
               <div className="space-y-3">
                 {reviews.data?.map((review) => <ReviewCard key={review.id} review={review} />)}
@@ -122,8 +122,8 @@ export default function CompanyDetailPage() {
 
         <div className="space-y-4 animate-fade-in-up animate-delay-200">
           <AppCard>
-            <h3 className="text-sm font-medium text-heading mb-3">Write a Review</h3>
-            <p className="text-xs text-secondary-text mb-4">Share your experience to help other students.</p>
+            <h3 className="text-sm font-medium text-heading mb-3">Tulis Ulasan</h3>
+            <p className="text-xs text-secondary-text mb-4">Bagikan pengalaman Anda untuk membantu mahasiswa lain.</p>
             <ReviewForm companyId={company.id} />
           </AppCard>
         </div>

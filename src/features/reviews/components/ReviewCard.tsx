@@ -29,7 +29,7 @@ export default function ReviewCard({ review }: { review: Review }) {
             <div>
               <h4 className="font-medium">{review.userName}</h4>
 
-              <p className="text-xs text-secondary-text">Internship Student</p>
+              <p className="text-xs text-secondary-text">Mahasiswa Magang</p>
             </div>
           </div>
 

@@ -14,10 +14,10 @@ export default function FinishSignInPage() {
   const calledRef = useRef(false);
   const [error, setError] = useState<string | null>(() => {
     if (!isSignInWithEmailLink(auth, window.location.href)) {
-      return "Invalid or expired sign-in link.";
+      return "Tautan masuk tidak valid atau kedaluwarsa.";
     }
     if (!localStorage.getItem("emailForSignIn")) {
-      return "Email not found. Please request a new sign-in link.";
+      return "Email tidak ditemukan. Silakan minta tautan masuk baru.";
     }
     return null;
   });
@@ -39,8 +39,8 @@ export default function FinishSignInPage() {
         navigate("/dashboard", { replace: true });
       })
       .catch(() => {
-        setError("Failed to complete sign-in. Please request a new link.");
-        toast.error("Sign-in failed");
+        setError("Gagal menyelesaikan masuk. Silakan minta tautan baru.");
+        toast.error("Masuk gagal");
       });
   }, [navigate]);
 
@@ -54,7 +54,7 @@ export default function FinishSignInPage() {
             onClick={() => navigate("/login")}
             className="text-primary text-sm font-medium hover:text-primary transition-colors"
           >
-            Back to sign in
+            Kembali ke masuk
           </button>
         </div>
       </div>

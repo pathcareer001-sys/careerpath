@@ -54,7 +54,7 @@ export default function InternshipListPage() {
   if (isLoading) {
     return (
       <PageContainer>
-        <PageHeader title="Internships" description="Browse available opportunities." />
+        <PageHeader title="Magang" description="Jelajahi peluang yang tersedia." />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => <CardSkeleton key={i} />)}
         </div>
@@ -64,20 +64,20 @@ export default function InternshipListPage() {
 
   return (
     <PageContainer>
-      <PageHeader title="Internships" description="Browse available opportunities." />
+      <PageHeader title="Magang" description="Jelajahi peluang yang tersedia." />
 
       <AppCard>
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex-1 min-w-[200px]">
-            <AppInput value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search internships..." />
+            <AppInput value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Cari magang..." />
           </div>
           <select
             value={sort}
             onChange={(e) => { setSort(e.target.value as SortKey); setPage(1); }}
             className="h-9 rounded-lg border border-border bg-background px-3 text-sm text-heading focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
           >
-            <option value="newest">Newest</option>
-            <option value="deadline">Deadline</option>
+            <option value="newest">Terbaru</option>
+            <option value="deadline">Batas Pendaftaran</option>
             <option value="title">A-Z</option>
           </select>
           <select
@@ -85,7 +85,7 @@ export default function InternshipListPage() {
             onChange={(e) => { setLocation(e.target.value); setPage(1); }}
             className="h-9 rounded-lg border border-border bg-background px-3 text-sm text-heading focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
           >
-            <option value="">All locations</option>
+            <option value="">Semua lokasi</option>
             {locations.map((loc) => (
               <option key={loc} value={loc}>{loc}</option>
             ))}
@@ -95,25 +95,25 @@ export default function InternshipListPage() {
             onChange={(e) => { setType(e.target.value); setPage(1); }}
             className="h-9 rounded-lg border border-border bg-background px-3 text-sm text-heading focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors"
           >
-            <option value="">All types</option>
-            <option value="Remote">Remote</option>
+            <option value="">Semua tipe</option>
+            <option value="Remote">Jarak Jauh</option>
             <option value="Hybrid">Hybrid</option>
-            <option value="Onsite">Onsite</option>
+            <option value="Onsite">Di Lokasi</option>
           </select>
           <AppInput
             value={salaryFilter}
             onChange={(e) => { setSalaryFilter(e.target.value); setPage(1); }}
-            placeholder="Salary keyword..."
+            placeholder="Kata kunci gaji..."
             className="w-36"
           />
         </div>
       </AppCard>
 
       {paged.length === 0 ? (
-        <EmptyState title="No internships found" description="Try different keywords or filters." />
+        <EmptyState title="Magang tidak ditemukan" description="Coba kata kunci atau filter lain." />
       ) : (
         <>
-          <p className="text-xs text-secondary-text">{internships.length} internships found</p>
+          <p className="text-xs text-secondary-text">{internships.length} magang ditemukan</p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {paged.map((internship) => (
               <InternshipCard key={internship.id} internship={internship} />

@@ -12,12 +12,12 @@ export default function ErrorPage() {
         <div className="inline-flex items-center justify-center h-20 w-20 rounded-2xl bg-gradient-to-br from-primary to-secondary text-white text-3xl font-medium shadow-sm mb-6">
           404
         </div>
-        <h1 className="text-3xl font-medium text-heading">Page Not Found</h1>
+        <h1 className="text-3xl font-medium text-heading">Halaman Tidak Ditemukan</h1>
         <p className="mt-2 text-sm text-secondary-text">
-          The page you are looking for does not exist or has been moved.
+          Halaman yang Anda cari tidak ada atau telah dipindahkan.
         </p>
         <Link to="/" className="mt-6 inline-block">
-          <AppButton>Back to Home</AppButton>
+          <AppButton>Kembali ke Beranda</AppButton>
         </Link>
       </div>
     </div>

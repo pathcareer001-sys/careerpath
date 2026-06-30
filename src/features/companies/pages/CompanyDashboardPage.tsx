@@ -33,7 +33,7 @@ export default function CompanyDashboardPage() {
     : 0;
 
   if (!dashboard) {
-    return <EmptyState title="No Dashboard Data" description="Dashboard data unavailable" />;
+    return <EmptyState title="Tidak Ada Data Dashboard" description="Data dashboard tidak tersedia" />;
   }
 
   return (
@@ -44,12 +44,12 @@ export default function CompanyDashboardPage() {
           <div className="absolute -bottom-10 -left-10 w-24 h-24 md:w-48 md:h-48 rounded-full bg-section blur-3xl" />
           <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:justify-between">
             <div>
-              <p className="text-body text-sm">Welcome Back</p>
-              <h1 className="mt-2 text-3xl font-medium">{company?.name || "Your Company"}</h1>
-              <p className="mt-1 text-body">{company?.industry || "Company Profile"}</p>
+              <p className="text-body text-sm">Selamat Datang Kembali</p>
+              <h1 className="mt-2 text-3xl font-medium">{company?.name || "Perusahaan Anda"}</h1>
+              <p className="mt-1 text-body">{company?.industry || "Profil Perusahaan"}</p>
               {company?.verified && (
                 <span className="inline-flex mt-3 rounded-full bg-success/20 px-3 py-1 text-xs text-success border border-success/30">
-                  ✓ Verified Company
+                  ✓ Perusahaan Terverifikasi
                 </span>
               )}
               {company?.location && (
@@ -67,13 +67,13 @@ export default function CompanyDashboardPage() {
               <div className="mt-4 flex items-center gap-2">
                 <Star size="16" className="fill-warning text-warning" />
                 <span className="text-lg font-medium">{company?.avgRating || 0}</span>
-                <span className="text-secondary-text text-sm">({company?.reviewCount || 0} reviews)</span>
+                <span className="text-secondary-text text-sm">({company?.reviewCount || 0} ulasan)</span>
               </div>
             </div>
             <div className="text-left lg:text-right">
-              <p className="text-body text-sm">Total Applicants</p>
+              <p className="text-body text-sm">Total Pelamar</p>
               <h2 className="text-4xl lg:text-5xl font-medium">{dashboard.totalApplicants || 0}</h2>
-              <p className="mt-1 text-body text-sm">Acceptance Rate: {acceptanceRate}%</p>
+              <p className="mt-1 text-body text-sm">Tingkat Penerimaan: {acceptanceRate}%</p>
             </div>
           </div>
         </div>
@@ -83,40 +83,40 @@ export default function CompanyDashboardPage() {
         <Link to="/company/internships">
           <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
             <Briefcase className="text-primary mb-2" size="20" />
-            <h3 className="font-medium">Manage Internships</h3>
-            <p className="text-sm text-secondary-text">Create and manage internship postings</p>
+            <h3 className="font-medium">Kelola Magang</h3>
+            <p className="text-sm text-secondary-text">Buat dan kelola postingan magang</p>
           </AppCard>
         </Link>
         <Link to="/company/internships">
           <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
             <Users className="text-primary mb-2" size="20" />
-            <h3 className="font-medium">View Applicants</h3>
-            <p className="text-sm text-secondary-text">Review student applications</p>
+            <h3 className="font-medium">Lihat Pelamar</h3>
+            <p className="text-sm text-secondary-text">Tinjau lamaran mahasiswa</p>
           </AppCard>
         </Link>
         <Link to="/company/profile">
           <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
             <Building2 className="text-primary mb-2" size="20" />
-            <h3 className="font-medium">Company Profile</h3>
-            <p className="text-sm text-secondary-text">Update company information</p>
+            <h3 className="font-medium">Profil Perusahaan</h3>
+            <p className="text-sm text-secondary-text">Perbarui informasi perusahaan</p>
           </AppCard>
         </Link>
       </div>
 
       <div className="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-5 animate-fade-in-up animate-delay-200">
-        <StatCard title="Internships" value={dashboard.totalInternships || 0} gradient="blue" />
-        <StatCard title="Applicants" value={dashboard.totalApplicants || 0} gradient="purple" />
-        <StatCard title="Pending" value={dashboard.pendingApplicants || 0} gradient="amber" />
-        <StatCard title="Accepted" value={dashboard.acceptedApplicants || 0} gradient="emerald" />
-        <StatCard title="Rejected" value={dashboard.rejectedApplicants || 0} gradient="rose" />
+        <StatCard title="Magang" value={dashboard.totalInternships || 0} gradient="blue" />
+        <StatCard title="Pelamar" value={dashboard.totalApplicants || 0} gradient="purple" />
+        <StatCard title="Menunggu" value={dashboard.pendingApplicants || 0} gradient="amber" />
+        <StatCard title="Diterima" value={dashboard.acceptedApplicants || 0} gradient="emerald" />
+        <StatCard title="Ditolak" value={dashboard.rejectedApplicants || 0} gradient="rose" />
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2 animate-fade-in-up animate-delay-300">
         <AppCard>
-          <h2 className="text-base font-medium mb-1">Recent Applicants</h2>
-          <p className="text-sm text-secondary-text mb-4">Latest internship applications</p>
+          <h2 className="text-base font-medium mb-1">Pelamar Terbaru</h2>
+          <p className="text-sm text-secondary-text mb-4">Lamaran magang terbaru</p>
           {dashboard.applications?.length === 0 ? (
-            <EmptyState title="No Applicants Yet" description="Applications will appear here" />
+            <EmptyState title="Belum Ada Pelamar" description="Lamaran akan muncul di sini" />
           ) : (
             <div className="space-y-3">
               {dashboard.applications?.slice(0, 5).map((application) => (
@@ -144,10 +144,10 @@ export default function CompanyDashboardPage() {
         </AppCard>
 
         <AppCard>
-          <h2 className="text-base font-medium mb-1">Active Internships</h2>
-          <p className="text-sm text-secondary-text mb-4">Your latest internship postings</p>
+          <h2 className="text-base font-medium mb-1">Magang Aktif</h2>
+          <p className="text-sm text-secondary-text mb-4">Postingan magang terbaru Anda</p>
           {dashboard.internships?.length === 0 ? (
-            <EmptyState title="No Internships" description="Create your first internship" />
+            <EmptyState title="Tidak Ada Magang" description="Buat magang pertama Anda" />
           ) : (
             <div className="space-y-3">
               {dashboard.internships?.slice(0, 5).map((internship) => (
@@ -157,7 +157,7 @@ export default function CompanyDashboardPage() {
                     <p className="text-xs text-secondary-text">{internship.location}</p>
                   </div>
                   <span className="rounded-full bg-gradient-to-r from-success/10 to-accent px-3 py-1 text-xs font-medium text-success border border-success/30">
-                    Active
+                    Aktif
                   </span>
                 </div>
               ))}
@@ -168,20 +168,20 @@ export default function CompanyDashboardPage() {
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2 animate-fade-in-up animate-delay-300">
         <AppCard>
-          <h2 className="text-base font-medium mb-1">Application Analytics</h2>
-          <p className="text-sm text-secondary-text mb-4">Overview of applicant statuses</p>
+          <h2 className="text-base font-medium mb-1">Analitik Lamaran</h2>
+          <p className="text-sm text-secondary-text mb-4">Gambaran status pelamar</p>
           {dashboard.totalApplicants === 0 ? (
-            <EmptyState title="No Analytics Yet" description="Application statistics will appear here once students apply." />
+            <EmptyState title="Belum Ada Analitik" description="Statistik lamaran akan muncul setelah mahasiswa mendaftar." />
           ) : (
             <CompanyAnalyticsChart pending={dashboard.pendingApplicants} accepted={dashboard.acceptedApplicants} rejected={dashboard.rejectedApplicants || 0} />
           )}
         </AppCard>
 
         <AppCard>
-          <h2 className="text-base font-medium mb-1">Top Performing Internships</h2>
-          <p className="text-sm text-secondary-text mb-4">Ranked by number of applicants</p>
+          <h2 className="text-base font-medium mb-1">Magang Terpopuler</h2>
+          <p className="text-sm text-secondary-text mb-4">Diurutkan berdasarkan jumlah pelamar</p>
           {dashboard.internshipPerformance?.length === 0 ? (
-            <EmptyState title="No Performance Data" description="Internship statistics will appear here." />
+            <EmptyState title="Tidak Ada Data" description="Statistik magang akan muncul di sini." />
           ) : (
             <div className="space-y-3">
               {dashboard.internshipPerformance?.slice(0, 5).map((internship, index) => (
@@ -197,7 +197,7 @@ export default function CompanyDashboardPage() {
                   </div>
                   <div className="text-right">
                     <p className="text-xl font-medium text-primary">{internship.applicants}</p>
-                    <p className="text-xs text-secondary-text">Applicants</p>
+                    <p className="text-xs text-secondary-text">Pelamar</p>
                   </div>
                 </div>
               ))}
@@ -208,10 +208,10 @@ export default function CompanyDashboardPage() {
 
       <div className="mt-6 animate-fade-in-up animate-delay-300">
         <AppCard>
-          <h2 className="text-base font-medium mb-1">Recent Reviews</h2>
-          <p className="text-sm text-secondary-text mb-4">Latest student feedback</p>
+          <h2 className="text-base font-medium mb-1">Ulasan Terbaru</h2>
+          <p className="text-sm text-secondary-text mb-4">Masukan mahasiswa terbaru</p>
           {dashboard.reviews?.length === 0 ? (
-            <EmptyState title="No Reviews Yet" description="Reviews from students will appear here." />
+            <EmptyState title="Belum Ada Ulasan" description="Ulasan dari mahasiswa akan muncul di sini." />
           ) : (
             <div className="space-y-4">
               {dashboard.reviews?.slice(0, 3).map((review) => (

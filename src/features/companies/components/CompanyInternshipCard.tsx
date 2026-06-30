@@ -50,7 +50,7 @@ export default function CompanyInternshipCard({ internship, onDelete }: Props) {
             <div className="flex items-center gap-2">
               <h3 className="text-base font-medium text-heading">{internship.title}</h3>
               {internship.status === "draft" && (
-                <span className="rounded bg-warning/10 px-1.5 py-0.5 text-[10px] font-medium text-warning">Draft</span>
+                <span className="rounded bg-warning/10 px-1.5 py-0.5 text-[10px] font-medium text-warning">Draf</span>
               )}
             </div>
             <p className="text-sm text-secondary-text mt-0.5">{internship.companyName}</p>
@@ -70,10 +70,10 @@ export default function CompanyInternshipCard({ internship, onDelete }: Props) {
             </span>
           )}
           <span className="inline-flex items-center gap-1.5">
-            <Users size="14" className="text-muted" /> {applications?.length || 0} Applicants
+            <Users size="14" className="text-muted" /> {applications?.length || 0} Pelamar
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <Calendar size="14" className="text-muted" /> {internship.deadline || "No deadline"}
+            <Calendar size="14" className="text-muted" /> {internship.deadline || "Tidak ada batas waktu"}
           </span>
         </div>
 
@@ -85,7 +85,7 @@ export default function CompanyInternshipCard({ internship, onDelete }: Props) {
 
         <div className="flex flex-wrap gap-2 pt-2 border-t border-divider">
           <Link to={`/company/applicants/${internship.id}`}>
-            <AppButton type="button">View Applicants</AppButton>
+            <AppButton type="button">Lihat Pelamar</AppButton>
           </Link>
           <EditInternshipDialog internship={internship} />
           <AppButton type="button" variant="danger" onClick={() => onDelete(internship.id)}>

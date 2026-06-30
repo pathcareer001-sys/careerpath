@@ -30,19 +30,19 @@ export default function CompanyManagePage() {
   }, [companies, search]);
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete company?")) return;
+    if (!confirm("Hapus perusahaan?")) return;
     await deleteCompany.mutateAsync(id);
-    toast.success("Company deleted");
+    toast.success("Perusahaan dihapus");
   };
 
   const handleVerify = async (id: string, verified: boolean) => {
     await updateCompany.mutateAsync({ id, data: { verified: !verified } });
-    toast.success(verified ? "Company unverified" : "Company verified");
+    toast.success(verified ? "Perusahaan tidak terverifikasi" : "Perusahaan terverifikasi");
   };
 
   return (
     <PageContainer>
-      <PageHeader title="Company Management" description="Manage company data" />
+      <PageHeader title="Manajemen Perusahaan" description="Kelola data perusahaan" />
 
       <EditCompanyDialog
         company={editingCompany}
@@ -58,18 +58,18 @@ export default function CompanyManagePage() {
       <div className="space-y-6 animate-fade-in-up">
         <AppCard>
           <div className="flex gap-3">
-            <AppButton onClick={() => setShowCreate(true)}>Create Company</AppButton>
+            <AppButton onClick={() => setShowCreate(true)}>Buat Perusahaan</AppButton>
           </div>
         </AppCard>
 
         <SearchBar
           value={search}
           onChange={setSearch}
-          placeholder="Search companies..."
+          placeholder="Cari perusahaan..."
         />
 
         {filteredCompanies.length === 0 ? (
-          <EmptyState title="No Companies" description="Create your first company" />
+          <EmptyState title="Tidak Ada Perusahaan" description="Buat perusahaan pertama Anda" />
         ) : (
           <div className="space-y-4">
             {filteredCompanies.map((company) => (

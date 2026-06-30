@@ -23,16 +23,16 @@ export default function BookmarkButton({ companyId }: Props) {
         companyId,
       });
 
-      toast.success("Company bookmarked");
+      toast.success("Perusahaan disimpan");
     } catch {
-      toast.error("Already bookmarked");
+      toast.error("Sudah di-bookmark");
     }
   };
 
   return (
     <AppButton variant="secondary" onClick={handleBookmark}>
       <Bookmark size={16} />
-      Save Company
+      Simpan Perusahaan
     </AppButton>
   );
 }

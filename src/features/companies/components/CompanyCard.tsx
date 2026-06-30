@@ -15,7 +15,7 @@ export default function CompanyCard({ company }: { company: Company }) {
           )}
         </div>
         <h3 className="mt-3 text-sm font-medium text-heading group-hover:text-primary transition-colors duration-200">{company.name}</h3>
-        <p className="text-[12px] text-muted mt-0.5">{company.industry || "Company"}</p>
+        <p className="text-[12px] text-muted mt-0.5">{company.industry || "Perusahaan"}</p>
         <div className="flex items-center justify-center gap-0.5 mt-2">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
@@ -26,7 +26,7 @@ export default function CompanyCard({ company }: { company: Company }) {
           ))}
         </div>
         <div className="mt-3 inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-[11px] font-medium text-primary transition-all duration-200 group-hover:bg-section">
-          {company.reviewCount || 0} open positions
+          {company.reviewCount || 0} posisi terbuka
         </div>
       </div>
     </Link>

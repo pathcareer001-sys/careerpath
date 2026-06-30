@@ -44,26 +44,26 @@ export default function ReviewModerationPage() {
 
   const handleApprove = async (id: string) => {
     await updateModeration.mutateAsync({ id, moderationStatus: "approved" });
-    toast.success("Review approved");
+    toast.success("Ulasan disetujui");
   };
 
   const handleReject = async (id: string) => {
     await updateModeration.mutateAsync({ id, moderationStatus: "rejected" });
-    toast.success("Review rejected");
+    toast.success("Ulasan ditolak");
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete this review? This action cannot be undone.")) return;
+    if (!confirm("Hapus ulasan ini? Tindakan ini tidak dapat dibatalkan.")) return;
     await deleteReview.mutateAsync(id);
-    toast.success("Review deleted");
+    toast.success("Ulasan dihapus");
   };
 
   return (
     <PageContainer>
-      <PageHeader title="Review Moderation" description="Moderate company reviews submitted by students" />
+      <PageHeader title="Moderasi Ulasan" description="Moderasi ulasan perusahaan yang diajukan mahasiswa" />
 
       <div className="mt-6 space-y-6 animate-fade-in-up">
-        <SearchBar value={search} onChange={setSearch} placeholder="Search reviews by user or content..." />
+        <SearchBar value={search} onChange={setSearch} placeholder="Cari ulasan berdasarkan pengguna atau konten..." />
 
         <Tabs value={tab} onValueChange={setTab}>
           <TabsList className="bg-section p-0.5 rounded-lg">
@@ -72,7 +72,7 @@ export default function ReviewModerationPage() {
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <Clock size="15" />
-              Pending
+              Tertunda
               {pendingCount > 0 && (
                 <span className="ml-0.5 rounded-full bg-warning/10 px-1.5 py-0.5 text-[11px] font-medium text-warning">
                   {pendingCount}
@@ -84,7 +84,7 @@ export default function ReviewModerationPage() {
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <Check size="15" />
-              Approved
+              Disetujui
               {approvedCount > 0 && (
                 <span className="ml-0.5 rounded-full bg-success/10 px-1.5 py-0.5 text-[11px] font-medium text-success">
                   {approvedCount}
@@ -96,7 +96,7 @@ export default function ReviewModerationPage() {
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <X size="15" />
-              Rejected
+              Ditolak
               {rejectedCount > 0 && (
                 <span className="ml-0.5 rounded-full bg-error/10 px-1.5 py-0.5 text-[11px] font-medium text-error">
                   {rejectedCount}
@@ -108,7 +108,7 @@ export default function ReviewModerationPage() {
           {["pending", "approved", "rejected"].map((t) => (
             <TabsContent key={t} value={t} className="mt-6">
               {filtered.length === 0 ? (
-                <EmptyState title={`No ${t} reviews`} description={`No reviews match your search in ${t} tab.`} />
+                <EmptyState title={`Tidak ada ulasan ${t === "pending" ? "tertunda" : t === "approved" ? "disetujui" : "ditolak"}`} description={`Tidak ada ulasan yang cocok dengan pencarian Anda.`} />
               ) : (
                 <div className="space-y-4">
                   {filtered.map((review) => (
@@ -125,7 +125,7 @@ export default function ReviewModerationPage() {
                             )}
                           </div>
                           <div>
-                            <h3 className="font-medium text-heading">{review.userName || "Anonymous"}</h3>
+                            <h3 className="font-medium text-heading">{review.userName || "Anonim"}</h3>
                             <div className="flex items-center gap-1 mt-0.5">
                               {[1, 2, 3, 4, 5].map((star) => (
                                 <Star key={star} size="12" className={star <= review.rating ? "fill-warning text-warning" : "text-muted"} />
@@ -143,7 +143,7 @@ export default function ReviewModerationPage() {
                                 onClick={() => handleApprove(review.id)}
                                 disabled={updateModeration.isPending}
                               >
-                                <Check size="14" /> Approve
+                                <Check size="14" /> Setujui
                               </AppButton>
                               <AppButton
                                 variant="secondary"
@@ -151,12 +151,12 @@ export default function ReviewModerationPage() {
                                 onClick={() => handleReject(review.id)}
                                 disabled={updateModeration.isPending}
                               >
-                                <X size="14" /> Reject
+                                <X size="14" /> Tolak
                               </AppButton>
                             </>
                           )}
                           <AppButton variant="danger" onClick={() => handleDelete(review.id)} disabled={deleteReview.isPending}>
-                            <Trash2 size="14" /> Delete
+                            <Trash2 size="14" /> Hapus
                           </AppButton>
                         </div>
                       </div>

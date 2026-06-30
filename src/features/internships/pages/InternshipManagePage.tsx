@@ -29,16 +29,16 @@ export default function InternshipManagePage() {
   }, [internships, search]);
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete internship?")) return;
+    if (!confirm("Hapus magang?")) return;
     await deleteInternship.mutateAsync(id);
-    toast.success("Internship deleted");
+    toast.success("Magang dihapus");
   };
 
   const handleEdit = async (data: InternshipFormData) => {
     if (!editingInternship) return;
     try {
       await updateInternship.mutateAsync({ id: editingInternship.id, data });
-      toast.success("Internship updated");
+      toast.success("Magang diperbarui");
       setEditingInternship(null);
     } catch (error: unknown) {
       console.error(error);
@@ -54,7 +54,7 @@ export default function InternshipManagePage() {
 
   return (
     <PageContainer>
-      <PageHeader title="Internship Management" description="Manage internships" />
+      <PageHeader title="Manajemen Magang" description="Kelola magang" />
 
       <Dialog open={!!editingInternship} onOpenChange={(o) => { if (!o) setEditingInternship(null); }}>
         <DialogContent className="lg:max-w-4xl max-h-[90vh] overflow-y-auto p-6">
@@ -72,11 +72,11 @@ export default function InternshipManagePage() {
         <SearchBar
           value={search}
           onChange={setSearch}
-          placeholder="Search internships..."
+          placeholder="Cari magang..."
         />
 
         {filteredInternships.length === 0 ? (
-          <EmptyState title="No Internships" description="No internship data available" />
+          <EmptyState title="Tidak Ada Magang" description="Tidak ada data magang" />
         ) : (
           <div className="space-y-4">
             {filteredInternships.map((internship) => (

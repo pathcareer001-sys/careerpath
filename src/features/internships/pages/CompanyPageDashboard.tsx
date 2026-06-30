@@ -11,12 +11,12 @@ export default function CompanyDashboardPage() {
   return (
     <PageContainer>
       <PageHeader
-        title="Company Dashboard"
-        description="Manage internships and applicants"
+        title="Dashboard Perusahaan"
+        description="Kelola magang dan pelamar"
       />
       <div className="grid gap-6 md:grid-cols-2">
-        <StatCard title="Internships" value={internships?.length || 0} />
-        <StatCard title="Applicants" value={0} />
+        <StatCard title="Magang" value={internships?.length || 0} />
+        <StatCard title="Pelamar" value={0} />
       </div>
     </PageContainer>
   );

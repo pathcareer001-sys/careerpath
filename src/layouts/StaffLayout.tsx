@@ -8,9 +8,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const staffNav = [
   { to: "/staff", label: "Dashboard", icon: LayoutDashboard, end: true },
-  { to: "/staff/reviews", label: "Review Moderation", icon: Star },
-  { to: "/staff/verification", label: "Verify Companies", icon: Building2 },
-  { to: "/staff/reports", label: "Reports", icon: Flag },
+  { to: "/staff/reviews", label: "Moderasi Ulasan", icon: Star },
+  { to: "/staff/verification", label: "Verifikasi Perusahaan", icon: Building2 },
+  { to: "/staff/reports", label: "Laporan", icon: Flag },
 ];
 
 const sidebarContent = (handleLogout: () => void) => (
@@ -45,7 +45,7 @@ const sidebarContent = (handleLogout: () => void) => (
         className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-error/10 hover:text-error transition-colors"
       >
         <LogOut size="18" />
-        Logout
+        Keluar
       </button>
     </div>
   </div>

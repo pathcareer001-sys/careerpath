@@ -38,33 +38,33 @@ export const emailService = {
     return send({
       to,
       name: applicantName,
-      subject: `Application Received - ${internshipTitle} at ${companyName}`,
-      title: "Application Received",
-      message: `Your application for <strong>${internshipTitle}</strong> at <strong>${companyName}</strong> has been received. You can track your application status in your CareerPath dashboard.`,
+      subject: `Lamaran Diterima - ${internshipTitle} di ${companyName}`,
+      title: "Lamaran Diterima",
+      message: `Lamaran Anda untuk <strong>${internshipTitle}</strong> di <strong>${companyName}</strong> telah diterima. Anda dapat melacak status lamaran di dashboard CareerPath Anda.`,
     });
   },
 
   async sendStatusUpdate(to: string, applicantName: string, internshipTitle: string, status: string) {
     const statusLabels: Record<string, string> = {
-      reviewed: "Application Reviewed",
-      accepted: "Application Accepted",
-      rejected: "Application Rejected",
-      interview: "Interview Invitation",
+      reviewed: "Lamaran Ditinjau",
+      accepted: "Lamaran Diterima",
+      rejected: "Lamaran Ditolak",
+      interview: "Undangan Wawancara",
     };
 
     const statusMessages: Record<string, string> = {
-      reviewed: "Your application is now being reviewed by the company.",
-      accepted: "Congratulations! Your application has been accepted.",
-      rejected: "Unfortunately, your application was not selected for further processing.",
-      interview: "You have been invited for an interview. Please check your dashboard for details.",
+      reviewed: "Lamaran Anda sedang ditinjau oleh perusahaan.",
+      accepted: "Selamat! Lamaran Anda telah diterima.",
+      rejected: "Maaf, lamaran Anda tidak dipilih untuk diproses lebih lanjut.",
+      interview: "Anda telah diundang untuk wawancara. Silakan cek dashboard Anda untuk detailnya.",
     };
 
     return send({
       to,
       name: applicantName,
-      subject: `${statusLabels[status] || "Status Update"} - ${internshipTitle}`,
-      title: statusLabels[status] || "Status Update",
-      message: `Your application for <strong>${internshipTitle}</strong> has been updated. ${statusMessages[status] || "Your application status has changed."} Check your CareerPath dashboard for more details.`,
+      subject: `${statusLabels[status] || "Pembaruan Status"} - ${internshipTitle}`,
+      title: statusLabels[status] || "Pembaruan Status",
+      message: `Lamaran Anda untuk <strong>${internshipTitle}</strong> telah diperbarui. ${statusMessages[status] || "Status lamaran Anda telah berubah."} Cek dashboard CareerPath Anda untuk detail lebih lanjut.`,
     });
   },
 
@@ -72,9 +72,9 @@ export const emailService = {
     return send({
       to: "pathcareer001@gmail.com",
       name: "CareerPath Admin",
-      subject: `New Contact Message: ${subject}`,
-      title: "New Contact Message",
-      message: `You received a new message from ${name} (${email}). Subject: ${subject} - Message: ${message}`,
+      subject: `Pesan Kontak Baru: ${subject}`,
+      title: "Pesan Kontak Baru",
+      message: `Anda menerima pesan baru dari ${name} (${email}). Subjek: ${subject} - Pesan: ${message}`,
     });
   },
 
@@ -82,9 +82,9 @@ export const emailService = {
     return send({
       to,
       name: companyName,
-      subject: `Company ${verified ? "Verified" : "Unverified"} - ${companyName}`,
-      title: `Company ${verified ? "Verified" : "Unverified"}`,
-      message: `Your company <strong>${companyName}</strong> has been ${verified ? "verified" : "unverified"} on CareerPath.${verified ? " Your company profile now shows the verified badge, increasing trust with potential applicants." : ""}`,
+      subject: `Perusahaan ${verified ? "Terverifikasi" : "Tidak Terverifikasi"} - ${companyName}`,
+      title: `Perusahaan ${verified ? "Terverifikasi" : "Tidak Terverifikasi"}`,
+      message: `Perusahaan Anda <strong>${companyName}</strong> telah ${verified ? "terverifikasi" : "tidak terverifikasi"} di CareerPath.${verified ? " Profil perusahaan Anda sekarang menampilkan lencana terverifikasi, meningkatkan kepercayaan dengan calon pelamar." : ""}`,
     });
   },
 };

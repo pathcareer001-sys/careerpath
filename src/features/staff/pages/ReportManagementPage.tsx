@@ -18,9 +18,9 @@ const typeIcons: Record<string, typeof Building2> = {
 };
 
 const typeLabels: Record<string, string> = {
-  review: "Review",
-  company: "Company",
-  internship: "Internship",
+  review: "Ulasan",
+  company: "Perusahaan",
+  internship: "Magang",
 };
 
 export default function ReportManagementPage() {
@@ -46,17 +46,17 @@ export default function ReportManagementPage() {
 
   const handleResolve = async (id: string) => {
     await updateStatus.mutateAsync({ id, status: "resolved" });
-    toast.success("Report resolved");
+    toast.success("Laporan diselesaikan");
   };
 
   const handleDismiss = async (id: string) => {
     await updateStatus.mutateAsync({ id, status: "dismissed" });
-    toast.success("Report dismissed");
+    toast.success("Laporan ditutup");
   };
 
   return (
     <PageContainer>
-      <PageHeader title="Report Management" description="Manage user reports and flagged content" />
+      <PageHeader title="Manajemen Laporan" description="Kelola laporan pengguna dan konten yang dilaporkan" />
 
       <div className="mt-6 space-y-6 animate-fade-in-up">
         <AppCard className="border-warning/30 bg-warning/5">
@@ -65,15 +65,15 @@ export default function ReportManagementPage() {
               <AlertTriangle size="16" />
             </div>
             <div>
-              <h3 className="text-sm font-medium text-heading">About Reports</h3>
+              <h3 className="text-sm font-medium text-heading">Tentang Laporan</h3>
               <p className="text-sm text-body mt-1">
-                Review and take action on user-reported content including reviews, companies, and internship listings.
+                Tinjau dan ambil tindakan pada konten yang dilaporkan pengguna termasuk ulasan, perusahaan, dan daftar magang.
               </p>
             </div>
           </div>
         </AppCard>
 
-        <SearchBar value={search} onChange={setSearch} placeholder="Search reports by reason, reporter, or description..." />
+        <SearchBar value={search} onChange={setSearch} placeholder="Cari laporan berdasarkan alasan, pelapor, atau deskripsi..." />
 
         <Tabs value={tab} onValueChange={setTab}>
           <TabsList className="bg-section p-0.5 rounded-lg">
@@ -82,7 +82,7 @@ export default function ReportManagementPage() {
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <Clock size="15" />
-              Pending
+              Tertunda
               {pendingCount > 0 && (
                 <span className="ml-0.5 rounded-full bg-warning/10 px-1.5 py-0.5 text-[11px] font-medium text-warning">
                   {pendingCount}
@@ -94,7 +94,7 @@ export default function ReportManagementPage() {
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <Check size="15" />
-              Resolved
+              Selesai
               {resolvedCount > 0 && (
                 <span className="ml-0.5 rounded-full bg-success/10 px-1.5 py-0.5 text-[11px] font-medium text-success">
                   {resolvedCount}
@@ -106,7 +106,7 @@ export default function ReportManagementPage() {
               className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-secondary-text data-active:bg-surface data-active:text-heading data-active:shadow-sm transition-all"
             >
               <X size="15" />
-              Dismissed
+              Ditutup
               {dismissedCount > 0 && (
                 <span className="ml-0.5 rounded-full bg-error/10 px-1.5 py-0.5 text-[11px] font-medium text-error">
                   {dismissedCount}
@@ -116,14 +116,14 @@ export default function ReportManagementPage() {
           </TabsList>
 
           {["pending", "resolved", "dismissed"].map((t) => {
-            const statusLabel = t === "resolved" ? "Resolved" : "Dismissed";
+            const statusLabel = t === "resolved" ? "Selesai" : "Ditutup";
 
             return (
               <TabsContent key={t} value={t} className="mt-6">
                 {filtered.length === 0 ? (
                   <EmptyState
-                    title={`No ${t} reports`}
-                    description={`${t === "pending" ? "No pending reports to review." : `No ${statusLabel.toLowerCase()} reports.`}`}
+                    title={`Tidak ada laporan ${t === "pending" ? "tertunda" : t === "resolved" ? "selesai" : "ditutup"}`}
+                    description={`${t === "pending" ? "Tidak ada laporan tertunda untuk ditinjau." : `Tidak ada laporan ${(statusLabel).toLowerCase()}.`}`}
                   />
                 ) : (
                   <div className="space-y-4">
@@ -154,7 +154,7 @@ export default function ReportManagementPage() {
                                 <h3 className="font-medium text-heading mt-1">{report.reason}</h3>
                                 <p className="text-sm text-body mt-1">{report.description}</p>
                                 <p className="text-xs text-muted mt-2">
-                                  Reported by {report.reporterName}
+                                  Dilaporkan oleh {report.reporterName}
                                 </p>
                               </div>
                             </div>
@@ -165,7 +165,7 @@ export default function ReportManagementPage() {
                                   onClick={() => handleResolve(report.id)}
                                   disabled={updateStatus.isPending}
                                 >
-                                  <Check size="14" /> Resolve
+                                  <Check size="14" /> Selesaikan
                                 </AppButton>
                                 <AppButton
                                   variant="secondary"
@@ -173,7 +173,7 @@ export default function ReportManagementPage() {
                                   onClick={() => handleDismiss(report.id)}
                                   disabled={updateStatus.isPending}
                                 >
-                                  <X size="14" /> Dismiss
+                                  <X size="14" /> Tutup
                                 </AppButton>
                               </div>
                             )}

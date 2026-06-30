@@ -25,11 +25,11 @@ export default function CompanyManageCard({
           </div>
           <div className="space-y-1">
             <h3 className="font-medium text-heading">{company.name}</h3>
-            <p className="text-sm text-secondary-text">{company.industry || "No industry"}</p>
+            <p className="text-sm text-secondary-text">{company.industry || "Tidak ada industri"}</p>
             <div className="flex items-center gap-2">
               <BadgeCheck size="16" className={company.verified ? "text-success" : "text-muted"} />
               <span className={company.verified ? "text-sm text-success font-medium" : "text-sm text-muted"}>
-                {company.verified ? "Verified" : "Unverified"}
+                {company.verified ? "Terverifikasi" : "Belum Terverifikasi"}
               </span>
             </div>
             {company.location && (
@@ -49,7 +49,7 @@ export default function CompanyManageCard({
             onClick={() => onVerify(company.id, company.verified)}
             className={company.verified ? "!bg-warning/50 hover:!bg-warning/70" : "!bg-success hover:!bg-success/80"}
           >
-            {company.verified ? "Unverify" : "Verify"}
+            {company.verified ? "Batalkan Verifikasi" : "Verifikasi"}
           </AppButton>
           <AppButton variant="danger" onClick={() => onDelete(company.id)}>
             <Trash2 size="16" />
