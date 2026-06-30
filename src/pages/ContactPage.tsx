@@ -24,10 +24,10 @@ export default function ContactPage() {
     try {
       await contactService.submit(data);
       emailService.sendContactNotification(data.name, data.email, data.subject, data.message);
-      toast.success("Message sent successfully! We'll get back to you within 24 hours.");
+      toast.success("Pesan berhasil dikirim! Kami akan membalas dalam 24 jam.");
       reset();
     } catch {
-      toast.error("Failed to send message. Please try again.");
+      toast.error("Gagal mengirim pesan. Silakan coba lagi.");
     }
   };
 
@@ -37,9 +37,9 @@ export default function ContactPage() {
       <div className="relative overflow-hidden bg-gradient-to-br from-primary/[0.04] to-section text-heading">
         <div className="absolute top-0 right-0 w-48 h-48 md:w-96 md:h-96 rounded-full bg-white/60 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">
-          <h1 className="text-3xl sm:text-5xl font-medium">Contact Us</h1>
+          <h1 className="text-3xl sm:text-5xl font-medium">Hubungi Kami</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            Have questions? We'd love to hear from you.
+            Punya pertanyaan? Kami senang mendengar dari Anda.
           </p>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function ContactPage() {
                   <Phone size="18" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-heading">Phone</p>
+                  <p className="text-sm font-medium text-heading">Telepon</p>
                   <p className="text-xs text-secondary-text">+62 812-3456-7890</p>
                 </div>
               </div>
@@ -75,7 +75,7 @@ export default function ContactPage() {
                   <MapPin size="18" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-heading">Location</p>
+                  <p className="text-sm font-medium text-heading">Lokasi</p>
                   <p className="text-xs text-secondary-text">Indonesia</p>
                 </div>
               </div>
@@ -86,34 +86,34 @@ export default function ContactPage() {
             onSubmit={handleSubmit(onSubmit)}
             className="rounded-xl bg-surface border border-border p-6 animate-fade-in-up animate-delay-100"
           >
-            <h2 className="text-base font-medium text-heading mb-1">Send us a message</h2>
-            <p className="text-sm text-secondary-text mb-6">We'll get back to you within 24 hours.</p>
+            <h2 className="text-base font-medium text-heading mb-1">Kirim pesan kepada kami</h2>
+            <p className="text-sm text-secondary-text mb-6">Kami akan membalas dalam 24 jam.</p>
             <div className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <AppInput placeholder="Your name" {...register("name")} />
+                  <AppInput placeholder="Nama Anda" {...register("name")} />
                   {errors.name && <p className="mt-1 text-xs text-error">{errors.name.message}</p>}
                 </div>
                 <div>
-                  <AppInput placeholder="Your email" {...register("email")} />
+                  <AppInput placeholder="Email Anda" {...register("email")} />
                   {errors.email && <p className="mt-1 text-xs text-error">{errors.email.message}</p>}
                 </div>
               </div>
               <div>
-                <AppInput placeholder="Subject" {...register("subject")} />
+                <AppInput placeholder="Subjek" {...register("subject")} />
                 {errors.subject && <p className="mt-1 text-xs text-error">{errors.subject.message}</p>}
               </div>
               <div>
                 <textarea
                   rows={5}
-                  placeholder="Your message..."
+                  placeholder="Pesan Anda..."
                   className="h-36 w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-heading placeholder:text-muted focus:border-primary focus:outline-none focus:shadow-[0_0_0_3px_var(--color-accent)] transition-colors resize-none"
                   {...register("message")}
                 />
                 {errors.message && <p className="mt-1 text-xs text-error">{errors.message.message}</p>}
               </div>
               <AppButton type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"} <Send size="15" />
+                {isSubmitting ? "Mengirim..." : "Kirim Pesan"} <Send size="15" />
               </AppButton>
             </div>
           </form>

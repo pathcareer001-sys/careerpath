@@ -17,11 +17,11 @@ import { toast } from "sonner";
 import { CalendarCheck, CheckCircle, XCircle } from "lucide-react";
 
 const checklistItems = [
-  { key: "personal", label: "Personal Information" },
-  { key: "education", label: "Education" },
-  { key: "skills", label: "Skills" },
+  { key: "personal", label: "Informasi Pribadi" },
+  { key: "education", label: "Pendidikan" },
+  { key: "skills", label: "Keahlian" },
   { key: "resume", label: "Resume" },
-  { key: "social", label: "Social Links" },
+  { key: "social", label: "Tautan Sosial" },
 ];
 
 export default function StudentDashboardPage() {
@@ -51,18 +51,18 @@ export default function StudentDashboardPage() {
   const handleConfirmInterview = async (id: string) => {
     try {
       await updateStatus.mutateAsync({ id, status: "interview" });
-      toast.success("Interview confirmed");
+      toast.success("Wawancara dikonfirmasi");
     } catch {
-      toast.error("Failed to confirm");
+      toast.error("Gagal mengonfirmasi");
     }
   };
 
   const handleDeclineInterview = async (id: string) => {
     try {
       await updateStatus.mutateAsync({ id, status: "rejected" });
-      toast.success("Interview declined");
+      toast.success("Wawancara ditolak");
     } catch {
-      toast.error("Failed to decline");
+      toast.error("Gagal menolak");
     }
   };
 
@@ -70,7 +70,7 @@ export default function StudentDashboardPage() {
     <div className="space-y-6 animate-fade-in">
       <SEO title="Dashboard" description="Kelola aplikasi, bookmark, dan profil magang Anda." noIndex />
       <div className="animate-fade-in-up">
-        <h1 className="text-2xl font-medium text-heading">{greeting.text}, {user?.name?.split(" ")[0] || "there"}</h1>
+        <h1 className="text-2xl font-medium text-heading">{greeting.text}, {user?.name?.split(" ")[0] || "di sana"}</h1>
         <p className="mt-1 text-sm text-secondary-text">{greeting.subtitle}</p>
       </div>
 
@@ -81,17 +81,17 @@ export default function StudentDashboardPage() {
               <div className="flex items-center gap-3">
                 <CalendarCheck size="20" className="text-info shrink-0" />
                 <div>
-                  <p className="text-sm font-medium text-heading">Interview Invitation</p>
-                  <p className="text-xs text-info mt-0.5">{app.internshipTitle} at {app.companyName}</p>
-                  {app.interviewDate && <p className="text-xs text-info/80 mt-0.5">Scheduled: {app.interviewDate} {app.interviewLocation ? `(${app.interviewLocation})` : ""}</p>}
+                  <p className="text-sm font-medium text-heading">Undangan Wawancara</p>
+                  <p className="text-xs text-info mt-0.5">{app.internshipTitle} di {app.companyName}</p>
+                  {app.interviewDate && <p className="text-xs text-info/80 mt-0.5">Jadwal: {app.interviewDate} {app.interviewLocation ? `(${app.interviewLocation})` : ""}</p>}
                 </div>
               </div>
               <div className="flex gap-2">
                 <AppButton onClick={() => handleConfirmInterview(app.id)} variant="primary" className="text-xs h-8 px-3">
-                  <CheckCircle size="13" /> Confirm
+                  <CheckCircle size="13" /> Konfirmasi
                 </AppButton>
                 <AppButton onClick={() => handleDeclineInterview(app.id)} variant="danger" className="text-xs h-8 px-3">
-                  <XCircle size="13" /> Decline
+                  <XCircle size="13" /> Tolak
                 </AppButton>
               </div>
             </div>
@@ -101,16 +101,16 @@ export default function StudentDashboardPage() {
 
       <div className="grid gap-4 grid-cols-2 sm:grid-cols-4 animate-fade-in-up animate-delay-100">
         <Link to="/applications" className="block">
-          <StatCard title="Applications" value={applicationCount} gradient="blue" />
+          <StatCard title="Lamaran" value={applicationCount} gradient="blue" />
         </Link>
         <Link to="/bookmarks" className="block">
-          <StatCard title="Bookmarks" value={bookmarkCount} gradient="purple" />
+          <StatCard title="Tersimpan" value={bookmarkCount} gradient="purple" />
         </Link>
         <Link to="/applications" className="block">
-          <StatCard title="Interviews" value={interviewApps.length} gradient="emerald" />
+          <StatCard title="Wawancara" value={interviewApps.length} gradient="emerald" />
         </Link>
         <Link to="/profile" className="block">
-          <StatCard title="Profile" value={`${completion}%`} gradient="amber" />
+          <StatCard title="Profil" value={`${completion}%`} gradient="amber" />
         </Link>
       </div>
 
@@ -119,8 +119,8 @@ export default function StudentDashboardPage() {
           {internships?.length ? (
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-base font-medium text-heading">Recommended internships</h2>
-                <Link to="/internships" className="text-[13px] font-medium text-primary hover:text-primary-hover transition-colors">View all →</Link>
+                <h2 className="text-base font-medium text-heading">Magang Direkomendasikan</h2>
+                <Link to="/internships" className="text-[13px] font-medium text-primary hover:text-primary-hover transition-colors">Lihat semua →</Link>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 {internships.slice(0, 2).map((internship, i) => (
@@ -132,14 +132,14 @@ export default function StudentDashboardPage() {
             </div>
           ) : (
             <AppCard>
-              <EmptyState title="No recommendations yet" description="Start exploring internships." />
+              <EmptyState title="Belum ada rekomendasi" description="Mulai jelajahi magang." />
             </AppCard>
           )}
 
           <AppCard>
-            <h2 className="text-base font-medium text-heading mb-4">Recent Activity</h2>
+            <h2 className="text-base font-medium text-heading mb-4">Aktivitas Terbaru</h2>
             {applications?.length === 0 ? (
-              <EmptyState title="No activity yet" description="Start applying to internships." />
+              <EmptyState title="Belum ada aktivitas" description="Mulai lamar magang." />
             ) : (
               <div className="space-y-1">
                 {applications?.slice(0, 5).map((item) => (
@@ -159,7 +159,7 @@ export default function StudentDashboardPage() {
         <div className="space-y-6 animate-fade-in-up animate-delay-300">
           <div className="rounded-xl border border-border bg-surface p-5">
             <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-secondary-text font-medium">Profile Completion</p>
+              <p className="text-sm text-secondary-text font-medium">Kelengkapan Profil</p>
               <span className="text-[28px] font-medium text-primary">{completion}%</span>
             </div>
             <div className="h-2 rounded-full bg-section overflow-hidden">
@@ -184,24 +184,24 @@ export default function StudentDashboardPage() {
             </div>
             <Link to="/profile">
               <AppButton variant="secondary" className="mt-4 w-full">
-                Complete profile
+                Lengkapi Profil
               </AppButton>
             </Link>
           </div>
 
           <AppCard>
-            <h2 className="text-base font-medium text-heading mb-3">Quick Stats</h2>
+            <h2 className="text-base font-medium text-heading mb-3">Statistik Cepat</h2>
             <div className="space-y-3">
               <div className="flex items-center justify-between py-2 border-b border-divider">
-                <span className="text-[13px] text-secondary-text">Application rate</span>
+                <span className="text-[13px] text-secondary-text">Tingkat lamaran</span>
                 <span className="text-sm font-medium text-heading">68%</span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-divider">
-                <span className="text-[13px] text-secondary-text">Response rate</span>
+                <span className="text-[13px] text-secondary-text">Tingkat respons</span>
                 <span className="text-sm font-medium text-heading">42%</span>
               </div>
               <div className="flex items-center justify-between py-2">
-                <span className="text-[13px] text-secondary-text">Avg. review rating</span>
+                <span className="text-[13px] text-secondary-text">Rata-rata rating ulasan</span>
                 <span className="text-sm font-medium text-heading">4.2</span>
               </div>
             </div>

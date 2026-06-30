@@ -2,37 +2,37 @@ import { CheckCircle2, Clock, XCircle, AlertCircle, CalendarCheck, ArrowLeft } f
 
 const statusConfig: Record<string, { label: string; gradient: string; dot: string; icon: React.ReactNode }> = {
   pending: {
-    label: "Pending",
+    label: "Menunggu",
     gradient: "bg-gradient-to-r from-warning/10 to-accent text-warning border border-warning/30",
     dot: "bg-warning",
     icon: <Clock size="12" />,
   },
   reviewed: {
-    label: "Reviewed",
+    label: "Ditinjau",
     gradient: "bg-gradient-to-r from-accent to-section text-primary border border-primary/30",
     dot: "bg-primary",
     icon: <AlertCircle size="12" />,
   },
   interview: {
-    label: "Interview",
+    label: "Wawancara",
     gradient: "bg-gradient-to-r from-info/10 to-accent text-info border border-info/30",
     dot: "bg-info",
     icon: <CalendarCheck size="12" />,
   },
   accepted: {
-    label: "Accepted",
+    label: "Diterima",
     gradient: "bg-gradient-to-r from-success/10 to-accent text-success border border-success/30",
     dot: "bg-success",
     icon: <CheckCircle2 size="12" />,
   },
   rejected: {
-    label: "Rejected",
+    label: "Ditolak",
     gradient: "bg-gradient-to-r from-error/10 to-accent text-error border border-error/30",
     dot: "bg-error",
     icon: <XCircle size="12" />,
   },
   withdrawn: {
-    label: "Withdrawn",
+    label: "Ditarik",
     gradient: "bg-gradient-to-r from-muted/10 to-section text-secondary-text border border-border",
     dot: "bg-muted",
     icon: <ArrowLeft size="12" />,

@@ -12,8 +12,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
   { to: "/company", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/company/internships", label: "Internships", icon: Briefcase },
-  { to: "/company/profile", label: "Profile", icon: User },
+  { to: "/company/internships", label: "Magang", icon: Briefcase },
+  { to: "/company/profile", label: "Profil", icon: User },
 ];
 
 export default function CompanyNavbar() {
@@ -51,7 +51,7 @@ export default function CompanyNavbar() {
             className="border-error/30 text-error hover:bg-error/10 hidden sm:inline-flex"
           >
             <LogOut size={16} />
-            Logout
+            Keluar
           </AppButton>
 
           <UserMenu />
@@ -90,14 +90,14 @@ export default function CompanyNavbar() {
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-primary-subtle hover:text-primary transition-colors"
                   >
                     <User size="18" />
-                    Profile
+                    Profil
                   </Link>
                   <button
                     onClick={handleLogout}
                     className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-error hover:bg-error/10 transition-colors"
                   >
                     <LogOut size="18" />
-                    Logout
+                    Keluar
                   </button>
                 </div>
               </div>

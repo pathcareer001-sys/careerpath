@@ -7,7 +7,7 @@ export default function LoadingState() {
         <Loader2 size="26" className="animate-spin text-primary/70" />
         <div className="absolute inset-0 animate-ping rounded-full bg-primary/5" style={{ animationDuration: "2s" }} />
       </div>
-      <p className="text-sm text-secondary-text font-medium">Loading data...</p>
+      <p className="text-sm text-secondary-text font-medium">Memuat data...</p>
     </div>
   );
 }

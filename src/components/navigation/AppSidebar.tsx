@@ -18,36 +18,36 @@ import { useAuth } from "@/hooks/useAuth";
 import { ROLES } from "@/constants/roles";
 
 const studentNav = [
-  { label: "Main", items: [
+  { label: "Utama", items: [
     { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-    { to: "/companies", icon: Building2, label: "Companies" },
-    { to: "/internships", icon: Briefcase, label: "Internships" },
+    { to: "/companies", icon: Building2, label: "Perusahaan" },
+    { to: "/internships", icon: Briefcase, label: "Magang" },
   ]},
-  { label: "Tracking", items: [
-    { to: "/applications", icon: FileText, label: "Applications" },
-    { to: "/bookmarks", icon: Bookmark, label: "Bookmarks" },
+  { label: "Pelacakan", items: [
+    { to: "/applications", icon: FileText, label: "Lamaran" },
+    { to: "/bookmarks", icon: Bookmark, label: "Tersimpan" },
   ]},
-  { label: "Account", items: [
-    { to: "/profile", icon: User, label: "Profile" },
+  { label: "Akun", items: [
+    { to: "/profile", icon: User, label: "Profil" },
   ]},
 ];
 
 const adminNav = [
   { label: "Admin", items: [
     { to: "/admin", icon: Shield, label: "Dashboard" },
-    { to: "/admin/companies", icon: Building2, label: "Companies" },
-    { to: "/admin/internships", icon: Briefcase, label: "Internships" },
-    { to: "/admin/applications", icon: FileText, label: "Applications" },
-    { to: "/admin/users", icon: Users, label: "Users" },
-    { to: "/admin/reviews", icon: Star, label: "Reviews" },
+    { to: "/admin/companies", icon: Building2, label: "Perusahaan" },
+    { to: "/admin/internships", icon: Briefcase, label: "Magang" },
+    { to: "/admin/applications", icon: FileText, label: "Lamaran" },
+    { to: "/admin/users", icon: Users, label: "Pengguna" },
+    { to: "/admin/reviews", icon: Star, label: "Ulasan" },
   ]},
 ];
 
 const companyNav = [
-  { label: "Company", items: [
+  { label: "Perusahaan", items: [
     { to: "/company", icon: LayoutDashboard, label: "Dashboard" },
-    { to: "/company/internships", icon: Briefcase, label: "Internships" },
-    { to: "/company/profile", icon: User, label: "Profile" },
+    { to: "/company/internships", icon: Briefcase, label: "Magang" },
+    { to: "/company/profile", icon: User, label: "Profil" },
   ]},
 ];
 
@@ -108,7 +108,7 @@ export default function AppSidebar() {
           className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-secondary-text hover:bg-error/10 hover:text-error transition-colors"
         >
           <LogOut size="18" />
-          Logout
+          Keluar
         </button>
       </div>
     </aside>

@@ -16,19 +16,19 @@ export default function AuthHero() {
       </div>
 
       <h1 className="text-[22px] font-semibold tracking-tight text-heading leading-snug max-w-sm relative">
-        Discover internships, explore companies, and track applications.
+        Temukan magang, jelajahi perusahaan, dan lacak lamaran.
       </h1>
 
       <p className="mt-3 text-sm text-body max-w-sm leading-relaxed relative">
-        The modern platform for students to find, compare, and apply to
-        internship opportunities — all in one workspace.
+        Platform modern bagi mahasiswa untuk mencari, membandingkan, dan melamar
+        peluang magang — semua dalam satu ruang kerja.
       </p>
 
       <div className="mt-8 space-y-3 relative">
         {[
-          "Verified company reviews from real students",
-          "Track every application stage in one place",
-          "Compare internships side by side",
+          "Ulasan perusahaan terverifikasi dari mahasiswa nyata",
+          "Lacak setiap tahap lamaran di satu tempat",
+          "Bandingkan magang secara berdampingan",
         ].map((text) => (
           <div key={text} className="flex items-center gap-3 text-sm text-body">
             <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
@@ -42,15 +42,15 @@ export default function AuthHero() {
       <div className="mt-10 flex gap-8 border-t border-border pt-6 relative">
         <div>
           <p className="text-[22px] font-semibold tracking-tight text-heading">10K+</p>
-          <p className="text-sm text-secondary-text">Students</p>
+          <p className="text-sm text-secondary-text">Mahasiswa</p>
         </div>
         <div>
           <p className="text-[22px] font-semibold tracking-tight text-heading">500+</p>
-          <p className="text-sm text-secondary-text">Internships</p>
+          <p className="text-sm text-secondary-text">Magang</p>
         </div>
         <div>
           <p className="text-[22px] font-semibold tracking-tight text-heading">200+</p>
-          <p className="text-sm text-secondary-text">Companies</p>
+          <p className="text-sm text-secondary-text">Perusahaan</p>
         </div>
       </div>
     </div>

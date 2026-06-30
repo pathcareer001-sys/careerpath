@@ -77,7 +77,7 @@ export default function InternshipCard({ internship }: { internship: Internship 
             <div className="flex items-center gap-2">
               <h3 className="text-sm font-medium text-heading leading-snug group-hover:text-primary transition-colors duration-200">{internship.title}</h3>
               {internship.status === "draft" && (
-                <span className="rounded bg-warning/10 px-1.5 py-0.5 text-[10px] font-medium text-warning leading-none">Draft</span>
+                <span className="rounded bg-warning/10 px-1.5 py-0.5 text-[10px] font-medium text-warning leading-none">Draf</span>
               )}
             </div>
             <p className="text-[13px] text-secondary-text mt-0.5">{internship.companyName}</p>
@@ -120,10 +120,10 @@ export default function InternshipCard({ internship }: { internship: Internship 
         <div className="flex items-center justify-between mt-3 pt-3 border-t border-divider">
           <span className="flex items-center gap-1 text-[12px] text-muted">
             <CalendarDays size="13" />
-            {internship.deadline ? new Date(internship.deadline).toLocaleDateString() : "No deadline"}
+            {internship.deadline ? new Date(internship.deadline).toLocaleDateString() : "Tanpa tenggat"}
           </span>
           <span className="text-[13px] font-medium text-primary opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
-            View Details →
+            Lihat Detail →
           </span>
         </div>
       </div>

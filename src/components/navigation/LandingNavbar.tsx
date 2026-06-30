@@ -6,9 +6,9 @@ import ThemeToggle from "@/components/ui/theme-toggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
-  { to: "/", label: "Home", icon: House },
-  { to: "/about", label: "About", icon: Info },
-  { to: "/contact", label: "Contact", icon: Mail },
+  { to: "/", label: "Beranda", icon: House },
+  { to: "/about", label: "Tentang", icon: Info },
+  { to: "/contact", label: "Kontak", icon: Mail },
 ];
 
 export default function LandingNavbar() {
@@ -45,14 +45,14 @@ export default function LandingNavbar() {
             className="inline-flex h-9 items-center justify-center rounded-lg border border-border bg-surface px-4 text-sm font-medium text-body transition-all duration-200 hover:border-primary/30 hover:bg-primary-subtle hover:text-primary"
           >
             <LogIn size="15" />
-            Login
+            Masuk
           </Link>
 
           <Link
             to="/register"
             className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground shadow-button transition-all duration-200 hover:bg-primary-hover hover:shadow-button-hover active:bg-primary-active"
           >
-            Get started
+            Mulai
             <ArrowRight size="15" />
           </Link>
         </div>
@@ -89,13 +89,13 @@ export default function LandingNavbar() {
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-body hover:bg-primary-subtle hover:text-primary transition-colors"
                   >
                     <LogIn size="18" />
-                    Login
+                    Masuk
                   </Link>
                   <Link
                     to="/register"
                     className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium bg-primary text-primary-foreground"
                   >
-                    Get started
+                    Mulai
                     <ArrowRight size="15" />
                   </Link>
                 </div>

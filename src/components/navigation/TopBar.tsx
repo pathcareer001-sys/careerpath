@@ -12,25 +12,25 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const studentNav = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/companies", label: "Companies", icon: Building2 },
-  { to: "/internships", label: "Internships", icon: Briefcase },
-  { to: "/applications", label: "Applications", icon: FileText },
-  { to: "/bookmarks", label: "Bookmarks", icon: Bookmark },
+  { to: "/companies", label: "Perusahaan", icon: Building2 },
+  { to: "/internships", label: "Magang", icon: Briefcase },
+  { to: "/applications", label: "Lamaran", icon: FileText },
+  { to: "/bookmarks", label: "Tersimpan", icon: Bookmark },
 ];
 
 const adminNav = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/admin/companies", label: "Companies", icon: Building2 },
-  { to: "/admin/internships", label: "Internships", icon: Briefcase },
-  { to: "/admin/applications", label: "Applications", icon: FileText },
-  { to: "/admin/users", label: "Users", icon: Building2 },
-  { to: "/admin/reviews", label: "Reviews", icon: FileText },
+  { to: "/admin/companies", label: "Perusahaan", icon: Building2 },
+  { to: "/admin/internships", label: "Magang", icon: Briefcase },
+  { to: "/admin/applications", label: "Lamaran", icon: FileText },
+  { to: "/admin/users", label: "Pengguna", icon: Building2 },
+  { to: "/admin/reviews", label: "Ulasan", icon: FileText },
 ];
 
 const companyNav = [
   { to: "/company", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/company/internships", label: "Internships", icon: Briefcase },
-  { to: "/company/profile", label: "Profile", icon: Building2 },
+  { to: "/company/internships", label: "Magang", icon: Briefcase },
+  { to: "/company/profile", label: "Profil", icon: Building2 },
 ];
 
 export default function TopBar() {
@@ -90,13 +90,13 @@ export default function TopBar() {
             alt=""
             className="w-7 h-7 rounded-full ring-2 ring-primary/15"
           />
-          <span className="text-sm text-secondary-text hidden md:inline">{user?.name || "User"}</span>
+          <span className="text-sm text-secondary-text hidden md:inline">{user?.name || "Pengguna"}</span>
         </Link>
 
         <button
           onClick={handleLogout}
           className="hidden sm:inline-flex p-2 rounded-lg text-muted hover:bg-error/10 hover:text-error transition-all duration-200"
-          title="Logout"
+          title="Keluar"
         >
           <LogOut size="16" />
         </button>
@@ -139,14 +139,14 @@ export default function TopBar() {
                     alt=""
                     className="w-7 h-7 rounded-full"
                   />
-                  {user?.name || "User"}
+                  {user?.name || "Pengguna"}
                 </Link>
                 <button
                   onClick={handleLogout}
                   className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-error hover:bg-error/10 transition-colors"
                 >
                   <LogOut size="18" />
-                  Logout
+                  Keluar
                 </button>
               </div>
             </div>

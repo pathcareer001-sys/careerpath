@@ -6,20 +6,20 @@ export default function AboutPage() {
   const features = [
     {
       icon: Search,
-      title: "Internship Discovery",
-      text: "Find opportunities that match your interests with smart filters and real-time updates.",
+      title: "Penemuan Magang",
+      text: "Temukan peluang yang sesuai dengan minatmu melalui filter cerdas dan pembaruan waktu nyata.",
       gradient: "from-primary to-secondary",
     },
     {
       icon: ShieldCheck,
-      title: "Company Reviews",
-      text: "Learn from real student experiences before you apply. Transparent ratings and honest feedback.",
+      title: "Ulasan Perusahaan",
+      text: "Belajar dari pengalaman mahasiswa nyata sebelum melamar. Rating transparan dan umpan balik jujur.",
       gradient: "from-secondary to-accent",
     },
     {
       icon: BarChart3,
-      title: "Application Tracking",
-      text: "Monitor every stage of your application from submission to offer in one clean dashboard.",
+      title: "Pelacakan Lamaran",
+      text: "Pantau setiap tahap lamaranmu dari pengiriman hingga penawaran dalam satu dashboard yang bersih.",
       gradient: "from-success to-info",
     },
   ];
@@ -30,9 +30,9 @@ export default function AboutPage() {
       <div className="relative overflow-hidden bg-gradient-to-br from-primary/[0.04] to-section text-heading">
         <div className="absolute top-0 right-0 w-48 h-48 md:w-96 md:h-96 rounded-full bg-white/60 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">
-          <h1 className="text-3xl sm:text-5xl font-medium">About CareerPath</h1>
+          <h1 className="text-3xl sm:text-5xl font-medium">Tentang CareerPath</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-body">
-            CareerPath helps students discover internship opportunities, read company reviews, and track applications in one platform.
+            CareerPath membantu mahasiswa menemukan peluang magang, membaca ulasan perusahaan, dan melacak lamaran dalam satu platform.
           </p>
         </div>
       </div>
@@ -52,10 +52,10 @@ export default function AboutPage() {
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-16 text-center">
-        <h2 className="text-[22px] font-medium text-heading">Ready to start your journey?</h2>
-        <p className="mt-2 text-sm text-secondary-text">Join thousands of students already using CareerPath.</p>
+        <h2 className="text-[22px] font-medium text-heading">Siap memulai perjalananmu?</h2>
+        <p className="mt-2 text-sm text-secondary-text">Bergabunglah dengan ribuan mahasiswa yang sudah menggunakan CareerPath.</p>
         <Link to="/register" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-primary-hover hover:to-primary-hover shadow-sm">
-          Get started <ArrowRight size="16" />
+          Mulai <ArrowRight size="16" />
         </Link>
       </div>
     </div>

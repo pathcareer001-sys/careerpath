@@ -96,10 +96,10 @@ export default function NotificationDropdown() {
             z-50
           "
         >
-          <h3 className="mb-4 font-medium">Notifications</h3>
+          <h3 className="mb-4 font-medium">Notifikasi</h3>
 
           {notifications?.length === 0 ? (
-            <p className="text-sm text-secondary-text">No notifications yet</p>
+            <p className="text-sm text-secondary-text">Belum ada notifikasi</p>
           ) : (
             <div className="space-y-3">
               {notifications?.map((item) => (

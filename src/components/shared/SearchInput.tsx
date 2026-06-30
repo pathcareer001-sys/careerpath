@@ -7,7 +7,7 @@ interface Props {
   placeholder?: string;
 }
 
-export default function SearchInput({ value, onChange, placeholder = "Search..." }: Props) {
+export default function SearchInput({ value, onChange, placeholder = "Cari..." }: Props) {
   return (
     <div className="relative">
       <Search size="15" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />

@@ -18,10 +18,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
   { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-  { to: "/companies", icon: Building2, label: "Companies" },
-  { to: "/internships", icon: Briefcase, label: "Internships" },
-  { to: "/bookmarks", icon: Bookmark, label: "Bookmarks" },
-  { to: "/applications", icon: FileText, label: "Applications" },
+  { to: "/companies", icon: Building2, label: "Perusahaan" },
+  { to: "/internships", icon: Briefcase, label: "Magang" },
+  { to: "/bookmarks", icon: Bookmark, label: "Tersimpan" },
+  { to: "/applications", icon: FileText, label: "Lamaran" },
 ];
 
 export default function AppNavbar() {
@@ -30,11 +30,11 @@ export default function AppNavbar() {
   const handleLogout = async () => {
     try {
       await authService.logout();
-      toast.success("Logged out successfully");
+      toast.success("Berhasil keluar");
       navigate("/login");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to logout");
+      toast.error("Gagal keluar");
     }
   };
 
@@ -74,7 +74,7 @@ export default function AppNavbar() {
             className="hidden sm:flex items-center gap-2 rounded-lg border border-border px-3.5 py-2 text-sm font-medium text-body transition-all duration-200 hover:border-primary/30 hover:bg-primary-subtle hover:text-primary"
           >
             <LogOut size={16} />
-            <span className="hidden md:inline">Logout</span>
+            <span className="hidden md:inline">Keluar</span>
           </button>
 
           <UserMenu />
@@ -112,7 +112,7 @@ export default function AppNavbar() {
                     className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-error hover:bg-error/10 transition-colors"
                   >
                     <LogOut size="18" />
-                    Logout
+                    Keluar
                   </button>
                 </div>
               </div>

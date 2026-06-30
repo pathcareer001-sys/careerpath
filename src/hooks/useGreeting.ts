@@ -27,25 +27,25 @@ function getHourInTimezone(tz: string): number {
 export function getGreeting(hour: number): Greeting {
   if (hour >= 5 && hour < 12) {
     return {
-      text: "Good Morning",
-      subtitle: "Let's start your career journey today.",
+      text: "Selamat Pagi",
+      subtitle: "Mari mulai perjalanan kariermu hari ini.",
     };
   }
   if (hour >= 12 && hour < 15) {
     return {
-      text: "Good Afternoon",
-      subtitle: "Keep exploring new opportunities.",
+      text: "Selamat Siang",
+      subtitle: "Terus jelajahi peluang baru.",
     };
   }
   if (hour >= 15 && hour < 18) {
     return {
-      text: "Good Evening",
-      subtitle: "You're making great progress today.",
+      text: "Selamat Sore",
+      subtitle: "Kamu membuat kemajuan besar hari ini.",
     };
   }
   return {
-    text: "Good Night",
-    subtitle: "Take a rest. New opportunities await tomorrow.",
+    text: "Selamat Malam",
+    subtitle: "Istirahatlah. Peluang baru menanti besok.",
   };
 }
 

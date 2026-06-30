@@ -17,7 +17,7 @@ export default function ErrorState({ message }: { message?: string }) {
         "
       />
 
-      <p>{message || "Something went wrong"}</p>
+      <p>{message || "Terjadi kesalahan"}</p>
     </div>
   );
 }

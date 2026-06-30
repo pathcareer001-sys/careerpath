@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 import { BriefcaseBusiness, Mail, MapPin, Phone } from "lucide-react";
 
 const navigation = [
-  { to: "/", label: "Home" },
-  { to: "/companies", label: "Companies" },
-  { to: "/internships", label: "Internships" },
-  { to: "/about", label: "About" },
+  { to: "/", label: "Beranda" },
+  { to: "/companies", label: "Perusahaan" },
+  { to: "/internships", label: "Magang" },
+  { to: "/about", label: "Tentang" },
 ];
 
 const resources = [
-  { to: "/contact", label: "Contact" },
-  { to: "/login", label: "Login" },
-  { to: "/register", label: "Register" },
+  { to: "/contact", label: "Kontak" },
+  { to: "/login", label: "Masuk" },
+  { to: "/register", label: "Daftar" },
 ];
 
 export default function Footer() {
@@ -27,15 +27,15 @@ export default function Footer() {
               <h3 className="text-sm font-medium text-heading">CareerPath</h3>
             </div>
             <p className="mt-3 max-w-sm text-sm text-secondary-text leading-relaxed">
-              Discover internships, explore company reviews, and track applications from one organized workspace.
+              Temukan magang, jelajahi ulasan perusahaan, dan lacak lamaran dari satu ruang kerja yang terorganisir.
             </p>
           </div>
 
-          <FooterColumn title="Navigation" items={navigation} />
-          <FooterColumn title="Resources" items={resources} />
+          <FooterColumn title="Navigasi" items={navigation} />
+          <FooterColumn title="Sumber Daya" items={resources} />
 
           <div>
-            <h4 className="text-sm font-medium text-heading">Contact</h4>
+            <h4 className="text-sm font-medium text-heading">Kontak</h4>
             <div className="mt-3 space-y-2 text-sm text-secondary-text">
               <div className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Mail size="14" />
@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-divider pt-6 text-sm text-secondary-text">
-          Copyright 2026 CareerPath. All rights reserved.
+          Hak Cipta 2026 CareerPath. Seluruh hak dilindungi.
         </div>
       </div>
     </footer>

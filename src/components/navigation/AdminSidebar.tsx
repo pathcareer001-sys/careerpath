@@ -17,11 +17,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
   { to: "/admin", Icon: Shield, label: "Dashboard", end: true },
-  { to: "/admin/companies", Icon: Building2, label: "Companies" },
-  { to: "/admin/internships", Icon: Briefcase, label: "Internships" },
-  { to: "/admin/applications", Icon: FileText, label: "Applications" },
-  { to: "/admin/users", Icon: Users, label: "Users" },
-  { to: "/admin/reviews", Icon: Star, label: "Reviews" },
+  { to: "/admin/companies", Icon: Building2, label: "Perusahaan" },
+  { to: "/admin/internships", Icon: Briefcase, label: "Magang" },
+  { to: "/admin/applications", Icon: FileText, label: "Lamaran" },
+  { to: "/admin/users", Icon: Users, label: "Pengguna" },
+  { to: "/admin/reviews", Icon: Star, label: "Ulasan" },
 ];
 
 function NavLinkItem({ to, Icon, label, end }: { to: string; Icon: React.ComponentType<{ size?: number }>; label: string; end?: boolean }) {
@@ -64,7 +64,7 @@ export default function AdminSidebar() {
         </nav>
         <div className="px-3 pt-3 border-t border-border mt-3 space-y-1">
           <div className="flex items-center justify-between px-3 py-2">
-            <span className="text-xs text-muted">Theme</span>
+            <span className="text-xs text-muted">Tema</span>
             <ThemeToggle />
           </div>
           <button
@@ -72,7 +72,7 @@ export default function AdminSidebar() {
             className="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-error hover:bg-error/10 transition-colors"
           >
             <LogOut size={18} />
-            Logout
+            Keluar
           </button>
         </div>
       </div>
