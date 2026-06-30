@@ -21,17 +21,17 @@ const benefits = [
   {
     icon: Crown,
     title: "Kandidat Prioritas",
-    description: "Tampil sebagai Kandidat Prioritas dengan badge Premium di profil Anda",
+    description: "Tampil sebagai Kandidat Prioritas dengan badge Premium biru",
   },
   {
     icon: ArrowUp,
     title: "Urutan teratas dalam daftar pelamar",
-    description: "Pelamar Premium muncul pertama di perusahaan Premium",
+    description: "Muncul pertama dalam daftar pelamar di perusahaan Premium",
   },
   {
     icon: Sparkles,
-    title: "Prioritas pada fitur Premium di masa mendatang",
-    description: "Jadi pengguna awal fitur-fitur eksklusif yang akan datang",
+    title: "Prioritas fitur Premium mendatang",
+    description: "Akses prioritas ke fitur-fitur Premium baru lebih awal",
   },
 ];
 

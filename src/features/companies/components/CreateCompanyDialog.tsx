@@ -5,6 +5,7 @@ import AppInput from "@/components/common/AppInput";
 import AppTextarea from "@/components/common/AppTextarea";
 import { useUpdateCompany } from "@/features/companies/hooks/useUpdateCompany";
 import { useCreateCompany } from "@/features/companies/hooks/useCreateCompany";
+import { useAuth } from "@/hooks/useAuth";
 import type { Company } from "@/types/company";
 import { toast } from "sonner";
 
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export default function CreateCompanyDialog({ company, open, onClose }: Props) {
+  const { user } = useAuth();
   const updateCompany = useUpdateCompany();
   const createCompany = useCreateCompany();
   const [name, setName] = useState(company?.name || "");
@@ -30,7 +32,7 @@ export default function CreateCompanyDialog({ company, open, onClose }: Props) {
         await createCompany.mutateAsync({
           name,
           logo: "",
-          ownerId: "",
+          ownerId: user?.uid || "",
           description,
           location,
           industry,

@@ -32,9 +32,14 @@ export function useCompanyDashboard(ownerId: string) {
         const internships =
           await internshipService.getCompanyInternships(ownerId);
 
-        const applications = await applicationService.getCompanyApplications(
-          company.id,
+        // Fetch applications per internship to comply with security rules
+        // (query must be as restrictive as the rule that checks internship.ownerId)
+        const applicationPromises = internships.map((internship) =>
+          applicationService.getInternshipApplications(internship.id),
         );
+        const applicationResults = await Promise.all(applicationPromises);
+        const applications = applicationResults.flat();
+
         const reviews = await reviewService.getCompanyReviews(company.id);
         const internshipPerformance = internships
           .map((internship) => ({
