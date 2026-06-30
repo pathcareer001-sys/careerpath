@@ -1,0 +1,17 @@
+{
+  "name": "CareerPath",
+  "short_name": "CareerPath",
+  "description": "Temukan magang impianmu. CareerPath menghubungkan mahasiswa dengan lowongan magang terbaik.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#863bff",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

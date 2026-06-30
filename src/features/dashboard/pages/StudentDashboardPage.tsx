@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEO from "@/components/seo/SEO";
 import AppCard from "@/components/common/AppCard";
 import StatCard from "@/components/shared/StatCard";
 import EmptyState from "@/components/shared/EmptyState";
@@ -67,6 +68,7 @@ export default function StudentDashboardPage() {
 
   return (
     <div className="space-y-6 animate-fade-in">
+      <SEO title="Dashboard" description="Kelola aplikasi, bookmark, dan profil magang Anda." noIndex />
       <div className="animate-fade-in-up">
         <h1 className="text-2xl font-medium text-heading">{greeting.text}, {user?.name?.split(" ")[0] || "there"}</h1>
         <p className="mt-1 text-sm text-secondary-text">{greeting.subtitle}</p>

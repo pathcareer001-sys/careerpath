@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 
+import SEO from "@/components/seo/SEO";
 import AppButton from "@/components/common/AppButton";
 import AppInput from "@/components/common/AppInput";
 import { contactSchema, type ContactSchema } from "@/features/contact/schemas/contactSchema";
@@ -32,6 +33,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO title="Kontak" description="Hubungi tim CareerPath. Kami siap membantu pertanyaan, saran, atau laporan Anda." />
       <div className="relative overflow-hidden bg-gradient-to-br from-primary/[0.04] to-section text-heading">
         <div className="absolute top-0 right-0 w-48 h-48 md:w-96 md:h-96 rounded-full bg-white/60 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">

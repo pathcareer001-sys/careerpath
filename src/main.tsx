@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "next-themes";
 import AuthProvider from "@/providers/AuthProvider";
 
@@ -14,8 +15,11 @@ import { Toaster } from "@/components/ui/sonner";
 
 import "./index.css";
 
+const helmetContext = {};
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <HelmetProvider context={helmetContext}>
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
@@ -31,5 +35,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </AuthProvider>
       </QueryProvider>
     </ThemeProvider>
+    </HelmetProvider>
   </React.StrictMode>,
 );

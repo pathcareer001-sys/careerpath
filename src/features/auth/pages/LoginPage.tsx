@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
 
+import SEO from "@/components/seo/SEO";
 import AppButton from "@/components/common/AppButton";
 import AppInput from "@/components/common/AppInput";
 import logo from "@/assets/images/logo.png";
@@ -44,6 +45,7 @@ export default function LoginPage() {
 
   return (
     <div className="w-full max-w-sm animate-spring-up">
+      <SEO title="Masuk" description="Masuk ke akun CareerPath untuk melanjutkan." />
       <div className="bg-surface border border-border-light rounded-xl p-6 shadow-card">
         <img src={logo} alt="CareerPath" className="h-12 mb-6" />
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Search, BarChart3, ShieldCheck } from "lucide-react";
+import SEO from "@/components/seo/SEO";
 
 export default function AboutPage() {
   const features = [
@@ -25,6 +26,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO title="Tentang" description="Pelajari lebih lanjut tentang CareerPath dan bagaimana kami membantu mahasiswa menemukan magang impian." />
       <div className="relative overflow-hidden bg-gradient-to-br from-primary/[0.04] to-section text-heading">
         <div className="absolute top-0 right-0 w-48 h-48 md:w-96 md:h-96 rounded-full bg-white/60 blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 py-20 text-center relative z-10">

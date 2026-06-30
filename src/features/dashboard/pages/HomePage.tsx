@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEO from "@/components/seo/SEO";
 import {
   ArrowRight,
   BarChart3,
@@ -48,6 +49,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-heading">
+      <SEO />
       <LandingNavbar />
 
       <main>

@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
 
+import SEO from "@/components/seo/SEO";
 import AppInput from "@/components/common/AppInput";
 import AppButton from "@/components/common/AppButton";
 import logo from "@/assets/images/logo.png";
@@ -40,6 +41,7 @@ export default function RegisterPage() {
 
   return (
     <div className="w-full max-w-lg animate-spring-up">
+      <SEO title="Daftar" description="Buat akun CareerPath dan temukan magang impianmu." />
       <div className="bg-surface border border-border-light rounded-xl p-6 shadow-card">
         <img src={logo} alt="CareerPath" className="h-12 mb-6" />
 

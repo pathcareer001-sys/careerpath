@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 
+import SEO from "@/components/seo/SEO";
 import AppButton from "@/components/common/AppButton";
 import AppInput from "@/components/common/AppInput";
 import logo from "@/assets/images/logo.png";
@@ -29,6 +30,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="w-full max-w-sm animate-fade-in-up">
+      <SEO title="Lupa Password" description="Reset password akun CareerPath Anda." noIndex />
       <div className="bg-surface border border-border rounded-xl p-6">
         <img src={logo} alt="CareerPath" className="h-12 mb-6" />
 
