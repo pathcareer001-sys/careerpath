@@ -65,6 +65,9 @@ service cloud.firestore {
       allow read: if isAuthenticated() && (
         request.auth.uid == resource.data.applicantId
         || isAdmin()
+        || (getUserRole() == 'company'
+            && exists(/databases/$(database)/documents/internships/$(resource.data.internshipId))
+            && get(/databases/$(database)/documents/internships/$(resource.data.internshipId)).data.ownerId == request.auth.uid)
       );
       allow create: if isAuthenticated() && getUserRole() == 'student'
         && request.resource.data.applicantId == request.auth.uid;
