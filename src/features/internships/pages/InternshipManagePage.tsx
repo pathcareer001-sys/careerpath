@@ -11,6 +11,7 @@ import { useInternships } from "../hooks/useInternships";
 import { useDeleteInternship } from "../hooks/useDeleteInternship";
 import { useUpdateInternship } from "../hooks/useUpdateInternship";
 import { useCompanies } from "@/features/companies/hooks/useCompanies";
+import type { Company } from "@/types/company";
 import type { Internship } from "@/types/internship";
 import { toast } from "sonner";
 import type { InternshipFormData } from "@/features/internships/components/InternshipForm";
@@ -24,7 +25,7 @@ export default function InternshipManagePage() {
   const [editingInternship, setEditingInternship] = useState<Internship | null>(null);
 
   const companyMap = useMemo(() => {
-    if (!companies) return new Map<string, typeof companies[0]>();
+    if (!companies) return new Map<string, Company>();
     return new Map(companies.map((c) => [c.id, c]));
   }, [companies]);
 

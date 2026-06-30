@@ -160,11 +160,9 @@ export default function CompanySubscriptionPage() {
               </div>
             ) : (
               <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                <DialogTrigger asChild>
-                  <AppButton className="w-full h-11 text-sm font-semibold">
+                <DialogTrigger render={<AppButton className="w-full h-11 text-sm font-semibold" />}>
                     <Crown size="16" />
                     Berlangganan Sekarang
-                  </AppButton>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
@@ -182,10 +180,8 @@ export default function CompanySubscriptionPage() {
                     </DialogDescription>
                   </DialogHeader>
                   <DialogFooter>
-                    <DialogClose asChild>
-                      <AppButton variant="outline" disabled={isPaying}>
+                    <DialogClose render={<AppButton variant="outline" disabled={isPaying} />}>
                         Batal
-                      </AppButton>
                     </DialogClose>
                     <AppButton onClick={handlePay} disabled={isPaying}>
                       {isPaying ? "Memproses..." : "Bayar Sekarang"}

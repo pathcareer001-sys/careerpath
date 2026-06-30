@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+  children?: ReactNode;
   variant?: "primary" | "secondary" | "danger" | "outline";
   size?: "default" | "sm" | "lg";
 }

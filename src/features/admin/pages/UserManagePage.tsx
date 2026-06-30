@@ -46,7 +46,7 @@ export default function UserManagePage() {
         <EmptyState title="Tidak Ada Pengguna" description="Pengguna akan muncul di sini" />
       ) : (
         <div className="space-y-4 animate-fade-in-up">
-          {sortedUsers.map((user) => (
+          {(sortedUsers ?? []).map((user) => (
             <AppCard key={user.uid}>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div className="flex items-center gap-3">

@@ -11,12 +11,15 @@ export default function VerifiedBadge({ show, size = 16 }: VerifiedBadgeProps) {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>
-          <span
-            className="inline-flex items-center justify-center shrink-0 align-middle"
-            style={{ width: size, height: size }}
-          >
-            <svg
+        <TooltipTrigger
+          render={
+            <span
+              className="inline-flex items-center justify-center shrink-0 align-middle"
+              style={{ width: size, height: size }}
+            />
+          }
+        >
+          <svg
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +35,6 @@ export default function VerifiedBadge({ show, size = 16 }: VerifiedBadgeProps) {
                 strokeLinejoin="round"
               />
             </svg>
-          </span>
         </TooltipTrigger>
         <TooltipContent>
           <p>Perusahaan Premium</p>
