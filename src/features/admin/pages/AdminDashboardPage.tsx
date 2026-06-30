@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useCompanies } from "@/features/companies/hooks/useCompanies";
 import { useUpdateCompany } from "@/features/companies/hooks/useUpdateCompany";
 import { toast } from "sonner";
-import { ShieldCheck, ShieldX, ArrowRight, TrendingUp, PieChart } from "lucide-react";
+import { ShieldCheck, ShieldX, ExternalLink, ArrowRight, TrendingUp, PieChart } from "lucide-react";
 import { AdminBarChart, AdminPieChart } from "../components/AdminCharts";
 import { useAdminDashboard } from "../hooks/useAdminDashboard";
 
@@ -75,6 +75,13 @@ export default function AdminDashboardPage() {
                 <p className="text-xs text-secondary-text mt-1">Moderasi ulasan perusahaan</p>
               </AppCard>
             </Link>
+            <a href="https://analytics.google.com" target="_blank" rel="noopener noreferrer">
+              <AppCard className="hover:border-primary transition-all hover:-translate-y-0.5 hover:shadow-md">
+                <ExternalLink size="20" className="text-warning mb-2" />
+                <p className="font-medium">Google Analytics</p>
+                <p className="text-xs text-secondary-text mt-1">Lihat pengunjung website secara realtime</p>
+              </AppCard>
+            </a>
           </div>
         </AppCard>
       </div>
