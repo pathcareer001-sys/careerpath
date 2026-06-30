@@ -31,24 +31,36 @@ export default function AuthProvider({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    authService.handleGoogleRedirectResult();
+    let unsubscribe: () => void;
 
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (!firebaseUser) {
-        setUser(null);
-        setLoading(false);
-
-        return;
+    const init = async () => {
+      try {
+        await authService.handleGoogleRedirectResult();
+      } catch (err) {
+        console.error("Google redirect result error:", err);
       }
 
-      const appUser = await userService.getUser(firebaseUser.uid);
+      unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+        if (!firebaseUser) {
+          setUser(null);
+          setLoading(false);
 
-      setUser(appUser);
+          return;
+        }
 
-      setLoading(false);
-    });
+        const appUser = await userService.getUser(firebaseUser.uid);
 
-    return unsubscribe;
+        setUser(appUser);
+
+        setLoading(false);
+      });
+    };
+
+    init();
+
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   }, []);
   const refreshUser = async () => {
     const firebaseUser = auth.currentUser;
