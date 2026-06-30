@@ -11,8 +11,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-  DialogClose,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Crown } from "lucide-react";
@@ -59,43 +57,41 @@ export default function StudentSubscriptionCard() {
           )}
         </div>
         {!isPremium && (
-          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-            <DialogTrigger asChild>
-              <AppButton size="sm">
-                <Crown size="14" />
-                Berlangganan Sekarang
-              </AppButton>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Premium Member</DialogTitle>
-                <DialogDescription>
-                  <div className="flex items-center gap-3 mt-2 p-3 rounded-lg bg-primary/[0.03] border border-border">
-                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Crown size="18" className="text-primary" />
+          <>
+            <AppButton size="sm" onClick={() => setDialogOpen(true)}>
+              <Crown size="14" />
+              Berlangganan Sekarang
+            </AppButton>
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Premium Member</DialogTitle>
+                  <DialogDescription>
+                    <div className="flex items-center gap-3 mt-2 p-3 rounded-lg bg-primary/[0.03] border border-border">
+                      <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                        <Crown size="18" className="text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-heading">Paket Premium</p>
+                        <p className="text-xl font-bold text-heading mt-1">
+                          Rp19.000{" "}
+                          <span className="text-xs font-normal text-secondary-text">/ bulan</span>
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-heading">Paket Premium</p>
-                      <p className="text-xl font-bold text-heading mt-1">
-                        Rp19.000{" "}
-                        <span className="text-xs font-normal text-secondary-text">/ bulan</span>
-                      </p>
-                    </div>
-                  </div>
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <AppButton variant="outline" disabled={isPaying}>
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <AppButton variant="outline" disabled={isPaying} onClick={() => setDialogOpen(false)}>
                     Batal
                   </AppButton>
-                </DialogClose>
-                <AppButton onClick={handlePay} disabled={isPaying}>
-                  {isPaying ? "Memproses..." : "Bayar Sekarang"}
-                </AppButton>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+                  <AppButton onClick={handlePay} disabled={isPaying}>
+                    {isPaying ? "Memproses..." : "Bayar Sekarang"}
+                  </AppButton>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </>
         )}
       </div>
     </AppCard>
