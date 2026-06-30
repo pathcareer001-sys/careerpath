@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import PageContainer from "@/components/common/PageContainer";
 import PageHeader from "@/components/common/PageHeader";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
 import EditUserDialog from "@/features/users/components/EditUserDialog";
+import VerifiedBadge from "@/components/company/VerifiedBadge";
 import { useDeleteUser } from "@/features/users/hooks/useDeleteUser";
 import { useUsers } from "@/features/users/hooks/useUsers";
 import EmptyState from "@/components/shared/EmptyState";
@@ -14,6 +15,16 @@ export default function UserManagePage() {
   const { data: users } = useUsers();
   const deleteUser = useDeleteUser();
   const [editingUser, setEditingUser] = useState<AppUser | null>(null);
+
+  const sortedUsers = useMemo(
+    () =>
+      users?.slice().sort((a, b) => {
+        if (a.subscription === "premium" && b.subscription !== "premium") return -1;
+        if (a.subscription !== "premium" && b.subscription === "premium") return 1;
+        return 0;
+      }),
+    [users],
+  );
 
   const handleDelete = async (uid: string) => {
     if (!confirm("Hapus pengguna?")) return;
@@ -35,7 +46,7 @@ export default function UserManagePage() {
         <EmptyState title="Tidak Ada Pengguna" description="Pengguna akan muncul di sini" />
       ) : (
         <div className="space-y-4 animate-fade-in-up">
-          {users.map((user) => (
+          {sortedUsers.map((user) => (
             <AppCard key={user.uid}>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div className="flex items-center gap-3">
@@ -48,13 +59,25 @@ export default function UserManagePage() {
                       </div>
                     )}
                   </div>
-                  <div>
-                    <h3 className="font-medium text-heading">{user.name}</h3>
-                    <p className="text-sm text-secondary-text">{user.email}</p>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2 py-0.5 text-[11px] font-medium text-primary mt-1">
-                      {user.role}
-                    </span>
-                  </div>
+                    <div>
+                      <h3 className="font-medium text-heading">{user.name}</h3>
+                      <p className="text-sm text-secondary-text">{user.email}</p>
+                      <div className="flex items-center gap-1.5 mt-1">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2 py-0.5 text-[11px] font-medium text-primary">
+                          {user.role}
+                        </span>
+                        {user.subscription === "premium" ? (
+                          <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-0.5 text-[11px] font-medium text-blue-700">
+                            Premium
+                            <VerifiedBadge show size={12} />
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-500">
+                            Free
+                          </span>
+                        )}
+                      </div>
+                    </div>
                 </div>
                 <div className="flex gap-2">
                   <AppButton onClick={() => setEditingUser(user)}>Ubah</AppButton>

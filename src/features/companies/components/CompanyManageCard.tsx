@@ -1,4 +1,4 @@
-import { BadgeCheck, Building2, MapPin, Pencil, Trash2 } from "lucide-react";
+import { Building2, MapPin, Pencil, Trash2 } from "lucide-react";
 import AppCard from "@/components/common/AppCard";
 import AppButton from "@/components/common/AppButton";
 import type { Company } from "@/types/company";
@@ -30,11 +30,20 @@ export default function CompanyManageCard({
               <VerifiedBadge show={company.subscription === "premium"} size={14} />
             </h3>
             <p className="text-sm text-secondary-text">{company.industry || "Tidak ada industri"}</p>
-            <div className="flex items-center gap-2">
-              <BadgeCheck size="16" className={company.verified ? "text-success" : "text-muted"} />
-              <span className={company.verified ? "text-sm text-success font-medium" : "text-sm text-muted"}>
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="inline-flex items-center gap-1 rounded-full bg-accent px-2 py-0.5 text-[11px] font-medium text-primary">
                 {company.verified ? "Terverifikasi" : "Belum Terverifikasi"}
               </span>
+              {company.subscription === "premium" ? (
+                <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-0.5 text-[11px] font-medium text-blue-700">
+                  Premium
+                  <VerifiedBadge show size={12} />
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-500">
+                  Free
+                </span>
+              )}
             </div>
             {company.location && (
               <div className="flex items-center gap-1 text-sm text-secondary-text">

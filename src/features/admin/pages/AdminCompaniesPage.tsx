@@ -32,9 +32,15 @@ export default function AdminCompaniesPage() {
     if (tab === "pending") {
       list = list.filter((c) => !c.verified);
     }
-    return list.filter((company) =>
-      company.name.toLowerCase().includes(search.toLowerCase()),
-    );
+    return list
+      .filter((company) =>
+        company.name.toLowerCase().includes(search.toLowerCase()),
+      )
+      .sort((a, b) => {
+        if (a.subscription === "premium" && b.subscription !== "premium") return -1;
+        if (a.subscription !== "premium" && b.subscription === "premium") return 1;
+        return 0;
+      });
   }, [companies, search, tab]);
 
   const pendingCount = companies?.filter((c) => !c.verified).length || 0;
