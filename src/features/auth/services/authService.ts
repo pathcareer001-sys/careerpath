@@ -2,7 +2,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signInWithEmailLink,
   signOut,
   sendPasswordResetEmail,
@@ -43,8 +44,13 @@ export const authService = {
     return signInWithEmailAndPassword(auth, email, password);
   },
 
-  async loginWithGoogle() {
-    const credential = await signInWithPopup(auth, googleProvider);
+  loginWithGoogle() {
+    return signInWithRedirect(auth, googleProvider);
+  },
+
+  async handleGoogleRedirectResult() {
+    const credential = await getRedirectResult(auth);
+    if (!credential) return;
 
     const userRef = doc(db, COLLECTIONS.USERS, credential.user.uid);
     const userSnapshot = await getDoc(userRef);
