@@ -47,9 +47,15 @@ export const reviewService = {
     if (!existingReview.empty) {
       throw new Error("You already reviewed this company");
     }
-    await addDoc(collection(db, COLLECTIONS.REVIEWS), data);
+    const docRef = await addDoc(collection(db, COLLECTIONS.REVIEWS), data);
 
-    const reviews = await reviewService.getCompanyReviews(data.companyId);
+    reviewService.updateCompanyRating(data.companyId).catch(() => {});
+
+    return docRef;
+  },
+
+  async updateCompanyRating(companyId: string) {
+    const reviews = await reviewService.getCompanyReviews(companyId);
 
     const totalRating = reviews.reduce((sum, item) => sum + item.rating, 0);
 
@@ -57,7 +63,7 @@ export const reviewService = {
       reviews.length > 0
         ? Number((totalRating / reviews.length).toFixed(1))
         : 0;
-    await companyService.updateCompany(data.companyId, {
+    await companyService.updateCompany(companyId, {
       avgRating,
       reviewCount: reviews.length,
     });

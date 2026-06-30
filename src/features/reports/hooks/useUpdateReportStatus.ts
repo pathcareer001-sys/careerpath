@@ -9,7 +9,7 @@ export function useUpdateReportStatus() {
     mutationFn: ({ id, status }: { id: string; status: Report["status"] }) =>
       reportService.updateReportStatus(id, status),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["reports"] });
+      try { queryClient.invalidateQueries({ queryKey: ["reports"] }); } catch {}
     },
   });
 }

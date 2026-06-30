@@ -23,21 +23,22 @@ export default function CompanyApplicantsPage() {
   const handleStatus = async (application: Application, status: "accepted" | "rejected" | "interview" | "reviewed") => {
     try {
       await updateStatus.mutateAsync({ id: application.id, status });
+      toast.success(`Pelamar ${status === "accepted" ? "diterima" : status === "rejected" ? "ditolak" : status === "interview" ? "diwawancara" : "ditinjau"}`);
+
       const notificationMap: Record<string, { title: string; message: string }> = {
         accepted: { title: "Lamaran Diterima", message: `Selamat! Lamaran Anda untuk ${application.internshipTitle} telah diterima.` },
         rejected: { title: "Lamaran Ditolak", message: `Lamaran Anda untuk ${application.internshipTitle} tidak dipilih.` },
         interview: { title: "Undangan Wawancara", message: `Anda diundang untuk wawancara untuk ${application.internshipTitle}.` },
         reviewed: { title: "Lamaran Ditinjau", message: `Lamaran Anda untuk ${application.internshipTitle} sedang ditinjau.` },
       };
-      await notificationService.createNotification({
+      notificationService.createNotification({
         userId: application.applicantId,
         title: notificationMap[status].title,
         message: notificationMap[status].message,
         type: "application",
         read: false,
         createdAt: new Date().toISOString(),
-      });
-      toast.success(`Pelamar ${status === "accepted" ? "diterima" : status === "rejected" ? "ditolak" : status === "interview" ? "diwawancara" : "ditinjau"}`);
+      }).catch(() => {});
     } catch {
       toast.error("Gagal memperbarui pelamar");
     }
@@ -70,10 +71,14 @@ export default function CompanyApplicantsPage() {
                 <AppButton type="button" onClick={() => { setInterviewApplication(null); setInterviewDate(""); setInterviewLocation(""); }}>Batal</AppButton>
                 <AppButton type="button" onClick={async () => {
                   if (!interviewApplication) return;
-                  await updateStatus.mutateAsync({ id: interviewApplication.id, status: "interview", interviewDate, interviewLocation });
-                  await notificationService.createNotification({ userId: interviewApplication.applicantId, title: "Undangan Wawancara", message: `Wawancara untuk ${interviewApplication.internshipTitle}\nTanggal: ${interviewDate}\nLokasi: ${interviewLocation}`, type: "application", read: false, createdAt: new Date().toISOString() });
-                  toast.success("Wawancara dijadwalkan");
-                  setInterviewApplication(null); setInterviewDate(""); setInterviewLocation("");
+                  try {
+                    await updateStatus.mutateAsync({ id: interviewApplication.id, status: "interview", interviewDate, interviewLocation });
+                    toast.success("Wawancara dijadwalkan");
+                    notificationService.createNotification({ userId: interviewApplication.applicantId, title: "Undangan Wawancara", message: `Wawancara untuk ${interviewApplication.internshipTitle}\nTanggal: ${interviewDate}\nLokasi: ${interviewLocation}`, type: "application", read: false, createdAt: new Date().toISOString() }).catch(() => {});
+                    setInterviewApplication(null); setInterviewDate(""); setInterviewLocation("");
+                  } catch {
+                    toast.error("Gagal menjadwalkan wawancara");
+                  }
                 }}>Jadwalkan Wawancara</AppButton>
               </div>
             </div>

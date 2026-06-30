@@ -9,9 +9,7 @@ export function useDeleteUser() {
     mutationFn: (uid: string) => userService.deleteUser(uid),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["users"],
-      });
+      try { queryClient.invalidateQueries({ queryKey: ["users"] }); } catch {}
     },
   });
 }

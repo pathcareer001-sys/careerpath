@@ -106,9 +106,9 @@ export default function ProfilePage() {
 
       await updateProfile.mutateAsync({ uid: user.uid, data });
 
-      await refreshUser();
-
       toast.success("Profil diperbarui");
+
+      refreshUser().catch(() => {});
     } catch {
       toast.error("Gagal memperbarui profil");
     }

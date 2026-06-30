@@ -68,14 +68,18 @@ export default function InternshipDetailPage() {
     }
   };
 
-  const handleBookmark = () => {
+  const handleBookmark = async () => {
     if (!user || !internship) return;
-    if (bookmark) {
-      deleteBookmark.mutate(bookmark.id);
-      toast.success("Dihapus dari bookmark");
-    } else {
-      createBookmark.mutate({ userId: user.uid, internshipId: internship.id });
-      toast.success("Magang di-bookmark");
+    try {
+      if (bookmark) {
+        await deleteBookmark.mutateAsync(bookmark.id);
+        toast.success("Dihapus dari bookmark");
+      } else {
+        await createBookmark.mutateAsync({ userId: user.uid, internshipId: internship.id });
+        toast.success("Magang di-bookmark");
+      }
+    } catch {
+      toast.error("Gagal");
     }
   };
 

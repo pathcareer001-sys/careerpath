@@ -9,9 +9,7 @@ export function useDeleteCompany() {
     mutationFn: companyService.deleteCompany,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["companies"],
-      });
+      try { queryClient.invalidateQueries({ queryKey: ["companies"] }); } catch {}
     },
   });
 }

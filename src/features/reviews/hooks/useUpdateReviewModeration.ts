@@ -9,7 +9,7 @@ export function useUpdateReviewModeration() {
     mutationFn: ({ id, moderationStatus }: { id: string; moderationStatus: Review["moderationStatus"] }) =>
       reviewService.updateReviewModeration(id, moderationStatus),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["all-reviews"] });
+      try { queryClient.invalidateQueries({ queryKey: ["all-reviews"] }); } catch {}
     },
   });
 }

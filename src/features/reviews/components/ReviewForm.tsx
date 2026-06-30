@@ -31,18 +31,23 @@ export default function ReviewForm({ companyId }: Props) {
       return;
     }
 
-    await createReview.mutateAsync({
-      companyId,
-      userId: user?.uid || "",
-      userName: user?.name || user?.email || "Anonim",
-      userPhotoURL: user?.photoURL || "",
-      rating,
-      review,
-    });
+    try {
+      await createReview.mutateAsync({
+        companyId,
+        userId: user?.uid || "",
+        userName: user?.name || user?.email || "Anonim",
+        userPhotoURL: user?.photoURL || "",
+        rating,
+        review,
+      });
 
-    setReview("");
-    setRating(5);
-    toast.success("Ulasan terkirim");
+      setReview("");
+      setRating(5);
+      toast.success("Ulasan terkirim");
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Gagal mengirim ulasan";
+      toast.error(message);
+    }
   };
 
   return (

@@ -15,9 +15,7 @@ export function useCreateBookmark() {
     }) => bookmarkService.createBookmark(userId, companyId),
 
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: ["bookmarks", variables.userId],
-      });
+      try { queryClient.invalidateQueries({ queryKey: ["bookmarks", variables.userId] }); } catch {}
     },
   });
 }

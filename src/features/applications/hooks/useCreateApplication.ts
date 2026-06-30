@@ -9,13 +9,8 @@ export function useCreateApplication() {
     mutationFn: applicationService.createApplication,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["hasApplied"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["applications"],
-      });
+      try { queryClient.invalidateQueries({ queryKey: ["hasApplied"] }); } catch {}
+      try { queryClient.invalidateQueries({ queryKey: ["applications"] }); } catch {}
     },
   });
 }

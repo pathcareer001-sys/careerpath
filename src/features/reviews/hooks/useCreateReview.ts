@@ -10,17 +10,11 @@ export function useCreateReview() {
     mutationFn: reviewService.createReview,
 
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: ["reviews", variables.companyId],
-      });
+      try { queryClient.invalidateQueries({ queryKey: ["reviews", variables.companyId] }); } catch {}
+      try { queryClient.invalidateQueries({ queryKey: ["companies"] }); } catch {}
+      try { queryClient.invalidateQueries({ queryKey: ["company", variables.companyId] }); } catch {}
 
-      queryClient.invalidateQueries({
-        queryKey: ["companies"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["company", variables.companyId],
-      });
+      reviewService.updateCompanyRating(variables.companyId).catch(() => {});
     },
   });
 }

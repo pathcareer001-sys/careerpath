@@ -25,21 +25,10 @@ export function useUpdateApplicationStatus() {
       ),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["internship-applications"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["company-applications"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["applications"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["dashboard"],
-      });
+      try { queryClient.invalidateQueries({ queryKey: ["internship-applications"] }); } catch {}
+      try { queryClient.invalidateQueries({ queryKey: ["company-applications"] }); } catch {}
+      try { queryClient.invalidateQueries({ queryKey: ["applications"] }); } catch {}
+      try { queryClient.invalidateQueries({ queryKey: ["dashboard"] }); } catch {}
     },
   });
 }

@@ -10,13 +10,8 @@ export function useUpdateCompany() {
       companyService.updateCompany(id, data),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["companies"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["my-company"],
-      });
+      try { queryClient.invalidateQueries({ queryKey: ["companies"] }); } catch {}
+      try { queryClient.invalidateQueries({ queryKey: ["my-company"] }); } catch {}
     },
   });
 }

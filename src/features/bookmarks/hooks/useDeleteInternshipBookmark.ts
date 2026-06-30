@@ -10,7 +10,7 @@ export function useDeleteInternshipBookmark() {
     mutationFn: (bookmarkId: string) =>
       internshipBookmarkService.deleteBookmark(bookmarkId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["internship-bookmarks", user?.uid] });
+      try { queryClient.invalidateQueries({ queryKey: ["internship-bookmarks", user?.uid] }); } catch {}
     },
   });
 }

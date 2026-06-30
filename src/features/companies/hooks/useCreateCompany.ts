@@ -9,13 +9,8 @@ export function useCreateCompany() {
     mutationFn: companyService.createCompany,
 
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: ["companies"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["my-company", variables.ownerId],
-      });
+      try { queryClient.invalidateQueries({ queryKey: ["companies"] }); } catch {}
+      try { queryClient.invalidateQueries({ queryKey: ["my-company", variables.ownerId] }); } catch {}
     },
   });
 }

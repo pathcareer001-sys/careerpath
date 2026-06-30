@@ -9,13 +9,8 @@ export function useCreateInternship() {
     mutationFn: internshipService.createInternship,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["internships"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["company-internships"],
-      });
+      try { queryClient.invalidateQueries({ queryKey: ["internships"] }); } catch {}
+      try { queryClient.invalidateQueries({ queryKey: ["company-internships"] }); } catch {}
     },
   });
 }

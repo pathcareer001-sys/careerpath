@@ -9,7 +9,7 @@ export function useDeleteBookmark() {
     mutationFn: bookmarkService.deleteBookmark,
 
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      try { queryClient.invalidateQueries(); } catch {}
     },
   });
 }
