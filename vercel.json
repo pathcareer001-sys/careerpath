@@ -3,27 +3,6 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "rewrites": [
-    { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/favicon(-\\d+x\\d+)?\\.(png|ico|svg)", "destination": "/favicon$1.$2" },
-    { "source": "/apple-touch-icon.png", "destination": "/apple-touch-icon.png" },
-    { "source": "/android-chrome-\\d+x\\d+\\.png", "destination": "/android-chrome-$&" },
-    { "source": "/site.webmanifest", "destination": "/site.webmanifest" },
-    { "source": "/logo.png", "destination": "/logo.png" },
-    { "source": "/icons.svg", "destination": "/icons.svg" },
     { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    },
-    {
-      "source": "/(favicon.ico|favicon-\\d+x\\d+\\.png|apple-touch-icon\\.png|logo\\.png)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
-      ]
-    }
   ]
 }
