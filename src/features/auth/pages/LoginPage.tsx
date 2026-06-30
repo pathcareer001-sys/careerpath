@@ -38,18 +38,8 @@ export default function LoginPage() {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      const credential = await authService.loginWithGoogle();
-      const appUser = await userService.getUser(credential.user.uid);
-
-      if (appUser?.role === "student") { navigate("/dashboard"); return; }
-      if (appUser?.role === "company") { navigate("/company"); return; }
-      if (appUser?.role === "admin") { navigate("/admin"); return; }
-      if (appUser?.role === "staff") { navigate("/staff"); return; }
-    } catch {
-      toast.error("Google login failed");
-    }
+  const handleGoogleLogin = () => {
+    authService.loginWithGoogle();
   };
 
   return (

@@ -34,13 +34,8 @@ export default function RegisterPage() {
     }
   };
 
-  const handleGoogleRegister = async () => {
-    try {
-      await authService.loginWithGoogle();
-      navigate("/dashboard");
-    } catch {
-      toast.error("Google registration failed");
-    }
+  const handleGoogleRegister = () => {
+    authService.loginWithGoogle();
   };
 
   return (

@@ -1,6 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 
 import { userService } from "@/features/users/services/userService";
+import { authService } from "@/features/auth/services/authService";
 
 import { createContext, useEffect, useState } from "react";
 
@@ -30,6 +31,8 @@ export default function AuthProvider({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    authService.handleGoogleRedirectResult();
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (!firebaseUser) {
         setUser(null);
