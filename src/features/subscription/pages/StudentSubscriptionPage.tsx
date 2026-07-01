@@ -126,7 +126,7 @@ export default function StudentSubscriptionPage() {
             </div>
 
             <div className="mb-5">
-              <p className="text-3xl font-bold text-heading">Rp19.000</p>
+              <p className="text-3xl font-bold text-heading">Rp25.000</p>
               <p className="text-sm text-secondary-text">/ bulan</p>
             </div>
 
