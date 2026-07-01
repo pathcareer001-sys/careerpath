@@ -8,6 +8,8 @@ import SEO from "@/components/seo/SEO";
 import AppInput from "@/components/common/AppInput";
 import AppButton from "@/components/common/AppButton";
 import logo from "@/assets/images/logo.png";
+import { auth } from "@/firebase/auth";
+import { userService } from "@/features/users/services/userService";
 import { authService } from "../services/authService";
 import { registerSchema, type RegisterSchema } from "../schemas/registerSchema";
 
@@ -38,8 +40,16 @@ export default function RegisterPage() {
   const handleGoogleRegister = async () => {
     try {
       await authService.loginWithGoogle();
+      if (!auth.currentUser) return;
+      const appUser = await userService.getUser(auth.currentUser.uid);
+      if (!appUser) return;
+      if (appUser.role === "student") { navigate("/dashboard"); return; }
+      if (appUser.role === "company") { navigate("/company"); return; }
+      if (appUser.role === "admin") { navigate("/admin"); return; }
+      if (appUser.role === "staff") { navigate("/staff"); return; }
     } catch (err: unknown) {
-      const error = err as { code?: string };
+      const error = err as { code?: string; message?: string };
+      console.error("[Google Register Error]", error?.code, error?.message, error);
       if (error?.code === "auth/popup-blocked") {
         toast.error("Popup Google diblokir. Izinkan popup atau coba metode lain.");
       } else if (error?.code === "auth/popup-closed-by-user") {

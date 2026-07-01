@@ -21,9 +21,7 @@ import type { Role } from "@/constants/roles";
 
 const googleProvider = new GoogleAuthProvider();
 
-const isLocalhost =
-  window.location.hostname === "localhost" ||
-  window.location.hostname === "127.0.0.1";
+googleProvider.setCustomParameters({ prompt: "select_account" });
 
 async function handleUserCreation(credential: { user: { uid: string; displayName: string | null; email: string | null; photoURL: string | null } }) {
   const userRef = doc(db, COLLECTIONS.USERS, credential.user.uid);
@@ -68,12 +66,18 @@ export const authService = {
   },
 
   async loginWithGoogle() {
-    if (isLocalhost) {
+    try {
       const credential = await signInWithPopup(auth, googleProvider);
       await handleUserCreation(credential);
-      return;
+    } catch (err: unknown) {
+      const error = err as { code?: string };
+      if (error?.code === "auth/popup-blocked") {
+        console.warn("[Google Auth] Popup blocked, falling back to redirect");
+        return signInWithRedirect(auth, googleProvider);
+      }
+      console.error("[Google Popup Error]", error);
+      throw err;
     }
-    return signInWithRedirect(auth, googleProvider);
   },
 
   async handleGoogleRedirectResult() {

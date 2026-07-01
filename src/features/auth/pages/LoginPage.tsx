@@ -8,6 +8,7 @@ import SEO from "@/components/seo/SEO";
 import AppButton from "@/components/common/AppButton";
 import AppInput from "@/components/common/AppInput";
 import logo from "@/assets/images/logo.png";
+import { auth } from "@/firebase/auth";
 import { authService } from "../services/authService";
 import { userService } from "@/features/users/services/userService";
 import { loginSchema, type LoginSchema } from "../schemas/loginSchema";
@@ -42,8 +43,16 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     try {
       await authService.loginWithGoogle();
+      if (!auth.currentUser) return;
+      const appUser = await userService.getUser(auth.currentUser.uid);
+      if (!appUser) return;
+      if (appUser.role === "student") { navigate("/dashboard"); return; }
+      if (appUser.role === "company") { navigate("/company"); return; }
+      if (appUser.role === "admin") { navigate("/admin"); return; }
+      if (appUser.role === "staff") { navigate("/staff"); return; }
     } catch (err: unknown) {
-      const error = err as { code?: string };
+      const error = err as { code?: string; message?: string };
+      console.error("[Google Login Error]", error?.code, error?.message, error);
       if (error?.code === "auth/popup-blocked") {
         toast.error("Popup Google diblokir. Izinkan popup atau coba metode lain.");
       } else if (error?.code === "auth/popup-closed-by-user") {
