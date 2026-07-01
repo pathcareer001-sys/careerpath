@@ -39,8 +39,19 @@ export default function LoginPage() {
     }
   };
 
-  const handleGoogleLogin = () => {
-    authService.loginWithGoogle();
+  const handleGoogleLogin = async () => {
+    try {
+      await authService.loginWithGoogle();
+    } catch (err: unknown) {
+      const error = err as { code?: string };
+      if (error?.code === "auth/popup-blocked") {
+        toast.error("Popup Google diblokir. Izinkan popup atau coba metode lain.");
+      } else if (error?.code === "auth/popup-closed-by-user") {
+        toast.error("Login Google dibatalkan.");
+      } else {
+        toast.error("Gagal login dengan Google. Coba lagi.");
+      }
+    }
   };
 
   return (

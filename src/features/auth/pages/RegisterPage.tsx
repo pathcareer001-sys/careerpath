@@ -35,8 +35,19 @@ export default function RegisterPage() {
     }
   };
 
-  const handleGoogleRegister = () => {
-    authService.loginWithGoogle();
+  const handleGoogleRegister = async () => {
+    try {
+      await authService.loginWithGoogle();
+    } catch (err: unknown) {
+      const error = err as { code?: string };
+      if (error?.code === "auth/popup-blocked") {
+        toast.error("Popup Google diblokir. Izinkan popup atau coba metode lain.");
+      } else if (error?.code === "auth/popup-closed-by-user") {
+        toast.error("Pendaftaran Google dibatalkan.");
+      } else {
+        toast.error("Gagal daftar dengan Google. Coba lagi.");
+      }
+    }
   };
 
   return (
