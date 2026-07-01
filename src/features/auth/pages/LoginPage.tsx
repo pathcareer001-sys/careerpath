@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,12 +10,23 @@ import AppButton from "@/components/common/AppButton";
 import AppInput from "@/components/common/AppInput";
 import logo from "@/assets/images/logo.png";
 import { auth } from "@/firebase/auth";
+import { useAuth } from "@/hooks/useAuth";
 import { authService } from "../services/authService";
 import { userService } from "@/features/users/services/userService";
 import { loginSchema, type LoginSchema } from "../schemas/loginSchema";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
+
+  useEffect(() => {
+    if (authLoading) return;
+    if (!user) return;
+    if (user.role === "student") navigate("/dashboard");
+    else if (user.role === "company") navigate("/company");
+    else if (user.role === "admin") navigate("/admin");
+    else if (user.role === "staff") navigate("/staff");
+  }, [user, authLoading, navigate]);
 
   const {
     register,
