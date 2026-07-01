@@ -136,7 +136,7 @@ export default function CompanySubscriptionPage() {
             </div>
 
             <div className="mb-5">
-              <p className="text-3xl font-bold text-heading">Rp999.000</p>
+              <p className="text-3xl font-bold text-heading">Rp59.000</p>
               <p className="text-sm text-secondary-text">/ bulan</p>
             </div>
 
